@@ -2,7 +2,7 @@ package po;
 
 import java.io.Serializable;
 
-public class OperationLogPO implements Serializable {
+public class LogPO implements Serializable {
 
 	/**
 	 * 
@@ -14,7 +14,7 @@ public class OperationLogPO implements Serializable {
 	String operation;
 	String time; // 此处time的类型存疑
 
-	public OperationLogPO(String position, String name, String operation,
+	public LogPO(String position, String name, String operation,
 			String time) {
 		super();
 		this.position = position;
