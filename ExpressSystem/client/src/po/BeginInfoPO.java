@@ -3,7 +3,7 @@ package src.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BeginInfo implements Serializable{
+public class BeginInfoPO implements Serializable{
 
 	/**
 	 * 
