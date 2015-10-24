@@ -1,8 +1,7 @@
 package po;
 
-import java.io.Serializable;
 
-public class ConstantPO implements Serializable{
+public class ConstantPO implements Sheet{
 
 	/**
 	 * 
