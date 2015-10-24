@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class InstitutionPO {
 	private String InstitutionName;
 	private long InstitutionID;
-	private ArrayList<StaffInfoPO> staff;
+	private ArrayList<StaffPO> staff;
 	private String function;
 	
 	public void setInstitutionName(String InstitutionName){
@@ -26,11 +26,11 @@ public class InstitutionPO {
 		return InstitutionID;
 	}
 	
-	public void updateStaff(ArrayList<StaffInfoPO> staff){
+	public void updateStaff(ArrayList<StaffPO> staff){
 		this.staff = staff;
 	}
 	
-	public ArrayList<StaffInfoPO> getStaff(){
+	public ArrayList<StaffPO> getStaff(){
 		return staff;
 	}
 	

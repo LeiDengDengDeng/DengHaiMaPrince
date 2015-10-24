@@ -1,8 +1,7 @@
 package po;
 
-import java.io.Serializable;
 
-public class OrderSheetPO implements Serializable {
+public class OrderSheetPO implements Sheet {
 
 	/**
 	 * 

@@ -1,8 +1,7 @@
 package po;
 
-import java.util.ArrayList;
 
-public class StaffInfoPO {
+public class StaffPO {
 	private long StaffID;        //π§∫≈
 	private long account;   //’À∫≈
 	private String password;//√‹¬Î

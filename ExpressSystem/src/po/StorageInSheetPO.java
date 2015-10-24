@@ -1,6 +1,10 @@
 package po;
 
-public class StorageInSheetPO {
+public class StorageInSheetPO implements Sheet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6862182018727425740L;
 	private long expressNumber;//快递编号
 	private long inTime;//入库日期
 	private String destination;//目的地
