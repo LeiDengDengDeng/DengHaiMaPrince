@@ -7,9 +7,15 @@ import src.vo.AccountVO;
 
 public class AccountBLService_Stub implements AccountBLService {
 
-	String AccountName;
-	long AccountID;
-	double AccountAmount;
+//	String AccountName;
+//	long AccountID;
+//	double AccountAmount;
+//	public AccountBLService_Stub(String accountName, long accountID, double accountAmount) {
+//		super();
+//		AccountName = accountName;
+//		AccountID = accountID;
+//		AccountAmount = accountAmount;
+//	}
 
 	@Override
 	public boolean islegal(AccountInfoType type, Object info) {
@@ -26,12 +32,6 @@ public class AccountBLService_Stub implements AccountBLService {
 		return true;
 	}
 
-	public AccountBLService_Stub(String accountName, long accountID, double accountAmount) {
-		super();
-		AccountName = accountName;
-		AccountID = accountID;
-		AccountAmount = accountAmount;
-	}
 
 	public boolean addAccount(String name, long num, double amount) {
 		if (name == "Ð¡Íõ×Ó") {
@@ -70,7 +70,8 @@ public class AccountBLService_Stub implements AccountBLService {
 	@Override
 	public void delAccount(long num) {
 		// TODO Auto-generated method stub
-
+		if(num==1234122222)
+		System.out.println("Delete the account!");
 	}
 
 }
