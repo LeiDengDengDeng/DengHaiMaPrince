@@ -21,9 +21,4 @@ public class AccountBLServece_Driver {
 		accountBLService.endAccountManagement();
 	}
 
-	public static void main(String[] args) {
-		AccountBLService accountBLService_Stub = new AccountBLService_Stub();
-		AccountBLServece_Driver driver = new AccountBLServece_Driver();
-		driver.drive(accountBLService_Stub);
-	}
 }
