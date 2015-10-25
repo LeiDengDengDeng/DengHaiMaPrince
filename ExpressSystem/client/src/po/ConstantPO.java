@@ -1,7 +1,7 @@
 package src.po;
 
 
-public class ConstantPO implements Sheet{
+public class ConstantPO implements SheetPO{
 
 	/**
 	 * 

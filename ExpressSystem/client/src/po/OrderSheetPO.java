@@ -1,7 +1,7 @@
 package src.po;
 
 
-public class OrderSheetPO implements Sheet {
+public class OrderSheetPO implements SheetPO {
 
 	/**
 	 * 

@@ -1,6 +1,6 @@
 package src.po;
 
-public class StorageInSheetPO implements Sheet{
+public class StorageInSheetPO implements SheetPO{
 	/**
 	 * 
 	 */
