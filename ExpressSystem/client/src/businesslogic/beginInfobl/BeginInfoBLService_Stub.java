@@ -17,7 +17,7 @@ public class BeginInfoBLService_Stub implements BeginInfoBLService {
 	@Override
 	public BeginInfoVO getInfo() {
 		// TODO Auto-generated method stub
-		return null;
+		return new BeginInfoVO(beginDriver, beginInstitution, beginTruck, beginAccount, beginConstant);
 	}
 
 	@Override

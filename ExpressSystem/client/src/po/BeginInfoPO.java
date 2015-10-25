@@ -13,7 +13,7 @@ public class BeginInfoPO implements Serializable{
 	ArrayList<DriverPO> beginDriver;
 	ArrayList<InstitutionPO> beginInstitution;
 	ArrayList<TruckPO> beginTruck;
-	
+	ArrayList<AccountPO> beginAccount;
 	ConstantPO beginConstant;
 	
 	
