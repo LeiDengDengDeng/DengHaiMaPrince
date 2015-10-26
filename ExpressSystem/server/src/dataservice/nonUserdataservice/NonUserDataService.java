@@ -27,5 +27,11 @@ public interface NonUserDataService {
 	 * @throws RemoteException
 	 */
 	public DriverPO finDriverPO(long id) throws RemoteException;
+	
+	/**
+	 * 结束持久化数据库的使用
+	 * @throws RemoteException
+	 */
+	public void finish() throws RemoteException;
 
 }

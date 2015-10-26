@@ -22,4 +22,10 @@ public class NonUserData_Stub implements NonUserDataService{
 		return dpo;
 	}
 
+	@Override
+	public void finish() throws RemoteException {
+		System.out.println("成功结束commodity数据使用!");
+		
+	}
+
 }
