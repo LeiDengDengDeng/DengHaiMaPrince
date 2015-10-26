@@ -8,7 +8,7 @@ public class StorageInSheetPO implements SheetPO{
 	private long expressNumber;//快递编号
 	private long inTime;//入库日期
 	private String destination;//目的地
-	private int areaNumber;//区号
+	private int areaNumber;//区号(枚举)
 	private int rowNumber;//排号
 	private int shelfNumber;//架号
 	private int seatNumber;//位号
