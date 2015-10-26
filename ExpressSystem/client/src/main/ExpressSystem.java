@@ -13,20 +13,21 @@ import src.businesslogicservice.sheetblservice.SheetBLService;
 public class ExpressSystem {
 	
 	public static void main(String[] args){
+		System.out.println("----------LogDriver----------");
+		LogBLService logBLService_Stub = new LogBLService_Stub();
+		LogBLService_Driver logDriver = new LogBLService_Driver();
+		logDriver.drive(logBLService_Stub);
+
 		System.out.println("----------AccountDriver----------");
 		AccountBLService accountBLService_Stub = new AccountBLService_Stub();
 		AccountBLServece_Driver accountDriver = new AccountBLServece_Driver();
 		accountDriver.drive(accountBLService_Stub);
 		
 		System.out.println("----------SheetDriver----------");
-		SheetBLService sheetBLService_Stub = new SheetBLService_Stub();
+		SheetBLService sheetBLService_Stub = new SheetBLService_Stub(logBLService_Stub);
 		SheetBLService_Driver sheetDriver = new SheetBLService_Driver();
 		sheetDriver.drive(sheetBLService_Stub);
 		
-		System.out.println("----------LogDriver----------");
-		LogBLService logBLService_Stub = new LogBLService_Stub();
-		LogBLService_Driver logDriver = new LogBLService_Driver();
-		logDriver.drive(logBLService_Stub);
 	}
 
 }

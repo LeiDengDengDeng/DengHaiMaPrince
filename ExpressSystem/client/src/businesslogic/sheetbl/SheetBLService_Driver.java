@@ -1,5 +1,7 @@
 package src.businesslogic.sheetbl;
 
+import java.util.ArrayList;
+
 import src.businesslogicservice.sheetblservice.SheetBLService;
 
 public class SheetBLService_Driver {
@@ -13,7 +15,9 @@ public class SheetBLService_Driver {
 		sheetBLService.isLegal(SheetInfoType.COURIER_NUMBER, "1");
 		sheetBLService.confirmSheet(null, SheetType.ORDER_SHEET, true);
 		sheetBLService.confirmSheet(null, SheetType.ORDER_SHEET, false);
-		sheetBLService.formulateConstant(10, 10);
+		ArrayList<Double> distant = new ArrayList<Double>();
+		distant.add(10.0);
+		sheetBLService.formulateConstant(distant, 10);
 	}
 
 }

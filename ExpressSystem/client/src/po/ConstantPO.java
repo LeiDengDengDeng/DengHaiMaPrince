@@ -1,5 +1,7 @@
 package src.po;
 
+import java.util.ArrayList;
+
 
 public class ConstantPO implements SheetPO{
 
@@ -8,20 +10,20 @@ public class ConstantPO implements SheetPO{
 	 */
 	private static final long serialVersionUID = 7774935977364748669L;
 	
-	double distant;
+	ArrayList<Double> distant = new ArrayList<Double>();
 	double price;
 	
-	public ConstantPO(double distant, double price) {
+	public ConstantPO(ArrayList<Double> distant, double price) {
 		super();
 		this.distant = distant;
 		this.price = price;
 	}
 
-	public double getDistant() {
+	public ArrayList<Double> getDistant() {
 		return distant;
 	}
 
-	public void setDistant(double distant) {
+	public void setDistant(ArrayList<Double> distant) {
 		this.distant = distant;
 	}
 

@@ -2,10 +2,17 @@ package src.businesslogic.sheetbl;
 
 import java.util.ArrayList;
 
+import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 
 public class SheetBLService_Stub implements SheetBLService {
 
+	LogBLService log;
+	
+	public SheetBLService_Stub(LogBLService log){
+		this.log = log;
+	}
+	
 	@Override
 	public void checkSheet(long ID) {
 		// TODO 自动生成的方法存根
@@ -16,6 +23,7 @@ public class SheetBLService_Stub implements SheetBLService {
 	public void examineSheet(long ID) {
 		// TODO 自动生成的方法存根
 		System.out.println("你在审批表格！");
+		log.generateLog("总经理", "小王子", "审批表格");
 	}
 
 	@Override
@@ -28,9 +36,8 @@ public class SheetBLService_Stub implements SheetBLService {
 			switch (type) {
 			case ORDER_SHEET:
 				System.out.println("新建表格类型为寄件单");
+				log.generateLog("快递员", "张三", "填写寄件单");
 				break;
-			default:
-				System.out.println("无对应表格类型");
 			}
 		}
 	}
@@ -64,11 +71,12 @@ public class SheetBLService_Stub implements SheetBLService {
 	}
 
 	@Override
-	public void formulateConstant(double distant, double price) {
+	public void formulateConstant(ArrayList<Double> distant, double price) {
 		// TODO 自动生成的方法存根
 		System.out.println("你正在制定常量！");
-		System.out.println("距离常量值为：" + distant + "公里");
+		System.out.println("距离常量值为：" + distant.get(0) + "公里");
 		System.out.println("价格常量值为：" + price + "元/公里");
+		log.generateLog("总经理", "小王子", "制定常量");
 	}
 
 }

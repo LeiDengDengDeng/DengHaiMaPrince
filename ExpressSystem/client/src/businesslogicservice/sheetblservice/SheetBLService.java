@@ -12,6 +12,6 @@ public interface SheetBLService {
 	public void fillSheet(SheetType type,long ID);
 	public boolean isLegal(SheetInfoType type, Object info);
 	public boolean confirmSheet(ArrayList<String> info, SheetType type, boolean confirmed);
-	public void formulateConstant(double distant, double price);
+	public void formulateConstant(ArrayList<Double> distant, double price);
 
 }
