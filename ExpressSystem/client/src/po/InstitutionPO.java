@@ -1,13 +1,24 @@
 package src.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class InstitutionPO {
+public class InstitutionPO implements Serializable{
 	private String InstitutionName;
 	private long InstitutionID;
-	private ArrayList<StaffPO> staff;
+	private ArrayList<StaffInfoPO> staff;
 	private String function;
+	
+	public InstitutionPO(String InstitutionName,long InstitutionID
+			,ArrayList<StaffInfoPO> staff,String function) {
+		// TODO Auto-generated constructor stub
+		this.InstitutionName = InstitutionName;
+		this.InstitutionID = InstitutionID;
+		this.staff = staff;
+		this.function = function;
+		
+	}
 	
 	public void setInstitutionName(String InstitutionName){
 		this.InstitutionName = InstitutionName;
@@ -26,11 +37,11 @@ public class InstitutionPO {
 		return InstitutionID;
 	}
 	
-	public void updateStaff(ArrayList<StaffPO> staff){
+	public void updateStaff(ArrayList<StaffInfoPO> staff){
 		this.staff = staff;
 	}
 	
-	public ArrayList<StaffPO> getStaff(){
+	public ArrayList<StaffInfoPO> getStaff(){
 		return staff;
 	}
 	
