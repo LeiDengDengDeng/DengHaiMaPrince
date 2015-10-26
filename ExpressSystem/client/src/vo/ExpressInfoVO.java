@@ -2,6 +2,8 @@ package src.vo;
 
 import java.io.Serializable;
 
+import src.businesslogic.commoditybl.GoodsType;
+
 /**
  * 用于显示将被盘点的库存信息
  * @author Potter
@@ -17,18 +19,18 @@ public class ExpressInfoVO implements Serializable{
 	private long expressNumber;//快递编号
 	private long inTime;//入库日期
 	private String destination;//目的地
-	private int areaNumber;//区号
+	private GoodsType areaNumber;//区号
 	private int rowNumber;//排号
 	private int shelfNumber;//架号
 	private int seatNumber;//位号
 	
 	public ExpressInfoVO(long expressNumber, long inTime, String destination,
-			int areaNumber, int rowNumber, int shelfNumber, int seatNumber) {
+			GoodsType goodsType, int rowNumber, int shelfNumber, int seatNumber) {
 		super();
 		this.expressNumber = expressNumber;
 		this.inTime = inTime;
 		this.destination = destination;
-		this.areaNumber = areaNumber;
+		this.areaNumber = goodsType;
 		this.rowNumber = rowNumber;
 		this.shelfNumber = shelfNumber;
 		this.seatNumber = seatNumber;
@@ -58,11 +60,11 @@ public class ExpressInfoVO implements Serializable{
 		this.destination = destination;
 	}
 
-	public int getAreaNumber() {
+	public GoodsType getAreaNumber() {
 		return areaNumber;
 	}
 
-	public void setAreaNumber(int areaNumber) {
+	public void setAreaNumber(GoodsType areaNumber) {
 		this.areaNumber = areaNumber;
 	}
 

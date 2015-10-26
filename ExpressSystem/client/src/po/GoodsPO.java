@@ -3,6 +3,13 @@ package src.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import src.businesslogic.commoditybl.GoodsType;
+
+/**
+ * 商品信息持久化对象
+ * @author Potter
+ *
+ */
 public class GoodsPO implements Serializable {
 
 	/**
@@ -18,25 +25,25 @@ public class GoodsPO implements Serializable {
 	private double factWeight;//实际重量
 	private double size;//货物体积
 	private String goodsName;//内件品名
-	private int expressForm;//快递方式
-	private int packagingForm;//包装方式
+	private GoodsType expressForm;//快递方式
+	private GoodsType packagingForm;//包装方式
 	private long expressNumber;//快递编号
 	private long inTime;//入库日期
 	private String destination;//目的地
-	private int areaNumber;//区号
+	private GoodsType areaNumber;//区号
 	private int rowNumber;//排号
 	private int shelfNumber;//架号
 	private int seatNumber;//位号
 	private int transportForm;//装运形式
-	private long transferNumber;//中转单编号
-	private long transportNumber;//汽运编号
+	private String transferNumber;//中转单编号
+	private String transportNumber;//汽运编号
 	
 	public GoodsPO(ArrayList<String> logisticsState, int goodsNumber,
 			double length, double width, double height, double factWeight,
-			double size, String goodsName, int expressForm, int packagingForm,
+			double size, String goodsName, GoodsType expressForm, GoodsType packagingForm,
 			long expressNumber, long inTime, String destination,
-			int areaNumber, int rowNumber, int shelfNumber, int seatNumber,
-			int transportForm, long transferNumber, long transportNumber) {
+			GoodsType areaNumber, int rowNumber, int shelfNumber, int seatNumber,
+			int transportForm, String transferNumber, String transportNumber) {
 		super();
 		this.logisticsState = logisticsState;
 		this.goodsNumber = goodsNumber;
@@ -124,19 +131,19 @@ public class GoodsPO implements Serializable {
 		this.goodsName = goodsName;
 	}
 
-	public int getExpressForm() {
+	public GoodsType getExpressForm() {
 		return expressForm;
 	}
 
-	public void setExpressForm(int expressForm) {
+	public void setExpressForm(GoodsType expressForm) {
 		this.expressForm = expressForm;
 	}
 
-	public int getPackagingForm() {
+	public GoodsType getPackagingForm() {
 		return packagingForm;
 	}
 
-	public void setPackagingForm(int packagingForm) {
+	public void setPackagingForm(GoodsType packagingForm) {
 		this.packagingForm = packagingForm;
 	}
 
@@ -164,11 +171,11 @@ public class GoodsPO implements Serializable {
 		this.destination = destination;
 	}
 
-	public int getAreaNumber() {
+	public GoodsType getAreaNumber() {
 		return areaNumber;
 	}
 
-	public void setAreaNumber(int areaNumber) {
+	public void setAreaNumber(GoodsType areaNumber) {
 		this.areaNumber = areaNumber;
 	}
 
@@ -204,19 +211,19 @@ public class GoodsPO implements Serializable {
 		this.transportForm = transportForm;
 	}
 
-	public long getTransferNumber() {
+	public String getTransferNumber() {
 		return transferNumber;
 	}
 
-	public void setTransferNumber(long transferNumber) {
+	public void setTransferNumber(String transferNumber) {
 		this.transferNumber = transferNumber;
 	}
 
-	public long getTransportNumber() {
+	public String getTransportNumber() {
 		return transportNumber;
 	}
 
-	public void setTransportNumber(long transportNumber) {
+	public void setTransportNumber(String transportNumber) {
 		this.transportNumber = transportNumber;
 	}
 	

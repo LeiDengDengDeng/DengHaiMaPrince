@@ -3,6 +3,11 @@ package src.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * 库存信息持久化对象
+ * @author Potter
+ *
+ */
 public class StoragePO implements Serializable {
 
 	/**

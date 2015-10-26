@@ -2,6 +2,13 @@ package src.vo;
 
 import java.io.Serializable;
 
+import src.businesslogic.commoditybl.GoodsType;
+
+/**
+ * 用于显示将被查看的库存信息
+ * @author Potter
+ *
+ */
 public class StorageInfoVO implements Serializable{
 
 	/**
@@ -10,25 +17,25 @@ public class StorageInfoVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
-	private int areaNumber;//区号
+	private GoodsType areaNumber;//区号
 	private int rowNumber;//排号
 	private int shelfNumber;//架号
 	private int seatNumber;//位号
 	
-	public StorageInfoVO(int areaNumber, int rowNumber, int shelfNumber,
+	public StorageInfoVO(GoodsType goodsType, int rowNumber, int shelfNumber,
 			int seatNumber) {
 		super();
-		this.areaNumber = areaNumber;
+		this.areaNumber = goodsType;
 		this.rowNumber = rowNumber;
 		this.shelfNumber = shelfNumber;
 		this.seatNumber = seatNumber;
 	}
 
-	public int getAreaNumber() {
+	public GoodsType getAreaNumber() {
 		return areaNumber;
 	}
 
-	public void setAreaNumber(int areaNumber) {
+	public void setAreaNumber(GoodsType areaNumber) {
 		this.areaNumber = areaNumber;
 	}
 

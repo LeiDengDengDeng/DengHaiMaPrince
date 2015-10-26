@@ -12,7 +12,7 @@ import src.vo.StorageInfoVO;
  * @author Potter
  *
  */
-public interface CommodityBlService {
+public interface CommodityBLService {
 	
 	/**
 	 * 盘点界面得到当天各区快递信息
@@ -48,5 +48,10 @@ public interface CommodityBlService {
 	 * @param spo
 	 */
 	public void divide (GoodsPO gpo, StoragePO spo);
+	
+	/**
+	 * 结束库存操作
+	 */
+	public void endCommodityManagement();
 
 }
