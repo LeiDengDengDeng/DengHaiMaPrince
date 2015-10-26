@@ -32,7 +32,7 @@ public class ExpressSystem {
 		sheetDriver.drive(sheetBLService_Stub);
 		
 		System.out.println("----------BeginInfoDriver----------");
-		BeginInfoBLService beginInfoBLService_Stub = new BeginInfoBLService_Stub();
+		BeginInfoBLService beginInfoBLService_Stub = new BeginInfoBLService_Stub(logBLService_Stub);
 		BeginInfoBLService_Driver beginInfoDriver = new BeginInfoBLService_Driver();
 		beginInfoDriver.drive(beginInfoBLService_Stub);
 

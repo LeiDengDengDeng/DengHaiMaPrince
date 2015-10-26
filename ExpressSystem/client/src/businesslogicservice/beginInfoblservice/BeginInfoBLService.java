@@ -9,6 +9,8 @@ public interface BeginInfoBLService {
 
 	public BeginInfoVO getInfo();
 
-public boolean islegal(BeginInfoType type, Object info) ;
+	public boolean islegal(BeginInfoType type, Object info);
+
+	public void endBeginInfo();
 
 }

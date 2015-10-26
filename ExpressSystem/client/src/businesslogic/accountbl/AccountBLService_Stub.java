@@ -17,46 +17,45 @@ public class AccountBLService_Stub implements AccountBLService {
 //		AccountID = accountID;
 //		AccountAmount = accountAmount;
 //	}
-	LogBLService logBLService;
-	
-	public AccountBLService_Stub(LogBLService logBLService) {
+	LogBLService log;
+	String position="财务人员";
+	public AccountBLService_Stub(LogBLService log) {
 		super();
-		this.logBLService = logBLService;
+		this.log = log;
 	}
 
 	@Override
 	public boolean islegal(AccountInfoType type, Object info) {
 		// TODO Auto-generated method stub
-		if (type == AccountInfoType.NAME) {
-			String name=(String)info;
-		}
-		if (type == AccountInfoType.ID) {
-			long ID=(long)info;
-		}
-		if (type == AccountInfoType.AMOUNT) {
-			double amount=(double)info;
-		}
+//		if (type == AccountInfoType.NAME) {
+//			String name=(String)info;
+//		}
+//		if (type == AccountInfoType.ID) {
+//			long ID=(long)info;
+//		}
+//		if (type == AccountInfoType.AMOUNT) {
+//			double amount=(double)info;
+//		}
 		return true;
 	}
 
 
 	public boolean addAccount(String name, long num, double amount) {
 		if (name == "小王子") {
+			log.generateLog(position, "小王子", "增加一个账户");
 			return true;
 		} else
 			return false;
-
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public boolean modAccount(long ID, String name, double amount) {
+	public void modAccount(long ID, String name, double amount) {
 		// TODO Auto-generated method stub
-		if (ID == 100)
-			return false;
-		else
-			return true;
+		System.out.println("Modify succeed!");
+		log.generateLog(position, "小王子", "修改银行账户");
+
 
 	}
 

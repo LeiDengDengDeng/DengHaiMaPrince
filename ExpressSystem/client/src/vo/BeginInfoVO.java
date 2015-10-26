@@ -1,13 +1,5 @@
 package src.vo;
 
-import java.util.ArrayList;
-
-import src.po.AccountPO;
-import src.po.ConstantPO;
-import src.po.DriverPO;
-import src.po.InstitutionPO;
-import src.po.TruckPO;
-
 public class BeginInfoVO {
 //	ArrayList<DriverVO> beginDriver;
 //	ArrayList<InstitutionVO> beginInstitution;
