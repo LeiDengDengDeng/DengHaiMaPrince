@@ -23,5 +23,5 @@ public class BeginInfoVO {
 //		this.beginAccount = beginAccount;
 //		this.beginConstant = beginConstant;
 //	}
-//	
+	
 }

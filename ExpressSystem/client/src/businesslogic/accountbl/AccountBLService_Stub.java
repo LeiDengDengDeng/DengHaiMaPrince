@@ -3,6 +3,7 @@ package src.businesslogic.accountbl;
 import java.util.ArrayList;
 
 import src.businesslogicservice.accountblservice.AccountBLService;
+import src.businesslogicservice.logblservice.LogBLService;
 import src.vo.AccountVO;
 
 public class AccountBLService_Stub implements AccountBLService {
@@ -16,6 +17,12 @@ public class AccountBLService_Stub implements AccountBLService {
 //		AccountID = accountID;
 //		AccountAmount = accountAmount;
 //	}
+	LogBLService logBLService;
+	
+	public AccountBLService_Stub(LogBLService logBLService) {
+		super();
+		this.logBLService = logBLService;
+	}
 
 	@Override
 	public boolean islegal(AccountInfoType type, Object info) {

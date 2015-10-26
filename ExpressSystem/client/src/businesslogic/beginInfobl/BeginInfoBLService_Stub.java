@@ -10,8 +10,7 @@ public class BeginInfoBLService_Stub implements BeginInfoBLService {
 	
 	public boolean fillInfo(BeginInfoVO vo) {
 		// TODO Auto-generated method stub
-		
-		return false;
+		return true;
 	}
 
 	@Override
