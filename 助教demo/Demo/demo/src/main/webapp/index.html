@@ -1,0 +1,45 @@
+<html>
+<meta charset="UTF-8"> 
+<script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./js/AddImportList.js" charset="UTF-8"></script>
+
+
+<body>
+
+<h3>添加进货单</h3>
+
+<script>init()</script>
+<div>供应商：<select id="supplier"></select> </div>
+<br />
+<div>
+商品编号：<input type="text" id="comm_no" value="">
+数量：<input type="number" id="amount" value="0">
+备注：<input type="text" id = "note" value="">
+</div>
+<br />
+<div>
+<input type="button" value="添加" onclick="addItem()">
+<input type="button" value="删除" onclick="deleteItem()">
+</div>
+<br />
+<div>
+<table id="itemTable" border="1">
+	<tr id="header">
+		<th>商品编号</th>
+		<th>商品名称</th>
+		<th>商品类型</th>
+		<th>数量</th>
+		<th>单价</th>
+		<th>总价</th>
+		<th>备注</th>
+		<th>选择</th>
+	</tr>
+</table>
+</div>
+<br />
+<div id="totalPrice">总价：0.0</div>
+<br />
+<div><input type="button" value="提交进货单" onclick="submit()"></div>
+</body>
+
+</html>

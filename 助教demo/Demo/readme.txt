@@ -1,0 +1,10 @@
+Demo实现添加进货单功能，DataFactory可以用Mysql Txt 序列化文件实现数据操作
+如果要更改实现方式只要修改DataFactory中的Impl类的声明即可
+
+Mysql测试Mysql 5.5可用
+
+
+Demo_Web是Demo的web版本，将Demo_Web中的demo文件夹放入tomcat下面的webapps文件夹中，浏览器输入localhost:8080/demo，默认使用txtdata
+由于Txt和序列化文件路径需要在tomcat路径下，所以请确保demo文件夹下有数据文件（不要移动demo下面的txtdata和serializabledata）
+web版本中的WEB-INF/classes下面存放的是demojava版本编译后的class文件，所以如果想更换数据实现方式，和demo一样的修改DataFactory
+把编译后的DataFactory.class放到classes里面替换原来的即可（eclipse可以自动编译java文件,class文件在target文件夹里)
