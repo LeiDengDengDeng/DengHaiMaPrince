@@ -2,7 +2,7 @@ package src.businesslogicservice.institutionbl;
 
 import java.util.ArrayList;
 
-import src.businesslogicservice.institutionblService.InstitutionBLService;
+import src.businesslogicservice.institutionblservice.InstitutionBLService;
 import src.po.InstitutionPO;
 import src.vo.InstitutionVO;
 

@@ -2,7 +2,7 @@ package src.businesslogicservice.userbl;
 
 import java.util.ArrayList;
 
-import src.businesslogicservice.userblService.UserBLService;
+import src.businesslogicservice.userblservice.UserBLService;
 import src.vo.UserVO;
 
 public class UserBLService_Stub implements UserBLService{

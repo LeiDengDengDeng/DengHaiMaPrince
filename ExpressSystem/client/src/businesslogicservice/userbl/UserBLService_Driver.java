@@ -1,6 +1,6 @@
 package src.businesslogicservice.userbl;
 
-import src.businesslogicservice.userblService.UserBLService;
+import src.businesslogicservice.userblservice.UserBLService;
 import src.vo.UserVO;
 
 public class UserBLService_Driver {
