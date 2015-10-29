@@ -1,5 +1,6 @@
 package src.dataservice.institutiondataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ import src.po.InstitutionPO;
 /**
  * @author  samsung
  */
-public interface InstitutionDataService {
+public interface InstitutionDataService extends Remote{
 
 		
 	/**

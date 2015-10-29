@@ -1,5 +1,6 @@
 package src.dataservice.staffmanagedataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ import src.po.StaffInfoPO;
 /**
  * @author  samsung
  */
-public interface StaffManageDataService {
+public interface StaffManageDataService extends Remote{
 	/**
 	 * ¸ù¾ÝID·µ»ØStaffInfoPO
 	 * @param StaffId

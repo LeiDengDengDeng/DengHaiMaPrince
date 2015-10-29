@@ -1,5 +1,6 @@
 package src.dataservice.userdataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import src.po.UserPO;
@@ -8,7 +9,7 @@ import src.po.UserPO;
 /**
  * @author  samsung
  */
-public interface UserDataService {
+public interface UserDataService extends Remote{
 
 	/**
 	 * ¸ù¾ÝID·µ»ØUserPO
