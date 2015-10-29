@@ -38,6 +38,14 @@ public class SheetBLService_Stub implements SheetBLService {
 				System.out.println("新建表格类型为寄件单");
 				log.generateLog("快递员", "张三", "填写寄件单");
 				break;
+			case PAYMENT_SHEET:
+				break;
+			case STORAGE_IN_SHEET:
+				break;
+			case STORAGE_OUT_SHEET:
+				break;
+			default:
+				break;
 			}
 		}
 	}
