@@ -15,6 +15,7 @@ public class BeginInfoPO implements Serializable{
 	ArrayList<TruckPO> beginTruck;
 	ArrayList<AccountPO> beginAccount;
 	ConstantPO beginConstant;
-	
-	
+	ArrayList<StaffInfoPO> beginStaffInfo;
+	StoragePO beginStorage;
+	ArrayList<UserPO> beginUser; 
 }
