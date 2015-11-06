@@ -2,15 +2,21 @@ package src.businesslogic.sheetbl;
 
 import java.util.ArrayList;
 
+import src.businesslogicservice.accountblservice.AccountBLService;
+import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 
 public class SheetBLService_Stub implements SheetBLService {
 
 	LogBLService log;
+	AccountBLService account;
+	CommodityBLService commodity;
 	
-	public SheetBLService_Stub(LogBLService log){
+	public SheetBLService_Stub(LogBLService log,AccountBLService account,CommodityBLService commodity){
 		this.log = log;
+		this.account = account;
+		this.commodity = commodity;
 	}
 	
 	@Override
