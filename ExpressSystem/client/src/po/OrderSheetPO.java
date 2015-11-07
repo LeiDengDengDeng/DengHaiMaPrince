@@ -1,5 +1,8 @@
 package src.po;
 
+import src.businesslogic.sheetbl.SheetType;
+
+
 
 public class OrderSheetPO implements SheetPO {
 
@@ -8,8 +11,9 @@ public class OrderSheetPO implements SheetPO {
 	 */
 	private static final long serialVersionUID = -5527627863328717617L;
 
-	long courierNumber;  // 快递物流编号
+	SheetType type = SheetType.ORDER_SHEET;
 	
+	long courierNumber;  // 快递物流编号
 	String senderName; // 姓名
 	String senderAddress; // 地址
 	String senderOrganization; // 单位
