@@ -1,4 +1,4 @@
-package src.businesslogicservice.institutionbl;
+package src.businesslogic.institutionbl;
 
 public enum InstitutionInfoType {
 	INSTITUTIONID,INSTITUTIONNAME,STAFF,FUNCTION;

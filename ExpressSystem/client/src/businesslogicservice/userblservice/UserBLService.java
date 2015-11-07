@@ -32,6 +32,20 @@ public interface UserBLService {
 	 */
 	public void changePassword(String password);
 	
+	/**
+	 * 初始化
+	 * @param User
+	 * 
+	 */
+//	public void initial(ArrayList<InitUserVO> User);
+	
+	/**
+	 * 获得仓库管理对应的城市
+	 * @param UserId
+	 * @return
+	 * 
+	 */
+	public String getCity(long UserId);
 	
 	/**
 	 * 结束管理

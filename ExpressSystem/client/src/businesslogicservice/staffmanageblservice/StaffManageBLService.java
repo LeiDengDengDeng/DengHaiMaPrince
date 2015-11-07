@@ -2,8 +2,9 @@ package src.businesslogicservice.staffmanageblservice;
 
 import java.util.ArrayList;
 
-import src.po.StaffInfoPO;
+import src.po.UserPO;
 import src.vo.StaffInfoVO;
+import src.vo.UserVO;
 
 /**
  * @author: samsung
@@ -41,14 +42,14 @@ public interface StaffManageBLService {
 	 * @param StaffInfo
 	 * 
 	 */
-	public void addStaffInfo(StaffInfoPO StaffInfo);
+	public void addStaffInfo(UserVO StaffInfo);
 	
 	/**
 	 * 删除一个员工帐号
-	 * @param StaffInfo
+	 * @param StaffId
 	 * 
 	 */
-	public void deleteStaff(StaffInfoPO StaffInfo);
+	public void deleteStaff(long StaffId);
 	
 	/**
 	 * 结束管理
