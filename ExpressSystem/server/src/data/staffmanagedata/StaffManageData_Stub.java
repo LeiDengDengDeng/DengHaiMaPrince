@@ -4,41 +4,41 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
-import src.po.StaffInfoPO;
+import src.po.UserPO;
 
 public class StaffManageData_Stub implements StaffManageDataService{
 
 	@Override
-	public StaffInfoPO find(long StaffId) throws RemoteException {
+	public UserPO find(long StaffId) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("find successfully!");
-		return new StaffInfoPO(000000, 000000, "aaaa", "Echo", "Manager", null);
+		return new UserPO(000000, 000000, "aaaa", "Echo", "Manager", null);
 	}
 
 	@Override
-	public ArrayList<StaffInfoPO> finds() throws RemoteException {
+	public ArrayList<UserPO> finds() throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("find all successfully!");
-		ArrayList<StaffInfoPO> staffInfoPOs = new ArrayList<StaffInfoPO>();
-		staffInfoPOs.add(new StaffInfoPO(000000, 000000, "aaaa", "Echo", "Manager", null));
+		ArrayList<UserPO> staffInfoPOs = new ArrayList<UserPO>();
+		staffInfoPOs.add(new UserPO(000000, 000000, "aaaa", "Echo", "Manager", null));
 		return staffInfoPOs;
 	}
 
 	@Override
-	public void insert(StaffInfoPO po) throws RemoteException {
+	public void insert(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("insert successfully!");
 	}
 
 	@Override
-	public void update(StaffInfoPO po) throws RemoteException {
+	public void update(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("update successfully!");
 		
 	}
 
 	@Override
-	public void delete(StaffInfoPO po) throws RemoteException {
+	public void delete(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("delete successfully!");
 		

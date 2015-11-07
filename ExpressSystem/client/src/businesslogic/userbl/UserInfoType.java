@@ -1,4 +1,4 @@
-package src.businesslogicservice.userbl;
+package src.businesslogic.userbl;
 
 public enum UserInfoType {
 	PERSONALID,PERSONALACCOUNT,PERSONALNAME,MYPASSWORD,MYPOSITION,SALARY,AUTHORITY;

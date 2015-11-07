@@ -6,16 +6,16 @@ import java.util.ArrayList;
 
 public class InstitutionPO implements Serializable{
 	private String InstitutionName;
-	private long InstitutionID;
-	private ArrayList<StaffInfoPO> staff;
+	private long InstitutionID;	//6λ
+	private ArrayList<UserPO> staff;
 	private String function;
 	
 	public InstitutionPO(String InstitutionName,long InstitutionID
-			,ArrayList<StaffInfoPO> staff,String function) {
+			,String function) {
 		// TODO Auto-generated constructor stub
 		this.InstitutionName = InstitutionName;
 		this.InstitutionID = InstitutionID;
-		this.staff = staff;
+		this.staff = null;
 		this.function = function;
 		
 	}
@@ -37,11 +37,11 @@ public class InstitutionPO implements Serializable{
 		return InstitutionID;
 	}
 	
-	public void updateStaff(ArrayList<StaffInfoPO> staff){
-		this.staff = staff;
+	public void updateStaff(UserPO staff){
+		this.staff.add(staff);
 	}
 	
-	public ArrayList<StaffInfoPO> getStaff(){
+	public ArrayList<UserPO> getStaff(){
 		return staff;
 	}
 	

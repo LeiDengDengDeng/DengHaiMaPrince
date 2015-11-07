@@ -12,7 +12,7 @@ public class InstitutionData_Stub implements InstitutionDataService{
 	public InstitutionPO find(long InstitutionId) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("find successfully!");
-		return new InstitutionPO("Apart", 000000, null, "Manage Staff");
+		return new InstitutionPO("Apart", 000000, "Manage Staff");
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class InstitutionData_Stub implements InstitutionDataService{
 		// TODO Auto-generated method stub
 		System.out.println("find all successfully!");
 		ArrayList<InstitutionPO> institutionPOs = new ArrayList<InstitutionPO>();
-		institutionPOs.add(new InstitutionPO("Apart", 000000, null, "Manage Staff"));
+		institutionPOs.add(new InstitutionPO("Apart", 000000, "Manage Staff"));
 		return institutionPOs;
 	}
 
