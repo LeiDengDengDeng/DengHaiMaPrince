@@ -27,7 +27,7 @@ public class SheetBLService_Stub implements SheetBLService {
 	}
 
 	@Override
-	public void examineSheet(long ID) {
+	public void examineSheet(long ID,boolean passed) {
 		// TODO 自动生成的方法存根
 		System.out.println("你在审批表格！");
 		log.generateLog("总经理", "小王子", "审批表格");

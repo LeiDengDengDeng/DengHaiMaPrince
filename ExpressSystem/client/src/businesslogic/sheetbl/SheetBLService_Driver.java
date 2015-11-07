@@ -8,7 +8,7 @@ public class SheetBLService_Driver {
 	
 	public void drive(SheetBLService sheetBLService){
 		sheetBLService.checkSheet(00001);
-		sheetBLService.examineSheet(00001);
+		sheetBLService.examineSheet(00001,true);
 		sheetBLService.fillSheet(SheetType.ORDER_SHEET, 00001);
 		sheetBLService.fillSheet(SheetType.ORDER_SHEET, 00002);
 		sheetBLService.isLegal(SheetInfoType.COURIER_NUMBER, "0000000001");
