@@ -6,6 +6,7 @@ import src.businesslogicservice.accountblservice.AccountBLService;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.sheetblservice.SheetBLService;
+import src.vo.SheetVO;
 
 public class SheetBLService_Stub implements SheetBLService {
 
@@ -33,7 +34,7 @@ public class SheetBLService_Stub implements SheetBLService {
 	}
 
 	@Override
-	public void fillSheet(SheetType type, long ID) {
+	public SheetVO fillSheet(SheetType type, long ID) {
 		// TODO 自动生成的方法存根
 		if (ID == 00001)
 			System.out.println("你在填写已有的表格！表格ID为:" + ID);
@@ -54,6 +55,7 @@ public class SheetBLService_Stub implements SheetBLService {
 				break;
 			}
 		}
+		return null;
 	}
 
 	@Override
@@ -71,7 +73,7 @@ public class SheetBLService_Stub implements SheetBLService {
 	}
 
 	@Override
-	public boolean confirmSheet(ArrayList<String> info, SheetType type,
+	public boolean confirmSheet(SheetVO sheet, SheetType type,
 			boolean confirmed) {
 		// TODO 自动生成的方法存根
 		System.out.print("正在确认是否完成表格填写:---");
