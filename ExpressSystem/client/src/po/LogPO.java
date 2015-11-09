@@ -23,6 +23,10 @@ public class LogPO implements Serializable {
 		this.time = time;
 	}
 
+	public String getDate(){
+		return time;
+	}
+	
 	public String getLog() {
 		return time + "  " + position + name + operation + "\n";
 	}

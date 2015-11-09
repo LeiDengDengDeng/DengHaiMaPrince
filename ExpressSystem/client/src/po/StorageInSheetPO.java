@@ -1,5 +1,7 @@
 package src.po;
 
+import src.businesslogic.sheetbl.SheetType;
+
 public class StorageInSheetPO implements SheetPO{
 	/**
 	 * 
@@ -12,6 +14,8 @@ public class StorageInSheetPO implements SheetPO{
 	private int rowNumber;//排号
 	private int shelfNumber;//架号
 	private int seatNumber;//位号
+	
+	private SheetType type = SheetType.STORAGE_IN_SHEET;
 	
 	public StorageInSheetPO(long expressNumber, long inTime,
 			String destination, int areaNumber, int rowNumber, int shelfNumber,
@@ -80,6 +84,12 @@ public class StorageInSheetPO implements SheetPO{
 
 	public void setSeatNumber(int seatNumber) {
 		this.seatNumber = seatNumber;
+	}
+
+	@Override 
+	public SheetType getType() {
+		// TODO 自动生成的方法存根
+		return type;
 	}
 	
 
