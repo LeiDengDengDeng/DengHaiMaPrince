@@ -1,7 +1,13 @@
 package src.po;
 
-public class TruckPO {
+import java.io.Serializable;
 
+public class TruckPO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4423168177178972631L;
 	long number; // 车辆代号
 	int activeTime; // 服役时间
 	String licensePlateNum; // 车牌号

@@ -33,7 +33,7 @@ public interface InstitutionBLService {
 	 * @param Institution
 	 *  
 	 */
-	public void addInstitution(InstitutionPO Institution);
+	public void addInstitution(InstitutionVO Institution);
 	
 	/**
 	 * 更改某个人员的职位
@@ -51,10 +51,10 @@ public interface InstitutionBLService {
 	
 	/**
 	 * 删除机构
-	 * @param Institution
+	 * @param InstitutionId
 	 * 
 	 */
-	public void deleteInstitution(InstitutionPO Institution);
+	public void deleteInstitution(long InstitutionId);
 	
 	/**
 	 * 结束管理

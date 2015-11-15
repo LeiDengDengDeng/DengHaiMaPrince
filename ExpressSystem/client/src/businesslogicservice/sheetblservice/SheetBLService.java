@@ -4,14 +4,15 @@ import java.util.ArrayList;
 
 import src.businesslogic.sheetbl.SheetInfoType;
 import src.businesslogic.sheetbl.SheetType;
+import src.vo.SheetVO;
 
 public interface SheetBLService {
 	
 	public void checkSheet(long ID);
 	public void examineSheet(long ID);
-	public void fillSheet(SheetType type,long ID);
+	public SheetVO fillSheet(SheetType type,long ID);
 	public boolean isLegal(SheetInfoType type, Object info);
-	public boolean confirmSheet(ArrayList<String> info, SheetType type, boolean confirmed);
+	public boolean confirmSheet(SheetVO sheet, SheetType type, boolean confirmed);
 	public void formulateConstant(ArrayList<Double> distant, double price);
 
 }

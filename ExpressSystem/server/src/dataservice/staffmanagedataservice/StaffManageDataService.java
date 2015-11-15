@@ -4,8 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import src.po.InstitutionPO;
-import src.po.StaffInfoPO;
+import src.po.UserPO;
 
 
 /**
@@ -13,40 +12,40 @@ import src.po.StaffInfoPO;
  */
 public interface StaffManageDataService extends Remote{
 	/**
-	 * 根据ID返回StaffInfoPO
+	 * 根据ID返回UserPO
 	 * @param StaffId
 	 * @return
 	 * @throws RemoteException
 	 */
-	public StaffInfoPO find(long StaffId) throws RemoteException;
+	public UserPO find(long StaffId) throws RemoteException;
 		
 	/**
 	 * 返回所有StaffInfoPO
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ArrayList<StaffInfoPO> finds() throws RemoteException;
+	public ArrayList<UserPO> finds() throws RemoteException;
 		
 	 /**
 	 * 在数据库中增加一个po记录
 	 * @param po
 	 * @throws RemoteException
 	 */
-	public void insert(StaffInfoPO po) throws RemoteException;
+	public void insert(UserPO po) throws RemoteException;
 		
 	/**
 	 * 更新一个po
 	 * @param po
 	 * @throws RemoteException
 	 */
-	public void update(StaffInfoPO po) throws RemoteException;
+	public void update(UserPO po) throws RemoteException;
 	
 	/**
 	 * 删除一个po
 	 * @param po
 	 * @throws RemoteException
 	 */
-	public void delete(StaffInfoPO po) throws RemoteException;
+	public void delete(UserPO po) throws RemoteException;
 		
 	/**
 	 * 结束持久化数据库的使用

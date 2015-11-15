@@ -11,7 +11,7 @@ public class UserData_Stub implements UserDataService{
 	public UserPO find(long UserId) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("find user successfully!");
-		return new UserPO(000000, 000000, "aaaa", "Echo", "Manager", null, 5000);
+		return new UserPO(000000, 000000, "aaaa", "Echo", "Manager", null);
 	}
 
 	@Override

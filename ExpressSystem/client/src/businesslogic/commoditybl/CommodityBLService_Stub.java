@@ -3,11 +3,18 @@ package src.businesslogic.commoditybl;
 import java.util.ArrayList;
 
 import src.businesslogicservice.commodityblservice.CommodityBLService;
+import src.businesslogicservice.commodityblservice.SheetVO;
+import src.businesslogicservice.commodityblservice.StorageInitVO;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.po.GoodsPO;
+import src.po.StorageInSheetPO;
+import src.po.StorageOutSheetPO;
 import src.po.StoragePO;
 import src.vo.ExpressInfoVO;
+import src.vo.StorageInSheetVO;
 import src.vo.StorageInfoVO;
+import src.vo.StorageNumVO;
+import src.vo.StorageOutSheetVO;
 
 /**
  * 实现库存业务逻辑的接口
@@ -36,6 +43,11 @@ public class CommodityBLService_Stub implements CommodityBLService{
 		this.log = log;
 	}
 
+	@Override
+	public void getStorageId() {
+		
+	}
+	
 	@Override
 	public ArrayList<ExpressInfoVO> stockTaking(){
 		ArrayList<ExpressInfoVO> expressInfoList = new ArrayList<ExpressInfoVO>();
@@ -79,13 +91,14 @@ public class CommodityBLService_Stub implements CommodityBLService{
 	}
 	
 	@Override
-	public StoragePO getStorageNum(long startTime,long endTime) {
+	public StorageNumVO getStorageNum(long startTime,long endTime) {
 		//TODO 设定时间段返回出入库数量
-		return spo;
+		StorageNumVO svo = new StorageNumVO(20, 30, 300);
+		return svo;
 	}
 
 	@Override
-	public void alarm() {
+	public boolean alarm() {
 		if(spo.getShippingNumber() > (spo.getShippingEnd() - 
 				spo.getShippingStart())*spo.getAlarmScale()){
 			System.out.println("航运区库存溢出啦");
@@ -120,5 +133,14 @@ public class CommodityBLService_Stub implements CommodityBLService{
 		
 	}
 
+	@Override
+	public void changeStorageInInfo(ArrayList<SheetVO> svolist) {
+		System.out.println("库存信息已修改");
+	}
+
+	@Override
+	public void initStorageInfo(StorageInitVO sivo) {
+		System.out.println("库存信息已初始化");
+	}
 
 }

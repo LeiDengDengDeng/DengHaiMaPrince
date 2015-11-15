@@ -2,6 +2,8 @@ package src.po;
 
 import java.io.Serializable;
 
+import src.businesslogic.nonUserbl.Sex;
+
 public class DriverPO implements Serializable {
 
 	/**
@@ -16,11 +18,11 @@ public class DriverPO implements Serializable {
 	int day; // 出生日
 	String ID; // 身份证号
 	String mobNum;// 手机号码
-	// Sex sex; // 性别
+	Sex sex; // 性别
 	int yearOfExpiring; // 行驶证到期年份
-	
-	public DriverPO(int number, String name, int year, int month, int day,
-			String iD, String mobNum, int yearOfExpiring) {
+
+	public DriverPO(long number, String name, int year, int month, int day,
+			String iD, String mobNum, Sex sex, int yearOfExpiring) {
 		super();
 		this.number = number;
 		this.name = name;
@@ -29,6 +31,7 @@ public class DriverPO implements Serializable {
 		this.day = day;
 		ID = iD;
 		this.mobNum = mobNum;
+		this.sex = sex;
 		this.yearOfExpiring = yearOfExpiring;
 	}
 
@@ -64,6 +67,10 @@ public class DriverPO implements Serializable {
 		return yearOfExpiring;
 	}
 	
+	public Sex getSex() {
+		return sex;
+	}
+
 	public void setMobNum(String mobNum) {
 		this.mobNum = mobNum;
 	}
