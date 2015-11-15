@@ -3,17 +3,17 @@ package src.businesslogic.commoditybl;
 import java.util.ArrayList;
 
 import src.businesslogicservice.commodityblservice.CommodityBLService;
-import src.businesslogicservice.commodityblservice.SheetVO;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.po.GoodsPO;
 import src.po.StorageInSheetPO;
 import src.po.StorageOutSheetPO;
 import src.po.StoragePO;
 import src.vo.ExpressInfoVO;
+import src.vo.SheetVO;
 import src.vo.StorageInSheetVO;
 import src.vo.StorageInfoVO;
+import src.vo.StorageInitVO;
 import src.vo.StorageNumVO;
-import src.vo.StorageOutSheetVO;
 
 /**
  * 隔离业务逻辑职责和逻辑控制职责的控制类
@@ -26,6 +26,11 @@ public class CommodityController implements CommodityBLService{
 	
 	CommodityBLService_Stub cs = new CommodityBLService_Stub(log);
 
+	@Override
+	public void getStorageId() {
+		cs.getStorageId();
+	}
+	
 	@Override
 	public ArrayList<ExpressInfoVO> stockTaking() {
 		return cs.stockTaking();
@@ -52,8 +57,8 @@ public class CommodityController implements CommodityBLService{
 	}
 
 	@Override
-	public void alarm() {
-		cs.alarm();
+	public boolean alarm() {
+		return cs.alarm();
 	}
 
 	@Override
@@ -67,19 +72,15 @@ public class CommodityController implements CommodityBLService{
 	}
 
 	@Override
-	public void changeLogisticsState(String logisticsState) {
-		cs.changeLogisticsState(logisticsState);
+	public void changeStorageInInfo(ArrayList<SheetVO> svolist) {
+		cs.changeStorageInInfo(svolist);
 	}
 
 	@Override
-	public void changeStorageInfo(SheetVO svo) {
-		cs.changeStorageInfo(svo);
+	public void initStorageInfo(StorageInitVO sivo) {
+		cs.initStorageInfo(sivo);
 	}
 
-	@Override
-	public void initStorageInfo(StoragePO spo) {
-		cs.initStorageInfo(spo);
-	}
 	
 
 }

@@ -3,16 +3,16 @@ package src.businesslogic.commoditybl;
 import java.util.ArrayList;
 
 import src.businesslogicservice.commodityblservice.CommodityBLService;
-import src.businesslogicservice.commodityblservice.SheetVO;
-import src.businesslogicservice.commodityblservice.StorageInitVO;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.po.GoodsPO;
 import src.po.StorageInSheetPO;
 import src.po.StorageOutSheetPO;
 import src.po.StoragePO;
 import src.vo.ExpressInfoVO;
+import src.vo.SheetVO;
 import src.vo.StorageInSheetVO;
 import src.vo.StorageInfoVO;
+import src.vo.StorageInitVO;
 import src.vo.StorageNumVO;
 import src.vo.StorageOutSheetVO;
 
@@ -118,7 +118,7 @@ public class CommodityBLService_Stub implements CommodityBLService{
 				spo.getFlxibleStart())*spo.getAlarmScale()){
 			System.out.println("机动区库存溢出啦");
 		}
-	
+	return true;
 	}
 
 	@Override
@@ -142,5 +142,8 @@ public class CommodityBLService_Stub implements CommodityBLService{
 	public void initStorageInfo(StorageInitVO sivo) {
 		System.out.println("库存信息已初始化");
 	}
+
+
+	
 
 }
