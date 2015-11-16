@@ -2,7 +2,6 @@ package src.businesslogic.userbl;
 
 import java.util.ArrayList;
 
-import src.businesslogicservice.userblservice.UserBLService;
 import src.vo.InitUserVO;
 import src.vo.UserVO;
 
