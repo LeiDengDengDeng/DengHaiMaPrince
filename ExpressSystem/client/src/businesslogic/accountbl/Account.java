@@ -9,7 +9,7 @@ import src.vo.AccountVO;
 public class Account implements AccountBLService {
 
 
-	LogBLService log;
+	Log log;
 	String position="财务人员";
 	public Account(Log log) {
 		super();

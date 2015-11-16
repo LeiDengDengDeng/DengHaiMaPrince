@@ -7,7 +7,7 @@ public class BeginInfoBLService_Driver {
 	public void drive(BeginInfoBLService beginInfoBLService) {
 		
 		// ÃÓ–¥∆⁄≥ı–≈œ¢
-		boolean result = beginInfoBLService.fillInfo(new BeginInfoVO());
+		boolean result = beginInfoBLService.fillInfo(new BeginInfoVO(null, null, null, null, null, null));
 		if (result == true)
 			System.out.println("fill succeed!");
 		
