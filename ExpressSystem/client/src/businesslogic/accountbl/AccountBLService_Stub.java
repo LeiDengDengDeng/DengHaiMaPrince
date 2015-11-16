@@ -51,7 +51,7 @@ public class AccountBLService_Stub implements AccountBLService {
 	}
 
 	@Override
-	public void modAccount(long ID, String name, double amount) {
+	public void modAccount(long oldID, String name, long ID) {
 		// TODO Auto-generated method stub
 		System.out.println("Modify succeed!");
 		log.generateLog(position, "小王子", "修改银行账户");
