@@ -1,5 +1,7 @@
 package src.businesslogic.sheetbl;
 
+import java.util.ArrayList;
+
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.vo.ConstantVO;
 
@@ -14,7 +16,9 @@ public class SheetBLService_Driver {
 //		sheetBLService.isLegal(SheetInfoType.COURIER_NUMBER, "1");
 		sheetBLService.confirmSheet(null, SheetType.ORDER_SHEET);
 		ConstantVO constant = new ConstantVO(10	,10, "ÄÏ¾©-³¤É³");
-		sheetBLService.formulateConstant(constant);
+		ArrayList<ConstantVO> list = new ArrayList<ConstantVO>();
+		list.add(constant);
+		sheetBLService.formulateConstant(list);
 	}
 
 }

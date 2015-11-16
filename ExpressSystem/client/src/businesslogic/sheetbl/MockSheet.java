@@ -1,5 +1,7 @@
 package src.businesslogic.sheetbl;
 
+import java.util.ArrayList;
+
 import src.dataservice.sheetdataservice.SheetDataService;
 import src.vo.ConstantVO;
 
@@ -10,7 +12,7 @@ public class MockSheet extends Sheet{
 		// TODO 自动生成的构造函数存根
 	}
 	
-	public void formulateConstant(ConstantVO constant) {
+	public void formulateConstant(ArrayList<ConstantVO> constant) {
 		System.out.println("常量已生成");
 	}
 

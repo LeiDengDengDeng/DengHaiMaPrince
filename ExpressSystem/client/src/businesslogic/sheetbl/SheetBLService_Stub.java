@@ -1,5 +1,7 @@
 package src.businesslogic.sheetbl;
 
+import java.util.ArrayList;
+
 import src.businesslogicservice.accountblservice.AccountBLService;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.businesslogicservice.logblservice.LogBLService;
@@ -81,8 +83,9 @@ public class SheetBLService_Stub implements SheetBLService {
 	}
 
 	@Override
-	public void formulateConstant(ConstantVO constant) {
+	public void formulateConstant(ArrayList<ConstantVO> list) {
 		// TODO 自动生成的方法存根
+		ConstantVO constant = list.get(0);
 		System.out.println("你正在制定常量！");
 		System.out.println("距离常量值为：" + constant.getDistant() + "公里");
 		System.out.println("价格常量值为：" + constant.getPrice() + "元/公里");

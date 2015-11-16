@@ -1,6 +1,7 @@
 package src.businesslogic.sheetbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.dataservice.sheetdataservice.SheetDataService;
@@ -51,7 +52,7 @@ public class Sheet implements SheetBLService {
 	}
 
 	@Override
-	public void formulateConstant(ConstantVO constant) {
+	public void formulateConstant(ArrayList<ConstantVO> constant) {
 		// TODO 自动生成的方法存根
 //		ConstantPO constant = new ConstantPO(distant, price, city);
 //		try {
