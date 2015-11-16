@@ -139,7 +139,7 @@ public class CommodityBLService_Stub implements CommodityBLService{
 	}
 
 	@Override
-	public void initStorageInfo(StorageInitVO sivo) {
+	public void initStorageInfo(ArrayList<StorageInitVO> svolist) {
 		System.out.println("库存信息已初始化");
 	}
 

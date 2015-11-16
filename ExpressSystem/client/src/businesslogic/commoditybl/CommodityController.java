@@ -77,8 +77,8 @@ public class CommodityController implements CommodityBLService{
 	}
 
 	@Override
-	public void initStorageInfo(StorageInitVO sivo) {
-		cs.initStorageInfo(sivo);
+	public void initStorageInfo(ArrayList<StorageInitVO> svolist) {
+		cs.initStorageInfo(svolist);
 	}
 
 	

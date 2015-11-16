@@ -115,4 +115,18 @@ public class NonUserBLService_Stub implements NonUserBLService{
 		System.out.println("物流状态已修改！");
 	}
 
+
+	@Override
+	public void initTruck(ArrayList<TruckInfoVO> tvolist) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void initDriver(ArrayList<DriverInfoVO> dvolist) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

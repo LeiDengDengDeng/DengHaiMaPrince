@@ -105,5 +105,18 @@ public interface NonUserBLService {
 	 * 供接口，提供修改物流状态
 	 */
 	public void changeLogisticsState(String logisticsState);
+	
+	/**
+	 * 供接口，提供车辆信息初始化
+	 * @param tvo
+	 */
+	public void initTruck(ArrayList<TruckInfoVO> tvolist);
+	
+	/**
+	 * 供接口，提供司机信息初始化
+	 * @param dvolist
+	 */
+	public void initDriver(ArrayList<DriverInfoVO> dvolist);
+	
 
 }

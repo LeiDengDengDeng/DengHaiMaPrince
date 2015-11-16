@@ -75,6 +75,6 @@ public interface CommodityBLService {
 	/**
 	 * 供接口，提供库存信息初始化
 	 */
-	public void initStorageInfo(StorageInitVO sivo);
+	public void initStorageInfo(ArrayList<StorageInitVO> svolist);
 
 }

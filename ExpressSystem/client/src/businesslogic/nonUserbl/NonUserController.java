@@ -93,5 +93,17 @@ public class NonUserController implements NonUserBLService{
 	public void changeLogisticsState(String logisticsState) {
 		ns.changeLogisticsState(logisticsState);
 	}
+
+	@Override
+	public void initTruck(ArrayList<TruckInfoVO> tvolist) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initDriver(ArrayList<DriverInfoVO> dvolist) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

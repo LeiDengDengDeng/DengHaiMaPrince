@@ -107,4 +107,16 @@ public class Nonuser implements NonUserBLService{
 		
 	}
 
+	@Override
+	public void initTruck(ArrayList<TruckInfoVO> tvolist) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initDriver(ArrayList<DriverInfoVO> dvolist) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

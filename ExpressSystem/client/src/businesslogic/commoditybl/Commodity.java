@@ -95,7 +95,7 @@ public class Commodity implements CommodityBLService{
 	}
 
 	@Override
-	public void initStorageInfo(StorageInitVO sivo) {
+	public void initStorageInfo(ArrayList<StorageInitVO> svolist) {
 		// TODO Auto-generated method stub
 		
 	}
