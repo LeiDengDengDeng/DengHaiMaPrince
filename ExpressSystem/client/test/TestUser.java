@@ -23,7 +23,7 @@ public class TestUser {
 		mockUser.changeInfo(userVO);
 		mockUser.initial(null);
 		
-		fail("Not yet implemented");
+//		fail("Not yet implemented");
 	}
 
 }
