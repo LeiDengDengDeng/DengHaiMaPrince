@@ -2,6 +2,8 @@ package src.po;
 
 import java.util.ArrayList;
 
+import src.businesslogic.sheetbl.SheetType;
+
 
 public class ConstantPO implements SheetPO{
 
@@ -33,6 +35,12 @@ public class ConstantPO implements SheetPO{
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	@Override
+	public SheetType getType() {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 }

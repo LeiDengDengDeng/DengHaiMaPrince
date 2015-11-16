@@ -1,12 +1,14 @@
 package src.businesslogicservice.logblservice;
 
+import java.util.ArrayList;
+
 public interface LogBLService {
 
 	/**
 	 * 查看日志
 	 * @param date
 	 */
-	public void checkLog(String date);
+	public ArrayList<String> checkLog(String date);
 	
 	/**
 	 * 生成操作日志

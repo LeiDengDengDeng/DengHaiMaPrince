@@ -2,8 +2,6 @@ package src.po;
 
 import src.businesslogic.sheetbl.SheetType;
 
-
-
 public class OrderSheetPO implements SheetPO {
 
 	/**
@@ -11,9 +9,7 @@ public class OrderSheetPO implements SheetPO {
 	 */
 	private static final long serialVersionUID = -5527627863328717617L;
 
-	SheetType type = SheetType.ORDER_SHEET;
-	
-	long courierNumber;  // 快递物流编号
+	long courierNumber; // 快递物流编号
 	String senderName; // 姓名
 	String senderAddress; // 地址
 	String senderOrganization; // 单位
@@ -26,8 +22,10 @@ public class OrderSheetPO implements SheetPO {
 	String receiverMobNum;
 	String actualReceiverName; // 实际收件人
 	// ReceivingState state; //收件状态
-	// String time; //收件时间
-
+	String time; // 收件时间
+	
+	SheetType type = SheetType.ORDER_SHEET;
+	
 	public OrderSheetPO(long ID, String senderName, String senderAddress,
 			String senderOrganization, String senderTelNum,
 			String senderMobNum, String receiverName, String receiverAddress,
@@ -47,7 +45,7 @@ public class OrderSheetPO implements SheetPO {
 		this.receiverMobNum = receiverMobNum;
 		this.actualReceiverName = actualReceiverName;
 	}
-	
+
 	public void setReceivingInformation(String n) {
 		actualReceiverName = n;
 	}
@@ -94,5 +92,11 @@ public class OrderSheetPO implements SheetPO {
 
 	public String getActualReceiverName() {
 		return actualReceiverName;
+	}
+
+	@Override
+	public SheetType getType() {
+		// TODO 自动生成的方法存根
+		return type;
 	}
 }

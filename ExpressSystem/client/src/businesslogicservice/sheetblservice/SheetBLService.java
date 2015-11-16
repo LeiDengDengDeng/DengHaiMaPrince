@@ -8,7 +8,8 @@ import src.vo.SheetVO;
 
 public interface SheetBLService {
 	
-	public void checkSheet(long ID);
+
+	public SheetVO checkSheet(long ID);
 
 	public void examineSheet(long ID,boolean passed);
 

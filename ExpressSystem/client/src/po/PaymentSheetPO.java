@@ -1,5 +1,6 @@
 package src.po;
 
+import src.businesslogic.sheetbl.SheetType;
 
 public class PaymentSheetPO implements SheetPO {
 
@@ -12,16 +13,19 @@ public class PaymentSheetPO implements SheetPO {
 	double money; // 付款金额
 	String name; // 付款人
 	String account; // 付款账号
-	// PaymentDetail way; // 条目
+	String way; // 条目
 	String remark; // 备注
 
+	SheetType type = SheetType.PAYMENT_SHEET;
+
 	public PaymentSheetPO(String time, double money, String name,
-			String account, String remark) {
+			String account, String way, String remark) {
 		super();
 		this.time = time;
 		this.money = money;
 		this.name = name;
 		this.account = account;
+		this.way = way;
 		this.remark = remark;
 	}
 
@@ -40,9 +44,19 @@ public class PaymentSheetPO implements SheetPO {
 	public String getAccount() {
 		return account;
 	}
+	
+	public String getWay() {
+		return way;
+	}
 
 	public String getRemark() {
 		return remark;
+	}
+
+	@Override
+	public SheetType getType() {
+		// TODO 自动生成的方法存根
+		return type;
 	}
 
 }

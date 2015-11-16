@@ -8,13 +8,13 @@ import src.dataservice.sheetdataservice.SheetDataService;
 import src.po.PaymentSheetPO;
 import src.po.SheetPO;
 
-public class SheetData_Stub implements SheetDataService{
+public class SheetData_Stub implements SheetDataService {
 
 	@Override
 	public SheetPO find(long id) throws RemoteException {
 		// TODO 自动生成的方法存根
 		System.out.println("成功找到Sheet!");
-		SheetPO po = new PaymentSheetPO("0", 0, "0", "0", "0");
+		SheetPO po = new PaymentSheetPO("0", 0, "0", "0", "0", "0");
 		return po;
 	}
 
@@ -22,9 +22,9 @@ public class SheetData_Stub implements SheetDataService{
 	public ArrayList<SheetPO> finds(SheetType type) throws RemoteException {
 		// TODO 自动生成的方法存根
 		System.out.println("成功找到一组Sheet!");
-	    ArrayList<SheetPO> sheets = new ArrayList<SheetPO>();
-	    SheetPO po = new PaymentSheetPO("0", 0, "0", "0", "0");
-	    sheets.add(po);
+		ArrayList<SheetPO> sheets = new ArrayList<SheetPO>();
+		SheetPO po = new PaymentSheetPO("0", 0, "0", "0", "0", "0");
+		sheets.add(po);
 		return sheets;
 	}
 

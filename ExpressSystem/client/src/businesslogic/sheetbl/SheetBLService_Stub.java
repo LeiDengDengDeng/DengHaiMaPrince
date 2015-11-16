@@ -21,9 +21,10 @@ public class SheetBLService_Stub implements SheetBLService {
 	}
 	
 	@Override
-	public void checkSheet(long ID) {
+	public SheetVO checkSheet(long ID) {
 		// TODO 自动生成的方法存根
 		System.out.println("你在查看表格！");
+		return null;
 	}
 
 	@Override
