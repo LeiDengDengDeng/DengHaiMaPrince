@@ -1,33 +1,32 @@
 package src.po;
 
-import java.util.ArrayList;
-
 import src.businesslogic.sheetbl.SheetType;
 
-
-public class ConstantPO implements SheetPO{
+public class ConstantPO implements SheetPO {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7774935977364748669L;
-	
-	ArrayList<Double> distant = new ArrayList<Double>();
-	double price;
-	
+
+	double distant;
+	double price ;
+	String city;
+
 	SheetType type = SheetType.CONSTANT;
-	
-	public ConstantPO(ArrayList<Double> distant, double price) {
+
+	public ConstantPO(double distant, double price, String city) {
 		super();
 		this.distant = distant;
 		this.price = price;
+		this.city = city;
 	}
 
-	public ArrayList<Double> getDistant() {
+	public double getDistant() {
 		return distant;
 	}
 
-	public void setDistant(ArrayList<Double> distant) {
+	public void setDistant(double distant) {
 		this.distant = distant;
 	}
 
@@ -37,6 +36,18 @@ public class ConstantPO implements SheetPO{
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setType(SheetType type) {
+		this.type = type;
 	}
 
 	@Override
