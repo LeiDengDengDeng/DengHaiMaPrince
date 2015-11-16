@@ -15,6 +15,8 @@ public class ConstantPO implements SheetPO{
 	ArrayList<Double> distant = new ArrayList<Double>();
 	double price;
 	
+	SheetType type = SheetType.CONSTANT;
+	
 	public ConstantPO(ArrayList<Double> distant, double price) {
 		super();
 		this.distant = distant;
@@ -40,7 +42,7 @@ public class ConstantPO implements SheetPO{
 	@Override
 	public SheetType getType() {
 		// TODO 自动生成的方法存根
-		return null;
+		return type;
 	}
 
 }

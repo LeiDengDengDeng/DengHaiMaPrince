@@ -7,6 +7,15 @@ public class OrderSheetVO implements SheetVO {
 	String senderAddress; // µÿ÷∑
 	String senderOrganization; // µ•Œª
 	
+	public OrderSheetVO(long courierNumber, String senderName,
+			String senderAddress, String senderOrganization) {
+		super();
+		this.courierNumber = courierNumber;
+		this.senderName = senderName;
+		this.senderAddress = senderAddress;
+		this.senderOrganization = senderOrganization;
+	}
+	
 	public long getCourierNumber() {
 		return courierNumber;
 	}
