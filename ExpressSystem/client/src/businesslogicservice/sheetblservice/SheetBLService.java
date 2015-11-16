@@ -1,6 +1,7 @@
 package src.businesslogicservice.sheetblservice;
 
 import src.businesslogic.sheetbl.SheetType;
+import src.vo.ConstantVO;
 import src.vo.SheetVO;
 
 public interface SheetBLService {
@@ -11,6 +12,6 @@ public interface SheetBLService {
 
 	public boolean confirmSheet(SheetVO sheet, SheetType type);
 
-	public void formulateConstant(double distant, double price, String city);
+	public void formulateConstant(ConstantVO constant);
 
 }

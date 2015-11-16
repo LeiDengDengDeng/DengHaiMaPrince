@@ -4,8 +4,8 @@ import java.rmi.RemoteException;
 
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.dataservice.sheetdataservice.SheetDataService;
-import src.po.ConstantPO;
 import src.po.SheetPO;
+import src.vo.ConstantVO;
 import src.vo.SheetVO;
 
 public class Sheet implements SheetBLService {
@@ -51,15 +51,15 @@ public class Sheet implements SheetBLService {
 	}
 
 	@Override
-	public void formulateConstant(double distant, double price, String city) {
+	public void formulateConstant(ConstantVO constant) {
 		// TODO 自动生成的方法存根
-		ConstantPO constant = new ConstantPO(distant, price, city);
-		try {
-			sheetData.insert(constant);
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+//		ConstantPO constant = new ConstantPO(distant, price, city);
+//		try {
+//			sheetData.insert(constant);
+//		} catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
 	}
 
 }

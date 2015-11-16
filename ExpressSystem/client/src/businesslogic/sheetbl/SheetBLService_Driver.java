@@ -1,6 +1,7 @@
 package src.businesslogic.sheetbl;
 
 import src.businesslogicservice.sheetblservice.SheetBLService;
+import src.vo.ConstantVO;
 
 public class SheetBLService_Driver {
 	
@@ -12,7 +13,8 @@ public class SheetBLService_Driver {
 //		sheetBLService.isLegal(SheetInfoType.COURIER_NUMBER, "0000000001");
 //		sheetBLService.isLegal(SheetInfoType.COURIER_NUMBER, "1");
 		sheetBLService.confirmSheet(null, SheetType.ORDER_SHEET);
-		sheetBLService.formulateConstant(10, 10,"南京-长沙");
+		ConstantVO constant = new ConstantVO(10	,10, "南京-长沙");
+		sheetBLService.formulateConstant(constant);
 	}
 
 }

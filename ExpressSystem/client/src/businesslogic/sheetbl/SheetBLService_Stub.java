@@ -4,6 +4,7 @@ import src.businesslogicservice.accountblservice.AccountBLService;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.sheetblservice.SheetBLService;
+import src.vo.ConstantVO;
 import src.vo.SheetVO;
 
 public class SheetBLService_Stub implements SheetBLService {
@@ -80,11 +81,11 @@ public class SheetBLService_Stub implements SheetBLService {
 	}
 
 	@Override
-	public void formulateConstant(double distant, double price, String city) {
+	public void formulateConstant(ConstantVO constant) {
 		// TODO 自动生成的方法存根
 		System.out.println("你正在制定常量！");
-		System.out.println("距离常量值为：" + distant + "公里");
-		System.out.println("价格常量值为：" + price + "元/公里");
+		System.out.println("距离常量值为：" + constant.getDistant() + "公里");
+		System.out.println("价格常量值为：" + constant.getPrice() + "元/公里");
 		log.generateLog("总经理", "小王子", "制定常量");
 	}
 
