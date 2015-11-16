@@ -24,7 +24,7 @@ public interface CommodityBLService {
 	/**
 	 * 获得仓库id号
 	 */
-	public void getStorageId();
+	public String getStorageId();
 	
 	/**
 	 * 盘点界面得到当天各区快递信息
