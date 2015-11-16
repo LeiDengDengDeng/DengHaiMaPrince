@@ -13,7 +13,7 @@ public interface AccountBLService {
 	
 	public void delAccount (long num);
 	
-	public void modAccount(long oldID,String name,long ID);
+	public void modAccount(long ID,String name,double amount);
 	
 	public ArrayList<AccountVO>  getAccountList();
 	

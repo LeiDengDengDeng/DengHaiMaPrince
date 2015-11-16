@@ -2,8 +2,8 @@ package src.businesslogic.accountbl;
 
 import java.util.ArrayList;
 
-import src.businesslogic.logbl.Log;
 import src.businesslogicservice.accountblservice.AccountBLService;
+import src.businesslogicservice.logblservice.LogBLService;
 import src.vo.AccountVO;
 
 public class Account implements AccountBLService {
@@ -11,7 +11,7 @@ public class Account implements AccountBLService {
 
 	LogBLService log;
 	String position="财务人员";
-	public Account(Log log) {
+	public Account(LogBLService log) {
 		super();
 		this.log = log;
 	}
@@ -31,7 +31,7 @@ public class Account implements AccountBLService {
 	}
 
 	@Override
-	public void modAccount(long oldID, String name, long ID) {
+	public void modAccount(long ID, String name, double amount) {
 		// TODO Auto-generated method stub
 		
 
@@ -54,15 +54,7 @@ public class Account implements AccountBLService {
 		// TODO Auto-generated method stub
 	}
 	
-	public void updateAmount(long ID,double difference){
+	public void updateAmount(long ID,double Amount){
 
 		}
-	
-	public void initAmount(ArrayList<AccountVO> vo){
-		for (int i = 0; i < vo.size(); i++) {
-			AccountVO accountVO=vo.get(i);
-			addAccount(accountVO.getName(),accountVO.getID(),accountVO.getAmount());
-		}
-
-	}
 }
