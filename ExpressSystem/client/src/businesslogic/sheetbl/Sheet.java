@@ -25,8 +25,7 @@ public class Sheet implements SheetBLService {
 				SheetPO sheet = sheetData.find(ID);
 //				SheetVO sheetVal = transformPO(sheet);
 				return TransformPOAndVO.getVO(sheet);
-			} else
-				return null;
+			} 
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

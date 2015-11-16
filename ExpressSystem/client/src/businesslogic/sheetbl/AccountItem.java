@@ -1,5 +1,8 @@
 package src.businesslogic.sheetbl;
 
-public class AccountItem {
+import src.businesslogic.accountbl.Account;
 
+public class AccountItem {
+	Account account;
+	
 }
