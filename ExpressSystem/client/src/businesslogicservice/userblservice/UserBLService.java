@@ -1,5 +1,8 @@
 package src.businesslogicservice.userblservice;
 
+import java.util.ArrayList;
+
+import src.vo.InitUserVO;
 import src.vo.UserVO;
 
 /**
@@ -37,7 +40,7 @@ public interface UserBLService {
 	 * @param User
 	 * 
 	 */
-//	public void initial(ArrayList<InitUserVO> User);
+	public void initial(ArrayList<InitUserVO> User);
 	
 	/**
 	 * 获得仓库管理对应的城市
@@ -46,6 +49,14 @@ public interface UserBLService {
 	 * 
 	 */
 	public String getCity(long UserId);
+	
+	/**
+	 * 更改信息如职位、薪水等
+	 * @param userVO
+	 *  
+	 */
+	public void changeInfo(UserVO userVO); 
+	
 	
 	/**
 	 * 结束管理

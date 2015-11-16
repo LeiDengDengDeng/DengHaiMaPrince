@@ -40,9 +40,8 @@ public class Account implements AccountBLService {
 
 	@Override
 	public ArrayList<AccountVO> getAccountList() {
-		AccountVO vo1=new AccountVO("Ð¡Íõ×Ó", 1234123412341234234L, 20000);
-		ArrayList<AccountVO> voList=new ArrayList<AccountVO>();
-		return voList;
+
+		return null;
 	}
 
 	@Override
@@ -54,5 +53,8 @@ public class Account implements AccountBLService {
 	public void delAccount(long num) {
 		// TODO Auto-generated method stub
 	}
+	
+	public void updateAmount(long ID,double Amount){
 
+		}
 }

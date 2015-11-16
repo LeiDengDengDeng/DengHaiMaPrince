@@ -3,6 +3,7 @@ package src.businesslogic.userbl;
 import java.util.ArrayList;
 
 import src.businesslogicservice.userblservice.UserBLService;
+import src.vo.InitUserVO;
 import src.vo.UserVO;
 
 public class UserBLService_Stub implements UserBLService{
@@ -55,6 +56,20 @@ public class UserBLService_Stub implements UserBLService{
 		// TODO Auto-generated method stub
 		System.out.println("Get the city!");
 		return "南京中转中心仓库管理员";
+	}
+
+	@Override
+	public void changeInfo(UserVO userVO) {
+		// TODO Auto-generated method stub
+		System.out.println("change information successfully!");
+		
+	}
+
+	@Override
+	public void initial(ArrayList<InitUserVO> User) {
+		// TODO Auto-generated method stub
+		System.out.println("initialize successfully!");
+		
 	}
 	
 

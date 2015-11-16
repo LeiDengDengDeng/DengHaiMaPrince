@@ -44,8 +44,8 @@ public class CommodityBLService_Stub implements CommodityBLService{
 	}
 
 	@Override
-	public void getStorageId() {
-		
+	public String getStorageId() {
+		return null;
 	}
 	
 	@Override

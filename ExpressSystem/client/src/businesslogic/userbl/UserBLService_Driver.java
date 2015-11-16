@@ -10,6 +10,8 @@ public class UserBLService_Driver {
 		userBLService.changePassword("aaaaa");
 		userBLService.endManagement();
 		userBLService.getCity(000000);
+		userBLService.changeInfo(userVO);
+		userBLService.initial(null);
 	}
 
 }

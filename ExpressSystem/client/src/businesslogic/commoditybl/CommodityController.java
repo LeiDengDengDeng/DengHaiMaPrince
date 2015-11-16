@@ -27,8 +27,8 @@ public class CommodityController implements CommodityBLService{
 	CommodityBLService_Stub cs = new CommodityBLService_Stub(log);
 
 	@Override
-	public void getStorageId() {
-		cs.getStorageId();
+	public String getStorageId() {
+		return cs.getStorageId();
 	}
 	
 	@Override
