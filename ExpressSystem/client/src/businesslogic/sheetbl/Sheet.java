@@ -1,7 +1,6 @@
 package src.businesslogic.sheetbl;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.dataservice.sheetdataservice.SheetDataService;
@@ -23,10 +22,9 @@ public class Sheet implements SheetBLService {
 		try {
 			if (sheetData.find(ID) != null) {
 				SheetPO sheet = sheetData.find(ID);
-//				SheetVO sheetVal = transformPO(sheet);
+				// SheetVO sheetVal = transformPO(sheet);
 				return TransformPOAndVO.getVO(sheet);
-			} else
-				return null;
+			}
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -53,9 +51,9 @@ public class Sheet implements SheetBLService {
 	}
 
 	@Override
-	public void formulateConstant(ArrayList<Double> distant, double price) {
+	public void formulateConstant(double distant, double price, String city) {
 		// TODO 自动生成的方法存根
-		ConstantPO constant = new ConstantPO(distant, price);
+		ConstantPO constant = new ConstantPO(distant, price, city);
 		try {
 			sheetData.insert(constant);
 		} catch (RemoteException e) {
