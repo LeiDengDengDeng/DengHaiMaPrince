@@ -10,10 +10,10 @@ public class BeginInfoVO {
 	ArrayList<AccountVO> beginAccount;
 	ArrayList<ConstantVO> beginConstant;
 	ArrayList<StorageInitVO> beginStorage;
-	ArrayList<UserVO> beginUser;
+	ArrayList<InitUserVO> beginUser;
 	public BeginInfoVO(ArrayList<DriverInfoVO> beginDriver, ArrayList<TruckInfoVO> beginTruck,
 			ArrayList<AccountVO> beginAccount, ArrayList<ConstantVO> beginConstant,
-			ArrayList<StorageInitVO> beginStorage, ArrayList<UserVO> beginUser) {
+			ArrayList<StorageInitVO> beginStorage, ArrayList<InitUserVO> beginUser) {
 		super();
 		this.beginDriver = beginDriver;
 		this.beginTruck = beginTruck;
@@ -37,7 +37,7 @@ public class BeginInfoVO {
 	public ArrayList<StorageInitVO> getBeginStorage() {
 		return beginStorage;
 	}
-	public ArrayList<UserVO> getBeginUser() {
+	public ArrayList<InitUserVO> getBeginUser() {
 		return beginUser;
 	}
 

@@ -8,10 +8,10 @@ public class BeginInfoController {
 	Log log;
 	BeginInfoBLService beginInfo;
 
-	public BeginInfoController(Log log) {
+	public BeginInfoController(Log log,BeginInfo beginInfo) {
 
 		this.log = log;
-		beginInfo = new BeginInfo(log);
+		this.beginInfo =beginInfo ;
 	}
 
 	public boolean fillInfo(BeginInfoVO vo) {

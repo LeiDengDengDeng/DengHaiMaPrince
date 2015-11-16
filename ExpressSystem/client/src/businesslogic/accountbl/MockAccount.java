@@ -18,7 +18,7 @@ public class MockAccount extends Account {
 	}
 	
 	public void updateAmount(long ID,double difference){
-	System.out.println(ID+"¡®s ammount Updated!!!: "+"-"+difference);	
+	System.out.println(ID+"¡®s ammount Updated!!!: "+difference);	
 	}
 	
 	public void initAmount(ArrayList<AccountVO> vo){

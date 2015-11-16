@@ -2,30 +2,55 @@ package src.businesslogic.beginInfobl;
 
 import java.util.ArrayList;
 
+import src.businesslogic.accountbl.Account;
+import src.businesslogic.commoditybl.Commodity;
+import src.businesslogic.logbl.Log;
+import src.businesslogic.nonUserbl.Nonuser;
+import src.businesslogic.sheetbl.Sheet;
+import src.businesslogic.userbl.User;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
-import src.businesslogicservice.logblservice.LogBLService;
 import src.vo.AccountVO;
 import src.vo.BeginInfoVO;
+import src.vo.ConstantVO;
 import src.vo.DriverInfoVO;
+import src.vo.InitUserVO;
+import src.vo.StorageInitVO;
 import src.vo.TruckInfoVO;
 
 public class BeginInfo implements BeginInfoBLService {
 
-	LogBLService log;
+	Log log;
+	Account account;
+	User user;
+	Nonuser nonuser;
+	Commodity commodity;
+	Sheet sheet;
 	String position="财务人员";
 	
-	public BeginInfo(LogBLService log) {
-		super();
+	public BeginInfo(Log log,Account account,User user,Nonuser nonuser,Commodity commodity,Sheet sheet) {
 		this.log = log;
+		this.account=account;
+		this.user=user;
+		this.nonuser=nonuser;
+		this.commodity=commodity;
+		this.sheet=sheet;
 	}
 
 	@Override
 	public boolean fillInfo(BeginInfoVO vo) {
 		// TODO Auto-generated method stub
-		ArrayList<AccountVO> accountVO=vo.getBeginAccount();
-		ArrayList<TruckInfoVO> truckVO=vo.getBeginTruck();
-		ArrayList<DriverInfoVO> driverVO=vo.getBeginDriver();
-
+		ArrayList<AccountVO> beginAccount=vo.getBeginAccount();
+		ArrayList<TruckInfoVO> beginTruck=vo.getBeginTruck();
+		ArrayList<DriverInfoVO> beginDriver=vo.getBeginDriver();
+		ArrayList<StorageInitVO> beginStorage=vo.getBeginStorage();
+		ArrayList<ConstantVO> beginConstant=vo.getBeginConstant();
+		ArrayList<InitUserVO>  beginUser=vo.getBeginUser();
+		account.initAmount(beginAccount);
+		user.initial(beginUser);
+		commodity.initStorageInfo(beginStorage);
+		sheet.formulateConstant(beginConstant);
+		nonuser.initDriver(beginDriver);
+		nonuser.initTruck(beginTruck);
 		
 		return false;
 	}
