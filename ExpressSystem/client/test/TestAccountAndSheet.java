@@ -27,9 +27,11 @@ public class TestAccountAndSheet {
 		AccountItem accountItem = new AccountItem(account);
 		
 		String[][] accountInfo = accountItem.getAccount();
+		
+		assertEquals("1234123412341234234", accountInfo[0][0]);
+		
 		accountItem.updateAccount(Long.parseLong(accountInfo[0][0]), 10);
 		
-		fail("ипн╢й╣ож"); // TODO
 	}
 
 }
