@@ -16,5 +16,5 @@ public interface LogBLService {
 	 * @param name
 	 * @param operation
 	 */
-	public void generateLog(String position, String name, String operation);
+	public void generateLog(String position, String name, String operation,String statement);
 }

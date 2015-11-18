@@ -42,7 +42,7 @@ public class AccountBLService_Stub implements AccountBLService {
 
 	public boolean addAccount(String name, long num, double amount) {
 		if (name == "小王子") {
-			log.generateLog(position, "小王子", "增加一个账户");
+			log.generateLog(position, "小王子", "增加一个账户","");
 			return true;
 		} else
 			return false;
@@ -54,7 +54,7 @@ public class AccountBLService_Stub implements AccountBLService {
 	public void modAccount(long oldID, String name, long ID) {
 		// TODO Auto-generated method stub
 		System.out.println("Modify succeed!");
-		log.generateLog(position, "小王子", "修改银行账户");
+		log.generateLog(position, "小王子", "修改银行账户","");
 
 
 	}

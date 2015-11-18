@@ -17,7 +17,7 @@ public class BeginInfoBLService_Stub implements BeginInfoBLService {
 	@Override
 	public boolean fillInfo(BeginInfoVO vo) {
 		// TODO Auto-generated method stub
-		log.generateLog(position, "小王子", "填写期初信息");
+		log.generateLog(position, "小王子", "填写期初信息","");
 		return true;
 	}
 

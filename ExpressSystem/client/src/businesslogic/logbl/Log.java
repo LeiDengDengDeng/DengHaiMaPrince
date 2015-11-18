@@ -29,7 +29,7 @@ public class Log implements LogBLService {
 				for (int i = 0; i < logs.size(); i++)
 					logContents.add(logs.get(i).getLog());
 			} else {
-				for (int i = 0; i < logs.size(); i++) 
+				for (int i = 0; i < logs.size(); i++)
 					if (logs.get(i).getDate() == date)
 						logContents.add(logs.get(i).getLog());
 			}
@@ -42,10 +42,11 @@ public class Log implements LogBLService {
 	}
 
 	@Override
-	public void generateLog(String position, String name, String operation) {
+	public void generateLog(String position, String name, String operation,
+			String statement) {
 		// TODO 自动生成的方法存根
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		LogPO log = new LogPO(position, name, operation,
+		LogPO log = new LogPO(position, name, operation, statement,
 				dateFormat.format(new Date()));
 
 		try {
@@ -55,5 +56,4 @@ public class Log implements LogBLService {
 			e.printStackTrace();
 		}
 	}
-
 }

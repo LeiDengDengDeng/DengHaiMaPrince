@@ -33,7 +33,7 @@ public class SheetBLService_Stub implements SheetBLService {
 	public void examineSheet(long ID, boolean passed) {
 		// TODO 自动生成的方法存根
 		System.out.println("你在审批表格！");
-		log.generateLog("总经理", "小王子", "审批表格");
+		log.generateLog("总经理", "小王子", "审批表格", "ID:" + ID);
 	}
 
 	// @Override
@@ -89,7 +89,7 @@ public class SheetBLService_Stub implements SheetBLService {
 		System.out.println("你正在制定常量！");
 		System.out.println("距离常量值为：" + constant.getDistant() + "公里");
 		System.out.println("价格常量值为：" + constant.getPrice() + "元/公里");
-		log.generateLog("总经理", "小王子", "制定常量");
+		log.generateLog("总经理", "小王子", "制定常量", "南京-长沙：1000公里");
 	}
 
 }
