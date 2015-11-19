@@ -20,16 +20,16 @@ public class Sheet implements SheetBLService {
 	@Override
 	public SheetVO checkSheet(long ID) {
 		// TODO 自动生成的方法存根
-		try {
-			if (sheetData.find(ID) != null) {
-				SheetPO sheet = sheetData.find(ID);
-				// SheetVO sheetVal = transformPO(sheet);
-				return TransformPOAndVO.getVO(sheet);
-			}
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+//		try {
+//			if (sheetData.find(ID) != null) {
+//				SheetPO sheet = sheetData.find(ID);
+//				// SheetVO sheetVal = transformPO(sheet);
+//				return TransformPOAndVO.getVO(sheet);
+//			}
+//		} catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
 		return null;
 	}
 
@@ -42,12 +42,12 @@ public class Sheet implements SheetBLService {
 	@Override
 	public boolean confirmSheet(SheetVO sheet, SheetType type) {
 		// TODO 自动生成的方法存根
-		try {
-			sheetData.insert(TransformPOAndVO.getPO(sheet, type));
-		} catch (RemoteException e) {
+//		try {
+//			sheetData.insert(TransformPOAndVO.getPO(sheet, type));
+//		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+//			e.printStackTrace();
+//		}
 		return true;
 	}
 
