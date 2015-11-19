@@ -134,7 +134,7 @@ public class CommodityBLService_Stub implements CommodityBLService{
 	}
 
 	@Override
-	public void changeStorageInInfo(ArrayList<SheetVO> svolist) {
+	public void changeStorageInInfo(SheetVO svo) {
 		System.out.println("库存信息已修改");
 	}
 

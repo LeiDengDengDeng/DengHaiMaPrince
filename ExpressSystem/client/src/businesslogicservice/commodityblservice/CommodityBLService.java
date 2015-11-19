@@ -70,7 +70,7 @@ public interface CommodityBLService {
 	/**
 	 * 供接口，提供修改库存信息
 	 */
-	public void changeStorageInInfo(ArrayList<SheetVO> svolist);
+	public void changeStorageInInfo(SheetVO svo);
 	
 	/**
 	 * 供接口，提供库存信息初始化
