@@ -89,7 +89,7 @@ public class Commodity implements CommodityBLService{
 	}
 
 	@Override
-	public void changeStorageInInfo(ArrayList<SheetVO> svolist) {
+	public void changeStorageInInfo(SheetVO svo) {
 		// TODO Auto-generated method stub
 		
 	}

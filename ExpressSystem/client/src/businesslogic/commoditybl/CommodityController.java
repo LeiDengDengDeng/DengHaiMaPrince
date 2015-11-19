@@ -72,8 +72,8 @@ public class CommodityController implements CommodityBLService{
 	}
 
 	@Override
-	public void changeStorageInInfo(ArrayList<SheetVO> svolist) {
-		cs.changeStorageInInfo(svolist);
+	public void changeStorageInInfo(SheetVO svo) {
+		cs.changeStorageInInfo(svo);
 	}
 
 	@Override

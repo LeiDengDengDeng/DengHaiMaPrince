@@ -1,5 +1,7 @@
 package src.po;
 
+import java.util.ArrayList;
+
 import src.businesslogic.sheetbl.SheetType;
 
 public class StorageInSheetPO implements SheetPO{
@@ -7,84 +9,118 @@ public class StorageInSheetPO implements SheetPO{
 	 * 
 	 */
 	private static final long serialVersionUID = 6862182018727425740L;
-	private long expressNumber;//快递编号
-	private long inTime;//入库日期
-	private String destination;//目的地
-	private int areaNumber;//区号(枚举)
-	private int rowNumber;//排号
-	private int shelfNumber;//架号
-	private int seatNumber;//位号
+	private ArrayList<Long> expressNumberList;//快递编号
+	private ArrayList<Long> inTimeList;//入库日期
+	private ArrayList<String> destinationList;//目的地
+	private ArrayList<Integer> areaNumberList;//区号(枚举)
+	private ArrayList<Integer> rowNumberList;//排号
+	private ArrayList<Integer> shelfNumberList;//架号
+	private ArrayList<Integer> seatNumberList;//位号
 	
 	private SheetType type = SheetType.STORAGE_IN_SHEET;
 	
-	public StorageInSheetPO(long expressNumber, long inTime,
-			String destination, int areaNumber, int rowNumber, int shelfNumber,
-			int seatNumber) {
+
+	public StorageInSheetPO(ArrayList<Long> expressNumberList,
+			ArrayList<Long> inTimeList, ArrayList<String> destinationList,
+			ArrayList<Integer> areaNumberList,
+			ArrayList<Integer> rowNumberList,
+			ArrayList<Integer> shelfNumberList,
+			ArrayList<Integer> seatNumberList) {
 		super();
-		this.expressNumber = expressNumber;
-		this.inTime = inTime;
-		this.destination = destination;
-		this.areaNumber = areaNumber;
-		this.rowNumber = rowNumber;
-		this.shelfNumber = shelfNumber;
-		this.seatNumber = seatNumber;
+		this.expressNumberList = expressNumberList;
+		this.inTimeList = inTimeList;
+		this.destinationList = destinationList;
+		this.areaNumberList = areaNumberList;
+		this.rowNumberList = rowNumberList;
+		this.shelfNumberList = shelfNumberList;
+		this.seatNumberList = seatNumberList;
 	}
 
-	public long getExpressNumber() {
-		return expressNumber;
+	
+
+	public ArrayList<Long> getExpressNumberList() {
+		return expressNumberList;
 	}
 
-	public void setExpressNumber(long expressNumber) {
-		this.expressNumber = expressNumber;
+
+
+	public void setExpressNumberList(ArrayList<Long> expressNumberList) {
+		this.expressNumberList = expressNumberList;
 	}
 
-	public long getInTime() {
-		return inTime;
+
+
+	public ArrayList<Long> getInTimeList() {
+		return inTimeList;
 	}
 
-	public void setInTime(long inTime) {
-		this.inTime = inTime;
+
+
+	public void setInTimeList(ArrayList<Long> inTimeList) {
+		this.inTimeList = inTimeList;
 	}
 
-	public String getDestination() {
-		return destination;
+
+
+	public ArrayList<String> getDestinationList() {
+		return destinationList;
 	}
 
-	public void setDestination(String destination) {
-		this.destination = destination;
+
+
+	public void setDestinationList(ArrayList<String> destinationList) {
+		this.destinationList = destinationList;
 	}
 
-	public int getAreaNumber() {
-		return areaNumber;
+
+
+	public ArrayList<Integer> getAreaNumberList() {
+		return areaNumberList;
 	}
 
-	public void setAreaNumber(int areaNumber) {
-		this.areaNumber = areaNumber;
+
+
+	public void setAreaNumberList(ArrayList<Integer> areaNumberList) {
+		this.areaNumberList = areaNumberList;
 	}
 
-	public int getRowNumber() {
-		return rowNumber;
+
+
+	public ArrayList<Integer> getRowNumberList() {
+		return rowNumberList;
 	}
 
-	public void setRowNumber(int rowNumber) {
-		this.rowNumber = rowNumber;
+
+
+	public void setRowNumberList(ArrayList<Integer> rowNumberList) {
+		this.rowNumberList = rowNumberList;
 	}
 
-	public int getShelfNumber() {
-		return shelfNumber;
+
+
+	public ArrayList<Integer> getShelfNumberList() {
+		return shelfNumberList;
 	}
 
-	public void setShelfNumber(int shelfNumber) {
-		this.shelfNumber = shelfNumber;
+
+
+	public void setShelfNumberList(ArrayList<Integer> shelfNumberList) {
+		this.shelfNumberList = shelfNumberList;
 	}
 
-	public int getSeatNumber() {
-		return seatNumber;
+
+
+	public ArrayList<Integer> getSeatNumberList() {
+		return seatNumberList;
 	}
 
-	public void setSeatNumber(int seatNumber) {
-		this.seatNumber = seatNumber;
+
+
+	public void setSeatNumberList(ArrayList<Integer> seatNumberList) {
+		this.seatNumberList = seatNumberList;
 	}
+
+
 
 	@Override 
 	public SheetType getType() {
