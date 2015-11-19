@@ -24,11 +24,33 @@ public class OrderSheetPO implements SheetPO {
 	String recevingState; //收件状态
 	String time; // 收件时间
 	
+	long ID;
 	SheetType type = SheetType.ORDER_SHEET;
 
-	public void setReceivingInformation(String actualReceiverName,String recevingState) {
+	public OrderSheetPO(long courierNumber, String senderName,
+			String senderAddress, String senderOrganization,
+			String senderTelNum, String senderMobNum, String receiverName,
+			String receiverAddress, String receiverOrganization,
+			String receiverTelNum, String receiverMobNum, long ID) {
+		super();
+		this.courierNumber = courierNumber;
+		this.senderName = senderName;
+		this.senderAddress = senderAddress;
+		this.senderOrganization = senderOrganization;
+		this.senderTelNum = senderTelNum;
+		this.senderMobNum = senderMobNum;
+		this.receiverName = receiverName;
+		this.receiverAddress = receiverAddress;
+		this.receiverOrganization = receiverOrganization;
+		this.receiverTelNum = receiverTelNum;
+		this.receiverMobNum = receiverMobNum;
+		this.ID = ID;
+	}
+
+	public void setReceivingInformation(String actualReceiverName,String recevingState,String time) {
 		this.actualReceiverName = actualReceiverName;
 		this.recevingState = recevingState;
+		this.time = time;
 	}
 	
 	public long getCourierNumber() {
@@ -86,5 +108,10 @@ public class OrderSheetPO implements SheetPO {
 	public SheetType getType() {
 		// TODO 自动生成的方法存根
 		return type;
+	}
+	
+	public long getID() {
+		// TODO 自动生成的方法存根
+		return ID;
 	}
 }

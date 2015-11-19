@@ -15,11 +15,12 @@ public class StorageInSheetPO implements SheetPO{
 	private int shelfNumber;//架号
 	private int seatNumber;//位号
 	
+	private long ID;
 	private SheetType type = SheetType.STORAGE_IN_SHEET;
 	
 	public StorageInSheetPO(long expressNumber, long inTime,
 			String destination, int areaNumber, int rowNumber, int shelfNumber,
-			int seatNumber) {
+			int seatNumber,long ID) {
 		super();
 		this.expressNumber = expressNumber;
 		this.inTime = inTime;
@@ -28,6 +29,7 @@ public class StorageInSheetPO implements SheetPO{
 		this.rowNumber = rowNumber;
 		this.shelfNumber = shelfNumber;
 		this.seatNumber = seatNumber;
+		this.ID = ID;
 	}
 
 	public long getExpressNumber() {
@@ -86,10 +88,14 @@ public class StorageInSheetPO implements SheetPO{
 		this.seatNumber = seatNumber;
 	}
 
-	@Override 
 	public SheetType getType() {
 		// TODO 自动生成的方法存根
 		return type;
+	}
+
+	public long getID() {
+		// TODO 自动生成的方法存根
+		return ID;
 	}
 	
 

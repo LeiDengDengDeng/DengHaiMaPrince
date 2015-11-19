@@ -8,4 +8,6 @@ public abstract interface SheetPO extends Serializable {
 	
 	public SheetType getType();
 	
+	public long getID();
+	
 }

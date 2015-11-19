@@ -14,13 +14,15 @@ public class ConstantPO implements SheetPO {
 	double price ;
 	String city;
 
+	long ID;
 	SheetType type = SheetType.CONSTANT;
 
-	public ConstantPO(double distant, double price, String city) {
+	public ConstantPO(double distant, double price, String city,long ID) {
 		super();
 		this.distant = distant;
 		this.price = price;
 		this.city = city;
+		this.ID = ID;
 	}
 
 	public double getDistant() {
@@ -56,4 +58,8 @@ public class ConstantPO implements SheetPO {
 		return type;
 	}
 
+	public long getID() {
+		// TODO 自动生成的方法存根
+		return ID;
+	}
 }

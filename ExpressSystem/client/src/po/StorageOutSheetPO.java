@@ -2,6 +2,8 @@ package src.po;
 
 import java.io.Serializable;
 
+import src.businesslogic.sheetbl.SheetType;
+
 public class StorageOutSheetPO implements Serializable {
 
 	/**
@@ -16,9 +18,12 @@ public class StorageOutSheetPO implements Serializable {
 	private long transferNumber;//中转单编号
 	private long transportNumber;//汽运编号
 	
+	private long ID;
+	private SheetType type = SheetType.STORAGE_OUT_SHEET;
+	
 	public StorageOutSheetPO(long expressNumber, long outTime,
 			String destination, int transportForm, long transferNumber,
-			long transportNumber) {
+			long transportNumber,long ID) {
 		super();
 		this.expressNumber = expressNumber;
 		this.outTime = outTime;
@@ -26,6 +31,7 @@ public class StorageOutSheetPO implements Serializable {
 		this.transportForm = transportForm;
 		this.transferNumber = transferNumber;
 		this.transportNumber = transportNumber;
+		this.ID = ID;
 	}
 
 	public long getExpressNumber() {
@@ -74,6 +80,16 @@ public class StorageOutSheetPO implements Serializable {
 
 	public void setTransportNumber(long transportNumber) {
 		this.transportNumber = transportNumber;
+	}
+	
+	public SheetType getType() {
+		// TODO 自动生成的方法存根
+		return type;
+	}
+
+	public long getID() {
+		// TODO 自动生成的方法存根
+		return ID;
 	}
 	
 }

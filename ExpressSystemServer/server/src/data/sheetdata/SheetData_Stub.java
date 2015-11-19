@@ -10,10 +10,10 @@ import src.po.SheetPO;
 
 public class SheetData_Stub implements SheetDataService {
 
-	public SheetPO find(long id) throws RemoteException {
+	public SheetPO find(long id, SheetType type) throws RemoteException {
 		// TODO 自动生成的方法存根
 		System.out.println("成功找到Sheet!");
-		SheetPO po = new PaymentSheetPO("0", 0, "0", "0", "0", "0");
+		SheetPO po = new PaymentSheetPO("0", 0, "0", "0", "0", "0",1000000001);
 		return po;
 	}
 
@@ -21,7 +21,7 @@ public class SheetData_Stub implements SheetDataService {
 		// TODO 自动生成的方法存根
 		System.out.println("成功找到一组Sheet!");
 		ArrayList<SheetPO> sheets = new ArrayList<SheetPO>();
-		SheetPO po = new PaymentSheetPO("0", 0, "0", "0", "0", "0");
+		SheetPO po = new PaymentSheetPO("0", 0, "0", "0", "0", "0",1000000001);
 		sheets.add(po);
 		return sheets;
 	}
@@ -35,7 +35,7 @@ public class SheetData_Stub implements SheetDataService {
 		// TODO 自动生成的方法存根
 		System.out.println("成功更新Sheet!");
 	}
-	
+
 	public void finish() throws RemoteException {
 		// TODO 自动生成的方法存根
 		System.out.println("成功结束Sheet数据使用!");

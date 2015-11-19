@@ -16,10 +16,11 @@ public class PaymentSheetPO implements SheetPO {
 	String way; // 条目
 	String remark; // 备注
 
+	long ID;
 	SheetType type = SheetType.PAYMENT_SHEET;
 
 	public PaymentSheetPO(String time, double money, String name,
-			String account, String way, String remark) {
+			String account, String way, String remark,long ID) {
 		super();
 		this.time = time;
 		this.money = money;
@@ -27,6 +28,7 @@ public class PaymentSheetPO implements SheetPO {
 		this.account = account;
 		this.way = way;
 		this.remark = remark;
+		this.ID = ID;
 	}
 
 	public String getTime() {
@@ -53,10 +55,14 @@ public class PaymentSheetPO implements SheetPO {
 		return remark;
 	}
 
-	@Override
 	public SheetType getType() {
 		// TODO 自动生成的方法存根
 		return type;
+	}
+	
+	public long getID() {
+		// TODO 自动生成的方法存根
+		return ID;
 	}
 
 }
