@@ -1,6 +1,7 @@
 package src.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import src.businesslogic.sheetbl.SheetType;
 
@@ -11,77 +12,81 @@ public class StorageOutSheetPO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1721421295303152990L;
 	
-	private long expressNumber;//快递编号
-	private long outTime;//出库日期
-	private String destination;//目的地
-	private int transportForm;//装运形式
-	private long transferNumber;//中转单编号
-	private long transportNumber;//汽运编号
+	private ArrayList<Long> expressNumberList;//快递编号
+	private ArrayList<Long> outTimeList;//出库日期
+	private ArrayList<String> destinationList;//目的地
+	private ArrayList<Integer> transportFormList;//装运形式
+	private ArrayList<Long> transferNumberList;//中转单编号
+	private ArrayList<Long> transportNumberList;//汽运编号
 	
 	private long ID;
 	private SheetType type = SheetType.STORAGE_OUT_SHEET;
 	
-	public StorageOutSheetPO(long expressNumber, long outTime,
-			String destination, int transportForm, long transferNumber,
-			long transportNumber,long ID) {
-		super();
-		this.expressNumber = expressNumber;
-		this.outTime = outTime;
-		this.destination = destination;
-		this.transportForm = transportForm;
-		this.transferNumber = transferNumber;
-		this.transportNumber = transportNumber;
-		this.ID = ID;
-	}
-
-	public long getExpressNumber() {
-		return expressNumber;
-	}
-
-	public void setExpressNumber(long expressNumber) {
-		this.expressNumber = expressNumber;
-	}
-
-	public long getOutTime() {
-		return outTime;
-	}
-
-	public void setOutTime(long outTime) {
-		this.outTime = outTime;
-	}
-
-	public String getDestination() {
-		return destination;
-	}
-
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
-
-	public int getTransportForm() {
-		return transportForm;
-	}
-
-	public void setTransportForm(int transportForm) {
-		this.transportForm = transportForm;
-	}
-
-	public long getTransferNumber() {
-		return transferNumber;
-	}
-
-	public void setTransferNumber(long transferNumber) {
-		this.transferNumber = transferNumber;
-	}
-
-	public long getTransportNumber() {
-		return transportNumber;
-	}
-
-	public void setTransportNumber(long transportNumber) {
-		this.transportNumber = transportNumber;
-	}
 	
+	
+	public StorageOutSheetPO(ArrayList<Long> expressNumberList,
+			ArrayList<Long> outTimeList, ArrayList<String> destinationList,
+			ArrayList<Integer> transportFormList,
+			ArrayList<Long> transferNumberList,
+			ArrayList<Long> transportNumberList, long iD) {
+		super();
+		this.expressNumberList = expressNumberList;
+		this.outTimeList = outTimeList;
+		this.destinationList = destinationList;
+		this.transportFormList = transportFormList;
+		this.transferNumberList = transferNumberList;
+		this.transportNumberList = transportNumberList;
+		ID = iD;
+	}
+
+	public ArrayList<Long> getExpressNumberList() {
+		return expressNumberList;
+	}
+
+	public void setExpressNumberList(ArrayList<Long> expressNumberList) {
+		this.expressNumberList = expressNumberList;
+	}
+
+	public ArrayList<Long> getOutTimeList() {
+		return outTimeList;
+	}
+
+	public void setOutTimeList(ArrayList<Long> outTimeList) {
+		this.outTimeList = outTimeList;
+	}
+
+	public ArrayList<String> getDestinationList() {
+		return destinationList;
+	}
+
+	public void setDestinationList(ArrayList<String> destinationList) {
+		this.destinationList = destinationList;
+	}
+
+	public ArrayList<Integer> getTransportFormList() {
+		return transportFormList;
+	}
+
+	public void setTransportFormList(ArrayList<Integer> transportFormList) {
+		this.transportFormList = transportFormList;
+	}
+
+	public ArrayList<Long> getTransferNumberList() {
+		return transferNumberList;
+	}
+
+	public void setTransferNumberList(ArrayList<Long> transferNumberList) {
+		this.transferNumberList = transferNumberList;
+	}
+
+	public ArrayList<Long> getTransportNumberList() {
+		return transportNumberList;
+	}
+
+	public void setTransportNumberList(ArrayList<Long> transportNumberList) {
+		this.transportNumberList = transportNumberList;
+	}
+
 	public SheetType getType() {
 		// TODO 自动生成的方法存根
 		return type;
