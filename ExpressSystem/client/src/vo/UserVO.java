@@ -2,6 +2,8 @@ package src.vo;
 
 import java.util.ArrayList;
 
+import src.po.SalaryPO;
+
 public class UserVO {
 	private long personalID;   //工号
 	private long personalAccount;   //账号
@@ -9,10 +11,10 @@ public class UserVO {
 	private String personalName;    //姓名
 	private String myPosition;//职位
 	private ArrayList<Integer> authority;  //权限
-	private int salary;     //薪水
+	private SalaryPO salary;     //薪水
 	
 	public UserVO(long personalID,long personalAccount,String myPassword
-			,String personalName,String myPosition,ArrayList<Integer> authority,int salary){
+			,String personalName,String myPosition,ArrayList<Integer> authority,SalaryPO salary){
 		this.personalID = personalID;
 		this.personalAccount = personalAccount;
 		this.myPassword = myPassword;
@@ -51,14 +53,22 @@ public class UserVO {
 		
 	}
 	
+	public void setMyPosition(String myPosition){
+		this.myPosition = myPosition;
+	}
+	
 	public ArrayList<Integer> getAuthority(){
 		return authority;
 		
 	}
 	
-	public int getSalary(){
+	public SalaryPO getSalary(){
 		return salary;
 		
+	}
+	
+	public void setSalary(SalaryPO salary){
+		this.salary = salary;
 	}
 }
 

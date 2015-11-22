@@ -2,6 +2,7 @@ package src.dataservice.userdataservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import src.po.UserPO;
 
@@ -11,6 +12,14 @@ import src.po.UserPO;
  */
 public interface UserDataService extends Remote{
 
+	/**
+	 * 期初建账时初始化
+	 * @param User
+	 * @return
+	 * @throws RemoteException
+	 */
+	public void insert(ArrayList<UserPO> User) throws RemoteException;
+	
 	/**
 	 * 根据ID返回UserPO
 	 * @param id

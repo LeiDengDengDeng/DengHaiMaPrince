@@ -33,7 +33,7 @@ public interface UserBLService {
 	 * @param password
 	 * 
 	 */
-	public void changePassword(String password);
+	public void changePassword(String password,long UserId);
 	
 	/**
 	 * ≥ı ºªØ

@@ -7,7 +7,7 @@ public class UserBLService_Driver {
 	
 	public void drive(UserBLService userBLService){
 		UserVO userVO = userBLService.getPersonalInfo(000000);
-		userBLService.changePassword("aaaaa");
+		userBLService.changePassword("aaaaa",000000);
 		userBLService.endManagement();
 		userBLService.getCity(000000);
 		userBLService.changeInfo(userVO);

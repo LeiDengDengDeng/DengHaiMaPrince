@@ -37,7 +37,7 @@ public class TestBeginInfo {
 		logs.add("财务人员 小王子  期初建账");
 		MockLog log = new MockLog(logs);
 		MockAccount account = new MockAccount(log);
-		MockUser user=new MockUser(log);
+		MockUser user=new MockUser(null,null);
 		MockCommodity commodity=new MockCommodity(log);
 		MockNonUser nonuser=new MockNonUser(log);
 		MockSheet sheet=new MockSheet(null);

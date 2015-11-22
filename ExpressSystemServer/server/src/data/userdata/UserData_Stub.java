@@ -1,6 +1,7 @@
 package src.data.userdata;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import src.dataservice.userdataservice.UserDataService;
 import src.po.UserPO;
@@ -22,6 +23,13 @@ public class UserData_Stub implements UserDataService{
 	public void finish() throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("finish successfully!");
+	}
+
+	@Override
+	public void insert(ArrayList<UserPO> User) throws RemoteException {
+		System.out.println("initialize successfully!!");
+		// TODO Auto-generated method stub
+		
 	}
 
 }

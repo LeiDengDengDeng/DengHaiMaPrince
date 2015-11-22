@@ -2,8 +2,8 @@ package src.businesslogicservice.institutionblservice;
 
 import java.util.ArrayList;
 
-import src.po.InstitutionPO;
 import src.vo.InstitutionVO;
+import src.vo.SalaryVO;
 /**
  * @author: samsung
  * 
@@ -47,7 +47,7 @@ public interface InstitutionBLService {
 	 * @param StaffId,salary
 	 * 
 	 */
-	public void changeSalary(long StaffId,int salary);
+	public void changeSalary(long StaffId,SalaryVO salary);
 	
 	/**
 	 * É¾³ý»ú¹¹

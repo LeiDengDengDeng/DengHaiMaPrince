@@ -18,8 +18,8 @@ public class TestUser {
 		logs.add("总经理 曹姝玥 人员工资调整");
 		logs.add("财务人员 张三 期初建账");
 		MockLog log = new MockLog(logs);
-		MockUser mockUser = new MockUser(log);
-		UserVO userVO = new UserVO(000000, 000000, "aaaaa", "曹姝玥", "营业厅业务员", null, 6000);
+		MockUser mockUser = new MockUser(log,null);
+		UserVO userVO = new UserVO(000000, 000000, "aaaaa", "曹姝玥", "营业厅业务员", null, null);
 		mockUser.changeInfo(userVO);
 		mockUser.initial(null);
 		

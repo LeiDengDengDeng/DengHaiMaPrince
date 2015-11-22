@@ -36,11 +36,11 @@ public class UserBLService_Stub implements UserBLService{
 	public UserVO getPersonalInfo(long UserId) {
 		// TODO Auto-generated method stub
 		System.out.println("get!");
-		return new UserVO(000000, 000000, "aaaaaaaa", "Echo", "Administrator", null, 5000);
+		return new UserVO(000000, 000000, "aaaaaaaa", "Echo", "Administrator", null, null);
 	}
 
 	@Override
-	public void changePassword(String password) {
+	public void changePassword(String password,long UserId) {
 		// TODO Auto-generated method stub
 		System.out.println("Password has been changed!");
 	}

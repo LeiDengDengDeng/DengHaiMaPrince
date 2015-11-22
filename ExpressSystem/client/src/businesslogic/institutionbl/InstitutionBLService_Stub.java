@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import src.businesslogicservice.institutionblservice.InstitutionBLService;
 import src.po.InstitutionPO;
 import src.vo.InstitutionVO;
+import src.vo.SalaryVO;
 
 public class InstitutionBLService_Stub implements InstitutionBLService{
 //	String InstitutionName;
@@ -51,7 +52,7 @@ public class InstitutionBLService_Stub implements InstitutionBLService{
 	}
 
 	@Override
-	public void changeSalary(long StaffId, int salary) {
+	public void changeSalary(long StaffId, SalaryVO salary) {
 		// TODO Auto-generated method stub
 		System.out.println("change salary succeed!");
 	}

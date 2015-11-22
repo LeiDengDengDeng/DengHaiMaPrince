@@ -5,6 +5,14 @@ import java.util.ArrayList;
 
 
 public class InstitutionPO implements Serializable{
+	
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1618445577823868444L;
+	
 	private String InstitutionName;
 	private long InstitutionID;	//6λ
 	private ArrayList<UserPO> staff;
@@ -37,8 +45,8 @@ public class InstitutionPO implements Serializable{
 		return InstitutionID;
 	}
 	
-	public void updateStaff(UserPO staff){
-		this.staff.add(staff);
+	public void updateStaff(ArrayList<UserPO> staff){
+		this.staff = staff;
 	}
 	
 	public ArrayList<UserPO> getStaff(){
