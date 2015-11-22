@@ -1,5 +1,6 @@
 package src.data.logdata;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -41,10 +42,12 @@ public class LogData implements LogDataService {
 		} catch (FileNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (EOFException e) {
+			// TODO 自动生成的 catch 块
+		} catch (ClassNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}

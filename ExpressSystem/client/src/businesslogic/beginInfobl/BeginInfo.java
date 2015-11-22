@@ -6,7 +6,7 @@ import src.businesslogic.accountbl.Account;
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.logbl.Log;
 import src.businesslogic.nonUserbl.Nonuser;
-import src.businesslogic.sheetbl.Sheet;
+import src.businesslogic.presheetbl.PreSheet;
 import src.businesslogic.userbl.User;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
 import src.vo.AccountVO;
@@ -24,10 +24,10 @@ public class BeginInfo implements BeginInfoBLService {
 	User user;
 	Nonuser nonuser;
 	Commodity commodity;
-	Sheet sheet;
+	PreSheet sheet;
 	String position="财务人员";
 	
-	public BeginInfo(Log log,Account account,User user,Nonuser nonuser,Commodity commodity,Sheet sheet) {
+	public BeginInfo(Log log,Account account,User user,Nonuser nonuser,Commodity commodity,PreSheet sheet) {
 		this.log = log;
 		this.account=account;
 		this.user=user;

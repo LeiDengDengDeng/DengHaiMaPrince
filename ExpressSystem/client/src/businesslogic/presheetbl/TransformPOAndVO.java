@@ -1,5 +1,6 @@
-package src.businesslogic.sheetbl;
+package src.businesslogic.presheetbl;
 
+import src.businesslogic.sheetbl.SheetType;
 import src.po.OrderSheetPO;
 import src.po.SheetPO;
 import src.vo.OrderSheetVO;
@@ -11,11 +12,11 @@ public class TransformPOAndVO {
 		SheetVO sheetVal = null;
 		switch (sheet.getType()) {
 		case ORDER_SHEET:
-			sheetVal = new OrderSheetVO(
-					((OrderSheetPO) sheet).getCourierNumber(),
-					((OrderSheetPO) sheet).getSenderName(),
-					((OrderSheetPO) sheet).getSenderAddress(),
-					((OrderSheetPO) sheet).getSenderOrganization());
+//			sheetVal = new OrderSheetVO(
+//					((OrderSheetPO) sheet).getCourierNumber(),
+//					((OrderSheetPO) sheet).getSenderName(),
+//					((OrderSheetPO) sheet).getSenderAddress(),
+//					((OrderSheetPO) sheet).getSenderOrganization());
 			break;
 		default:
 			break;

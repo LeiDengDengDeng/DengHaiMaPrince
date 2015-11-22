@@ -17,6 +17,7 @@ public class StorageInSheetPO implements SheetPO{
 	private ArrayList<Integer> shelfNumberList;//架号
 	private ArrayList<Integer> seatNumberList;//位号
 	
+	SheetState state = SheetState.NOT_EXAMINED;
 	private long ID;
 	private SheetType type = SheetType.STORAGE_IN_SHEET;
 	
@@ -101,6 +102,18 @@ public class StorageInSheetPO implements SheetPO{
 	public long getID() {
 		// TODO 自动生成的方法存根
 		return ID;
+	}
+
+	@Override
+	public void setSheetState(SheetState state) {
+		// TODO 自动生成的方法存根
+		this.state = state;
+	}
+
+	@Override
+	public SheetState getSheetState() {
+		// TODO 自动生成的方法存根
+		return state;
 	}
 	
 

@@ -1,19 +1,18 @@
-package src.businesslogic.sheetbl;
+package src.businesslogic.presheetbl;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import src.businesslogicservice.sheetblservice.SheetBLService;
+import src.businesslogic.sheetbl.SheetType;
+import src.businesslogicservice.presheetblservice.PreSheetBLService;
 import src.dataservice.sheetdataservice.SheetDataService;
-import src.po.SheetPO;
 import src.vo.ConstantVO;
 import src.vo.SheetVO;
 
-public class Sheet implements SheetBLService {
+public class PreSheet implements PreSheetBLService {
 
 	SheetDataService sheetData;
 
-	public Sheet(SheetDataService sheetData) {
+	public PreSheet(SheetDataService sheetData) {
 		this.sheetData = sheetData;
 	}
 

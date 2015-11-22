@@ -2,18 +2,21 @@ package src.businesslogicservice.sheetblservice;
 
 import java.util.ArrayList;
 
-import src.businesslogic.sheetbl.SheetType;
-import src.vo.ConstantVO;
+import src.po.SheetState;
 import src.vo.SheetVO;
 
 public interface SheetBLService {
 
-	public SheetVO checkSheet(long ID);
+	public String[][] getExistedInfo();
 
-	public void examineSheet(long ID, boolean passed);
+	public boolean add(SheetVO vo);
 
-	public boolean confirmSheet(SheetVO sheet, SheetType type);
+	public SheetVO modify(long ID, SheetVO vo);
 
-	public void formulateConstant(ArrayList<ConstantVO> constant);
+	public SheetVO find(long ID);
+	
+	public ArrayList<SheetVO> findVOs(FindingType findingType);
+
+	public boolean examineSheet(long ID, SheetState state);
 
 }

@@ -1,11 +1,11 @@
-package src.businesslogic.sheetbl;
+package src.businesslogic.presheetbl;
 
 import java.util.ArrayList;
 
 import src.dataservice.sheetdataservice.SheetDataService;
 import src.vo.ConstantVO;
 
-public class MockSheet extends Sheet{
+public class MockSheet extends PreSheet{
 
 	public MockSheet(SheetDataService sheetData) {
 		super(sheetData);
