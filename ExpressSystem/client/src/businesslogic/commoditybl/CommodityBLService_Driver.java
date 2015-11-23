@@ -28,7 +28,7 @@ public class CommodityBLService_Driver {
 		
 		ArrayList<GoodsPO> gposList = new ArrayList<>();
 		gposList.add(gpo);
-		spo = new StoragePO(100, 100, 1000, 200, 300, 300, 200,
+		spo = new StoragePO("ÄÏ¾©",100, 100, 1000, 200, 300, 300, 200,
 				0.9, 1, 200, 201, 500, 501, 800, 801, 1000, gposList);
 		//¿â´æÅÌµã
 		commodityBLService.stockTaking();

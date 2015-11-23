@@ -2,9 +2,6 @@ package src.businesslogicservice.nonUserblservice;
 
 import java.util.ArrayList;
 
-import src.po.BussinessHallPO;
-import src.po.DriverPO;
-import src.po.TruckPO;
 import src.vo.BussinessHallVO;
 import src.vo.DriverInfoVO;
 import src.vo.TruckInfoVO;

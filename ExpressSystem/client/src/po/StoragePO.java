@@ -16,6 +16,7 @@ public class StoragePO implements Serializable {
 	private static final long serialVersionUID = -5780752231210513001L;
 	
 	//在入库时调用add方法增加库存数量，在出库时调用minus方法减少库存数量
+	private String city;//仓库所在城市
 	private int inNum;//入库数量
 	private int outNum;//出库数量
 	private int storageNumber;//商品库存总数量
@@ -32,15 +33,16 @@ public class StoragePO implements Serializable {
 	private int transportEnd;//汽运区终止
 	private int flxibleStart;//机动区起始
 	private int flxibleEnd;//机动区终止
-	private ArrayList<GoodsPO> gpos;
+	private ArrayList<GoodsPO> gpos;//仓库内的货物信息
 	
-	public StoragePO(int inNum, int outNum, int storageNumber,
+	public StoragePO(String city,int inNum, int outNum, int storageNumber,
 			int shippingNumber, int railNumber, int transportNumber,
 			int flxibleNumber, double alarmScale, int shippingStart,
 			int shippingEnd, int railStart, int railEnd, int transportStart,
 			int transportEnd, int flxibleStart, int flxibleEnd,
 			ArrayList<GoodsPO> gpos) {
 		super();
+		this.city = city;
 		this.inNum = inNum;
 		this.outNum = outNum;
 		this.storageNumber = storageNumber;
@@ -59,6 +61,17 @@ public class StoragePO implements Serializable {
 		this.flxibleEnd = flxibleEnd;
 		this.gpos = gpos;
 	}
+
+	
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 
 	public void addInNum(){
 		inNum++;
