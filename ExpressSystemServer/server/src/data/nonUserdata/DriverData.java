@@ -109,8 +109,8 @@ public class DriverData implements DriverDataService{
 	}
 
 	@Override
-	public void update(DriverPO dpo) throws RemoteException {
-		deleteDriverPO(dpo.getNumber());
+	public void update(long id,DriverPO dpo) throws RemoteException {
+		deleteDriverPO(id);
 		insert(dpo);
 	}
 

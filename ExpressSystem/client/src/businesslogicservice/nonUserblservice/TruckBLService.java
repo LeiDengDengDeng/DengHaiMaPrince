@@ -32,8 +32,9 @@ public interface TruckBLService {
 	/**
 	 * 修改车辆信息
 	 * @param truckId
+	 * @param tvo
 	 */
-	public void changeTruckInfo(long truckId);
+	public void changeTruckInfo(long truckId,TruckInfoVO tvo);
 	
 	/**
 	 * 供接口，提供车辆信息初始化

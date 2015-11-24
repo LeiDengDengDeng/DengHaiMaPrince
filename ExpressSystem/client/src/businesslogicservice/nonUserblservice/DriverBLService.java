@@ -32,8 +32,9 @@ public interface DriverBLService {
 	/**
 	 * 修改司机信息
 	 * @param driverId
+	 * @param dvo
 	 */
-	public void changeDriverInfo(long driverId);
+	public void changeDriverInfo(long driverId,DriverInfoVO dvo);
 	
 	/**
 	 * 供接口，提供司机信息初始化

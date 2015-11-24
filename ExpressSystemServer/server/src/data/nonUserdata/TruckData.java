@@ -109,8 +109,8 @@ public class TruckData implements TruckDataService{
 	}
 
 	@Override
-	public void update(TruckPO tpo) throws RemoteException {
-		deleteTruckPO(tpo.getNumber());
+	public void update(long id,TruckPO tpo) throws RemoteException {
+		deleteTruckPO(id);
 		insert(tpo);
 	}
 

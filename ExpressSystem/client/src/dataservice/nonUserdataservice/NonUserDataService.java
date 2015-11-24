@@ -6,9 +6,7 @@ import java.util.ArrayList;
 
 import src.po.BussinessHallPO;
 import src.po.DriverPO;
-import src.po.GoodsPO;
 import src.po.TruckPO;
-import src.vo.TruckInfoVO;
 
 /**
  * 非用户数据操作的接口

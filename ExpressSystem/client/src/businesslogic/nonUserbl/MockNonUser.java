@@ -63,13 +63,13 @@ public class MockNonUser extends Nonuser{
 
 	public BussinessHallVO getBussinessHallInfo(long bussinessHallId) {
 		System.out.println("得到营业厅信息！");
-		return new BussinessHallVO("赵日天");
+		return new BussinessHallVO("赵日天",000);
 	}
 
 
 	public ArrayList<BussinessHallVO> getAllBussinessHallInfo() {
 		ArrayList<BussinessHallVO> bussinessHallList = new ArrayList<BussinessHallVO>();
-		bussinessHallList.add(new BussinessHallVO("赵日天"));
+		bussinessHallList.add(new BussinessHallVO("赵日天",000));
 		return bussinessHallList;
 	}
 
