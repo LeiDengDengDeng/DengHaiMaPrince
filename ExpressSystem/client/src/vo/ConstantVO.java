@@ -1,6 +1,6 @@
 package src.vo;
 
-public class ConstantVO {
+public class ConstantVO implements SheetVO{
 
 	double distant;
 	double price ;

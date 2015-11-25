@@ -61,13 +61,13 @@ public class LogData implements LogDataService {
 		File file = new File(FILE_PATH);
 
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(file));
-			moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 			if (file.length() == 0) {
+				oos = new ObjectOutputStream(new FileOutputStream(file));
 				oos.writeObject(po);
 				oos.flush();
 				oos.close();
 			} else {
+				moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 				moos.writeObject(po);
 				moos.flush();
 				moos.close();

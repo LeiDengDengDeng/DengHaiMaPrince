@@ -11,7 +11,7 @@ public interface SheetBLService {
 
 	public boolean add(SheetVO vo);
 
-	public SheetVO modify(long ID, SheetVO vo);
+	public boolean modify(long ID, SheetVO vo);
 
 	public SheetVO find(long ID);
 	

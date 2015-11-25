@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 import src.businesslogic.sheetbl.SheetType;
 
-public abstract interface SheetPO extends Serializable {
+public interface SheetPO extends Serializable {
 
 	public SheetType getType();
+
+	public void setID(long ID);
 
 	public long getID();
 

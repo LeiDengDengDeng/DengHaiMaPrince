@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import src.businesslogic.accountbl.Account;
 import src.businesslogicservice.sheetblservice.FindingType;
 import src.businesslogicservice.sheetblservice.SheetBLService;
+import src.po.SheetPO;
 import src.po.SheetState;
 import src.vo.SheetVO;
 
-public class PaymentSheet implements SheetBLService {
+public class PaymentSheet extends Sheet {
 
+	SheetType type = SheetType.PAYMENT_SHEET;
 	AccountItem accountItem;
 	
 	public PaymentSheet(Account account){
@@ -23,33 +25,24 @@ public class PaymentSheet implements SheetBLService {
 	}
 
 	@Override
-	public boolean add(SheetVO vo) {
+	public boolean modify(long ID, SheetVO vo) {
 		// TODO 自动生成的方法存根
 		return false;
 	}
 
 	@Override
-	public SheetVO modify(long ID, SheetVO vo) {
-		// TODO 自动生成的方法存根
+	public SheetType getType() {
+		return this.type;
+	}
+
+	@Override
+	public SheetVO generateVO(SheetPO po) {
 		return null;
 	}
 
 	@Override
-	public SheetVO find(long ID) {
-		// TODO 自动生成的方法存根
+	public SheetPO generatePO(SheetVO vo) {
 		return null;
-	}
-
-	@Override
-	public ArrayList<SheetVO> findVOs(FindingType findingType) {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	@Override
-	public boolean examineSheet(long ID, SheetState state) {
-		// TODO 自动生成的方法存根
-		return false;
 	}
 
 }

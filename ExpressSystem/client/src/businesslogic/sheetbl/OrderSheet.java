@@ -1,91 +1,80 @@
 package src.businesslogic.sheetbl;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
-import src.businesslogicservice.sheetblservice.FindingType;
-import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.dataservice.sheetdataservice.SheetDataService;
 import src.po.OrderSheetPO;
 import src.po.SheetPO;
-import src.po.SheetState;
+import src.businesslogic.util.CommonUtil;
 import src.vo.OrderSheetVO;
 import src.vo.SheetVO;
 
-public class OrderSheet implements SheetBLService {
+import java.rmi.RemoteException;
 
-	SheetDataService sheetData;
+public class OrderSheet extends Sheet {
 
-	@Override
-	public String[][] getExistedInfo() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
+    SheetType type = SheetType.ORDER_SHEET;
+    SheetDataService sheetData;
 
-	@Override
-	public boolean add(SheetVO vo) {
-		// TODO 自动生成的方法存根
-		OrderSheetPO po = new OrderSheetPO(
-				((OrderSheetVO) vo).getCourierNumber(),
-				((OrderSheetVO) vo).getSenderName(),
-				((OrderSheetVO) vo).getSenderAddress(),
-				((OrderSheetVO) vo).getSenderOrganization(),
-				((OrderSheetVO) vo).getSenderTelNum(),
-				((OrderSheetVO) vo).getSenderMobNum(),
-				((OrderSheetVO) vo).getReceiverName(),
-				((OrderSheetVO) vo).getReceiverAddress(),
-				((OrderSheetVO) vo).getReceiverOrganization(),
-				((OrderSheetVO) vo).getReceiverTelNum(),
-				((OrderSheetVO) vo).getReceiverMobNum());
-		try {
-			sheetData.insert(po);
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-			return false;
-		}
+    @Override
+    public String[][] getExistedInfo() {
+        // TODO 自动生成的方法存根
+        return null;
+    }
 
-		return true;
-	}
+    @Override
+    public boolean modify(long ID, SheetVO vo) {
+        // TODO 自动生成的方法存根
+        try {
+            OrderSheetPO po = (OrderSheetPO) generatePO(vo);
+            po.setReceivingInformation(((OrderSheetVO) vo).getActualReceiverName(), po.getRecevingState(), CommonUtil
+                    .getDate());
+            po.setID(ID);
+            sheetData.update(po);
 
-	@Override
-	public SheetVO modify(long ID, SheetVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
-	}
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
-	@Override
-	public SheetVO find(long ID) {
-		// TODO 自动生成的方法存根
-		return null;
-	}
+    @Override
+    public SheetType getType() {
+        return this.type;
+    }
 
-	@Override
-	public ArrayList<SheetVO> findVOs(FindingType findingType) {
-		// TODO 自动生成的方法存根
-		switch (findingType) {
-		case ALL:
-			break;
-		case NOT_EXAMINED:
-			break;
-		}
-		return null;
-	}
-	
-	@Override
-	public boolean examineSheet(long ID, SheetState state) {
-		// TODO 自动生成的方法存根
-		try {
-			SheetPO po = sheetData.find(ID,SheetType.ORDER_SHEET);
-			po.setSheetState(state);
-			sheetData.update(po);
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
+    public SheetVO generateVO(SheetPO po) {
+        OrderSheetVO vo = new OrderSheetVO(
+                ((OrderSheetPO) po).getCourierNumber(),
+                ((OrderSheetPO) po).getSenderName(),
+                ((OrderSheetPO) po).getSenderAddress(),
+                ((OrderSheetPO) po).getSenderOrganization(),
+                ((OrderSheetPO) po).getSenderTelNum(),
+                ((OrderSheetPO) po).getSenderMobNum(),
+                ((OrderSheetPO) po).getReceiverName(),
+                ((OrderSheetPO) po).getReceiverAddress(),
+                ((OrderSheetPO) po).getReceiverOrganization(),
+                ((OrderSheetPO) po).getReceiverTelNum(),
+                ((OrderSheetPO) po).getReceiverMobNum(),
+                ((OrderSheetPO) po).getActualReceiverName(),
+                ((OrderSheetPO) po).getRecevingState());
+        return vo;
+    }
 
+    public SheetPO generatePO(SheetVO vo) {
+        OrderSheetPO po = new OrderSheetPO(
+                ((OrderSheetVO) vo).getCourierNumber(),
+                ((OrderSheetVO) vo).getSenderName(),
+                ((OrderSheetVO) vo).getSenderAddress(),
+                ((OrderSheetVO) vo).getSenderOrganization(),
+                ((OrderSheetVO) vo).getSenderTelNum(),
+                ((OrderSheetVO) vo).getSenderMobNum(),
+                ((OrderSheetVO) vo).getReceiverName(),
+                ((OrderSheetVO) vo).getReceiverAddress(),
+                ((OrderSheetVO) vo).getReceiverOrganization(),
+                ((OrderSheetVO) vo).getReceiverTelNum(),
+                ((OrderSheetVO) vo).getReceiverMobNum());
+
+        return po;
+    }
 
 }

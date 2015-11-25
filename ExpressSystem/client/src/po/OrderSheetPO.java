@@ -52,6 +52,10 @@ public class OrderSheetPO implements SheetPO {
 		this.recevingState = recevingState;
 		this.time = time;
 	}
+
+	public void setID(long ID) {
+		this.ID = ID;
+	}
 	
 	public long getCourierNumber() {
 		return courierNumber;
@@ -104,7 +108,7 @@ public class OrderSheetPO implements SheetPO {
 	public String getRecevingState() {
 		return recevingState;
 	}
-	
+
 	public SheetType getType() {
 		// TODO 自动生成的方法存根
 		return type;
