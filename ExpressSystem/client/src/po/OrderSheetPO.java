@@ -20,6 +20,10 @@ public class OrderSheetPO implements SheetPO {
 	String receiverOrganization;
 	String receiverTelNum;
 	String receiverMobNum;
+
+	// 待改
+	double price;
+
 	String actualReceiverName; // 实际收件人
 	String recevingState; //收件状态
 	String time; // 收件时间

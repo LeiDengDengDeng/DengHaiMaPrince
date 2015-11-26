@@ -58,6 +58,11 @@ public class ConstantPO implements SheetPO {
 		return type;
 	}
 
+	@Override
+	public void setID(long ID) {
+		this.ID = ID;
+	}
+
 	public long getID() {
 		// TODO 自动生成的方法存根
 		return ID;

@@ -1,6 +1,9 @@
 package src.vo;
 
-public class StorageOutSheetVO {
+import src.businesslogic.sheetbl.SheetType;
+
+public class StorageOutSheetVO implements SheetVO {
+	SheetType type = SheetType.STORAGE_OUT_SHEET;
 
 	private long expressNumber;//快递编号
 	private long outTime;//出库日期
@@ -68,6 +71,10 @@ public class StorageOutSheetVO {
 	public void setTransportNumber(long transportNumber) {
 		this.transportNumber = transportNumber;
 	}
-	
-	
+
+
+	@Override
+	public SheetType getType() {
+		return type;
+	}
 }

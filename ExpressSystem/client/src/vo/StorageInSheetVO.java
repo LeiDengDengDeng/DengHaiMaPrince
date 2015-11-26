@@ -1,7 +1,10 @@
 package src.vo;
 
-public class StorageInSheetVO {
-	
+import src.businesslogic.sheetbl.SheetType;
+
+public class StorageInSheetVO implements SheetVO{
+	SheetType type = SheetType.STORAGE_IN_SHEET;
+
 	private long expressNumber;//快递编号
 	private long inTime;//入库日期
 	private String destination;//目的地
@@ -9,7 +12,7 @@ public class StorageInSheetVO {
 	private int rowNumber;//排号
 	private int shelfNumber;//架号
 	private int seatNumber;//位号
-	
+
 	public StorageInSheetVO(long expressNumber, long inTime,
 			String destination, int areaNumber, int rowNumber, int shelfNumber,
 			int seatNumber) {
@@ -78,7 +81,9 @@ public class StorageInSheetVO {
 	public void setSeatNumber(int seatNumber) {
 		this.seatNumber = seatNumber;
 	}
-	
-	
 
+	@Override
+	public SheetType getType() {
+		return type;
+	}
 }

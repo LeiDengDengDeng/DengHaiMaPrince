@@ -1,7 +1,11 @@
 package src.vo;
 
 
+import src.businesslogic.sheetbl.SheetType;
+
 public class OrderSheetVO implements SheetVO {
+    SheetType type = SheetType.ORDER_SHEET;
+
     long courierNumber; // 快递物流编号
     String senderName; // 姓名
     String senderAddress; // 地址
@@ -87,5 +91,10 @@ public class OrderSheetVO implements SheetVO {
 
     public String getActualReceiverName() {
         return actualReceiverName;
+    }
+
+    @Override
+    public SheetType getType() {
+        return type;
     }
 }

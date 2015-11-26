@@ -1,10 +1,14 @@
 package src.vo;
 
+import src.businesslogic.sheetbl.SheetType;
+
 public class ConstantVO implements SheetVO{
+    SheetType type = SheetType.CONSTANT;
 
 	double distant;
 	double price ;
 	String city;
+
 	public double getDistant() {
 		return distant;
 	}
@@ -20,5 +24,9 @@ public class ConstantVO implements SheetVO{
 		this.price = price;
 		this.city = city;
 	}
-	
+
+	@Override
+	public SheetType getType() {
+		return type;
+	}
 }
