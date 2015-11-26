@@ -109,8 +109,8 @@ public class StorageData implements StorageDataService{
 	}
 
 	@Override
-	public void update(StoragePO spo) throws RemoteException {
-		delete(spo.getCity());
+	public void update(String id,StoragePO spo) throws RemoteException {
+		delete(id);
 		insert(spo);
 	}
 

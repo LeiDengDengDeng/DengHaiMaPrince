@@ -38,14 +38,9 @@ public class CommodityBLService_Stub implements CommodityBLService{
 				001, 001, 001, "0250201510250000000", 
 				"0250201510250000000");
 		gpos.add(gpo);
-		spo = new StoragePO("南京",100, 100, 1000, 200, 300, 300, 200,
-				0.9, 1, 200, 201, 500, 501, 800, 801, 1000, gpos);
+		spo = new StoragePO("南京",1000, 200, 300, 300, 200,
+				0.9,100,100,100,100,gpos);
 		this.log = log;
-	}
-
-	@Override
-	public String getStorageId() {
-		return null;
 	}
 	
 	@Override
@@ -77,7 +72,7 @@ public class CommodityBLService_Stub implements CommodityBLService{
 	}
 
 	@Override
-	public ArrayList<StorageInfoVO> checkStorageMessage() {
+	public ArrayList<StorageInfoVO> checkStorageMessage(long startTime,long endTime) {
 		ArrayList<StorageInfoVO> storageInfoList = new ArrayList<StorageInfoVO>();
 		for(GoodsPO gPo : gpos){
 			System.out.println(gPo.getAreaNumber());
@@ -99,25 +94,25 @@ public class CommodityBLService_Stub implements CommodityBLService{
 
 	@Override
 	public boolean alarm() {
-		if(spo.getShippingNumber() > (spo.getShippingEnd() - 
-				spo.getShippingStart())*spo.getAlarmScale()){
-			System.out.println("航运区库存溢出啦");
-		}
-		
-		if(spo.getRailNumber() > (spo.getRailEnd() - 
-				spo.getRailStart())*spo.getAlarmScale()){
-			System.out.println("铁运区库存溢出啦");
-		}
-		
-		if(spo.getTransportNumber() > (spo.getTransportEnd() - 
-				spo.getTransportStart())*spo.getAlarmScale()){
-			System.out.println("汽运区库存溢出啦");
-		}
-		
-		if(spo.getFlxibleNumber() > (spo.getFlxibleEnd() - 
-				spo.getFlxibleStart())*spo.getAlarmScale()){
-			System.out.println("机动区库存溢出啦");
-		}
+//		if(spo.getShippingNumber() > (spo.getShippingEnd() - 
+//				spo.getShippingStart())*spo.getAlarmScale()){
+//			System.out.println("航运区库存溢出啦");
+//		}
+//		
+//		if(spo.getRailNumber() > (spo.getRailEnd() - 
+//				spo.getRailStart())*spo.getAlarmScale()){
+//			System.out.println("铁运区库存溢出啦");
+//		}
+//		
+//		if(spo.getTransportNumber() > (spo.getTransportEnd() - 
+//				spo.getTransportStart())*spo.getAlarmScale()){
+//			System.out.println("汽运区库存溢出啦");
+//		}
+//		
+//		if(spo.getFlxibleNumber() > (spo.getFlxibleEnd() - 
+//				spo.getFlxibleStart())*spo.getAlarmScale()){
+//			System.out.println("机动区库存溢出啦");
+//		}
 	return true;
 	}
 

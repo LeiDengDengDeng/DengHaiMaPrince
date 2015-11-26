@@ -16,24 +16,38 @@ public class ExpressInfoVO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private long expressNumber;//快递编号
-	private long inTime;//入库日期
-	private String destination;//目的地
-	private GoodsType areaNumber;//区号
-	private int rowNumber;//排号
-	private int shelfNumber;//架号
-	private int seatNumber;//位号
+	String goodsName;//内件品名
+	long expressNumber;//快递编号
+	long inTime;//入库日期
+	String destination;//目的地
+	GoodsType areaNumber;//区号
+	int rowNumber;//排号
+	int shelfNumber;//架号
+	int seatNumber;//位号
+	boolean isFlxible;//是否转入机动区
 	
-	public ExpressInfoVO(long expressNumber, long inTime, String destination,
-			GoodsType goodsType, int rowNumber, int shelfNumber, int seatNumber) {
+	public ExpressInfoVO(String goodsName,long expressNumber, long inTime, String destination,
+			GoodsType areaNumber, int rowNumber, int shelfNumber, int seatNumber,boolean isFlxible) {
 		super();
+		this.goodsName = goodsName;
 		this.expressNumber = expressNumber;
 		this.inTime = inTime;
 		this.destination = destination;
-		this.areaNumber = goodsType;
+		this.areaNumber = areaNumber;
 		this.rowNumber = rowNumber;
 		this.shelfNumber = shelfNumber;
 		this.seatNumber = seatNumber;
+		this.isFlxible = isFlxible;
+	}
+
+	
+	
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
 
 	public long getExpressNumber() {
@@ -90,6 +104,14 @@ public class ExpressInfoVO implements Serializable{
 
 	public void setSeatNumber(int seatNumber) {
 		this.seatNumber = seatNumber;
+	}
+
+	public boolean isFlxible() {
+		return isFlxible;
+	}
+
+	public void setFlxible(boolean isFlxible) {
+		this.isFlxible = isFlxible;
 	}
 	
 

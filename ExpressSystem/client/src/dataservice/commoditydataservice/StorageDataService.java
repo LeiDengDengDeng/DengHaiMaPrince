@@ -31,10 +31,11 @@ public interface StorageDataService extends Remote{
 	
 	/**
 	 * 更新一个StoragePO
+	 * @param id
 	 * @param spo
 	 * @throws RemoteException
 	 */
-	public void update(StoragePO spo) throws RemoteException;
+	public void update(String id,StoragePO spo) throws RemoteException;
 	
 	/**
 	 * 删除一个StoragePO

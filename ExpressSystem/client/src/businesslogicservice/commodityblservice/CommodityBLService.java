@@ -2,6 +2,8 @@ package src.businesslogicservice.commodityblservice;
 
 import java.util.ArrayList;
 
+import src.businesslogic.commoditybl.AlarmMessage;
+import src.businesslogic.commoditybl.GoodsType;
 import src.po.GoodsPO;
 import src.po.StorageInSheetPO;
 import src.po.StorageOutSheetPO;
@@ -22,44 +24,46 @@ import src.vo.StorageOutSheetVO;
 public interface CommodityBLService {
 	
 	/**
-	 * 获得仓库id号
-	 */
-	public String getStorageId();
-	
-	/**
 	 * 盘点界面得到当天各区快递信息
 	 */
-	public ArrayList<ExpressInfoVO> stockTaking();
+	public ArrayList<ExpressInfoVO> stockTaking(String storageId);
 	
 	/**
 	 * 向外部导出Excel
 	 */
-	public void exportExcel();
+	public void exportExcel(String storageId);
 	
 	/**
 	 * 修改警戒比例
 	 * @param alarmScale
 	 */
-	public void changeAlarmScale(double alarmScale);
+	public void changeAlarmScale(double alarmScale,String storageId);
 	
 	/**
 	 * 库存查看界面得到一段时间内的库存信息
 	 * @return 
 	 */
-	public ArrayList<StorageInfoVO> checkStorageMessage();
-	public StorageNumVO getStorageNum(long startTime,long endTime);
+	public ArrayList <StorageInfoVO> checkStorageMessage(String storageId,long startTime,long endTime);
+	public StorageNumVO getStorageNum(String storageId,long startTime,long endTime);
 	
 	/**
 	 * 商品数量超出报警值，实现库存报警
+	 * @return
 	 */
-	public boolean alarm ();
+	public AlarmMessage alarm (String storageId);
+	
+	/**
+	 * 得到各区库存货物信息
+	 * @param areaNumber
+	 * @return
+	 */
+	public ArrayList<ExpressInfoVO> getAreaGoodsPOs(String storageId,GoodsType areaNumber);
 	
 	/**
 	 * 对货物进行库存分区，调整各区的库存分配
-	 * @param gpo
-	 * @param spo
+	 * @param evos
 	 */
-	public void divide (GoodsPO gpo, StoragePO spo);
+	public void divide (String storageId,ArrayList<ExpressInfoVO> evos);
 	
 	/**
 	 * 结束库存操作
@@ -70,7 +74,7 @@ public interface CommodityBLService {
 	/**
 	 * 供接口，提供修改库存信息
 	 */
-	public void changeStorageInInfo(SheetVO svo);
+	public void changeStorageInInfo(String storageId,SheetVO svo);
 	
 	/**
 	 * 供接口，提供库存信息初始化

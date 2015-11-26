@@ -28,8 +28,8 @@ public class CommodityBLService_Driver {
 		
 		ArrayList<GoodsPO> gposList = new ArrayList<>();
 		gposList.add(gpo);
-		spo = new StoragePO("南京",100, 100, 1000, 200, 300, 300, 200,
-				0.9, 1, 200, 201, 500, 501, 800, 801, 1000, gposList);
+		spo = new StoragePO("南京",1000, 200, 300, 300, 200,
+				0.9,100,100,100,100,gposList);
 		//库存盘点
 		commodityBLService.stockTaking();
 		
@@ -40,7 +40,7 @@ public class CommodityBLService_Driver {
 		commodityBLService.changeAlarmScale(0.9);
 		
 		//库存信息查看
-		commodityBLService.checkStorageMessage();
+		commodityBLService.checkStorageMessage(20151010, 20151026);
 		commodityBLService.getStorageNum(20151010, 20151026);
 		
 		//库存报警

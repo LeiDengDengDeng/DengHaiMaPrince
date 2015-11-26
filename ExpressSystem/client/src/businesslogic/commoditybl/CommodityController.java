@@ -26,10 +26,6 @@ public class CommodityController implements CommodityBLService{
 	
 	CommodityBLService_Stub cs = new CommodityBLService_Stub(log);
 
-	@Override
-	public String getStorageId() {
-		return cs.getStorageId();
-	}
 	
 	@Override
 	public ArrayList<ExpressInfoVO> stockTaking() {
@@ -47,8 +43,8 @@ public class CommodityController implements CommodityBLService{
 	}
 
 	@Override
-	public ArrayList<StorageInfoVO> checkStorageMessage() {
-		return cs.checkStorageMessage();
+	public ArrayList<StorageInfoVO> checkStorageMessage(long startTime,long endTime) {
+		return cs.checkStorageMessage(startTime,endTime);
 	}
 
 	@Override
@@ -80,6 +76,7 @@ public class CommodityController implements CommodityBLService{
 	public void initStorageInfo(ArrayList<StorageInitVO> svolist) {
 		cs.initStorageInfo(svolist);
 	}
+
 
 	
 

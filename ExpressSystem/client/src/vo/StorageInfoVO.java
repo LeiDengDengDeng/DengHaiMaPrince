@@ -16,19 +16,28 @@ public class StorageInfoVO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
+	private String goodsName;//内件品名
 	private GoodsType areaNumber;//区号
 	private int rowNumber;//排号
 	private int shelfNumber;//架号
 	private int seatNumber;//位号
 	
-	public StorageInfoVO(GoodsType goodsType, int rowNumber, int shelfNumber,
+	public StorageInfoVO(String goodsName,GoodsType areaNumber, int rowNumber, int shelfNumber,
 			int seatNumber) {
 		super();
-		this.areaNumber = goodsType;
+		this.goodsName = goodsName;
+		this.areaNumber = areaNumber;
 		this.rowNumber = rowNumber;
 		this.shelfNumber = shelfNumber;
 		this.seatNumber = seatNumber;
+	}
+
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
 
 	public GoodsType getAreaNumber() {
