@@ -76,9 +76,25 @@ public class IntermediateCenter implements IntermediateCenterBLService{
 		}
 	}
 
-//	@Override
-//	public void getcity() {
-//		
-//	}
+	@Override
+	public ArrayList<String> getcity() {
+		ArrayList<IntermediateCenterPO> ipos = new ArrayList<IntermediateCenterPO>();
+		ArrayList<String> cs = new ArrayList<String>();
+		try {
+			ipos = intermediateCenterDataService.findsIntermediateCenterPO();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		int i = 0;
+		while(ipos.get(i) != null){
+			if(!cs.contains(ipos.get(i).getCity())){
+				cs.add(ipos.get(i).getCity());
+			}
+			i++;
+		}
+		
+		return cs;
+	}
+
 
 }

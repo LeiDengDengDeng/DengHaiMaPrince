@@ -33,8 +33,9 @@ public interface IntermediateCenterBLService {
 	
 	/**
 	 * 供接口，返回中转中心所在城市
+	 * @return
 	 */
-//	public void getcity();
+	public ArrayList<String> getcity();
 	
 	
 }
