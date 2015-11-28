@@ -1,19 +1,24 @@
 package src.businesslogic.accountbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.accountblservice.AccountBLService;
+import src.dataservice.accountdataservice.AccountDataService;
+import src.po.AccountPO;
 import src.vo.AccountVO;
 
 public class Account implements AccountBLService {
 
-
+	AccountDataService accountData;
 	Log log;
-	String position="财务人员";
+	String position = "财务人员";
+
 	public Account(Log log) {
 		super();
 		this.log = log;
+		// accountData=new AccountData();
 	}
 
 	@Override
@@ -22,26 +27,61 @@ public class Account implements AccountBLService {
 		return true;
 	}
 
-
-	public boolean addAccount(String name, long num, double amount) {
-
+	/**
+	 * 增加一个银行账户
+	 */
+	public boolean addAccount(String name, long ID, double amount) {
+		AccountPO account = new AccountPO(name, ID, amount);
+		try {
+			accountData.insert(account);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return false;
+		}
+		return true;
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void modAccount(long oldID, String name, long ID) {
+	/**
+	 * 修改银行账户信息
+	 */
+	public boolean modAccount(String name, long ID) {
 		// TODO Auto-generated method stub
-		
+		try {
+			AccountPO account = accountData.find(ID);
+			account.setName(name);
+			accountData.update(account);
 
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 
 	}
 
 	@Override
+	/**
+	 * 拿到银行账户列表
+	 */
 	public ArrayList<AccountVO> getAccountList() {
-
-		return null;
+		ArrayList<AccountPO> accountPOList;
+		ArrayList<AccountVO> accountVOList = new ArrayList<AccountVO>();
+		try {
+			accountPOList = accountData.getAll();
+			for (int i = 0; i < accountPOList.size(); i++) {
+				AccountPO accountPO = accountPOList.get(i);
+				AccountVO accountVO = new AccountVO(accountPO.getName(), accountPO.getCardID(), accountPO.getAmount());
+				accountVOList.add(accountVO);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return accountVOList;
 	}
 
 	@Override
@@ -50,18 +90,39 @@ public class Account implements AccountBLService {
 	}
 
 	@Override
-	public void delAccount(long num) {
-		// TODO Auto-generated method stub
-	}
-	
-	public void updateAmount(long ID,double difference){
-
+	public boolean delAccount(long ID) {
+		AccountPO account;
+		try {
+			account = accountData.find(ID);
+			accountData.delete(account);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
 		}
-	
-	public void initAmount(ArrayList<AccountVO> vo){
+		return true;
+	}
+
+	public boolean updateAmount(long ID, double difference) {
+		try {
+			AccountPO account = accountData.find(ID);
+			double amount=account.getAmount()+difference;
+			account.setAmount(amount);
+			accountData.update(account);
+
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+
+	}
+
+	public void initAmount(ArrayList<AccountVO> vo) {
 		for (int i = 0; i < vo.size(); i++) {
-			AccountVO accountVO=vo.get(i);
-			addAccount(accountVO.getName(),accountVO.getID(),accountVO.getAmount());
+			AccountVO accountVO = vo.get(i);
+			addAccount(accountVO.getName(), accountVO.getID(), accountVO.getAmount());
 		}
 
 	}

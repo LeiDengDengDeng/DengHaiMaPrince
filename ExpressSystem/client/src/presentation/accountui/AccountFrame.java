@@ -3,19 +3,26 @@ package src.presentation.accountui;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import src.businesslogic.logbl.Log;
 
 
 public class AccountFrame {
 	static final int WIDTH=850;
 	static final int HEIGHT=646;
+	private static final ImageIcon IMG=new ImageIcon("F:/软工二/BG.png");
 	
-	
-	public static void main(){
+	public static void main(String[] args){
 	JFrame AccountFrame = new JFrame();
-	MyPanel panel = new MyPanel();
+	Log log=new Log(null);
+	AccountPanel panel = new AccountPanel(log);
+	JPanel panelbg=new JPanel();
 	// 设置标题
-	AccountFrame.setTitle("物流系统试用界面");
+	AccountFrame.setUndecorated(true);
 	AccountFrame.setSize(850, 646);
 	// 不允许用户改变窗口大小
 	AccountFrame.setResizable(false);
@@ -23,13 +30,18 @@ public class AccountFrame {
 	Toolkit toolkit = Toolkit.getDefaultToolkit();
 	Dimension screen = toolkit.getScreenSize();
 	// 设置窗体位置
-	int x = (screen.width - 850) >> 1;
-	int y = ((screen.height - 646) >> 1) - 32;
+	int x = (screen.width - WIDTH) >> 1;
+	int y = ((screen.height - HEIGHT) >> 1) - 32;
 
 	AccountFrame.setLocation(x, y);
 	// 设置默认panel
-	AccountFrame.setLayout(null);
-	AccountFrame.setContentPane(panel);
+	panelbg.setLayout(null);
+	JLabel bg=new JLabel(IMG);
+	bg.setBounds(0, 0, WIDTH, HEIGHT);
+	
+	panelbg.add(panel);
+	AccountFrame.setContentPane(panelbg);
+	AccountFrame.getContentPane().add(bg);
 	AccountFrame.setVisible(true);
 	}
 }

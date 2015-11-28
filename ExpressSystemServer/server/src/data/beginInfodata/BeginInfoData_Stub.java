@@ -5,9 +5,10 @@ import src.po.BeginInfoPO;
 
 public class BeginInfoData_Stub implements BeginInfoDataService {
 
-	public void insert(BeginInfoPO po) {
+	public boolean insert(BeginInfoPO po) {
 		// TODO Auto-generated method stub
 		System.out.println("Insert succeed!");
+	return true;
 	}
 
 	public BeginInfoPO get() {

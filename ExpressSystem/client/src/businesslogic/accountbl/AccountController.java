@@ -26,8 +26,8 @@ public class AccountController {
 	public void delAccount (long num){
 		account.delAccount(num);
 	}
-	public void modAccount(long oldID,String name,long ID){
-		account.modAccount(oldID, name, ID);
+	public void modAccount(String name,long ID){
+		account.modAccount( name, ID);
 	}
 	public ArrayList<AccountVO>  getAccountList(){
 		

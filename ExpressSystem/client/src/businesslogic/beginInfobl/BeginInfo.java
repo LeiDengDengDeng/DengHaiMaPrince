@@ -1,5 +1,6 @@
 package src.businesslogic.beginInfobl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import src.businesslogic.accountbl.Account;
@@ -9,6 +10,8 @@ import src.businesslogic.nonUserbl.Nonuser;
 import src.businesslogic.presheetbl.PreSheet;
 import src.businesslogic.userbl.User;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
+import src.dataservice.beginInfodataservice.BeginInfoDataService;
+import src.po.BeginInfoPO;
 import src.vo.AccountVO;
 import src.vo.BeginInfoVO;
 import src.vo.ConstantVO;
@@ -18,7 +21,7 @@ import src.vo.StorageInitVO;
 import src.vo.TruckInfoVO;
 
 public class BeginInfo implements BeginInfoBLService {
-
+	BeginInfoDataService beginInfoData;
 	Log log;
 	Account account;
 	User user;
@@ -39,6 +42,7 @@ public class BeginInfo implements BeginInfoBLService {
 	@Override
 	public boolean fillInfo(BeginInfoVO vo) {
 		// TODO Auto-generated method stub
+		boolean result=false;
 		ArrayList<AccountVO> beginAccount=vo.getBeginAccount();
 		ArrayList<TruckInfoVO> beginTruck=vo.getBeginTruck();
 		ArrayList<DriverInfoVO> beginDriver=vo.getBeginDriver();
@@ -51,14 +55,27 @@ public class BeginInfo implements BeginInfoBLService {
 		sheet.formulateConstant(beginConstant);
 		nonuser.initDriver(beginDriver);
 		nonuser.initTruck(beginTruck);
-		
-		return false;
+		//写入文件
+		BeginInfoPO beginInfo=new BeginInfoPO();
+		try {
+			result=this.beginInfoData.insert(beginInfo);
+		} catch (RemoteException e) {
+			return false;
+		}
+		return result;
 	}
 
 	@Override
 	public BeginInfoVO getInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<DriverInfoVO> beginDriver=null;
+		ArrayList<TruckInfoVO> beginTruck=null;
+		ArrayList<AccountVO> beginAccount=null;
+		ArrayList<ConstantVO> beginConstant=null;
+		ArrayList<StorageInitVO> beginStorage=null;
+		ArrayList<InitUserVO> beginUser=null;
+		//TODO 写到这里
+		BeginInfoVO beginInfoVO=new BeginInfoVO(beginDriver, beginTruck, beginAccount, beginConstant, beginStorage, beginUser);
+		return beginInfoVO;
 	}
 
 	@Override

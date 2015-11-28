@@ -15,7 +15,7 @@ public class AccountBLService_Driver {
 			System.out.println("Add succeed!");
 		
 		//修改账户 
-		accountBLService.modAccount(100, "x", 1000);
+		accountBLService.modAccount("x", 1000);
 		
 		//获得账户列表
 		ArrayList<AccountVO> voList = accountBLService.getAccountList();

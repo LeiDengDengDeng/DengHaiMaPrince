@@ -6,6 +6,6 @@ import java.rmi.RemoteException;
 import src.po.BeginInfoPO;
 
 public interface BeginInfoDataService extends Remote {
-	public void insert(BeginInfoPO po)throws RemoteException;
+	public boolean insert(BeginInfoPO po)throws RemoteException;
 	public BeginInfoPO get()throws RemoteException;
 }

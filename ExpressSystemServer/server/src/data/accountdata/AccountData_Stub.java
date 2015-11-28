@@ -8,15 +8,16 @@ import src.po.AccountPO;
 
 public class AccountData_Stub implements AccountDataService {
 
-	public void insert(AccountPO po) throws RemoteException {
+	public boolean insert(AccountPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("Insert succeed!");
-
+		return false;
 	}
 
-	public void delete(AccountPO po) throws RemoteException {
+	public boolean delete(long id) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("Delete succeed!");
+		return false;
 	}
 
 	public ArrayList<AccountPO> getAll() throws RemoteException {
@@ -27,10 +28,18 @@ public class AccountData_Stub implements AccountDataService {
 		return pos;
 	}
 
-	public void update(AccountPO po) throws RemoteException {
+	public boolean update(AccountPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("Update succeed!");
-		
+		return false;
 	}
+
+	@Override
+	public AccountPO find(long id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

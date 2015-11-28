@@ -9,13 +9,24 @@ public class AccountPO implements Serializable{
 	 */
 	private static final long serialVersionUID = -1081165244939370285L;
 	String name;//银行账户名称
-	long ID;//银行账号
+	long cardID;//银行账号
 	double amount;//账户余额
+	int ID;//计数
 	
-	public AccountPO(String name,long ID,double amount){
+	
+	public AccountPO(String name,long cardID,double amount){
 		this.name=name;
-		this.ID=ID;
+		this.cardID=cardID;
 		this.amount=amount;
+		this.ID=0;
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int ID) {
+		this.ID = ID;
 	}
 
 	public String getName() {
@@ -26,12 +37,12 @@ public class AccountPO implements Serializable{
 		this.name = name;
 	}
 
-	public long getID() {
-		return ID;
+	public long getCardID() {
+		return cardID;
 	}
 
-	public void setID(long iD) {
-		ID = iD;
+	public void setCardID(long cardID) {
+		this.cardID = cardID;
 	}
 
 	public double getAmount() {
