@@ -30,24 +30,24 @@ public class CommodityBLService_Driver {
 		gposList.add(gpo);
 		spo = new StoragePO("南京",1000, 200, 300, 300, 200,
 				0.9,100,100,100,100,gposList);
-		//库存盘点
-		commodityBLService.stockTaking();
-		
-		//导出excel
-		commodityBLService.exportExcel();
-		
-		//修改警戒比例
-		commodityBLService.changeAlarmScale(0.9);
-		
-		//库存信息查看
-		commodityBLService.checkStorageMessage(20151010, 20151026);
-		commodityBLService.getStorageNum(20151010, 20151026);
-		
-		//库存报警
-		commodityBLService.alarm();
-		
-		//库存分区
-		commodityBLService.divide(gpo, spo);
+//		//库存盘点
+//		commodityBLService.stockTaking();
+//		
+//		//导出excel
+//		commodityBLService.exportExcel();
+//		
+//		//修改警戒比例
+//		commodityBLService.changeAlarmScale(0.9);
+//		
+//		//库存信息查看
+//		commodityBLService.checkStorageMessage(20151010, 20151026);
+//		commodityBLService.getStorageNum(20151010, 20151026);
+//		
+//		//库存报警
+//		commodityBLService.alarm();
+//		
+//		//库存分区
+//		commodityBLService.divide(gpo, spo);
 		
 		//关闭任务
 		commodityBLService.endCommodityManagement();

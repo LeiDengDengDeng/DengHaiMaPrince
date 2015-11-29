@@ -43,9 +43,9 @@ public class FormulateConstantPanel extends JPanel {
         ConstantVO c1 = new ConstantVO(10,20,"南京-长沙");
         ConstantVO c2 = new ConstantVO(20,10,"北京-长沙");
         ConstantVO c3 = new ConstantVO(30,5,"南京-北京");
-        constantVOs.add((SheetVO)c1);
-        constantVOs.add((SheetVO)c2);
-        constantVOs.add((SheetVO)c3);
+        constantVOs.add(c1);
+        constantVOs.add(c2);
+        constantVOs.add(c3);
         String[][] data = new String[constantVOs.size()][3];
         for (int i = 0; i < constantVOs.size(); i++) {
             data[i][0] = ((ConstantVO) (constantVOs.get(i))).getCity();

@@ -12,7 +12,7 @@ public class MockCommodity extends Commodity{
 
 	public MockCommodity(GoodsDataService goodsDataService,
 			StorageDataService storageDataService,String storageId) {
-		super(goodsDataService,storageDataService,storageId);
+		super(goodsDataService,storageDataService);
 	}
 	
 	public String getStorageId() {
