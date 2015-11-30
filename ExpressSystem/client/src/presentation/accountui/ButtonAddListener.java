@@ -4,20 +4,23 @@ import java.awt.TextField;
 import java.awt.event.MouseEvent;
 
 public class ButtonAddListener extends AccountMouseListener {
-
+int i;
 	public ButtonAddListener(AccountButton button, AccountPanel panel) {
 		super(button, panel);
+		this.initial();
 		// TODO Auto-generated constructor stub
 	}
 
+	public void initial(){
+		i=panel.accounts.size();
+	}
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		int i = panel.accounts.size();
 		int Name_x = panel.Word_x -3;
 		int Name_y = panel.Word_y + panel.wordToword - ((panel.formHeight - panel.font) >> 1) + panel.formHeight * i+2;
 		int Num_x=panel.Word_x + panel.wordToNum-3;
 		int Amount_x=panel.Word_x + panel.wordToAmount;
-		int Confirm_x=panel.Word_x + panel.wordToAmount+20;
+		int Confirm_x=panel.Word_x + panel.wordToAmount+panel.amountWidth+panel.del_x;
 		int width = 50;
 		int height = panel.formHeight-4;
 		int button_x = button.getLocation().x;
@@ -37,16 +40,18 @@ public class ButtonAddListener extends AccountMouseListener {
 		textFieldAmount.setBounds(Amount_x, Name_y, panel.amountWidth, height);
 		textFieldAmount.setFont(panel.myFont);
 		//button
-		ButtonConfirm buttonConfirm=new ButtonConfirm(panel);
-		buttonConfirm.setLocation(Confirm_x, Name_y);
+		ButtonConfirm buttonConfirm=new ButtonConfirm(textFieldName, textFieldNum, textFieldAmount);
+		buttonConfirm.setLocation(Confirm_x, Name_y-(buttonConfirm.getIcon().getIconHeight()>>1)+2);
 		
 		button.setLocation(button_x, button_y);
 		panel.TextAdd.setLocation(text_x,text_y);
 		panel.add(textFieldName);
 		panel.add(textFieldNum);
 		panel.add(textFieldAmount);
+		panel.add(buttonConfirm);
 		panel.drawForm(i,panel.isfirst);
 		panel.repaint();
+		i++;
 
 	}
 

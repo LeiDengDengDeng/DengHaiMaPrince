@@ -1,26 +1,24 @@
 package src.presentation.accountui;
 
+import java.awt.TextField;
+
 import javax.swing.ImageIcon;
 
-import src.vo.AccountVO;
-
 public class ButtonConfirm extends AccountButton {
-
+	public TextField name;
+	TextField num;
+	TextField amount;
 	private static ImageIcon image = new ImageIcon("images/account_confirm.png");
 	private static ImageIcon imageEnter = new ImageIcon("images/account_confirmEnter.png");
-	public ButtonConfirm(AccountVO vo,AccountPanel panel) {
-		super(vo,panel);
+	public ButtonConfirm(TextField name,TextField num,TextField amount) {
+		super(name,num,amount);
+		this.name=name;
+		this.num=num;
+		this.amount=amount;
 		this.draw(image);
 		// TODO Auto-generated constructor stub
 	}
-	public ButtonConfirm(AccountPanel panel){
-		super();
-		this.draw(image);
-		this.panel=panel;
-		this.addListener(panel);
-		
 
-	}
 	@Override
 	ImageIcon getImageIcon() {
 		// TODO Auto-generated method stub

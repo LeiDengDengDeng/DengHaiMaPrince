@@ -47,8 +47,8 @@ public class AccountPanel extends JPanel {
 	protected static final int wordToNum = 78;// 账户名与账号之间的距离
 	protected static final int wordToAmount = 277;// 账户名与余额之间的距离
 	protected static final int numWidth = 172;// 账号的长度
-	protected static final int amountWidth = 46;// 余额的长度
-	protected static final int del_x = 25;// del按钮到amount结尾的距离
+	protected static final int amountWidth = 60;// 余额的长度
+	protected static final int del_x = 30;// del按钮到amount结尾的距离
 	boolean isfirst = true;
 
 	public AccountPanel(Log log) {

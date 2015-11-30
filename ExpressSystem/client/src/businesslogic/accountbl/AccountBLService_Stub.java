@@ -66,7 +66,7 @@ public class AccountBLService_Stub implements AccountBLService {
 		ArrayList<AccountVO> a = new ArrayList<AccountVO>();
 		a.add(new AccountVO("李莹", 1000230420303040032L, 100.223));
 		a.add(new AccountVO("小王子", 1000100020303030032L, 100.233));
-		a.add(new AccountVO("小可爱", 1000100020303030032L, 100.233));
+		a.add(new AccountVO("小可爱", 1000100020303030032L, 10077.233));
 		return a;
 	}
 
