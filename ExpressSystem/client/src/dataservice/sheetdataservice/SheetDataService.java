@@ -1,5 +1,6 @@
 package src.dataservice.sheetdataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ import src.po.SheetPO;
  * @author dell
  * 
  */
-public interface SheetDataService {
+public interface SheetDataService extends Remote{
 	/**
 	 * ¸ù¾ÝID·µ»ØSheetPO
 	 * 

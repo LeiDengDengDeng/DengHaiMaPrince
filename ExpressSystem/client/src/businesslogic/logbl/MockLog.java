@@ -3,23 +3,24 @@ package src.businesslogic.logbl;
 import java.util.ArrayList;
 
 import src.dataservice.logdataservice.LogDataService;
+import src.vo.LogVO;
 
 public class MockLog extends Log {
 
-	ArrayList<String> logs;
+	ArrayList<LogVO> logs;
 
 	public MockLog(LogDataService logData) {
 		super(logData);
 		// TODO 自动生成的构造函数存根
 	}
 
-	public MockLog(ArrayList<String> logs) {
+	public MockLog(ArrayList<LogVO> logs) {
 		super(null);
 		this.logs = logs;
 	}
 
 	@Override
-	public ArrayList<String> checkLog(String date) {
+	public ArrayList<LogVO> checkLog(String date) {
 		return logs;
 	}
 

@@ -10,6 +10,7 @@ import org.junit.Test;
 import src.businesslogic.accountbl.MockAccount;
 import src.businesslogic.logbl.MockLog;
 import src.businesslogic.sheetbl.AccountItem;
+import src.vo.LogVO;
 
 public class TestAccountAndSheet {
 
@@ -19,9 +20,8 @@ public class TestAccountAndSheet {
 
 	@Test
 	public void test() {
-		ArrayList<String> logs = new ArrayList<String>();
-		logs.add("总经理 李莹 制定常量");
-		logs.add("快递员 张三 填写寄件单");
+		ArrayList<LogVO> logs = new ArrayList<>();
+		logs.add(new LogVO("2015/11/2","总经理"," 李莹 ","制定常量","无"));
 		MockLog log = new MockLog(logs);
 		MockAccount account = new MockAccount(log);
 		AccountItem accountItem = new AccountItem(account);

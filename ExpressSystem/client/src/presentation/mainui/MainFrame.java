@@ -1,10 +1,6 @@
 package src.presentation.mainui;
 
-import src.businesslogic.logbl.Log;
-import src.businesslogicservice.logblservice.LogBLService;
-import src.presentation.accountui.AccountPanel;
-import src.presentation.sheetui.OrderSheetPanel;
-import src.presentation.sheetui.ReceivingSheetPanel;
+import src.presentation.logui.CheckLogPanel;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
@@ -86,7 +82,7 @@ public class MainFrame extends JFrame {
         mainPanel.setLayout(null);
         mainPanel.setOpaque(false);
 
-        AccountPanel p = new AccountPanel(null);
+        CheckLogPanel p = new CheckLogPanel();
         p.setBounds(PANEL_MARGIN_LEFT,PANEL_MARGIN_TOP,PANEL_WIDTH,PANEL_HEIGHT);
         mainPanel.add(p);
 

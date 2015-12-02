@@ -16,14 +16,7 @@ import src.businesslogic.nonUserbl.MockNonUser;
 import src.businesslogic.nonUserbl.Sex;
 import src.businesslogic.presheetbl.MockSheet;
 import src.businesslogic.userbl.MockUser;
-import src.vo.AccountVO;
-import src.vo.BeginInfoVO;
-import src.vo.ConstantVO;
-import src.vo.DriverInfoVO;
-import src.vo.InitUserVO;
-import src.vo.StorageInitVO;
-import src.vo.TruckInfoVO;
-import src.vo.UserVO;
+import src.vo.*;
 
 public class TestBeginInfo {
 
@@ -33,8 +26,8 @@ public class TestBeginInfo {
 
 	@Test
 	public void test() {
-		ArrayList<String> logs = new ArrayList<String>();
-		logs.add("财务人员 小王子  期初建账");
+		ArrayList<LogVO> logs = new ArrayList<>();
+		logs.add(new LogVO("2015/11/2","总经理"," 李莹 ","制定常量","无"));
 		MockLog log = new MockLog(logs);
 		MockAccount account = new MockAccount(log);
 		MockUser user=new MockUser(null,null);
