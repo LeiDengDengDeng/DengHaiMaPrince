@@ -36,7 +36,7 @@ public class UserBLService_Stub implements UserBLService{
 	public UserVO getPersonalInfo(long UserId) {
 		// TODO Auto-generated method stub
 		System.out.println("get!");
-		return new UserVO(000000, 000000, "aaaaaaaa", "Echo", "Administrator", null, null);
+		return new UserVO(000000, 000000, "aaaaaaaa", "Echo", "Administrator", null, null,null,null);
 	}
 
 	@Override
@@ -51,12 +51,12 @@ public class UserBLService_Stub implements UserBLService{
 		System.out.println("End the management!");
 	}
 
-	@Override
-	public String getCity(long UserId) {
-		// TODO Auto-generated method stub
-		System.out.println("Get the city!");
-		return "南京中转中心仓库管理员";
-	}
+//	@Override
+//	public String getCity(long UserId) {
+//		// TODO Auto-generated method stub
+//		System.out.println("Get the city!");
+//		return "南京中转中心仓库管理员";
+//	}
 
 	@Override
 	public void changeInfo(UserVO userVO) {
@@ -70,6 +70,13 @@ public class UserBLService_Stub implements UserBLService{
 		// TODO Auto-generated method stub
 		System.out.println("initialize successfully!");
 		
+	}
+
+	@Override
+	public ResultMessage logIn(long UserId, String password) {
+		// TODO Auto-generated method stub
+		System.out.println("log in successfully");
+		return null;
 	}
 	
 

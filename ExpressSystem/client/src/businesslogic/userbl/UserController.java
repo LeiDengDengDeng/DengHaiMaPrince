@@ -28,9 +28,9 @@ public class UserController {
 		
 	}
 	
-	public String getCity(long UserId){
-		return null;
-	}
+//	public String getCity(long UserId){
+//		return null;
+//	}
 	
 	public void changeInfo(UserVO userVO){
 		

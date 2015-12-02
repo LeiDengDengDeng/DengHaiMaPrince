@@ -13,7 +13,7 @@ public class StaffManageBLService_Driver {
 		ArrayList<StaffInfoVO> staffInfoVOs = staffManageBLService.getAllStaff();
 		staffManageBLService.changeAuthority(null, "Manager");
 		staffManageBLService.addStaffInfo(new UserVO(000000,000000,"aaaaa",
-				"Echo","Administrator",null,null));
+				"Echo","Administrator",null,null,null,null));
 		staffManageBLService.deleteStaff(000000);
 		staffManageBLService.endManagement();
 	}
