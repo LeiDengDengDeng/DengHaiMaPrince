@@ -21,10 +21,10 @@ public class User implements UserBLService{
 	public User(Log log,UserDataService userData){
 		this.log = log;
 		this.userData = userData;
-		map.put("南京中转中心业务员", 0);
-		map.put("北京中转中心业务员", 1);
-		map.put("上海中转中心业务员", 2);
-		map.put("广州中转中心业务员", 3);
+//		map.put("南京中转中心业务员", 0);
+//		map.put("北京中转中心业务员", 1);
+//		map.put("上海中转中心业务员", 2);
+//		map.put("广州中转中心业务员", 3);
 	}
 
 	@Override
@@ -39,7 +39,8 @@ public class User implements UserBLService{
 		}
 		UserVO userVO = new UserVO(userPO.getPersonalID(), userPO.getPersonalAccount(),
 				userPO.getMyPassword(), userPO.getPersonalName(),
-				userPO.getMyPosition(), userPO.getAuthority(), userPO.getSalary());
+				userPO.getMyPosition(), userPO.getAuthority(), userPO.getSalary(),
+				userPO.getCity(),userPO.getBusinessHall());
 		
 		return userVO;
 	}
@@ -48,7 +49,6 @@ public class User implements UserBLService{
 	@Override
 	public void changePassword(String password,long UserId) {
 		// TODO Auto-generated method stub
-		UserVO userVO = getPersonalInfo(UserId);
 		UserPO userPO = null;
 		try {
 			userPO = userData.find(UserId);
@@ -57,7 +57,6 @@ public class User implements UserBLService{
 			e.printStackTrace();
 		}
 		userPO.setMyPassword(password);
-		userVO.setMyPassword(password);
 		try {
 			userData.update(userPO);
 		} catch (RemoteException e) {
@@ -68,33 +67,39 @@ public class User implements UserBLService{
 		
 	}
 
-	@Override
-	public String getCity(long UserId) {
-		// TODO Auto-generated method stub
-		UserPO userPO = null;
-		try {
-			userPO = userData.find(UserId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String posiion = userPO.getMyPosition();
-		String city = null;
-		switch (map.get(posiion)) {
-		case 0: city = "南京";break;
-		case 1: city = "北京";break;
-		case 2: city = "上海";break;
-		case 3: city = "广州";break;
-		default:break;
-		}
-		return city;
-	}
+//	@Override
+//	public String getCity(long UserId) {
+//		// TODO Auto-generated method stub
+//		UserPO userPO = null;
+//		try {
+//			userPO = userData.find(UserId);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		String posiion = userPO.getMyPosition();
+//		String city = null;
+//		switch (map.get(posiion)) {
+//		case 0: city = "南京";break;
+//		case 1: city = "北京";break;
+//		case 2: city = "上海";break;
+//		case 3: city = "广州";break;
+//		default:break;
+//		}
+//		return city;
+//	}
 
 	@Override
 	public void changeInfo(UserVO userVO) {
 		// TODO Auto-generated method stub
+		UserPO userPO = new UserPO(userVO.getpersonalID(), userVO.getpersonalAccount(),
+				userVO.getMyPassword(),	userVO.getpersonalName(),
+				userVO.getMyPosition(), userVO.getAuthority());
+		userPO.setSalary(userVO.getSalary());
+		userPO.setCity(userVO.getCity());
+		userPO.setBusinessHall(userVO.getBusinessHall());
 		try {
-			UserPO userPO = userData.find(userVO.getpersonalID());
+			userData.update(userPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -130,6 +135,27 @@ public class User implements UserBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ResultMessage logIn(long UserId, String password) {
+		// TODO Auto-generated method stub
+		ResultMessage resultMessage = null;
+		
+		try {
+			if(userData.find(UserId) == null)
+				resultMessage = ResultMessage.NOT_EXIT;
+			else{
+				if(userData.find(UserId).getMyPassword() == password)
+					resultMessage = ResultMessage.CORRECT;
+				else
+					resultMessage = ResultMessage.WRONG;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultMessage;
 	}
 
 }

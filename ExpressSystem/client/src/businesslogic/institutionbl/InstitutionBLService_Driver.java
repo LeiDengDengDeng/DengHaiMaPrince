@@ -14,8 +14,6 @@ public class InstitutionBLService_Driver {
 				null, "Manage staff"));
 		institutionBLService.getInstitutionInfo(000000);
 		ArrayList<InstitutionVO> institutionVOs = institutionBLService.getAllInstitution();
-		institutionBLService.changeSalary(000000, new SalaryVO(2000));
-		institutionBLService.changeStaffPosition("Manager", 000000);
 		institutionBLService.deleteInstitution(000000);
 		institutionBLService.endManagement();
 		

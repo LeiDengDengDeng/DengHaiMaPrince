@@ -1,6 +1,7 @@
 package src.po;
 
-import src.businesslogic.sheetbl.SheetType;
+import src.enums.SheetState;
+import src.enums.SheetType;
 
 public class OrderSheetPO implements SheetPO {
 

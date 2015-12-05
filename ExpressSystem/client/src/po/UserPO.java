@@ -17,7 +17,10 @@ public class UserPO implements Serializable{
 	private String myPosition;//职位
 	private ArrayList<Integer> authority;  //权限
 	private SalaryPO salary;     //薪水
-//	public boolean isFromUser = false;
+	private String city;			//城市
+	private String businessHall;	//营业厅
+	
+	
 	
 	public UserPO(long personalID,long personalAccount,String myPassword
 			,String personalName,String myPosition,ArrayList<Integer> authority){
@@ -27,6 +30,8 @@ public class UserPO implements Serializable{
 		this.personalName = personalName;
 		this.myPosition = myPosition;
 		this.salary = new SalaryPO(0);
+		this.city = null;
+		this.businessHall = null;
 		
 	}
 	
@@ -85,5 +90,22 @@ public class UserPO implements Serializable{
 	
 	public void setSalary(SalaryPO salary){
 		this.salary = salary;
+	}
+	
+	public String getCity(){
+		return city;
+	}
+	
+	public void setCity(String city){
+		this.city = city;
+	}
+	
+	public String getBusinessHall(){
+		return businessHall;
+	}
+	
+	public void setBusinessHall(String businessHall){
+		this.businessHall = businessHall;
+		
 	}
 }

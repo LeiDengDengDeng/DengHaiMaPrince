@@ -2,7 +2,8 @@ package src.po;
 
 import java.io.Serializable;
 
-import src.businesslogic.sheetbl.SheetType;
+import src.enums.SheetState;
+import src.enums.SheetType;
 
 public interface SheetPO extends Serializable {
 

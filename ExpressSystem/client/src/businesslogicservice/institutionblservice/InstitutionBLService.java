@@ -35,19 +35,19 @@ public interface InstitutionBLService {
 	 */
 	public void addInstitution(InstitutionVO Institution);
 	
-	/**
-	 * 更改某个人员的职位
-	 * @param position,StaffId
-	 *  
-	 */
-	public void changeStaffPosition(String position,long StaffId);
+//	/**
+//	 * 更改某个人员的职位
+//	 * @param position,StaffId
+//	 *  
+//	 */
+//	public void changeStaffPosition(String position,long StaffId);
 	
-	/**
-	 * 人员工资调整
-	 * @param StaffId,salary
-	 * 
-	 */
-	public void changeSalary(long StaffId,SalaryVO salary);
+//	/**
+//	 * 人员工资调整
+//	 * @param StaffId,salary
+//	 * 
+//	 */
+//	public void changeSalary(long StaffId,SalaryVO salary);
 	
 	/**
 	 * 删除机构

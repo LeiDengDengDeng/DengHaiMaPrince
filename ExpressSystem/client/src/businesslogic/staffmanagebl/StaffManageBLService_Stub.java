@@ -32,14 +32,14 @@ public class StaffManageBLService_Stub implements StaffManageBLService{
 	public StaffInfoVO getStaffInfo(long StaffId) {
 		// TODO Auto-generated method stub
 		System.out.println("get!");
-		return new StaffInfoVO(StaffId,StaffId,"aaaaa","Echo","Administrator",null);
+		return new StaffInfoVO(StaffId,StaffId,"aaaaa","Echo","Administrator",null,null,null);
 	}
 
 	@Override
 	public ArrayList<StaffInfoVO> getAllStaff() {
 		// TODO Auto-generated method stub
 		ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
-		staffInfoVOs.add(new StaffInfoVO(000000, 000000,"aaaaa","Echo","Administrator",null));
+		staffInfoVOs.add(new StaffInfoVO(000000, 000000,"aaaaa","Echo","Administrator",null,null,null));
 		System.out.println("get all!");
 		return staffInfoVOs;
 	}

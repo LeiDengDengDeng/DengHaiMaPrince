@@ -1,4 +1,4 @@
-package src.presentation.logui;
+package src.presentation.staffmanageui;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -6,7 +6,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class MainPanel extends JPanel {
+public class StaffManagePanel extends JPanel{
 	
 	/**
 	 * 
@@ -15,7 +15,7 @@ public class MainPanel extends JPanel {
 
 	public void paintComponent(Graphics g){
 		
-		Image image = new ImageIcon("images/background.png").getImage();
+		Image image = new ImageIcon("images/staffManage_BG.png").getImage();
 		
 		g.drawImage(image,0,0,this);
 		

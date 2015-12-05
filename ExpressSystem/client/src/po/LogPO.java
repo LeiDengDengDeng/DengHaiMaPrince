@@ -29,8 +29,19 @@ public class LogPO implements Serializable {
 		return time;
 	}
 
-	public String getLog() {
-		return time + "     " + position + name + operation + "     "
-				+ statement + "\n";
+	public String getPosition() {
+		return position;
+	}
+
+	public String getOperation() {
+		return operation;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getStatement() {
+		return statement;
 	}
 }

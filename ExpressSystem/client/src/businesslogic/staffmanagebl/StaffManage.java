@@ -32,7 +32,8 @@ public class StaffManage implements StaffManageBLService{
 		if(userPO != null)
 			staffInfoVO  = new StaffInfoVO(StaffId, userPO.getPersonalAccount(),
 				userPO.getMyPassword(), userPO.getPersonalName(),
-				userPO.getMyPosition(), userPO.getAuthority());
+				userPO.getMyPosition(), userPO.getAuthority(),
+				userPO.getCity(),userPO.getBusinessHall());
 		else  System.out.println("Not exist!!");
 		
 		return staffInfoVO;
@@ -50,14 +51,12 @@ public class StaffManage implements StaffManageBLService{
 			e.printStackTrace();
 		}
 		
-		int i = 0;
-		while(userPOs.get(i) != null){
+		for(int i = 0;i < userPOs.size();i++){
 			staffInfoVOs.add(new StaffInfoVO(userPOs.get(i).getPersonalID(), 
 					userPOs.get(i).getPersonalAccount(), userPOs.get(i).getMyPassword(),
 					userPOs.get(i).getPersonalName(), userPOs.get(i).getMyPosition(),
-					userPOs.get(i).getAuthority()));
-			i++;
-			
+					userPOs.get(i).getAuthority(),userPOs.get(i).getCity(),
+					userPOs.get(i).getBusinessHall()));
 		}
 		
 		return staffInfoVOs;
@@ -74,8 +73,7 @@ public class StaffManage implements StaffManageBLService{
 			e.printStackTrace();
 		}
 		
-		int i = 0;
-		while(userPOs.get(i) != null){
+		for(int i = 0;i < userPOs.size();i++){
 			if(userPOs.get(i).getMyPosition().equalsIgnoreCase(position)){
 				userPOs.get(i).setAuthority(authority);
 				try {
@@ -85,7 +83,6 @@ public class StaffManage implements StaffManageBLService{
 					e.printStackTrace();
 				}
 			}
-			i++;
 			
 		}
 	}

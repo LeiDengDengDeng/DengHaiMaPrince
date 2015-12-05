@@ -1,9 +1,7 @@
 package src.businesslogic.presheetbl;
 
-import src.businesslogic.sheetbl.SheetType;
-import src.po.OrderSheetPO;
+import src.enums.SheetType;
 import src.po.SheetPO;
-import src.vo.OrderSheetVO;
 import src.vo.SheetVO;
 
 public class TransformPOAndVO {

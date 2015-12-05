@@ -1,16 +1,18 @@
 package src.dataservice.sheetdataservice;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-
 import src.enums.SheetType;
 import src.po.SheetPO;
+
+import java.io.Serializable;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  * @author dell
  * 
  */
-public interface SheetDataService {
+public interface SheetDataService extends Remote{
 	/**
 	 * ¸ù¾ÝID·µ»ØSheetPO
 	 * 

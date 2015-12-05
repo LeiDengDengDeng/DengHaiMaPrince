@@ -17,10 +17,8 @@ import src.vo.UserVO;
 public class Institution implements InstitutionBLService{
 	
 	InstitutionDataService institutionData;
-	UserBLService userBL;
-	public Institution(InstitutionDataService institutionData,UserBLService userBL){
+	public Institution(InstitutionDataService institutionData){
 		this.institutionData = institutionData;
-		this.userBL = userBL;
 	}
 
 	@Override
@@ -51,12 +49,10 @@ public class Institution implements InstitutionBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int i = 0;
-		while(institutionPOs.get(i) != null){
+		for(int i = 0;i < institutionPOs.size();i++){
 			institutionVOs.add(new InstitutionVO(institutionPOs.get(i).getInstitutionName(), 
 					institutionPOs.get(i).getInstitutionID(), 
 					institutionPOs.get(i).getStaff(), institutionPOs.get(i).getFunction()));
-			i++;
 		}
 		return institutionVOs;
 	}
@@ -75,25 +71,18 @@ public class Institution implements InstitutionBLService{
 		
 	}
 
-	@Override
-	public void changeStaffPosition(String position, long StaffId) {
-		// TODO Auto-generated method stub
-		UserVO userVO = userBL.getPersonalInfo(StaffId);
-		userVO.setMyPosition(position);
-		userBL.changeInfo(userVO);		
-	}
 
-	@Override
-	public void changeSalary(long StaffId, SalaryVO salary) {
-		// TODO Auto-generated method stub
-		SalaryPO salaryPO = new SalaryPO(salary.getBasic());
-		salaryPO.setCommission(salary.getCommission());
-		salaryPO.setTime(salary.getTime());
-		UserVO userVO = userBL.getPersonalInfo(StaffId);
-		userVO.setSalary(salaryPO);
-		userBL.changeInfo(userVO);	
-		
-	}
+//	@Override
+//	public void changeSalary(long StaffId, SalaryVO salary) {
+//		// TODO Auto-generated method stub
+//		SalaryPO salaryPO = new SalaryPO(salary.getBasic());
+//		salaryPO.setCommission(salary.getCommission());
+//		salaryPO.setTime(salary.getTime());
+//		UserVO userVO = userBL.getPersonalInfo(StaffId);
+//		userVO.setSalary(salaryPO);
+//		userBL.changeInfo(userVO);	
+//		
+//	}
 
 	@Override
 	public void deleteInstitution(long InstitutionId) {
@@ -117,6 +106,12 @@ public class Institution implements InstitutionBLService{
 	@Override
 	public void endManagement() {
 		// TODO Auto-generated method stub
+		try {
+			institutionData.finish();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

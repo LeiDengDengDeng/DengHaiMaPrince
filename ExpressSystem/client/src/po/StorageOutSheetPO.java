@@ -1,9 +1,9 @@
 package src.po;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-import src.businesslogic.sheetbl.SheetType;
+import src.enums.SheetState;
+import src.enums.SheetType;
 
 public class StorageOutSheetPO implements SheetPO {
 

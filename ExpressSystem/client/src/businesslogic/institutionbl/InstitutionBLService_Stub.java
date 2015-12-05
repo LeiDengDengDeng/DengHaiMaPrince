@@ -45,17 +45,17 @@ public class InstitutionBLService_Stub implements InstitutionBLService{
 		
 	}
 
-	@Override
-	public void changeStaffPosition(String position, long StaffId) {
-		// TODO Auto-generated method stub
-		System.out.println("change position succeed!");
-	}
-
-	@Override
-	public void changeSalary(long StaffId, SalaryVO salary) {
-		// TODO Auto-generated method stub
-		System.out.println("change salary succeed!");
-	}
+//	@Override
+//	public void changeStaffPosition(String position, long StaffId) {
+//		// TODO Auto-generated method stub
+//		System.out.println("change position succeed!");
+//	}
+//
+//	@Override
+//	public void changeSalary(long StaffId, SalaryVO salary) {
+//		// TODO Auto-generated method stub
+//		System.out.println("change salary succeed!");
+//	}
 
 	@Override
 	public void deleteInstitution(long InstitutionId) {

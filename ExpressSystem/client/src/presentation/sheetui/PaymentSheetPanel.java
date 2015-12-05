@@ -6,7 +6,7 @@ import javax.swing.*;
 
 /**
  * Created by dell on 2015/11/25.
- * 用途
+ * 用途：付款单界面
  */
 public class PaymentSheetPanel extends JPanel {
 

@@ -1,15 +1,17 @@
 package src.dataservice.logdataservice;
 
+import src.po.LogPO;
+
+import java.io.Serializable;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
-import src.po.LogPO;
 
 /**
  * @author dell
  *
  */
-public interface LogDataService {
+public interface LogDataService extends Remote{
 	
 	/**
 	 * ¸ù¾ÝID·µ»ØLogPO

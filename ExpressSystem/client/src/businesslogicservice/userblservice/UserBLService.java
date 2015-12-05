@@ -2,6 +2,7 @@ package src.businesslogicservice.userblservice;
 
 import java.util.ArrayList;
 
+import src.businesslogic.userbl.ResultMessage;
 import src.vo.InitUserVO;
 import src.vo.UserVO;
 
@@ -19,7 +20,7 @@ public interface UserBLService {
 	 * 登录
 	 * 
 	 */
-//	public ResultMessage logIn(long UserId,String password);
+	public ResultMessage logIn(long UserId,String password);
 	
 	/**
 	 * 获得个人帐号信息
@@ -42,13 +43,13 @@ public interface UserBLService {
 	 */
 	public void initial(ArrayList<InitUserVO> User);
 	
-	/**
-	 * 获得仓库管理对应的城市
-	 * @param UserId
-	 * @return
-	 * 
-	 */
-	public String getCity(long UserId);
+//	/**
+//	 * 获得仓库管理对应的城市
+//	 * @param UserId
+//	 * @return
+//	 * 
+//	 */
+//	public String getCity(long UserId);
 	
 	/**
 	 * 更改信息如职位、薪水等

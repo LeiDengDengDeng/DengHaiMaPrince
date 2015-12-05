@@ -1,43 +1,134 @@
 package src.presentation.logui;
 
-import java.awt.Color;
+import src.presentation.util.MyButton;
+import src.vo.LogVO;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.*;
 
 public class CheckLogPanel extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	private final static int WIDTH = 641;
-	private final static int HEIGHT = 572;
+    ArrayList<LogVO> logs;
+    TextLabelGroup logLabels;
+    JLabel imageLabel;
+    ImageIcon bkgImg;
+    JComboBox pageComboBox;
+    MyButton previousPageButton;
+    MyButton nextPageButton;
 
-	private JButton confirmButton;
+    private static final int MARGIN_LEFT = 175;
+    private static final int NUM_OF_LINES = 16;
 
-	public CheckLogPanel() {
-		confirmButton = new JButton();
-		confirmButton.setBounds(500, 400, 80, 40);
-		
-		
-		
-		this.setLayout(null);
-		this.setBackground(Color.BLACK);
-		this.add(confirmButton);
-	}
+    public CheckLogPanel() {
+        init();
 
-	public static void main(String[] args) {
-		CheckLogPanel c = new CheckLogPanel();
-		c.run();
-	}
+        PageButtonActionListener listener = new PageButtonActionListener(this);
+        previousPageButton.addActionListener(listener);
+        previousPageButton.setVisible(false);
+        nextPageButton.addActionListener(listener);
+        pageComboBox.setBounds(540, 504, 44, 23);
+        setPageComboBox();
+        pageComboBox.addActionListener(listener);
+        imageLabel.setIcon(bkgImg);
+        imageLabel.setBounds(40, 40, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 
-	public void run() {
-		JFrame frame = new JFrame();
-		frame.setBounds(0, 0, WIDTH, HEIGHT);
-		frame.setContentPane(this);
-		frame.setVisible(true);
-	}
+        addLogLabel();
+        this.add(pageComboBox);
+        this.add(nextPageButton);
+        this.add(previousPageButton);
+        this.add(imageLabel);
+        this.setLayout(null);
+        this.setOpaque(false);
+    }
+
+    private void init() {
+        logs = new ArrayList<>();
+        for (int i = 0; i < 40; i++) {
+            LogVO temp = new LogVO("快递员", "张三", "填写寄件单", "单号：1000000001", "2015/11/30");
+            logs.add(temp);
+        }
+
+        previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
+                ("images/previousPageClicked.png"), 330, 504);
+        nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
+                ("images/nextPageClicked.png"), 410, 504);
+        logLabels = new TextLabelGroup(logs, NUM_OF_LINES, 48, 110);
+        pageComboBox = new JComboBox();
+        imageLabel = new JLabel();
+        bkgImg = new ImageIcon("images/log.png");
+    }
+
+    private void setPageComboBox() {
+        for (int i = 1; i <= logs.size() / NUM_OF_LINES + 1; i++)
+            pageComboBox.addItem(i);
+    }
+
+    private void removeLogLabel() {
+        for (int m = 0; m < logLabels.getLabel().length; m++) {
+            for (int n = 0; n < 5; n++) {
+                this.remove(logLabels.getLabel()[m][n]);
+            }
+        }
+        this.remove(imageLabel);
+    }
+
+    private void addLogLabel() {
+        for (int m = 0; m < logLabels.getLabel().length; m++) {
+            for (int n = 0; n < 5; n++) {
+                this.add(logLabels.getLabel()[m][n], new Integer(Integer.MAX_VALUE));
+            }
+        }
+        this.add(imageLabel);
+    }
+
+
+    class PageButtonActionListener implements ActionListener {
+        CheckLogPanel container;
+
+        public PageButtonActionListener(CheckLogPanel container) {
+            this.container = container;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int pageNum = (int) pageComboBox.getSelectedItem();
+
+            // Button部分
+            if (e.getSource() == previousPageButton) {
+                pageComboBox.setSelectedItem(pageNum - 1);
+            } else if (e.getSource() == nextPageButton) {
+                pageComboBox.setSelectedItem(pageNum + 1);
+            }
+            pageNum = (int) pageComboBox.getSelectedItem();
+
+            // Button与JComboBox公用的监听部分
+            container.removeLogLabel();
+            logLabels.setPage((int) pageComboBox.getSelectedItem());
+            container.addLogLabel();
+
+            // 最后一页和第一页需处理Button的可视情况
+            if (pageNum == 1) {
+                container.previousPageButton.setVisible(false);
+                container.nextPageButton.setVisible(true);
+            } else if (pageNum == container.logs.size() / NUM_OF_LINES + 1) {
+                container.nextPageButton.setVisible(false);
+//                container.previousPageButton.setVisible(true);
+            } else {
+                container.previousPageButton.setVisible(true);
+                container.nextPageButton.setVisible(true);
+            }
+
+            container.repaint();
+        }
+    }
+
+
 }
