@@ -12,14 +12,12 @@ public class ButtonDelListener extends AccountMouseListener {
 		// TODO Auto-generated method stub
 		this.panel.accountBL.delAccount(button.vo.getID());
 		for (int i = 0; i < panel.amountList.size(); i++) {
-			panel.remove(panel.buttonModList.get(i));
 			panel.remove(panel.nameList.get(i));
 			panel.remove(panel.numList.get(i));
 			panel.remove(panel.amountList.get(i));
 			panel.remove(panel.formList.get(i));
 			panel.remove(panel.buttonDelList.get(i));
 			panel.remove(panel.TextDelList.get(i));
-			panel.remove(panel.TextModList.get(i));
 			
 		}
 		panel.remove(panel.buttonAdd);

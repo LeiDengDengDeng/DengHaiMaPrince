@@ -21,7 +21,6 @@ import src.vo.AccountVO;
 
 public class AccountPanel extends JPanel {
 	ArrayList<ButtonDel> buttonDelList;
-	ArrayList<ButtonMod> buttonModList;
 	ArrayList<JLabel> formList; 
 	ArrayList<JLabel> nameList;
 	ArrayList<JLabel> numList;
@@ -30,7 +29,6 @@ public class AccountPanel extends JPanel {
 	AccountBLService accountBL;
 	ArrayList<AccountVO> accounts;
 	TextLabel TextAdd;
-	ArrayList<TextLabel> TextModList;
 	ArrayList<TextLabel> TextDelList;
 	protected static final ImageIcon IMG_WORD = new ImageIcon("images/account_word.png");
 	protected static final ImageIcon IMG_MOD = new ImageIcon("images/account_mod.png");
@@ -59,9 +57,7 @@ boolean isfirst=true;
 	public AccountPanel(Log log) {
 		accountBL = new AccountBLService_Stub(log);
 		buttonDelList = new ArrayList<ButtonDel>();
-		buttonModList = new ArrayList<ButtonMod>();
 		this.TextDelList=new ArrayList<TextLabel>();
-		this.TextModList=new ArrayList<TextLabel>();
 		formList=new ArrayList<JLabel>();
 		nameList=new ArrayList<JLabel>();
 		numList=new ArrayList<JLabel>();
@@ -116,7 +112,6 @@ boolean isfirst=true;
 			// button删除
 			this.drawButtonDel(i);
 			// button修改
-			this.drawButtonMod(i);
 
 			// 表格
 			this.drawForm(i);
@@ -143,26 +138,7 @@ boolean isfirst=true;
 		this.add(buttonDel);
 	}
 
-	/**
-	 * 修改按钮
-	 * 
-	 * @param i
-	 */
-	private void drawButtonMod(int i) {
-		ButtonMod buttonMod = new ButtonMod(accounts.get(i), this);
-		buttonMod.setLocation(
-				Word_x + wordToAmount + amountWidth + del_x + buttonMod.getIconWidth() + 20 + (font + 1) * 2,
-				Word_y + wordToword + width * i - ((formHeight - font) >> 2));
 
-		TextLabel TextMod = new TextLabel("修改");
-		TextMod.setLocation(
-				Word_x + wordToAmount + amountWidth + del_x + buttonMod.getIconWidth() + 50 + (font + 1) * 2,
-				Word_y + wordToword + width * i);
-		this.buttonModList.add(buttonMod);
-		this.TextModList.add(TextMod);
-		this.add(TextMod);
-		this.add(buttonMod);
-	}
 
 	/**
 	 * 增加按钮
