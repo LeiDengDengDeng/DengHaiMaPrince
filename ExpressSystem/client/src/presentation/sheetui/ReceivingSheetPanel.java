@@ -8,7 +8,7 @@ import java.awt.*;
 
 /**
  * Created by dell on 2015/11/27.
- * 用途
+ * 用途：收件单界面
  */
 public class ReceivingSheetPanel extends JPanel {
     TextFieldGroup group;
@@ -27,9 +27,9 @@ public class ReceivingSheetPanel extends JPanel {
     public ReceivingSheetPanel() {
         init();
 
-        name.setBounds(MARGIN_LEFT + 10, 106, 80, COMPONENT_HEIGHT);
-        dateChooser.setBounds(MARGIN_LEFT, 147, 80, COMPONENT_HEIGHT);
-        state.setBounds(MARGIN_LEFT + 230, 147, 80, COMPONENT_HEIGHT);
+        name.setBounds(MARGIN_LEFT + 10, 121, 80, COMPONENT_HEIGHT);
+        dateChooser.setBounds(MARGIN_LEFT, 162, 80, COMPONENT_HEIGHT);
+        state.setBounds(MARGIN_LEFT + 230, 162, 80, COMPONENT_HEIGHT);
 
         imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(40, 35, bkgImg.getIconWidth(), bkgImg.getIconHeight());
@@ -47,14 +47,14 @@ public class ReceivingSheetPanel extends JPanel {
     }
 
     private void init() {
-        searchButton = new SearchButton(400,32);
-        group = new TextFieldGroup(10, 150, 32, 20, COMPONENT_HEIGHT);
+        searchButton = new SearchButton(400,35);
+        group = new TextFieldGroup(10, 150, 38, 20, COMPONENT_HEIGHT);
         name = new TextField();
         dateChooser = new DateChooserJButton();
         String[] states = {"本人签收", "代收"};
         state = new JComboBox(states);
-        confirmButton = new ConfirmButton(520, 175);
+        confirmButton = new ConfirmButton(520, 180);
         imageLabel = new JLabel();
-        bkgImg = new ImageIcon("images/receving.png");
+        bkgImg = new ImageIcon("images/sheet_receving.png");
     }
 }

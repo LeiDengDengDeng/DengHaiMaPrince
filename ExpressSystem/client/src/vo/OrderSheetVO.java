@@ -1,7 +1,7 @@
 package src.vo;
 
 
-import src.businesslogic.sheetbl.SheetType;
+import src.enums.SheetType;
 
 public class OrderSheetVO implements SheetVO {
     SheetType type = SheetType.ORDER_SHEET;

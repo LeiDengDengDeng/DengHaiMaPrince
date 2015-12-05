@@ -19,11 +19,12 @@ import src.enums.SheetType;
 import src.po.SheetPO;
 
 public class SheetData extends UnicastRemoteObject implements SheetDataService {
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4599237231580281162L;
-
+	private static final long serialVersionUID = -4597587729127117238L;
+	
 	private final static HashMap<SheetType, String> map;
 
 	static {
@@ -36,8 +37,7 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 		map.put(SheetType.STORAGE_OUT_SHEET, "storageOutSheet.ser");
 	}
 
-	protected SheetData() throws RemoteException {
-		super();
+	public SheetData() throws RemoteException {
 	}
 
 	public SheetPO find(long id, SheetType type) throws RemoteException {
@@ -45,7 +45,7 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 		ObjectInputStream os = null;
 
 		try {
-			os = new ObjectInputStream(new FileInputStream(map.get(type)));
+			os = new ObjectInputStream(new FileInputStream(new File(map.get(type))));
 
 			for (SheetPO po;;) {
 				po = (SheetPO) os.readObject();
@@ -69,7 +69,7 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 		ObjectInputStream os = null;
 
 		try {
-			os = new ObjectInputStream(new FileInputStream(map.get(type)));
+			os = new ObjectInputStream(new FileInputStream(new File(map.get(type))));
 
 			for (;;) {
 				SheetPO po = (SheetPO) os.readObject();

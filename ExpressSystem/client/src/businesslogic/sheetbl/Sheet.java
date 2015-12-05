@@ -1,10 +1,11 @@
 package src.businesslogic.sheetbl;
 
-import src.businesslogicservice.sheetblservice.FindingType;
+import src.enums.FindingType;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.dataservice.sheetdataservice.SheetDataService;
+import src.enums.SheetType;
 import src.po.SheetPO;
-import src.po.SheetState;
+import src.enums.SheetState;
 import src.vo.SheetVO;
 
 import java.rmi.RemoteException;

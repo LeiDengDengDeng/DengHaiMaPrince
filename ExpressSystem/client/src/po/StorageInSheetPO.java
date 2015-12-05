@@ -2,7 +2,8 @@ package src.po;
 
 import java.util.ArrayList;
 
-import src.businesslogic.sheetbl.SheetType;
+import src.enums.SheetState;
+import src.enums.SheetType;
 
 public class StorageInSheetPO implements SheetPO{
 	/**

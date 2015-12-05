@@ -1,6 +1,6 @@
 package src.vo;
 
-import src.businesslogic.sheetbl.SheetType;
+import src.enums.SheetType;
 
 public interface SheetVO {
 
