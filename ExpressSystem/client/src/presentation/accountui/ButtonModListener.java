@@ -5,13 +5,12 @@ import java.awt.event.MouseEvent;
 
 public class ButtonModListener extends AccountMouseListener {
 
-	public ButtonModListener(AccountButton button,AccountPanel panel) {
-		super(button,panel);
+	public ButtonModListener(AccountButton button) {
+		super(button);
 		// TODO Auto-generated constructor stub
 	}
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-
 
 	}
 

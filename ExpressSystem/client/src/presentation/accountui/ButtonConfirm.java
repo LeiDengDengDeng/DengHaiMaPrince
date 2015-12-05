@@ -3,19 +3,30 @@ package src.presentation.accountui;
 import java.awt.TextField;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class ButtonConfirm extends AccountButton {
-	public TextField name;
-	TextField num;
-	TextField amount;
+
+	TextField textFieldName;
+	TextField textFieldNum;
+	TextField textFieldAmount;
+	ButtonAdd buttonAdd;
+	JLabel textAdd;
+	ButtonAddListener listener;
 	private static ImageIcon image = new ImageIcon("images/account_confirm.png");
 	private static ImageIcon imageEnter = new ImageIcon("images/account_confirmEnter.png");
-	public ButtonConfirm(TextField name,TextField num,TextField amount) {
-		super(name,num,amount);
-		this.name=name;
-		this.num=num;
-		this.amount=amount;
+
+	public ButtonConfirm(ButtonAddListener listener) {
+		
+		this.listener=listener;
+		this.textAdd = listener.textAdd;
+		buttonAdd = (ButtonAdd)listener.button;
+		textFieldName = listener.textFieldName;
+		textFieldNum = listener.textFieldNum;
+		textFieldAmount = listener.textFieldAmount;
+		this.panel = listener.panel;
 		this.draw(image);
+		this.addListener(panel);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -24,15 +35,17 @@ public class ButtonConfirm extends AccountButton {
 		// TODO Auto-generated method stub
 		return image;
 	}
+
 	@Override
 	ImageIcon getImageIconEnter() {
 		// TODO Auto-generated method stub
 		return imageEnter;
 	}
+
 	@Override
 	void addListener(AccountPanel panel) {
 		// TODO Auto-generated method stub
-		ButtonConfirmListener listener=new ButtonConfirmListener(this, panel);
+		ButtonConfirmListener listener = new ButtonConfirmListener(this);
 		this.addMouseListener(listener);
 	}
 }

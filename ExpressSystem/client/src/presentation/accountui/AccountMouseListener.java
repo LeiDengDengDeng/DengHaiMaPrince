@@ -6,9 +6,9 @@ import java.awt.event.MouseListener;
 public class AccountMouseListener implements MouseListener {
 	AccountButton button;
 	AccountPanel panel;
-	public AccountMouseListener(AccountButton button,AccountPanel panel){
+	public AccountMouseListener(AccountButton button){
 		this.button=button;
-		this.panel=panel;
+		this.panel=button.panel;
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {

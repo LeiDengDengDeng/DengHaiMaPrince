@@ -22,10 +22,16 @@ import src.vo.AccountVO;
 public class AccountPanel extends JPanel {
 	ArrayList<ButtonDel> buttonDelList;
 	ArrayList<ButtonMod> buttonModList;
+	ArrayList<JLabel> formList; 
+	ArrayList<JLabel> nameList;
+	ArrayList<JLabel> numList;
+	ArrayList<JLabel> amountList;
 	ButtonAdd buttonAdd;
 	AccountBLService accountBL;
 	ArrayList<AccountVO> accounts;
 	TextLabel TextAdd;
+	ArrayList<TextLabel> TextModList;
+	ArrayList<TextLabel> TextDelList;
 	protected static final ImageIcon IMG_WORD = new ImageIcon("images/account_word.png");
 	protected static final ImageIcon IMG_MOD = new ImageIcon("images/account_mod.png");
 	protected static final ImageIcon IMG_REC1 = new ImageIcon("images/account_rec1.png");
@@ -49,13 +55,21 @@ public class AccountPanel extends JPanel {
 	protected static final int numWidth = 172;// 账号的长度
 	protected static final int amountWidth = 60;// 余额的长度
 	protected static final int del_x = 30;// del按钮到amount结尾的距离
-	boolean isfirst = true;
-
+boolean isfirst=true;
 	public AccountPanel(Log log) {
 		accountBL = new AccountBLService_Stub(log);
 		buttonDelList = new ArrayList<ButtonDel>();
 		buttonModList = new ArrayList<ButtonMod>();
-		accounts = accountBL.getAccountList();
+		this.TextDelList=new ArrayList<TextLabel>();
+		this.TextModList=new ArrayList<TextLabel>();
+		formList=new ArrayList<JLabel>();
+		nameList=new ArrayList<JLabel>();
+		numList=new ArrayList<JLabel>();
+		amountList=new ArrayList<JLabel>();
+		this.initial();
+
+	}
+	public void initial(){
 		this.setLayout(null);
 		this.setBounds(x, y, w, h);
 		this.setOpaque(false);
@@ -63,10 +77,10 @@ public class AccountPanel extends JPanel {
 		word.setBounds(Word_x, Word_y, IMG_WORD.getIconWidth(), IMG_WORD.getIconHeight());
 		this.add(word);
 		this.drawAccount();
-
 	}
 
 	public void drawAccount() {
+		accounts = accountBL.getAccountList();
 		for (int i = 0; i < accounts.size(); i++) {
 			// name
 			JLabel accountName = new JLabel(accounts.get(i).getName());
@@ -74,6 +88,7 @@ public class AccountPanel extends JPanel {
 			accountName.setSize((font + 1) * 3, font + 1);
 			accountName.setFont(myFont);
 			accountName.setForeground(Color.WHITE);
+			this.nameList.add(accountName);
 			// Num
 			String accountNumber = Long.toString(accounts.get(i).getID());
 			String accountNumberGood = "";
@@ -85,6 +100,7 @@ public class AccountPanel extends JPanel {
 			accountNum.setSize(numWidth, font + 1);
 			accountNum.setFont(myFont);
 			accountNum.setForeground(Color.WHITE);
+			this.numList.add(accountNum);
 			// Amount
 			DecimalFormat df = new DecimalFormat("#.##");
 			String accountAmt = (df.format(accounts.get(i).getAmount()));
@@ -93,6 +109,7 @@ public class AccountPanel extends JPanel {
 			accountAmount.setSize(amountWidth, font + 1);
 			accountAmount.setFont(myFont);
 			accountAmount.setForeground(Color.WHITE);
+			this.amountList.add(accountAmount);
 			this.add(accountName);
 			this.add(accountNum);
 			this.add(accountAmount);
@@ -102,9 +119,10 @@ public class AccountPanel extends JPanel {
 			this.drawButtonMod(i);
 
 			// 表格
-			isfirst = this.drawForm(i, isfirst);
+			this.drawForm(i);
 		}
-		this.drawButtonAdd(accounts.size());
+	
+			this.drawButtonAdd(accounts.size());
 	}
 
 	/**
@@ -120,6 +138,7 @@ public class AccountPanel extends JPanel {
 		TextDel.setLocation(Word_x + wordToAmount + amountWidth + del_x + buttonDel.getIconWidth() + 10,
 				Word_y + wordToword + width * i);
 		this.buttonDelList.add(buttonDel);
+		this.TextDelList.add(TextDel);
 		this.add(TextDel);
 		this.add(buttonDel);
 	}
@@ -140,6 +159,7 @@ public class AccountPanel extends JPanel {
 				Word_x + wordToAmount + amountWidth + del_x + buttonMod.getIconWidth() + 50 + (font + 1) * 2,
 				Word_y + wordToword + width * i);
 		this.buttonModList.add(buttonMod);
+		this.TextModList.add(TextMod);
 		this.add(TextMod);
 		this.add(buttonMod);
 	}
@@ -150,7 +170,7 @@ public class AccountPanel extends JPanel {
 	 * @param i
 	 */
 	private void drawButtonAdd(int i) {
-		ButtonAdd buttonAdd = new ButtonAdd(this);
+		buttonAdd = new ButtonAdd(this);
 		buttonAdd.setLocation(
 				Word_x + wordToAmount + amountWidth + del_x + buttonAdd.getIconWidth() + 20 + (font + 1) * 2,
 				Word_y + wordToword + width * i + ((formHeight - font) >> 1));
@@ -166,20 +186,20 @@ public class AccountPanel extends JPanel {
 	 * 表格绘制
 	 */
 
-	protected boolean drawForm(int i, boolean isfirst) {
-		if (isfirst) {
-			JLabel rec = new JLabel(IMG_REC1);
+	protected boolean drawForm(int i) {
+		JLabel rec;
+		if (i%2==1) {
+			rec = new JLabel(IMG_REC1);
 			rec.setBounds(Word_x - wordToform_x, Word_y + wordToword - ((formHeight - font) >> 1) + formHeight * i,
 					formWidth, formHeight);
 			this.add(rec);
-			isfirst = false;
 		} else {
-			JLabel rec = new JLabel(IMG_REC2);
+			rec = new JLabel(IMG_REC2);
 			rec.setBounds(Word_x - wordToform_x, Word_y + wordToword - ((formHeight - font) >> 1) + formHeight * i,
 					formWidth, formHeight);
 			this.add(rec);
-			isfirst = true;
 		}
-		return isfirst;
+		this.formList.add(rec);
+		return true;
 	}
 }
