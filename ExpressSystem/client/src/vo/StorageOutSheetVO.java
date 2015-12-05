@@ -1,35 +1,50 @@
 package src.vo;
 
+import java.util.ArrayList;
+
 import src.enums.SheetType;
 
 public class StorageOutSheetVO implements SheetVO {
 	SheetType type = SheetType.STORAGE_OUT_SHEET;
 
-	private long expressNumber;//快递编号
-	private long outTime;//出库日期
-	private String destination;//目的地
-	private int transportForm;//装运形式
-	private long transferNumber;//中转单编号
-	private long transportNumber;//汽运编号
-	
-	public StorageOutSheetVO(long expressNumber, long outTime,
-			String destination, int transportForm, long transferNumber,
-			long transportNumber) {
+	ArrayList<String> goodsNameList;//内件品名
+	ArrayList<Long> expressNumberList;//快递编号
+	long outTime;//出库日期
+	ArrayList<String> destinationList;//目的地
+	ArrayList<Integer> transportFormList;//装运形式
+	ArrayList<Long> transNumberList;//中转单编号或汽运编号
+//	ArrayList<Long> transportNumberList;//汽运编号
+
+	public StorageOutSheetVO(SheetType type, ArrayList<String> goodsNameList,
+			ArrayList<Long> expressNumberList,long outTime, 
+			ArrayList<String> destinationList,
+			ArrayList<Integer> transportFormList,
+			ArrayList<Long> transNumberList
+			) {
 		super();
-		this.expressNumber = expressNumber;
+		this.type = type;
+		this.goodsNameList = goodsNameList;
+		this.expressNumberList = expressNumberList;
 		this.outTime = outTime;
-		this.destination = destination;
-		this.transportForm = transportForm;
-		this.transferNumber = transferNumber;
-		this.transportNumber = transportNumber;
+		this.destinationList = destinationList;
+		this.transportFormList = transportFormList;
+		this.transNumberList = transNumberList;
 	}
 
-	public long getExpressNumber() {
-		return expressNumber;
+	public ArrayList<String> getGoodsNameList() {
+		return goodsNameList;
 	}
 
-	public void setExpressNumber(long expressNumber) {
-		this.expressNumber = expressNumber;
+	public void setGoodsNameList(ArrayList<String> goodsNameList) {
+		this.goodsNameList = goodsNameList;
+	}
+
+	public ArrayList<Long> getExpressNumberList() {
+		return expressNumberList;
+	}
+
+	public void setExpressNumberList(ArrayList<Long> expressNumberList) {
+		this.expressNumberList = expressNumberList;
 	}
 
 	public long getOutTime() {
@@ -40,38 +55,29 @@ public class StorageOutSheetVO implements SheetVO {
 		this.outTime = outTime;
 	}
 
-	public String getDestination() {
-		return destination;
+	public ArrayList<String> getDestinationList() {
+		return destinationList;
 	}
 
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public void setDestinationList(ArrayList<String> destinationList) {
+		this.destinationList = destinationList;
 	}
 
-	public int getTransportForm() {
-		return transportForm;
+	public ArrayList<Integer> getTransportFormList() {
+		return transportFormList;
 	}
 
-	public void setTransportForm(int transportForm) {
-		this.transportForm = transportForm;
+	public void setTransportFormList(ArrayList<Integer> transportFormList) {
+		this.transportFormList = transportFormList;
 	}
 
-	public long getTransferNumber() {
-		return transferNumber;
+	public ArrayList<Long> getTransNumberList() {
+		return transNumberList;
 	}
 
-	public void setTransferNumber(long transferNumber) {
-		this.transferNumber = transferNumber;
+	public void setTransferNumberList(ArrayList<Long> transNumberList) {
+		this.transNumberList = transNumberList;
 	}
-
-	public long getTransportNumber() {
-		return transportNumber;
-	}
-
-	public void setTransportNumber(long transportNumber) {
-		this.transportNumber = transportNumber;
-	}
-
 
 	@Override
 	public SheetType getType() {
