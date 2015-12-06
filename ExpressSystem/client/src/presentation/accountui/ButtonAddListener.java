@@ -63,7 +63,7 @@ public class ButtonAddListener extends AccountMouseListener {
 		textAdd.setLocation(text_x, text_y);
 		// buttonCancel
 		buttonCancel = new ButtonCancel(this);
-		buttonCancel.setLocation(Confirm_x + (panel.del_x << 1),
+		buttonCancel.setLocation(Confirm_x + panel.del_x ,
 				Name_y - (buttonCancel.getIcon().getIconHeight() >> 1) + 2);
 
 		// buttonConfirm
@@ -76,7 +76,7 @@ public class ButtonAddListener extends AccountMouseListener {
 		panel.add(textFieldAmount);
 		panel.add(buttonConfirm);
 		panel.add(buttonCancel);
-		panel.drawForm(i);
+//		panel.drawForm(i);
 		panel.repaint();
 		button.setVisible(false);
 		textAdd.setVisible(false);

@@ -14,7 +14,7 @@ import src.businesslogic.logbl.Log;
 public class AccountFrame {
 	static final int WIDTH=850;
 	static final int HEIGHT=646;
-	private static final ImageIcon IMG=new ImageIcon("F:/Èí¹¤¶þ/BG.png");
+	private static final ImageIcon IMG=new ImageIcon("images/mainFrame.png");
 	
 	public static void main(String[] args){
 	JFrame AccountFrame = new JFrame();
