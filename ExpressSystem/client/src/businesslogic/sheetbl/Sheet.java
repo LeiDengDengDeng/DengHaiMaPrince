@@ -38,7 +38,7 @@ public abstract class Sheet implements SheetBLService {
     abstract public String[][] getExistedInfo();
 
     @Override
-    final public boolean add(SheetVO vo) {
+    public boolean add(SheetVO vo) {
         SheetPO po = generatePO(vo);
         try {
             sheetData.insert(po);

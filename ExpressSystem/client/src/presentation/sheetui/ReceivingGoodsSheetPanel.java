@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-public class RecevingGoodsSheetPanel {
+public class ReceivingGoodsSheetPanel {
 	JPanel sheet;
 	ArrayList<TextField> courierNumber;
 	ArrayList<JComboBox> depature;

@@ -19,12 +19,12 @@ import src.enums.SheetType;
 import src.po.SheetPO;
 
 public class SheetData extends UnicastRemoteObject implements SheetDataService {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4597587729127117238L;
-	
+
 	private final static HashMap<SheetType, String> map;
 
 	static {
@@ -81,6 +81,8 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 		} catch (ClassNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+		}catch(FileNotFoundException e){
+			System.out.println("找不到文件");
 		} catch (EOFException e) {
 			// TODO 自动生成的 catch 块
 		} catch (IOException e) {
@@ -97,6 +99,9 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 		MyObjectOutputStream moos = null;
 		File file = new File(map.get(po.getType()));
 
+		po.setID(1000000000 + this.finds(po.getType()).size());
+		System.out.println(po.getID());
+
 		try {
 			if (file.length() == 0) {
 				oos = new ObjectOutputStream(new FileOutputStream(file));
@@ -104,15 +109,13 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 				oos.flush();
 				oos.close();
 			} else {
-				moos = new MyObjectOutputStream(
-						new FileOutputStream(file, true));
+				moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 				moos.writeObject(po);
 				moos.flush();
 				moos.close();
 			}
 		} catch (FileNotFoundException e) {
 			// TODO 自动生成的 catch 块
-			System.out.println("LogFile not found");
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
@@ -127,8 +130,7 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 
 		ArrayList<SheetPO> sheets = null;
 		try {
-			os = new ObjectInputStream(new FileInputStream(
-					map.get(po.getType())));
+			os = new ObjectInputStream(new FileInputStream(map.get(po.getType())));
 
 			// 读出除ID相同的所有PO
 			sheets = new ArrayList<SheetPO>();
@@ -152,8 +154,7 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 		}
 
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(map.get(po
-					.getType())));
+			oos = new ObjectOutputStream(new FileOutputStream(map.get(po.getType())));
 			if (sheets.size() == 0) // ArrayList为空
 				for (SheetPO sheet : sheets)
 					oos.writeObject(sheet);

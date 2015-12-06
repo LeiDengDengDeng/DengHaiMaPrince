@@ -22,7 +22,7 @@ public class Account implements AccountBLService {
 		super();
 		this.log = log;
 		try {
-			accountData=(AccountDataService) Naming.lookup("rmi://localhost:1099/hello");
+			accountData=(AccountDataService) Naming.lookup("rmi://127.0.0.1:6600/accountData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,9 +115,10 @@ public class Account implements AccountBLService {
 	public boolean updateAmount(long ID, double difference) {
 		try {
 			AccountPO account = accountData.find(ID);
-			double amount=account.getAmount()+difference;
+			double amount=account.getAmount()-difference;
 			account.setAmount(amount);
-			accountData.update(account);
+//			accountData.update(account);
+			System.out.println("update");
 
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
