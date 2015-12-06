@@ -12,8 +12,8 @@ import src.vo.UserVO;
 public abstract class UserButton extends JButton {
 //	private static ImageIcon image=null ;
 	protected UserVO vo;
-	UserPanel panel;
-	public UserButton(UserVO vo,UserPanel panel) {
+	MainPanel panel;
+	public UserButton(UserVO vo,MainPanel panel) {
 		this.vo = vo;
 		this.addListener(panel);
 		this.panel = panel;
@@ -33,5 +33,5 @@ public abstract class UserButton extends JButton {
 	int getIconWidth(){
 		return getImageIcon().getIconWidth();
 	}
-	abstract void addListener(UserPanel panel);
+	abstract void addListener(MainPanel panel);
 }

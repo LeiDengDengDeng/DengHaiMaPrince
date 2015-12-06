@@ -10,6 +10,8 @@ import src.businesslogicservice.userblservice.UserBLService;
 import src.dataservice.logdataservice.LogDataService;
 import src.dataservice.userdataservice.UserDataService;
 import src.po.UserPO;
+import src.presentation.userui.PasswordPanel;
+import src.presentation.userui.UserFrame;
 import src.vo.InitUserVO;
 import src.vo.UserVO;
 
@@ -17,7 +19,7 @@ public class User implements UserBLService{
 	
 	UserDataService userData;
 	Log log;
-	Map<String, Integer> map = new HashMap<>();
+//	Map<String, Integer> map = new HashMap<>();
 	public User(Log log,UserDataService userData){
 		this.log = log;
 		this.userData = userData;
@@ -57,13 +59,14 @@ public class User implements UserBLService{
 			e.printStackTrace();
 		}
 		userPO.setMyPassword(password);
+//		PasswordPanel passwordPanel = new PasswordPanel(userPO.getMyPassword(),
+//				password, password);
 		try {
 			userData.update(userPO);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 	}
 
@@ -137,25 +140,5 @@ public class User implements UserBLService{
 		}
 	}
 
-	@Override
-	public ResultMessage logIn(long UserId, String password) {
-		// TODO Auto-generated method stub
-		ResultMessage resultMessage = null;
-		
-		try {
-			if(userData.find(UserId) == null)
-				resultMessage = ResultMessage.NOT_EXIT;
-			else{
-				if(userData.find(UserId).getMyPassword() == password)
-					resultMessage = ResultMessage.CORRECT;
-				else
-					resultMessage = ResultMessage.WRONG;
-			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return resultMessage;
-	}
 
 }

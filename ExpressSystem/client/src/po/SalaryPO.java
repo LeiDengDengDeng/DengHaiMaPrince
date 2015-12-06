@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class SalaryPO implements Serializable{
 	private int basic;		//月底薪
 	private int time;		//按次计
-	private int commission; //提成
+	private int commission; //提成(0-100)
+	private int eachPay; //每次的价格
 	
 	public SalaryPO(int basic){
 		this.basic = basic;
@@ -29,12 +30,24 @@ public class SalaryPO implements Serializable{
 		this.time = time;
 	}
 	
+	public void setEachPay(int eachPay){
+		this.eachPay = eachPay;
+	}
+	
+	public int getEachPay(){
+		return eachPay;
+	}
+	
 	public int getCommission(){
 		return commission;
 	}
 	
 	public void setCommission(int commission){
 		this.commission = commission;
+	}
+	
+	public int getTotal(){
+		return basic * (100 + commission) / 100 + time * eachPay;
 	}
 
 }
