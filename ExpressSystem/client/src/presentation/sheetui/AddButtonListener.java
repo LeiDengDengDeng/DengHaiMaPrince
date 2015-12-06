@@ -18,7 +18,7 @@ public class AddButtonListener implements ActionListener {
 
     ArrayList<Component[]> inputFields = new ArrayList<>();
     ArrayList<LogVO> logs = new ArrayList<>();
-    static int count = 0;
+    int count = 0;
 
     protected static final int COMPONENT_HEIGHT = 22;
     protected static final int DIFFER = 35; // addbutton与组件的距离
@@ -82,6 +82,14 @@ public class AddButtonListener implements ActionListener {
 
     public ArrayList<LogVO> getLogs() {
         return logs;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
 }

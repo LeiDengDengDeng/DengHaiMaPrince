@@ -44,7 +44,7 @@ public class ReceivingMoneySheetPanel extends JPanel {
         init();
 
         imageLabel.setIcon(bkgImg);
-        imageLabel.setBounds(MARGIN_LEFT, MARGIN_TOP, bkgImg.getIconWidth(), bkgImg.getIconHeight());
+        imageLabel.setBounds(MARGIN_LEFT - 11, MARGIN_TOP - 6, bkgImg.getIconWidth() - 5, bkgImg.getIconHeight());
 
         addText.setBounds(ADD_MARGIN_LEFT + 28, ADD_MARGIN_TOP + 2, 30, 14);
         addText.setFont(myFont);
@@ -83,7 +83,7 @@ public class ReceivingMoneySheetPanel extends JPanel {
         delText = new JLabel("É¾³ý");
         lineLabels = new ArrayList<>();
         imageLabel = new JLabel();
-        bkgImg = new ImageIcon("images/recevingMoneySheet.png");
+        bkgImg = new ImageIcon("images/sheet_recevingMoney.png");
     }
 
     public void drawForm(int i) {

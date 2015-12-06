@@ -1,5 +1,7 @@
 package src.presentation.sheetui;
 
+import src.businesslogic.sheetbl.OrderSheet;
+import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.SearchButton;
 
@@ -24,7 +26,9 @@ public class ReceivingSheetPanel extends JPanel {
     private static final int MARGIN_LEFT = 160;
     private static final int COMPONENT_HEIGHT = 20;
 
-    public ReceivingSheetPanel() {
+    public ReceivingSheetPanel(SheetBLService orderSheetBL) {
+        orderSheetBL = new OrderSheet();
+
         init();
 
         name.setBounds(MARGIN_LEFT + 10, 121, 80, COMPONENT_HEIGHT);

@@ -1,19 +1,10 @@
 package src.presentation.mainui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.util.Enumeration;
+import src.presentation.util.ButtonMouseListener;
 
 import javax.swing.*;
-
-import src.presentation.logui.CheckLogPanel;
-import src.presentation.sheetui.OrderSheetPanel;
-import src.presentation.sheetui.PaymentSheetPanel;
-import src.presentation.sheetui.ReceivingSheetPanel;
-import src.presentation.util.ButtonMouseListener;
+import java.awt.event.*;
+import java.util.Enumeration;
 
 public class MainFrame extends JFrame {
 
@@ -25,12 +16,6 @@ public class MainFrame extends JFrame {
 	private static final int WIDTH = 850;
 	private static final int HEIGHT = 646;
 
-	private final static int PANEL_WIDTH = 665;
-	private final static int PANEL_HEIGHT = 601;
-	private final static int PANEL_MARGIN_LEFT = 185;
-	private final static int PANEL_MARGIN_TOP = 45;
-
-	JPanel presentPanel = null;
 	LeftButtonGroup leftButtonGroup = new LeftButtonGroup(this);
 
 	JButton closeButton = new JButton();
@@ -43,13 +28,11 @@ public class MainFrame extends JFrame {
 	ImageIcon hideIcon = new ImageIcon("images/hide.png");
 	ImageIcon hideClickedIcon = new ImageIcon("images/hideClicked.png");
 
+	PanelController controller = new PanelController(this);
+
 	boolean isDraging = false;
 	int frameLocationX;
 	int frameLocationY;
-
-	public static void main(String[] args) {
-		new MainFrame();
-	}
 
 	public MainFrame() {
 		ButtonMouseListener closeMouseListener = new ButtonMouseListener(
@@ -131,20 +114,8 @@ public class MainFrame extends JFrame {
 		return this;
 	}
 
-	public void setPresentPanel(int i) {
-		if (presentPanel != null)
-			mainPanel.remove(presentPanel);
-		switch (i) {
-		case 1:
-			presentPanel = new ReceivingSheetPanel();
-			break;
-		case 2:
-			presentPanel = new CheckLogPanel();
-			break;
-		}
-		presentPanel.setBounds(PANEL_MARGIN_LEFT, PANEL_MARGIN_TOP,
-				PANEL_WIDTH, PANEL_HEIGHT);
-		mainPanel.add(presentPanel);
-		this.repaint();
+	public void setPresentPanel(int i){
+		controller.setPresentPanel(i);
 	}
+
 }
