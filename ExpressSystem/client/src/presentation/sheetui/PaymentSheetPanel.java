@@ -33,15 +33,15 @@ public class PaymentSheetPanel extends JPanel {
         imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(40, 40, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 
-        accountComboBox.setBounds(MARGIN_LEFT, 83, 170, COMPONENT_HEIGHT);
+        accountComboBox.setBounds(MARGIN_LEFT, 85, 170, COMPONENT_HEIGHT);
 
-        priceField.setBounds(MARGIN_LEFT, 128, 80, COMPONENT_HEIGHT);
+        priceField.setBounds(MARGIN_LEFT, 130, 80, COMPONENT_HEIGHT);
 
-        dateChooser.setBounds(MARGIN_LEFT, 170, 80, COMPONENT_HEIGHT);
+        dateChooser.setBounds(MARGIN_LEFT, 172, 80, COMPONENT_HEIGHT);
 
-        detailComboBox.setBounds(MARGIN_LEFT, 215, 90, COMPONENT_HEIGHT);
+        detailComboBox.setBounds(MARGIN_LEFT, 217, 90, COMPONENT_HEIGHT);
 
-        tip.setBounds(145, 263, 400, 70);
+        tip.setBounds(145, 265, 400, 70);
 
         this.setLayout(null);
         this.setOpaque(false);
@@ -63,24 +63,12 @@ public class PaymentSheetPanel extends JPanel {
         tip = new JTextArea();
         confirmButton = new ConfirmButton(520, 375);
         imageLabel = new JLabel();
-        bkgImg = new ImageIcon("images/payment.png");
+        bkgImg = new ImageIcon("images/sheet_payment.png");
     }
 
 
     private String[] getAccount() {
         return new String[]{"1234 5678 1234 5678 123", "2222 4444 5555 6666 123", "7777 8888 9999 1234 555"};
     }
-
-//    public static void main(String[] args) {
-//        PaymentSheetPanel p = new PaymentSheetPanel();
-//        p.run();
-//    }
-//
-//    public void run() {
-//        JFrame frame = new JFrame();
-//        frame.setBounds(0, 0, WIDTH, HEIGHT);
-//        frame.setContentPane(this);
-//        frame.setVisible(true);
-//    }
 
 }

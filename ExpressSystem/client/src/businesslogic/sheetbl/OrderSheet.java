@@ -15,6 +15,8 @@ public class OrderSheet extends Sheet {
     SheetType type = SheetType.ORDER_SHEET;
     SheetDataService sheetData;
 
+    public OrderSheet(){super();}
+
     @Override
     public String[][] getExistedInfo() {
         // TODO 自动生成的方法存根

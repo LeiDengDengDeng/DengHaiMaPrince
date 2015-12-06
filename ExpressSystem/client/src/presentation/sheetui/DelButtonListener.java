@@ -36,14 +36,16 @@ public class DelButtonListener implements ActionListener {
                 .confirmButton.getLocation().getY() - OFFSET, container.confirmButton.getWidth(), container
                 .confirmButton.getHeight());
 
+
+        AddButtonListener addButtonListener = ((AddButtonListener) container.addButton.getActionListeners()[0]);
         // 刪除最后一行的组件
-        ((AddButtonListener)container.addButton.getActionListeners()[0]).removeLine();
+        addButtonListener.removeLine();
         container.removeLastLine();
 
         // 更新计数器
-        AddButtonListener.count--;
+        addButtonListener.setCount(addButtonListener.getCount()-1);
 
-        if(AddButtonListener.count == 0){
+        if (addButtonListener.getCount() == 0) {
             delButton.setVisible(false);
             container.delText.setVisible(false);
         }

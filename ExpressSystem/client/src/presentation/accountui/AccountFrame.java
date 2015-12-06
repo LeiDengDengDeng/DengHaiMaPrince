@@ -18,7 +18,7 @@ public class AccountFrame {
 	
 	public static void main(String[] args){
 	JFrame AccountFrame = new JFrame();
-	Log log=new Log(null);
+	Log log=new Log();
 	AccountPanel panel = new AccountPanel(log);
 	JPanel panelbg=new JPanel();
 	// …Ë÷√±ÍÃ‚

@@ -1,5 +1,8 @@
 package src.businesslogic.logbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -13,8 +16,16 @@ public class Log implements LogBLService {
 
     LogDataService logData;
 
-    public Log(LogDataService logData) {
-        this.logData = logData;
+    public Log() {
+        try {
+            this.logData =  (LogDataService) Naming.lookup("rmi://127.0.0.1:6600/logData");
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
