@@ -1,37 +1,55 @@
 package src.vo;
 
+import java.util.ArrayList;
+
+import src.businesslogic.commoditybl.GoodsType;
 import src.enums.SheetType;
 
 public class StorageInSheetVO implements SheetVO{
 	SheetType type = SheetType.STORAGE_IN_SHEET;
 
-	private long expressNumber;//快递编号
-	private long inTime;//入库日期
-	private String destination;//目的地
-	private int areaNumber;//区号(枚举)
-	private int rowNumber;//排号
-	private int shelfNumber;//架号
-	private int seatNumber;//位号
+	ArrayList<String> goodsNameList;//内件品名
+	ArrayList<Long> expressNumberList;//快递编号
+	long inTime;//入库日期
+	ArrayList<String> destinationList;//目的地
+	ArrayList<GoodsType> areaNumberList;//区号
+	ArrayList<Integer> rowNumberList;//排号
+	ArrayList<Integer> shelfNumberList;//架号
+	ArrayList<Integer> seatNumberList;//位号
 
-	public StorageInSheetVO(long expressNumber, long inTime,
-			String destination, int areaNumber, int rowNumber, int shelfNumber,
-			int seatNumber) {
+	public StorageInSheetVO(SheetType type, ArrayList<String> goodsNameList, 
+			ArrayList<Long> expressNumberList,
+			long inTime, ArrayList<String> destinationList,
+			ArrayList<GoodsType> areaNumberList,
+			ArrayList<Integer> rowNumberList,
+			ArrayList<Integer> shelfNumberList,
+			ArrayList<Integer> seatNumberList) {
 		super();
-		this.expressNumber = expressNumber;
+		this.type = type;
+		this.goodsNameList = goodsNameList;
+		this.expressNumberList = expressNumberList;
 		this.inTime = inTime;
-		this.destination = destination;
-		this.areaNumber = areaNumber;
-		this.rowNumber = rowNumber;
-		this.shelfNumber = shelfNumber;
-		this.seatNumber = seatNumber;
+		this.destinationList = destinationList;
+		this.areaNumberList = areaNumberList;
+		this.rowNumberList = rowNumberList;
+		this.shelfNumberList = shelfNumberList;
+		this.seatNumberList = seatNumberList;
 	}
 
-	public long getExpressNumber() {
-		return expressNumber;
+	public ArrayList<String> getGoodsNameList() {
+		return goodsNameList;
 	}
 
-	public void setExpressNumber(long expressNumber) {
-		this.expressNumber = expressNumber;
+	public void setGoodsNameList(ArrayList<String> goodsNameList) {
+		this.goodsNameList = goodsNameList;
+	}
+
+	public ArrayList<Long> getExpressNumberList() {
+		return expressNumberList;
+	}
+
+	public void setExpressNumberList(ArrayList<Long> expressNumberList) {
+		this.expressNumberList = expressNumberList;
 	}
 
 	public long getInTime() {
@@ -42,44 +60,44 @@ public class StorageInSheetVO implements SheetVO{
 		this.inTime = inTime;
 	}
 
-	public String getDestination() {
-		return destination;
+	public ArrayList<String> getDestinationList() {
+		return destinationList;
 	}
 
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public void setDestinationList(ArrayList<String> destinationList) {
+		this.destinationList = destinationList;
 	}
 
-	public int getAreaNumber() {
-		return areaNumber;
+	public ArrayList<GoodsType> getAreaNumberList() {
+		return areaNumberList;
 	}
 
-	public void setAreaNumber(int areaNumber) {
-		this.areaNumber = areaNumber;
+	public void setAreaNumberList(ArrayList<GoodsType> areaNumberList) {
+		this.areaNumberList = areaNumberList;
 	}
 
-	public int getRowNumber() {
-		return rowNumber;
+	public ArrayList<Integer> getRowNumberList() {
+		return rowNumberList;
 	}
 
-	public void setRowNumber(int rowNumber) {
-		this.rowNumber = rowNumber;
+	public void setRowNumberList(ArrayList<Integer> rowNumberList) {
+		this.rowNumberList = rowNumberList;
 	}
 
-	public int getShelfNumber() {
-		return shelfNumber;
+	public ArrayList<Integer> getShelfNumberList() {
+		return shelfNumberList;
 	}
 
-	public void setShelfNumber(int shelfNumber) {
-		this.shelfNumber = shelfNumber;
+	public void setShelfNumberList(ArrayList<Integer> shelfNumberList) {
+		this.shelfNumberList = shelfNumberList;
 	}
 
-	public int getSeatNumber() {
-		return seatNumber;
+	public ArrayList<Integer> getSeatNumberList() {
+		return seatNumberList;
 	}
 
-	public void setSeatNumber(int seatNumber) {
-		this.seatNumber = seatNumber;
+	public void setSeatNumberList(ArrayList<Integer> seatNumberList) {
+		this.seatNumberList = seatNumberList;
 	}
 
 	@Override

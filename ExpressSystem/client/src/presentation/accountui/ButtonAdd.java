@@ -36,7 +36,7 @@ public class ButtonAdd extends AccountButton {
 	@Override
 	void addListener(AccountPanel panel) {
 		// TODO Auto-generated method stub
-		ButtonAddListener listener=new ButtonAddListener(this, panel);
+		ButtonAddListener listener=new ButtonAddListener(this);
 		this.addMouseListener(listener);
 	}
 }

@@ -20,10 +20,14 @@ public class AccountBLService_Stub implements AccountBLService {
 	// }
 	LogBLService log;
 	String position = "财务人员";
+	ArrayList<AccountVO> a = new ArrayList<AccountVO>();
 
 	public AccountBLService_Stub(LogBLService log) {
 		super();
 		this.log = log;
+		a.add(new AccountVO("李莹", 1000230420303040032L, 100.223));
+		a.add(new AccountVO("小王子", 1000100020303030032L, 100.233));
+		a.add(new AccountVO("小可爱", 1000100020303030032L, 10077.233));
 	}
 
 	@Override
@@ -42,11 +46,8 @@ public class AccountBLService_Stub implements AccountBLService {
 	}
 
 	public boolean addAccount(String name, long num, double amount) {
-		if (name == "小王子") {
-			log.generateLog(position, "小王子", "增加一个账户", "");
-			return true;
-		} else
-			return false;
+		a.add(new AccountVO(name,num,amount));	
+		return true;
 		// TODO Auto-generated method stub
 
 	}
@@ -63,10 +64,6 @@ public class AccountBLService_Stub implements AccountBLService {
 	@Override
 	public ArrayList<AccountVO> getAccountList() {
 		// TODO Auto-generated method stub
-		ArrayList<AccountVO> a = new ArrayList<AccountVO>();
-		a.add(new AccountVO("李莹", 1000230420303040032L, 100.223));
-		a.add(new AccountVO("小王子", 1000100020303030032L, 100.233));
-		a.add(new AccountVO("小可爱", 1000100020303030032L, 10077.233));
 		return a;
 	}
 
@@ -79,8 +76,10 @@ public class AccountBLService_Stub implements AccountBLService {
 	@Override
 	public boolean delAccount(long num) {
 		// TODO Auto-generated method stub
-		if (num == 1234122222)
-			System.out.println("Delete the account!");
+		for (int i = 0; i < a.size(); i++) {
+			if(a.get(i).getID()==num)
+				a.remove(i);
+		}
 		return false;
 	}
 }

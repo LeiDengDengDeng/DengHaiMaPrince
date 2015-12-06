@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.businesslogicservice.logblservice.LogBLService;
+import src.dataservice.commoditydataservice.GoodsDataService;
+import src.dataservice.commoditydataservice.StorageDataService;
 import src.po.GoodsPO;
 import src.po.StorageInSheetPO;
 import src.po.StorageOutSheetPO;
@@ -26,20 +28,30 @@ public class CommodityBLService_Stub implements CommodityBLService{
 	private StoragePO spo;
 	private ArrayList<GoodsPO> gpos;
 	LogBLService log;
+	GoodsDataService goodsDataService;
+	StorageDataService storageDataService;
 
-	public CommodityBLService_Stub(LogBLService log) {
+	public CommodityBLService_Stub(GoodsDataService goodsDataService,
+			StorageDataService storageDataService) {
 		super();
-		gpos = new ArrayList<>();
-		ArrayList<String> local = new ArrayList<>();
-		local.add("在扬州");
-		GoodsPO gpo = new GoodsPO(local, 1, 1.0, 1.0, 1.0, 1.0, 1.0, 
-				"航空母舰", GoodsType.ECONOMIC, GoodsType.WOODPACKAGE, 
-				0000000000000000, 20151025, "南京", GoodsType.RAIL, 001, 
-				001, 001, 001, "0250201510250000000", 
-				"0250201510250000000");
-		gpos.add(gpo);
-		spo = new StoragePO("南京",1000, 200, 300, 300, 200,
-				0.9,100,100,100,100,gpos);
+//		gpos = new ArrayList<>();
+//		ArrayList<String> local = new ArrayList<>();
+//		local.add("在扬州");
+//		GoodsPO gpo = new GoodsPO(local, 1, 1.0, 1.0, 1.0, 1.0, 1.0, 
+//				"航空母舰", GoodsType.ECONOMIC, GoodsType.WOODPACKAGE, 
+//				0000000000000000, 20151025, "南京", GoodsType.RAIL, 001, 
+//				001, 001, 001, "0250201510250000000", 
+//				"0250201510250000000");
+//		gpos.add(gpo);
+//		spo = new StoragePO("南京",1000, 200, 300, 300, 200,
+//				0.9,100,100,100,100,gpos);
+//		this.log = log;
+		this.goodsDataService = goodsDataService;
+		this.storageDataService = storageDataService;
+	}
+	
+	public CommodityBLService_Stub(LogBLService log){
+		super();
 		this.log = log;
 	}
 	

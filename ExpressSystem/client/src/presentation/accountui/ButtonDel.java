@@ -25,7 +25,7 @@ public class ButtonDel extends AccountButton {
 	@Override
 	void addListener(AccountPanel panel) {
 		// TODO Auto-generated method stub
-		ButtonDelListener listener=new ButtonDelListener(this, panel);
+		ButtonDelListener listener=new ButtonDelListener(this);
 		this.addMouseListener(listener);
 	}
 }

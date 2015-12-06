@@ -2,8 +2,12 @@ package src.po;
 
 import java.util.ArrayList;
 
+
+import src.businesslogic.commoditybl.GoodsType;
+
 import src.enums.SheetState;
 import src.enums.SheetType;
+
 
 public class StorageInSheetPO implements SheetPO{
 	/**
@@ -13,7 +17,7 @@ public class StorageInSheetPO implements SheetPO{
 	private ArrayList<Long> expressNumberList;//快递编号
 	private ArrayList<Long> inTimeList;//入库日期
 	private ArrayList<String> destinationList;//目的地
-	private ArrayList<Integer> areaNumberList;//区号(枚举)
+	private ArrayList<GoodsType> areaNumberList;//区号
 	private ArrayList<Integer> rowNumberList;//排号
 	private ArrayList<Integer> shelfNumberList;//架号
 	private ArrayList<Integer> seatNumberList;//位号
@@ -24,7 +28,7 @@ public class StorageInSheetPO implements SheetPO{
 	
 	public StorageInSheetPO(ArrayList<Long> expressNumberList,
 			ArrayList<Long> inTimeList, ArrayList<String> destinationList,
-			ArrayList<Integer> areaNumberList,
+			ArrayList<GoodsType> areaNumberList,
 			ArrayList<Integer> rowNumberList,
 			ArrayList<Integer> shelfNumberList,
 			ArrayList<Integer> seatNumberList,long ID) {
@@ -63,11 +67,11 @@ public class StorageInSheetPO implements SheetPO{
 		this.destinationList = destinationList;
 	}
 
-	public ArrayList<Integer> getAreaNumberList() {
+	public ArrayList<GoodsType> getAreaNumberList() {
 		return areaNumberList;
 	}
 
-	public void setAreaNumberList(ArrayList<Integer> areaNumberList) {
+	public void setAreaNumberList(ArrayList<GoodsType> areaNumberList) {
 		this.areaNumberList = areaNumberList;
 	}
 

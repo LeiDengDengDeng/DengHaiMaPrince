@@ -1,5 +1,8 @@
 package src.businesslogic.accountbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -18,6 +21,12 @@ public class Account implements AccountBLService {
 	public Account(Log log) {
 		super();
 		this.log = log;
+		try {
+			accountData=(AccountDataService) Naming.lookup("rmi://localhost:1099/hello");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// accountData=new AccountData();
 	}
 
