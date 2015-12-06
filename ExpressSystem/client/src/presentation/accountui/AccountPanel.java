@@ -69,8 +69,9 @@ public class AccountPanel extends JPanel {
 		this.setOpaque(false);
 		JLabel word = new JLabel(IMG_BG);
 		this.drawAccount();
-//		word.setBounds(Word_x - 33, Word_y - 35, IMG_BG.getIconWidth(), IMG_BG.getIconHeight());
-//		this.add(word);
+		// word.setBounds(Word_x - 33, Word_y - 35, IMG_BG.getIconWidth(),
+		// IMG_BG.getIconHeight());
+		// this.add(word);
 	}
 
 	public void drawAccount() {
@@ -174,23 +175,11 @@ public class AccountPanel extends JPanel {
 		return true;
 	}
 
-public void paintComponent(Graphics g) 
-{ 
-super.paintComponent(g); 
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 
+		g.drawImage(IMG_BG.getImage(), Word_x - 33, Word_y - 35, null);
 
-g.drawImage(IMG_BG.getImage(),Word_x - 33, Word_y - 35,null);
-
-
-}
-
- 
-
- 
-
- 
-
- 
+	}
 
 }
-

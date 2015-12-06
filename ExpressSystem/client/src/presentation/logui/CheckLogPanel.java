@@ -19,7 +19,7 @@ public class CheckLogPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     // 业务逻辑
-    LogBLService logBL = new Log();
+    LogBLService logBL;
 
     // 界面
     ArrayList<LogVO> logs;

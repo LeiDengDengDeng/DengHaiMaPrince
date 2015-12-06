@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import src.dataservice.accountdataservice.AccountDataService;
 import src.po.AccountPO;
 
-public class AccountData_Stub implements AccountDataService {
+public class AccountDataStub implements AccountDataService {
 
 	public boolean insert(AccountPO po) throws RemoteException {
 		// TODO Auto-generated method stub

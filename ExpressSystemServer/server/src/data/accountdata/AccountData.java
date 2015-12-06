@@ -9,13 +9,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.accountdataservice.AccountDataService;
 import src.po.AccountPO;
 
-public class AccountData implements AccountDataService {
+public class AccountData extends UnicastRemoteObject implements AccountDataService {
+	public AccountData() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	private static final String FILE_PATH = "account.ser";
 	File file = new File(FILE_PATH);
 	ObjectOutputStream oos = null;
