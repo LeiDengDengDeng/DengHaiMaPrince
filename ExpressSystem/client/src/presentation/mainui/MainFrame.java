@@ -1,9 +1,13 @@
 package src.presentation.mainui;
 
+import src.presentation.institutionui.InstitutionListPanel;
 import src.presentation.logui.CheckLogPanel;
+import src.presentation.staffmanageui.AddStaffPanel;
+import src.presentation.staffmanageui.StaffListPanel;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -85,7 +89,7 @@ public class MainFrame extends JFrame {
         CheckLogPanel p = new CheckLogPanel();
         p.setBounds(PANEL_MARGIN_LEFT,PANEL_MARGIN_TOP,PANEL_WIDTH,PANEL_HEIGHT);
         mainPanel.add(p);
-
+        
         this.setResizable(false);
         this.setSize(WIDTH, HEIGHT);
         this.setLocationRelativeTo(null);
