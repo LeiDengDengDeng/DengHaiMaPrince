@@ -18,15 +18,15 @@ package src.presentation.beginInfoui;
 		private static final ImageIcon IMG=new ImageIcon("images/mainFrame.png");
 		
 		public static void main(String[] args){
-		JFrame AccountFrame = new JFrame();
-		Log log=new Log();
+		JFrame BeginInfoFrame = new JFrame();
+		Log log=null;
 		BeginInfoPanel panel = new BeginInfoPanel(log);
 		JPanel panelbg=new JPanel();
 		// 设置标题
-		AccountFrame.setUndecorated(true);
-		AccountFrame.setSize(850, 646);
+		BeginInfoFrame.setUndecorated(true);
+		BeginInfoFrame.setSize(850, 646);
 		// 不允许用户改变窗口大小
-		AccountFrame.setResizable(false);
+		BeginInfoFrame.setResizable(false);
 		// 获得屏幕大小
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screen = toolkit.getScreenSize();
@@ -34,18 +34,17 @@ package src.presentation.beginInfoui;
 		int x = (screen.width - WIDTH) >> 1;
 		int y = ((screen.height - HEIGHT) >> 1) - 32;
 
-		AccountFrame.setLocation(x, y);
+		BeginInfoFrame.setLocation(x, y);
 		// 设置默认panel
 		panelbg.setLayout(null);
 		JLabel bg=new JLabel(IMG);
 		bg.setBounds(0, 0, WIDTH, HEIGHT);
 		
 		panelbg.add(panel);
-		AccountFrame.setContentPane(panelbg);
-		AccountFrame.getContentPane().add(bg);
-		AccountFrame.setVisible(true);
+		BeginInfoFrame.setContentPane(panelbg);
+		BeginInfoFrame.getContentPane().add(bg);
+		BeginInfoFrame.setVisible(true);
 		}
 	}
 
 
-}
