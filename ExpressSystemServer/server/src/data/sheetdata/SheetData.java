@@ -35,6 +35,7 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 		map.put(SheetType.PAYMENT_SHEET, "paymentSheet.ser");
 		map.put(SheetType.STORAGE_IN_SHEET, "storageInSheet.ser");
 		map.put(SheetType.STORAGE_OUT_SHEET, "storageOutSheet.ser");
+		map.put(SheetType.RECEIVING_MONEY_SHEET, "receivingMoneySheet.ser");
 	}
 
 	public SheetData() throws RemoteException {

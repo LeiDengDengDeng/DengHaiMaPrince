@@ -6,8 +6,11 @@ import javax.swing.JPanel;
 
 import src.businesslogic.accountbl.Account;
 import src.businesslogic.sheetbl.PaymentSheet;
+import src.businesslogic.sheetbl.ReceivingMoneySheet;
 import src.presentation.sheetui.OrderSheetPanel;
 import src.presentation.sheetui.PaymentSheetPanel;
+import src.presentation.sheetui.ReceivingMoneySheetPanel;
+import src.presentation.sheetui.ReceivingSheetPanel;
 
 /**
  * Created by dell on 2015/12/5. 
@@ -33,10 +36,11 @@ public class PanelController {
 			frame.getContentPane().remove(presentPanel);
 		switch (i) {
 		case 1:
-			presentPanel = new OrderSheetPanel();
+			presentPanel = new ReceivingSheetPanel(null);
 			break;
 		case 2:
-			presentPanel = new PaymentSheetPanel(new PaymentSheet(new Account(null)));
+			presentPanel = new OrderSheetPanel(null);
+//			presentPanel = new PaymentSheetPanel(new PaymentSheet(new Account(null)));
 			break;
 		}
 		presentPanel.setBounds(PANEL_MARGIN_LEFT, PANEL_MARGIN_TOP, PANEL_WIDTH, PANEL_HEIGHT);

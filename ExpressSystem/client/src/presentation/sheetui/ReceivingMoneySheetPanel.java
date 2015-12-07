@@ -1,6 +1,9 @@
 package src.presentation.sheetui;
 
+import src.businesslogic.sheetbl.ReceivingMoneySheet;
+import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.presentation.util.MyButton;
+import src.vo.ReceivingMoneySheetVO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +14,9 @@ import java.util.ArrayList;
  * Created by dell on 2015/12/2.
  * 用途
  */
-public class ReceivingMoneySheetPanel extends JPanel {
+public class ReceivingMoneySheetPanel extends JPanel implements SheetPanel{
+
+    SheetBLService receivingMoneySheetBL;
 
     MyButton addButton;
     JLabel addText;
@@ -19,8 +24,7 @@ public class ReceivingMoneySheetPanel extends JPanel {
     JLabel delText;
     MyButton confirmButton;
 
-    JPanel table;
-
+    ArrayList<Component[]> inputFields;
     ArrayList<JLabel> lineLabels;
     JLabel imageLabel;
     ImageIcon bkgImg;
@@ -39,8 +43,9 @@ public class ReceivingMoneySheetPanel extends JPanel {
     protected static final int formHeight = 26;// 单行表格的高度
     protected static final int formWidth = 550;// 单行表格的宽度
 
+    public ReceivingMoneySheetPanel(SheetBLService receivingMoneySheetBL) {
+        this.receivingMoneySheetBL = receivingMoneySheetBL;
 
-    public ReceivingMoneySheetPanel() {
         init();
 
         imageLabel.setIcon(bkgImg);
@@ -58,6 +63,8 @@ public class ReceivingMoneySheetPanel extends JPanel {
         DelButtonListener delButtonListener = new DelButtonListener(this);
         delButton.addActionListener(delButtonListener);
         delButton.setVisible(false);
+
+        confirmButton.addActionListener(new ConfirmButtonListener(this));
 
         // 模拟点击事件，出现一行待填栏
         addButtonListener.actionPerformed(new ActionEvent(addButton, 0, ""));
@@ -81,6 +88,7 @@ public class ReceivingMoneySheetPanel extends JPanel {
                 ".png"), 520, 110);
         addText = new JLabel("增加");
         delText = new JLabel("删除");
+        inputFields = new ArrayList<>();
         lineLabels = new ArrayList<>();
         imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/sheet_recevingMoney.png");
@@ -100,7 +108,31 @@ public class ReceivingMoneySheetPanel extends JPanel {
     }
 
     public void removeLastLine() {
+        for (int i = 0; i < 4; i++)
+            this.remove(this.inputFields.get(this.inputFields.size() - 1)[i]);
+        this.inputFields.remove(this.inputFields.size() - 1);
         this.remove(lineLabels.get(lineLabels.size() - 1));
         lineLabels.remove(lineLabels.size() - 1);
     }
+
+    public boolean confirm(){
+        // 逻辑层响应
+        ArrayList<String[]> items = new ArrayList<>();
+        for(Component[] c : inputFields){
+            String[] temp = new String[4];
+            temp[0] = ((JButton)c[0]).getText();
+            temp[1] = ((TextField)c[1]).getText();
+            temp[2] = ((TextField)c[2]).getText();
+            temp[3] = ((TextField)c[3]).getText();
+        }
+        ReceivingMoneySheetVO vo = new ReceivingMoneySheetVO(items);
+        receivingMoneySheetBL.add(vo);
+
+        // 界面层响应
+        for (Component c : this.getComponents()) {
+            c.setVisible(false);
+        }
+        return true;
+    }
+
 }

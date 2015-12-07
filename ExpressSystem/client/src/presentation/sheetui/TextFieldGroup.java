@@ -1,5 +1,9 @@
 package src.presentation.sheetui;
 
+import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
 
 /**
@@ -13,7 +17,7 @@ public class TextFieldGroup {
     int width;
     int height;
 
-    TextField[] group;
+    JTextField[] group;
 
     public TextFieldGroup(int num, int x, int y, int width, int height) {
         this.num = num;
@@ -26,17 +30,48 @@ public class TextFieldGroup {
     }
 
     private void init() {
-        group = new TextField[num];
+        group = new JTextField[num];
         for (int i = 0; i < num; i++) {
-            TextField temp = new TextField(1);
+            JTextField temp = new JTextField(1);
+            temp.setDocument(new JTextFieldLimit(1));
             temp.setBounds(x + i * width, y, width, height);
             group[i] = temp;
         }
     }
 
-    public TextField getTextField(int loc) {
+    public JTextField getTextField(int loc) {
         return group[loc];
     }
 
+    public String getNumberString() {
+        String res = "";
+        for (JTextField temp : group) res += temp.getText();
+        return res;
+    }
+
+
+    // 限制输入框的Text长度
+    class JTextFieldLimit extends PlainDocument {
+        private int limit;
+
+        JTextFieldLimit(int limit) {
+            super();
+            this.limit = limit;
+        }
+
+        JTextFieldLimit(int limit, boolean upper) {
+            super();
+            this.limit = limit;
+        }
+
+        public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+            if (str == null)
+                return;
+
+            if ((getLength() + str.length()) <= limit) {
+                super.insertString(offset, str, attr);
+            }
+        }
+    }
 
 }

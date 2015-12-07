@@ -15,29 +15,10 @@ public class OrderSheet extends Sheet {
     SheetType type = SheetType.ORDER_SHEET;
     SheetDataService sheetData;
 
-    public OrderSheet(){super();}
-
     @Override
     public String[][] getExistedInfo() {
         // TODO 自动生成的方法存根
         return null;
-    }
-
-    @Override
-    public boolean modify(long ID, SheetVO vo) {
-        // TODO 自动生成的方法存根
-        try {
-            OrderSheetPO po = (OrderSheetPO) generatePO(vo);
-            po.setReceivingInformation(((OrderSheetVO) vo).getActualReceiverName(), po.getRecevingState(), CommonUtil
-                    .getDate());
-            po.setID(ID);
-            sheetData.update(po);
-
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
     }
 
     @Override
@@ -57,9 +38,9 @@ public class OrderSheet extends Sheet {
                 ((OrderSheetPO) po).getReceiverAddress(),
                 ((OrderSheetPO) po).getReceiverOrganization(),
                 ((OrderSheetPO) po).getReceiverTelNum(),
-                ((OrderSheetPO) po).getReceiverMobNum(),
-                ((OrderSheetPO) po).getActualReceiverName(),
-                ((OrderSheetPO) po).getRecevingState());
+                ((OrderSheetPO) po).getReceiverMobNum());
+        vo.setReceivingInformation(((OrderSheetPO) po).getActualReceiverName(),
+                ((OrderSheetPO) po).getRecevingState(), ((OrderSheetPO) po).getTime());
         return vo;
     }
 
@@ -76,6 +57,8 @@ public class OrderSheet extends Sheet {
                 ((OrderSheetVO) vo).getReceiverOrganization(),
                 ((OrderSheetVO) vo).getReceiverTelNum(),
                 ((OrderSheetVO) vo).getReceiverMobNum());
+        po.setReceivingInformation(((OrderSheetVO) vo).getActualReceiverName(),
+                ((OrderSheetVO) vo).getRecevingState(), ((OrderSheetVO) vo).getTime());
 
         return po;
     }

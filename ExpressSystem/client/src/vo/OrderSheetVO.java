@@ -19,12 +19,13 @@ public class OrderSheetVO implements SheetVO {
     String receiverMobNum;
     String actualReceiverName; // 实际收件人
     String recevingState; //收件状态
+    String time;
 
     public OrderSheetVO(long courierNumber, String senderName,
                         String senderAddress, String senderOrganization,
                         String senderTelNum, String senderMobNum, String receiverName,
                         String receiverAddress, String receiverOrganization,
-                        String receiverTelNum, String receiverMobNum, String actualReceiverName, String recevingState) {
+                        String receiverTelNum, String receiverMobNum) {
         super();
         this.courierNumber = courierNumber;
         this.senderName = senderName;
@@ -37,8 +38,14 @@ public class OrderSheetVO implements SheetVO {
         this.receiverOrganization = receiverOrganization;
         this.receiverTelNum = receiverTelNum;
         this.receiverMobNum = receiverMobNum;
+//        this.actualReceiverName = actualReceiverName;
+//        this.recevingState = recevingState;
+    }
+
+    public void setReceivingInformation(String actualReceiverName, String recevingState, String time) {
         this.actualReceiverName = actualReceiverName;
         this.recevingState = recevingState;
+        this.time = time;
     }
 
     public long getCourierNumber() {
@@ -91,6 +98,10 @@ public class OrderSheetVO implements SheetVO {
 
     public String getActualReceiverName() {
         return actualReceiverName;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     @Override

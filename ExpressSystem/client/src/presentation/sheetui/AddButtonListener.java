@@ -13,7 +13,6 @@ public class AddButtonListener implements ActionListener {
 	ReceivingMoneySheetPanel container;
 	JButton addButton;
 
-	ArrayList<Component[]> inputFields = new ArrayList<>();
 	int count = 0;
 
 	protected static final int COMPONENT_HEIGHT = 22;
@@ -66,18 +65,13 @@ public class AddButtonListener implements ActionListener {
 
 		for (int i = 0; i < 4; i++)
 			container.add(line[i]);
-		inputFields.add(line);
+		container.inputFields.add(line);
 
 		container.drawForm(count);
 		count++;
 		container.repaint();
 	}
 
-	public void removeLine() {
-		for (int i = 0; i < 4; i++)
-			container.remove(inputFields.get(inputFields.size() - 1)[i]);
-		inputFields.remove(inputFields.size() - 1);
-	}
 
 	public int getCount() {
 		return count;
