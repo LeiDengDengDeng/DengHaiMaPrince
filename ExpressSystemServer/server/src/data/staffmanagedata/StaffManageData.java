@@ -18,6 +18,7 @@ import src.po.UserPO;
 public class StaffManageData implements StaffManageDataService{
 	
 	private static final String UserFILE_PATH = "user.ser";
+	File file = new File(UserFILE_PATH);
 
 	@Override
 	public UserPO find(long StaffId) throws RemoteException {
@@ -26,7 +27,7 @@ public class StaffManageData implements StaffManageDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("UserFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				UserPO po = (UserPO) os.readObject();
@@ -61,7 +62,7 @@ public class StaffManageData implements StaffManageDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("UserFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				UserPO po = (UserPO) os.readObject();
@@ -92,7 +93,6 @@ public class StaffManageData implements StaffManageDataService{
 		if(find(po.getPersonalID()) == null){
 			ObjectOutputStream oos = null;
 			MyObjectOutputStream moos = null;
-			File file = new File(UserFILE_PATH);
 			
 			try {
 				oos = new ObjectOutputStream(new FileOutputStream(file));
@@ -132,7 +132,6 @@ public class StaffManageData implements StaffManageDataService{
 	@Override
 	public void delete(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		File file = new File(UserFILE_PATH);
 		ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
 		userPOs = finds();
 		

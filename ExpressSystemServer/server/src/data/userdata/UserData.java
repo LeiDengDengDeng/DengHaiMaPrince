@@ -18,6 +18,7 @@ import src.po.UserPO;
 public class UserData implements UserDataService{
 	
 	private static final String UserFILE_PATH = "user.ser";
+	File file = new File(UserFILE_PATH);
 
 	@Override
 	public UserPO find(long UserId) throws RemoteException {
@@ -26,7 +27,7 @@ public class UserData implements UserDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("UserFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				UserPO po = (UserPO) os.readObject();
@@ -59,7 +60,7 @@ public class UserData implements UserDataService{
 		UserPO userPO = null;
 		ObjectInputStream os = null;
 		try {
-			os = new ObjectInputStream(new FileInputStream("UserFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				userPO = (UserPO) os.readObject();
@@ -89,7 +90,6 @@ public class UserData implements UserDataService{
 	public void insert(ArrayList<UserPO> User) throws RemoteException {
 		// TODO Auto-generated method stub
 		ObjectOutputStream os = null;
-		File file = new File(UserFILE_PATH);
 		
 		try {
 			os = new ObjectOutputStream(new FileOutputStream(file,false));

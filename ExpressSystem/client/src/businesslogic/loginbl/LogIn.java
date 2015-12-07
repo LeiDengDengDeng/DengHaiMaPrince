@@ -1,21 +1,21 @@
-package src.businesslogic.login;
+package src.businesslogic.loginbl;
 
 import java.rmi.RemoteException;
 
 import src.businesslogic.logbl.Log;
-import src.businesslogic.loginblservice.LogInService;
+import src.businesslogic.loginblservice.LogInBLService;
 import src.businesslogic.userbl.ResultMessage;
 import src.businesslogicservice.userblservice.UserBLService;
 import src.dataservice.userdataservice.UserDataService;
 import src.po.UserPO;
 import src.vo.UserVO;
 
-public class login implements LogInService{
+public class LogIn implements LogInBLService{
 	
 	UserVO currentUser;
 	UserBLService userBL;
 	
-	public login(UserBLService userBL){
+	public LogIn(UserBLService userBL){
 		this.userBL = userBL;
 	}
 	

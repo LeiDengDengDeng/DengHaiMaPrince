@@ -14,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import src.businesslogic.loginbl.LogInController;
+import src.businesslogic.userbl.User;
 import src.presentation.util.MyButton;
 
 public class logInPanel extends JPanel{
@@ -29,11 +31,15 @@ public class logInPanel extends JPanel{
 	private static final ImageIcon LOG_ICON = new ImageIcon("images/logIn_log.png");
 	private static final ImageIcon LOGENTER_ICON = new ImageIcon("images/logIn_logEnter.png");
 	
+	
 	MyButton checkButton;
 	MyButton loginButton;
 	
 	private JTextField accountField;
 	private JPasswordField passwordField;
+	private long account;
+	private String password;
+	
 	
 	public logInPanel(){
 		componentsInstantiation();
@@ -78,6 +84,13 @@ public class logInPanel extends JPanel{
 		frame.setContentPane(myPanel);
 		frame.setUndecorated(true);
 		frame.setVisible(true);
+		
+	}
+	
+	public void login(){
+		account = Long.parseLong(accountField.getText());
+		password = passwordField.getText();
+		
 		
 	}
 	

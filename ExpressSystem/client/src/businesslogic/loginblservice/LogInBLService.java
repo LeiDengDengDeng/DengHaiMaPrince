@@ -9,7 +9,7 @@ import src.vo.UserVO;
  * µÇÂ¼
  * 
  */
-public interface LogInService {
+public interface LogInBLService {
 	
 	/**
 	 * µÇÂ¼

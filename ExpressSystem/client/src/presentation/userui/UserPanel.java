@@ -58,6 +58,10 @@ public class UserPanel extends JPanel{
 		getInfo(userVO);
 		componentsInstantiation();
 		initial();
+		
+		buttonActionListener listener = new buttonActionListener(this);
+        change.addActionListener(listener);
+        confirm.addActionListener(listener);
 	}
 	
 	
@@ -94,7 +98,7 @@ public class UserPanel extends JPanel{
 		myPanel.add(change);
 		myPanel.add(confirm);
 		
-		frame.add(myPanel);
+		frame.setContentPane(myPanel);
 		frame.setVisible(true);
 		
 		
@@ -166,11 +170,12 @@ public class UserPanel extends JPanel{
 		        	if(e.getSource() == change){
 		        		ChangePasswordPanel change = new ChangePasswordPanel();
 		        		container.frame.setContentPane(change.myPanel);
+		        		
 		        	}
 		        	else if (e.getSource() == confirm) {
 						
 					}
-		        	container.setVisible(true);
+		        	container.repaint();
 		        	
 		        }
 	}
