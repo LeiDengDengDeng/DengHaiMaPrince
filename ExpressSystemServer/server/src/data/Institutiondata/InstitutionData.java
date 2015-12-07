@@ -17,6 +17,7 @@ import src.po.UserPO;
 
 public class InstitutionData implements InstitutionDataService{
 	public static final String InsFILE_PATH = "institution.ser";
+	File file = new File(InsFILE_PATH); 
 
 	@Override
 	public InstitutionPO find(long InstitutionId) throws RemoteException {
@@ -25,7 +26,7 @@ public class InstitutionData implements InstitutionDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("InsFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				InstitutionPO po = (InstitutionPO) os.readObject();
@@ -60,7 +61,7 @@ public class InstitutionData implements InstitutionDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("InsFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				InstitutionPO po = (InstitutionPO) os.readObject();
@@ -91,7 +92,6 @@ public class InstitutionData implements InstitutionDataService{
 		if(find(po.getInstitutionID()) == null){
 			ObjectOutputStream oos = null;
 			MyObjectOutputStream moos = null;
-			File file = new File(InsFILE_PATH);
 			
 			try {
 				oos = new ObjectOutputStream(new FileOutputStream(file));
@@ -131,7 +131,6 @@ public class InstitutionData implements InstitutionDataService{
 	@Override
 	public void delete(InstitutionPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		File file = new File(InsFILE_PATH);
 		ArrayList<InstitutionPO> institutionPOs = new ArrayList<InstitutionPO>();
 		institutionPOs = finds();
 		

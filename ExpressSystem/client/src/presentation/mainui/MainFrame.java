@@ -1,16 +1,29 @@
 package src.presentation.mainui;
 
-import src.presentation.util.ButtonMouseListener;
-
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.Enumeration;
+
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.event.MouseInputListener;
+
+import src.presentation.logui.CheckLogPanel;
+import src.presentation.util.ButtonMouseListener;
 
 public class MainFrame extends JFrame {
 
 	/**
      *
      */
+
 	private static final long serialVersionUID = 1L;
 
 	private static final int WIDTH = 850;

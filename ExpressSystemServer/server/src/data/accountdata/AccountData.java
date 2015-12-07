@@ -66,30 +66,37 @@ public class AccountData extends UnicastRemoteObject implements AccountDataServi
 		AccountPO po;
 		boolean findIt = false;
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(file));
 			ois = new ObjectInputStream(new FileInputStream(file));
 			while ((po = (AccountPO) ois.readObject()) != null) {
-				if (po.getCardID() != ID)
+				if (po.getCardID() != ID){
 					accounts.add(po);
-				else
+				}
+				else{
 					findIt = true;
+				}
 			}
-			for (AccountPO account : accounts) {
-				oos.writeObject(account);
-			}
+			
 
 		} catch (FileNotFoundException e) {
 			System.out.println("FILE NOT FOUND ");
-			return false;
 		} catch (EOFException e) {
 			System.out.println("END OF FILE");
-			return false;
 		} catch (IOException e) {
 			System.out.println("IO EXCEPTION");
-			return false;
 		} catch (ClassNotFoundException e) {
-			return false;
 		}
+		
+		try {
+		oos = new ObjectOutputStream(new FileOutputStream(file));
+		for (AccountPO account : accounts) {
+			oos.writeObject(account);
+		}
+		} catch (FileNotFoundException e) {
+			System.out.println("FILE NOT FOUND ");
+		} catch (IOException e) {
+			System.out.println("IO EXCEPTION");
+		}
+		
 		if (findIt) {
 			return true;
 		}

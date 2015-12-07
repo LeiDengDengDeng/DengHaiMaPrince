@@ -15,12 +15,7 @@ import src.vo.UserVO;
 
 public interface UserBLService {
 	
-	
-	/**
-	 * 登录
-	 * 
-	 */
-	public ResultMessage logIn(long UserId,String password);
+
 	
 	/**
 	 * 获得个人帐号信息

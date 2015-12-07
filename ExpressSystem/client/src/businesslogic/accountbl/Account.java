@@ -100,10 +100,8 @@ public class Account implements AccountBLService {
 
 	@Override
 	public boolean delAccount(long ID) {
-		AccountPO account;
 		try {
-			account = accountData.find(ID);
-			accountData.delete(account);
+			accountData.delete(ID);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

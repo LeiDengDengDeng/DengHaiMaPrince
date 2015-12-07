@@ -72,12 +72,6 @@ public class UserBLService_Stub implements UserBLService{
 		
 	}
 
-	@Override
-	public ResultMessage logIn(long UserId, String password) {
-		// TODO Auto-generated method stub
-		System.out.println("log in successfully");
-		return null;
-	}
 	
 
 }

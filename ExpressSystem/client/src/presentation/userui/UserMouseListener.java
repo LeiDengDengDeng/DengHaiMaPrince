@@ -8,8 +8,8 @@ import src.presentation.accountui.AccountPanel;
 
 public class UserMouseListener implements MouseListener{
 	UserButton button;
-	UserPanel panel;
-	public UserMouseListener(UserButton button,UserPanel panel){
+	MainPanel panel;
+	public UserMouseListener(UserButton button,MainPanel panel){
 		this.button = button;
 		this.panel = panel;
 	}

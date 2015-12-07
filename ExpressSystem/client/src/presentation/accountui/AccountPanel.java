@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.businesslogic.accountbl.AccountBLService_Stub;
+import src.businesslogic.accountbl.Account;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.accountblservice.AccountBLService;
 import src.vo.AccountVO;
@@ -52,7 +52,7 @@ public class AccountPanel extends JPanel {
 	boolean isfirst = true;
 
 	public AccountPanel(Log log) {
-		accountBL = new AccountBLService_Stub(log);
+		accountBL = new Account(log);
 		buttonDelList = new ArrayList<ButtonDel>();
 		this.TextDelList = new ArrayList<TextLabel>();
 		formList = new ArrayList<JLabel>();

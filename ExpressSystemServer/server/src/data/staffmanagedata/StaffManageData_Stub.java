@@ -1,13 +1,22 @@
 package src.data.staffmanagedata;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.po.UserPO;
 
 public class StaffManageData_Stub implements StaffManageDataService{
 
+//	private static final String UserFILE_PATH = "user.ser";
+//	File file = new File(UserFILE_PATH);
+	
 	public UserPO find(long StaffId) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("find successfully!");
@@ -44,5 +53,15 @@ public class StaffManageData_Stub implements StaffManageDataService{
 		System.out.println("finish successfully!");
 		
 	}
+	
+//	public static void main(String[] args){
+//		StaffManageData staffManageData = new StaffManageData();
+//		try {
+//			staffManageData.insert(new UserPO(100000, 100000, "aaaa", "Echo", "Manager", null));
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 }
