@@ -49,7 +49,7 @@ public class ButtonMouseListener implements MouseInputListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        unclicked(e);
+        clicked(e);
     }
 
     private void clicked(MouseEvent e) {

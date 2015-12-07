@@ -9,13 +9,13 @@ public class MockLog extends Log {
 
 	ArrayList<LogVO> logs;
 
-	public MockLog(LogDataService logData) {
-		super(logData);
+	public MockLog() {
+		super();
 		// TODO 自动生成的构造函数存根
 	}
 
 	public MockLog(ArrayList<LogVO> logs) {
-		super(null);
+		super();
 		this.logs = logs;
 	}
 

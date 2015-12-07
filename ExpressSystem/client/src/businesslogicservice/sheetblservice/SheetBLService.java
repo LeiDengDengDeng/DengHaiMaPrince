@@ -2,7 +2,8 @@ package src.businesslogicservice.sheetblservice;
 
 import java.util.ArrayList;
 
-import src.po.SheetState;
+import src.enums.FindingType;
+import src.enums.SheetState;
 import src.vo.SheetVO;
 
 public interface SheetBLService {

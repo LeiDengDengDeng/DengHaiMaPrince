@@ -1,6 +1,7 @@
 package src.po;
 
-import src.businesslogic.sheetbl.SheetType;
+import src.enums.SheetState;
+import src.enums.SheetType;
 
 public class PaymentSheetPO implements SheetPO {
 
@@ -21,7 +22,7 @@ public class PaymentSheetPO implements SheetPO {
 	SheetType type = SheetType.PAYMENT_SHEET;
 
 	public PaymentSheetPO(String time, double money, String name,
-			String account, String way, String remark,long ID) {
+			String account, String way, String remark) {
 		super();
 		this.time = time;
 		this.money = money;

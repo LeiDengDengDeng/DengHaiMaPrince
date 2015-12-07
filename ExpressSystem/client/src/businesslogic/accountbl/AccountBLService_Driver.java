@@ -9,23 +9,23 @@ public class AccountBLService_Driver {
 
 
 	public void drive(AccountBLService accountBLService) {
-		//лМ╪сук╩╖
-		boolean addResult = accountBLService.addAccount("п║мУвс", 1234122222L, 10000);
+		//О©╫О©╫О©╫О©╫О©╫к╩О©╫
+		boolean addResult = accountBLService.addAccount("п║О©╫О©╫О©╫О©╫", 1234122222L, 10000);
 		if (addResult == true)
 			System.out.println("Add succeed!");
-		
-		//пч╦дук╩╖ 
+
+		//О©╫ч╦О©╫О©╫к╩О©╫
 		accountBLService.modAccount("x", 1000);
-		
-		//╩Я╣цук╩╖ап╠М
+
+		//О©╫О©╫О©╫О©╫О©╫к╩О©╫О©╫п╠О©╫
 		ArrayList<AccountVO> voList = accountBLService.getAccountList();
 		AccountVO vo = voList.get(0);
 		System.out.println(vo.getName() + " " + vo.getID() + vo.getAmount());
-		
-		//и╬ЁЩук╩╖
+
+		//и╬О©╫О©╫О©╫к╩О©╫
 		accountBLService.delAccount(1234122222);
-		
-		//╧ь╠ухннЯ
+
+		//О©╫ь╠О©╫О©╫О©╫О©╫О©╫
 		accountBLService.endAccountManagement();
 	}
 

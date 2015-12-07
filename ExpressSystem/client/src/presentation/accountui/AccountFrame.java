@@ -14,11 +14,11 @@ import src.businesslogic.logbl.Log;
 public class AccountFrame {
 	static final int WIDTH=850;
 	static final int HEIGHT=646;
-	private static final ImageIcon IMG=new ImageIcon("F:/软工二/BG.png");
+	private static final ImageIcon IMG=new ImageIcon("images/mainFrame.png");
 	
 	public static void main(String[] args){
 	JFrame AccountFrame = new JFrame();
-	Log log=new Log(null);
+	Log log=new Log();
 	AccountPanel panel = new AccountPanel(log);
 	JPanel panelbg=new JPanel();
 	// 设置标题

@@ -1,11 +1,11 @@
 package src.po;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
+import src.enums.SheetState;
 import src.enums.SheetType;
 
-public class StorageOutSheetPO implements Serializable {
+import java.util.ArrayList;
+
+public class StorageOutSheetPO implements SheetPO {
 
 	/**
 	 * 
@@ -21,7 +21,7 @@ public class StorageOutSheetPO implements Serializable {
 	
 	private long ID;
 	private SheetType type = SheetType.STORAGE_OUT_SHEET;
-	
+	private SheetState state = SheetState.NOT_EXAMINED;
 	
 	
 	public StorageOutSheetPO(ArrayList<Long> expressNumberList,
@@ -92,9 +92,24 @@ public class StorageOutSheetPO implements Serializable {
 		return type;
 	}
 
+	@Override
+	public void setID(long ID) {
+
+	}
+
 	public long getID() {
 		// TODO 自动生成的方法存根
 		return ID;
 	}
-	
+
+	@Override
+	public void setSheetState(SheetState state) {
+		this.state = state;
+	}
+
+	@Override
+	public SheetState getSheetState() {
+		return state;
+	}
+
 }

@@ -13,13 +13,10 @@ public abstract class AccountButton extends JButton {
 	AccountPanel panel;
 	public AccountButton(AccountVO vo,AccountPanel panel) {
 		this.vo=vo;
-		this.addListener(panel);
 		this.panel=panel;
+		this.addListener(panel);
 	}
 	public AccountButton() {
-	}
-	public AccountButton(TextField name,TextField num,TextField amount) {
-		
 	}
 	abstract ImageIcon getImageIcon();
 	abstract ImageIcon getImageIconEnter();

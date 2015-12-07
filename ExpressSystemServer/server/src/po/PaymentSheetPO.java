@@ -1,5 +1,6 @@
 package src.po;
 
+import src.enums.SheetState;
 import src.enums.SheetType;
 
 public class PaymentSheetPO implements SheetPO {
@@ -16,6 +17,7 @@ public class PaymentSheetPO implements SheetPO {
 	String way; // 条目
 	String remark; // 备注
 
+	SheetState state = SheetState.NOT_EXAMINED;
 	long ID;
 	SheetType type = SheetType.PAYMENT_SHEET;
 
@@ -59,10 +61,27 @@ public class PaymentSheetPO implements SheetPO {
 		// TODO 自动生成的方法存根
 		return type;
 	}
-	
+
+	@Override
+	public void setID(long ID) {
+		this.ID = ID;
+	}
+
 	public long getID() {
 		// TODO 自动生成的方法存根
 		return ID;
+	}
+
+	@Override
+	public void setSheetState(SheetState state) {
+		// TODO 自动生成的方法存根
+		this.state = state;
+	}
+
+	@Override
+	public SheetState getSheetState() {
+		// TODO 自动生成的方法存根
+		return state;
 	}
 
 }

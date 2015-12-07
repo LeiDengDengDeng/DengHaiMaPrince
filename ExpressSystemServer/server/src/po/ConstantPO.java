@@ -1,7 +1,7 @@
 package src.po;
 
+import src.enums.SheetState;
 import src.enums.SheetType;
-
 
 public class ConstantPO implements SheetPO {
 
@@ -14,6 +14,7 @@ public class ConstantPO implements SheetPO {
 	double price ;
 	String city;
 
+	SheetState state = SheetState.NOT_EXAMINED;
 	long ID;
 	SheetType type = SheetType.CONSTANT;
 
@@ -58,8 +59,27 @@ public class ConstantPO implements SheetPO {
 		return type;
 	}
 
+	@Override
+	public void setID(long ID) {
+		this.ID = ID;
+	}
+
 	public long getID() {
 		// TODO 自动生成的方法存根
 		return ID;
 	}
+
+	@Override
+	public void setSheetState(SheetState state) {
+		// TODO 自动生成的方法存根
+		this.state = state;
+	}
+
+	@Override
+	public SheetState getSheetState() {
+		// TODO 自动生成的方法存根
+		return state;
+	}
+
+
 }

@@ -1,6 +1,7 @@
 package src.businesslogic.sheetbl;
 
 import src.dataservice.sheetdataservice.SheetDataService;
+import src.enums.SheetType;
 import src.po.OrderSheetPO;
 import src.po.SheetPO;
 import src.businesslogic.util.CommonUtil;
@@ -13,6 +14,8 @@ public class OrderSheet extends Sheet {
 
     SheetType type = SheetType.ORDER_SHEET;
     SheetDataService sheetData;
+
+    public OrderSheet(){super();}
 
     @Override
     public String[][] getExistedInfo() {

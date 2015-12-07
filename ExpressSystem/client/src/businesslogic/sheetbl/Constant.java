@@ -1,11 +1,7 @@
 package src.businesslogic.sheetbl;
 
-import java.util.ArrayList;
-
-import src.businesslogicservice.sheetblservice.FindingType;
-import src.businesslogicservice.sheetblservice.SheetBLService;
+import src.enums.SheetType;
 import src.po.SheetPO;
-import src.po.SheetState;
 import src.vo.SheetVO;
 
 public class Constant extends Sheet{

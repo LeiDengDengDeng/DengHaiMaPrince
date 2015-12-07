@@ -1,5 +1,7 @@
 package src.presentation.logui;
 
+import src.businesslogic.logbl.Log;
+import src.businesslogicservice.logblservice.LogBLService;
 import src.presentation.util.MyButton;
 import src.vo.LogVO;
 
@@ -16,6 +18,10 @@ public class CheckLogPanel extends JPanel {
      */
     private static final long serialVersionUID = 1L;
 
+    // 业务逻辑
+    LogBLService logBL;
+
+    // 界面
     ArrayList<LogVO> logs;
     TextLabelGroup logLabels;
     JLabel imageLabel;
@@ -24,12 +30,13 @@ public class CheckLogPanel extends JPanel {
     MyButton previousPageButton;
     MyButton nextPageButton;
 
-    private static final int MARGIN_LEFT = 175;
     private static final int NUM_OF_LINES = 16;
 
-    public CheckLogPanel() {
-        init();
+    public CheckLogPanel(LogBLService logBL) {
+        this.logBL = logBL;
+        logs = logBL.checkLog(null);
 
+        init();
         PageButtonActionListener listener = new PageButtonActionListener(this);
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
@@ -50,12 +57,6 @@ public class CheckLogPanel extends JPanel {
     }
 
     private void init() {
-        logs = new ArrayList<>();
-        for (int i = 0; i < 40; i++) {
-            LogVO temp = new LogVO("快递员", "张三", "填写寄件单", "单号：1000000001", "2015/11/30");
-            logs.add(temp);
-        }
-
         previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
                 ("images/previousPageClicked.png"), 330, 504);
         nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon

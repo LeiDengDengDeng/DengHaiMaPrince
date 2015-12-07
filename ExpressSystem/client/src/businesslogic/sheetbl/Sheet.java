@@ -1,12 +1,17 @@
 package src.businesslogic.sheetbl;
 
-import src.businesslogicservice.sheetblservice.FindingType;
+import src.dataservice.logdataservice.LogDataService;
+import src.enums.FindingType;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.dataservice.sheetdataservice.SheetDataService;
+import src.enums.SheetType;
 import src.po.SheetPO;
-import src.po.SheetState;
+import src.enums.SheetState;
 import src.vo.SheetVO;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -17,11 +22,23 @@ import java.util.ArrayList;
 public abstract class Sheet implements SheetBLService {
     SheetDataService sheetData;
 
+    public Sheet(){
+        try {
+            sheetData =  (SheetDataService) Naming.lookup("rmi://127.0.0.1:6600/sheetData");
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     abstract public String[][] getExistedInfo();
 
     @Override
-    final public boolean add(SheetVO vo) {
+    public boolean add(SheetVO vo) {
         SheetPO po = generatePO(vo);
         try {
             sheetData.insert(po);

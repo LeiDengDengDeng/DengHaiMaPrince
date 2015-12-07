@@ -1,6 +1,6 @@
 package src.vo;
 
-import src.businesslogic.sheetbl.SheetType;
+import src.enums.SheetType;
 
 public class ConstantVO implements SheetVO{
     SheetType type = SheetType.CONSTANT;

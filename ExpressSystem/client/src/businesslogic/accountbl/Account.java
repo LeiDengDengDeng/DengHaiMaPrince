@@ -1,5 +1,8 @@
 package src.businesslogic.accountbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -18,6 +21,12 @@ public class Account implements AccountBLService {
 	public Account(Log log) {
 		super();
 		this.log = log;
+		try {
+			accountData=(AccountDataService) Naming.lookup("rmi://127.0.0.1:6600/accountData");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// accountData=new AccountData();
 	}
 
@@ -91,10 +100,8 @@ public class Account implements AccountBLService {
 
 	@Override
 	public boolean delAccount(long ID) {
-		AccountPO account;
 		try {
-			account = accountData.find(ID);
-			accountData.delete(account);
+			accountData.delete(ID);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,9 +113,10 @@ public class Account implements AccountBLService {
 	public boolean updateAmount(long ID, double difference) {
 		try {
 			AccountPO account = accountData.find(ID);
-			double amount=account.getAmount()+difference;
+			double amount=account.getAmount()-difference;
 			account.setAmount(amount);
-			accountData.update(account);
+//			accountData.update(account);
+			System.out.println("update");
 
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
