@@ -1,11 +1,9 @@
-package src.bussinesslogic.positionbl;
+package src.businesslogic.userbl;
 
 import java.util.ArrayList;
 
+import src.businesslogicservice.userblservice.PositionBLService;
 import src.businesslogicservice.userblservice.UserBLService;
-import src.bussinesslogic.positionservice.PositionBLService;
-import src.enums.Authority;
-import src.po.UserPO;
 import src.vo.StaffInfoVO;
 import src.vo.UserVO;
 

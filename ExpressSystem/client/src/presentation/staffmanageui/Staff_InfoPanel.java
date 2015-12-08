@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import src.presentation.userui.UserFrame;
 import src.presentation.util.MyButton;
 import src.vo.StaffInfoVO;
 import src.vo.UserVO;
@@ -57,7 +56,7 @@ public class Staff_InfoPanel {
 	
 	public static void main(String[] args){
 		Staff_InfoPanel staff_InfoPanel = new Staff_InfoPanel(new StaffInfoVO(100000, 100000, 
-				"aaaaaaA", "张三", "快递员", null, "南京", "鼓楼营业厅"));
+				"aaaaaa", "张三", "快递员", null, "南京", "鼓楼营业厅"));
 	}
 
 	
@@ -65,8 +64,8 @@ public class Staff_InfoPanel {
 		frame = new JFrame();
 		panel = new MainPanel();
 		head = new JLabel();
-		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 700, 580);
-		deleteButton = new MyButton(DELETE_ICON, DELETEENTER_ICON, 610, 580);
+		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 700, 580,false);
+		deleteButton = new MyButton(DELETE_ICON, DELETEENTER_ICON, 610, 580,false);
 	}
 	
 	public void initial(){

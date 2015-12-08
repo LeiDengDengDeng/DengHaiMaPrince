@@ -7,13 +7,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import src.businesslogic.logbl.Log;
+import src.businesslogic.userbl.Position;
 import src.businesslogicservice.staffmanageblservice.StaffManageBLService;
-import src.bussinesslogic.positionbl.Position;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
-import src.dataservice.userdataservice.UserDataService;
 import src.po.UserPO;
 import src.vo.StaffInfoVO;
-import src.vo.UserVO;
 
 public class StaffManage implements StaffManageBLService{
 

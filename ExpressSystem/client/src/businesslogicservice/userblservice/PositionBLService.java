@@ -1,4 +1,4 @@
-package src.bussinesslogic.positionservice;
+package src.businesslogicservice.userblservice;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
-package src.bussinesslogic.salarybl;
+package src.businesslogic.userbl;
 
+import src.businesslogicservice.userblservice.SalaryBLService;
 import src.businesslogicservice.userblservice.UserBLService;
-import src.bussinesslogic.salaryblservice.SalaryBLService;
 import src.po.SalaryPO;
 import src.vo.SalaryVO;
 import src.vo.UserVO;
