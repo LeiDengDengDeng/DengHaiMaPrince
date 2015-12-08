@@ -176,6 +176,7 @@ public class StockCheckPanel extends JPanel{
 				nextPageButton.setVisible(true);
 				imageLabel.setVisible(true);
 				
+//				storages = commodityBL.checkStorageMessage("ÄÏ¾©", 20151025, 20151026);
 				for(int i = 0;i < 55;i++){
 					StorageInfoVO tempSvo = new StorageInfoVO("Ñªºð",
 							GoodsType.TRANSPORT, 003, 005, 007);

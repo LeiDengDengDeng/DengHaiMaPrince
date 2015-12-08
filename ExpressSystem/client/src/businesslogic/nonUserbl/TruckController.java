@@ -14,7 +14,11 @@ import src.vo.TruckInfoVO;
 public class TruckController implements TruckBLService{
 	
 	TruckDataService truckDataService;
-	Truck truckimpl = new Truck(truckDataService);
+	TruckBLService truckimpl;
+	
+	public TruckController(){
+		truckimpl = new Truck(truckDataService);
+	}
 
 	@Override
 	public TruckInfoVO getTruckInfo(long truckId) {

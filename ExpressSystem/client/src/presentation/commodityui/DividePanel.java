@@ -1,5 +1,6 @@
 package src.presentation.commodityui;
 
+import java.awt.Checkbox;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,6 +40,7 @@ public class DividePanel extends JPanel{
 	private JLabel remind;
 	private JLabel areaNumber;
 	private DivideInfoLabelGroup storageLabels;
+	private DivideInfoCheckBoxGroup storageCheckBoxs;
 	private JLabel imageLabel;
 	private ImageIcon bkgImg;
 	private JComboBox pageComboBox;
@@ -54,8 +56,13 @@ public class DividePanel extends JPanel{
     	commodityBL = new CommodityBLService_Stub(goodsDataService,
 				storageDataService);
     	storages = new ArrayList<ExpressInfoVO>();
-    	for (int i = 0; i < 54; i++) {
+    	for (int i = 0; i < 28; i++) {
             ExpressInfoVO temp = new ExpressInfoVO("血吼", 0000000000000006,
+            		20151205, "奥格瑞玛", GoodsType.TRANSPORT,006,007,114,false);
+            storages.add(temp);
+        }
+    	for (int i = 0; i < 28; i++) {
+            ExpressInfoVO temp = new ExpressInfoVO("灰烬使者", 0000000000000006,
             		20151205, "奥格瑞玛", GoodsType.TRANSPORT,006,007,114,false);
             storages.add(temp);
         }
@@ -68,6 +75,7 @@ public class DividePanel extends JPanel{
         bkgImg = new ImageIcon("images/log.png");
         
         storageLabels = new DivideInfoLabelGroup(storages, NUM_OF_LINES, 48, 110);
+        storageCheckBoxs = new DivideInfoCheckBoxGroup(storages, NUM_OF_LINES, 48, 110);
         PageButtonActionListener listener = new PageButtonActionListener(this);
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
@@ -101,7 +109,7 @@ public class DividePanel extends JPanel{
         areaNumber.setFont(myFont);
         
         confirmButton = new JButton(IMG_CONFIRM);
-        confirmButton.setBounds(300, 504, IMG_CONFIRM.getIconWidth(), 
+        confirmButton.setBounds(250, 504, IMG_CONFIRM.getIconWidth(), 
 				IMG_CONFIRM.getIconHeight());
         ConfirmButtonListener listener2 = new ConfirmButtonListener(this);
         confirmButton.addActionListener(listener2);
@@ -127,9 +135,10 @@ public class DividePanel extends JPanel{
 
     private void removeStorageLabel() {
         for (int m = 0; m < storageLabels.getLabel().length; m++) {
-            for (int n = 0; n < 5; n++) {
+            for (int n = 0; n < 8; n++) {
                 this.remove(storageLabels.getLabel()[m][n]);
             }
+            this.remove(storageCheckBoxs.getCheckBox()[m]);
         }
         this.remove(imageLabel);
     }
@@ -139,6 +148,7 @@ public class DividePanel extends JPanel{
             for (int n = 0; n < 8; n++) {
                 this.add(storageLabels.getLabel()[m][n], new Integer(Integer.MAX_VALUE));
             }
+            this.add(storageCheckBoxs.getCheckBox()[m]);
         }
         this.add(imageLabel);        
     }
@@ -154,8 +164,16 @@ public class DividePanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == confirmButton){
-				commodityBL.exportExcel("南京");
-				System.out.println("库存快照已导出！");
+//				commodityBL.exportExcel("南京");
+//				System.out.println("size" + storages.size());
+//				System.out.println("box" + storageCheckBoxs.getCheckBox().length);
+//				System.out.println("label" + storageLabels.getLabel().length);
+				for(int m = 0;m < storages.size();m++){
+					if(storageCheckBoxs.getCheckBoxList().get(m).isSelected()){
+						System.out.println(m + "sb");
+						storages.get(m).setFlxible(true);
+					}
+				}
 			}
 		}
     	
@@ -183,6 +201,7 @@ public class DividePanel extends JPanel{
             // Button与JComboBox公用的监听部分
             container.removeStorageLabel();
             storageLabels.setPage((int) pageComboBox.getSelectedItem());
+            storageCheckBoxs.setPage((int) pageComboBox.getSelectedItem());
             container.addStorageLabel();
 
             // 最后一页和第一页需处理Button的可视情况

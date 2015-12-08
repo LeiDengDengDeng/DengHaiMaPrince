@@ -1,4 +1,4 @@
-package src.presentation.commodityui;
+package src.presentation.commodityui.storageinsheetui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -19,12 +19,15 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
+import src.businesslogicservice.logblservice.LogBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
+import src.presentation.accountui.AccountPanel;
 import src.presentation.sheetui.DateChooserJButton;
 
-public class StorageInSheetPanel extends JPanel{
+public class PreStorageInSheetPanel extends JPanel{
 
 	/**
 	 * 
@@ -49,7 +52,7 @@ public class StorageInSheetPanel extends JPanel{
 	private JScrollPane scrollPane;
 	private CommodityBLService commodityBL;
 	
-	public StorageInSheetPanel(GoodsDataService goodsDataService,
+	public PreStorageInSheetPanel(GoodsDataService goodsDataService,
 			StorageDataService storageDataService){
 		commodityBL = new CommodityBLService_Stub(goodsDataService,
 				storageDataService);
@@ -105,8 +108,15 @@ public class StorageInSheetPanel extends JPanel{
 	public static void main(String[] args) {
 		GoodsDataService goodsDataService = null;
 		StorageDataService storageDataService = null;
-		StorageInSheetPanel sp = new StorageInSheetPanel(goodsDataService, storageDataService);
-		sp.run();
+		Log log = null;
+		AccountPanel sp = new AccountPanel(log);
+//		PreStorageInSheetPanel sp = new PreStorageInSheetPanel
+//				(goodsDataService, storageDataService);
+		JFrame frame = new JFrame();
+		frame.setBounds(0, 0, w, h);
+		frame.setContentPane(sp);
+		frame.setVisible(true);
+		frame.setResizable(false);
 	}
 	
 	public void run(){

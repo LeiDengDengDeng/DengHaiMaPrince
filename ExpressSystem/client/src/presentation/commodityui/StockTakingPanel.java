@@ -51,6 +51,7 @@ public class StockTakingPanel extends JPanel{
     	commodityBL = new CommodityBLService_Stub(goodsDataService,
 				storageDataService);
     	storages = new ArrayList<ExpressInfoVO>();
+//    	storages = commodityBL.stockTaking("ÄÏ¾©");
     	for (int i = 0; i < 54; i++) {
             ExpressInfoVO temp = new ExpressInfoVO("Ñªºð", 0000000000000006,
             		20151205, "°Â¸ñÈðÂê", GoodsType.FLXIBLE,006,007,114,false);

@@ -1,4 +1,4 @@
-package src.presentation.commodityui;
+package src.presentation.commodityui.storageoutsheetui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -26,7 +26,7 @@ import src.dataservice.commoditydataservice.StorageDataService;
 import src.presentation.sheetui.DateChooserJButton;
 import src.vo.StorageOutSheetVO;
 
-public class StorageOutSheetPanel extends JPanel{
+public class PreStorageOutSheetPanel extends JPanel{
 	/**
 	 * 
 	 */
@@ -51,7 +51,7 @@ public class StorageOutSheetPanel extends JPanel{
 	private CommodityBLService commodityBL;
 	public StorageOutSheetVO svo;
 	
-	public StorageOutSheetPanel(GoodsDataService goodsDataService,
+	public PreStorageOutSheetPanel(GoodsDataService goodsDataService,
 			StorageDataService storageDataService){
 		commodityBL = new CommodityBLService_Stub(goodsDataService,
 				storageDataService);
@@ -107,9 +107,9 @@ public class StorageOutSheetPanel extends JPanel{
 	}
 	
 	class ConfirmButtonListener implements ActionListener{
-		StorageOutSheetPanel sop;
+		PreStorageOutSheetPanel sop;
 		
-		public ConfirmButtonListener(StorageOutSheetPanel sop){
+		public ConfirmButtonListener(PreStorageOutSheetPanel sop){
 			this.sop = sop;
 		}
 
@@ -143,7 +143,7 @@ public class StorageOutSheetPanel extends JPanel{
 	public static void main(String[] args) {
 		GoodsDataService goodsDataService = null;
 		StorageDataService storageDataService = null;
-		StorageOutSheetPanel sp = new StorageOutSheetPanel(goodsDataService, storageDataService);
+		PreStorageOutSheetPanel sp = new PreStorageOutSheetPanel(goodsDataService, storageDataService);
 		sp.run();
 	}
 	

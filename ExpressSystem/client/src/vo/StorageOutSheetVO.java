@@ -2,6 +2,7 @@ package src.vo;
 
 import java.util.ArrayList;
 
+import src.businesslogic.commoditybl.GoodsType;
 import src.enums.SheetType;
 
 public class StorageOutSheetVO implements SheetVO {
@@ -11,14 +12,14 @@ public class StorageOutSheetVO implements SheetVO {
 	ArrayList<Long> expressNumberList;//快递编号
 	long outTime;//出库日期
 	ArrayList<String> destinationList;//目的地
-	ArrayList<Integer> transportFormList;//装运形式
+	ArrayList<GoodsType> transportFormList;//装运形式
 	ArrayList<Long> transNumberList;//中转单编号或汽运编号
 //	ArrayList<Long> transportNumberList;//汽运编号
 
 	public StorageOutSheetVO(SheetType type, ArrayList<String> goodsNameList,
 			ArrayList<Long> expressNumberList,long outTime, 
 			ArrayList<String> destinationList,
-			ArrayList<Integer> transportFormList,
+			ArrayList<GoodsType> transportFormList,
 			ArrayList<Long> transNumberList
 			) {
 		super();
@@ -63,11 +64,11 @@ public class StorageOutSheetVO implements SheetVO {
 		this.destinationList = destinationList;
 	}
 
-	public ArrayList<Integer> getTransportFormList() {
+	public ArrayList<GoodsType> getTransportFormList() {
 		return transportFormList;
 	}
 
-	public void setTransportFormList(ArrayList<Integer> transportFormList) {
+	public void setTransportFormList(ArrayList<GoodsType> transportFormList) {
 		this.transportFormList = transportFormList;
 	}
 
