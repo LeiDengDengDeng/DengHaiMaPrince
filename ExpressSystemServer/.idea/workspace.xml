@@ -2,9 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c61c9de-ceaa-429a-9229-c8641526a892" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/LeftButtonGroup.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/LeftButtonGroup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/MainFrame.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/PanelController.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/PanelController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/enums/Authority.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/userbl/Position.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/enums/position.java" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\client\src\bussinesslogic\positionbl\Position.java" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\client\src\presentation\userui\PasswordPanel.java" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\client\src\presentation\userui\UserButton.java" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\client\src\presentation\userui\UserFrame.java" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\AdministratorBG.png" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\StaffInfo.png" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\background.png" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\institution_head.png" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\staffManage_head.png" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\user_confirmManage.png" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\user_confirmManageEnter.png" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\user_password.png" afterPath="" />
+      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\user_passwordEnter.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/staffmanageui/AddStaffPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/staffmanageui/AddStaffPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/userui/ChangePasswordPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/userui/ChangePasswordPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/institutionui/Institution_InfoPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/institutionui/Institution_InfoPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/staffmanageui/StaffList.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/staffmanageui/StaffList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/staffmanagebl/StaffManage.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/staffmanagebl/StaffManage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogicservice/staffmanageblservice/StaffManageBLService.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogicservice/staffmanageblservice/StaffManageBLService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/staffmanagebl/StaffManageBLService_Driver.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/staffmanagebl/StaffManageBLService_Driver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/staffmanagebl/StaffManageBLService_Stub.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/staffmanagebl/StaffManageBLService_Stub.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/staffmanageui/Staff_InfoPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/staffmanageui/Staff_InfoPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/userbl/User.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/userbl/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/logInPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/logInPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/user.ser" afterPath="$PROJECT_DIR$/user.ser" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ExpressSystem/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\client\src\bussinesslogic\positionservice\PositionBLService.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogicservice/userblservice/PositionBLService.java" />
+      <change type="MOVED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\client\src\bussinesslogic\salarybl\Salary.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/userbl/Salary.java" />
+      <change type="MOVED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\client\src\bussinesslogic\salaryblservice\SalaryBLService.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogicservice/userblservice/SalaryBLService.java" />
+      <change type="MOVED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\删除.png" afterPath="$PROJECT_DIR$/../ExpressSystem/images/delete.png" />
+      <change type="MOVED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\删除1.png" afterPath="$PROJECT_DIR$/../ExpressSystem/images/delete_Enter.png" />
     </list>
     <ignored path="ExpressSystemServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -396,7 +428,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -407,7 +439,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23861852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23861852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24670571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
