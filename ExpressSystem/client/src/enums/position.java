@@ -1,0 +1,6 @@
+package src.enums;
+
+public enum position {
+	MANAGER,ADMINISTRATOR,ACCOUNTANT,KEEPER,INTER,BUSINESS,COURIER;
+
+}

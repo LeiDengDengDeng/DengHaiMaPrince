@@ -1,5 +1,9 @@
 package src.bussinesslogic.positionservice;
 
+import java.util.ArrayList;
+
+import src.vo.StaffInfoVO;
+
 /**
  * @author: samsung 
  * 
@@ -8,6 +12,13 @@ package src.bussinesslogic.positionservice;
  */
 
 public interface PositionBLService {
+	
+	/**
+	 * 默认权限
+	 * @param staff
+	 * 
+	 */
+	public ArrayList<Integer> initialAuthority(StaffInfoVO staff);
 	
 	/**
 	 * 更改某个人员的职位
