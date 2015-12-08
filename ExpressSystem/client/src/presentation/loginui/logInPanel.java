@@ -19,7 +19,7 @@ import src.presentation.userui.UserData_Stub;
 import src.presentation.userui.UserPanel;
 import src.presentation.util.MyButton;
 
-public class logInPanel extends JPanel{
+public class LogInPanel extends JPanel{
 	
 	
 	static final int WIDTH = 850;
@@ -45,7 +45,7 @@ public class logInPanel extends JPanel{
 	private String password;
 	
 	
-	public logInPanel(){
+	public LogInPanel(){
 		componentsInstantiation();
 		initial();
 		
@@ -55,9 +55,7 @@ public class logInPanel extends JPanel{
 //		login();
 		
 	}
-	
 
-	
 	public void componentsInstantiation(){
 		frame = new JFrame();
 		myPanel = new MyPanel();
@@ -103,22 +101,19 @@ public class logInPanel extends JPanel{
 		password = passwordField.getText();
 		if(logIn.logIn(account, password) == ResultMessage.CORRECT){
 			UserPanel userPanel = new UserPanel(user.getPersonalInfo(account));
-			
 		}
 		
 		
 	}
 	
 	public static void main(String[] args){
-		logInPanel logInPanel = new logInPanel();
-			
-		
+		LogInPanel logInPanel = new LogInPanel();
 	}
 	
 	class buttonActionListener implements ActionListener {
-	       logInPanel container;
+	       LogInPanel container;
 		       
-	        public buttonActionListener(logInPanel container) {
+	        public buttonActionListener(LogInPanel container) {
 	            this.container = container;
 	        }
 

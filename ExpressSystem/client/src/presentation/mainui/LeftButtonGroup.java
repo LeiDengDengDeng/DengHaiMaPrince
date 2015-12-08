@@ -9,21 +9,25 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 public class LeftButtonGroup {
+    ArrayList<Integer> authority;
+
     MainFrame frame;
     ArrayList<MyButton> leftButtons;
-    String[] imagePaths = {"images/left_account", "images/left_log", "images/left_order", "images/left_payment",
-            "images/left_receiving", "images/left_receivingMoney"};
+    String[] imagePaths = {"user", "centerGoodsIn", "centerGoodsOut", "receivingMoney",
+            "receivingMoney", "receivingMoney", "order", "receiving", "commodity",
+            "car&driver","institution","dataSheet","account", "payment", "log","personal"};
 
-    public LeftButtonGroup(MainFrame frame) {
+    public LeftButtonGroup(MainFrame frame,ArrayList<Integer> authority) {
         this.frame = frame;
+        this.authority = authority;
         init();
     }
 
     public void init() {
         leftButtons = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            MyButton temp = new MyButton(new ImageIcon(imagePaths[i] + ".png"), new ImageIcon(imagePaths[i] +
-                    "Clicked.png"), 0, 200 + i * 42, true);
+            MyButton temp = new MyButton(new ImageIcon("images/left_" + imagePaths[i] + ".png"), new ImageIcon
+                    ("images/left_" + imagePaths[i] + "Clicked.png"), 0, 200 + i * 42, true);
             leftButtons.add(temp);
             temp.addActionListener(new LeftButtonListener(i + 1));
         }
