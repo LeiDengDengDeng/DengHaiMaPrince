@@ -13,11 +13,12 @@ public class LeftButtonGroup {
 
     MainFrame frame;
     ArrayList<MyButton> leftButtons;
-    String[] imagePaths = {"user", "centerGoodsIn", "centerGoodsOut", "receivingMoney",
-            "receivingMoney", "receivingMoney", "order", "receiving", "commodity",
-            "car&driver","institution","dataSheet","account", "payment", "log","personal"};
+    String[] imagePaths = {"user", "centerGoodsIn", "centerGoodsOut", "centerTruck",
+            "check", "examineSheet", "order", "receiving", "commodity",
+            "car&driver", "dataSheet", "account", "institutionGoodsIn", "institutionGoodsOut",
+            "payment", "log", "constant", "modifyAuthority", "personal"};
 
-    public LeftButtonGroup(MainFrame frame,ArrayList<Integer> authority) {
+    public LeftButtonGroup(MainFrame frame, ArrayList<Integer> authority) {
         this.frame = frame;
         this.authority = authority;
         init();
@@ -26,10 +27,11 @@ public class LeftButtonGroup {
     public void init() {
         leftButtons = new ArrayList<>();
         for (int i = 0; i < authority.size(); i++) {
-            MyButton temp = new MyButton(new ImageIcon("images/left_" + imagePaths[i] + ".png"), new ImageIcon
-                    ("images/left_" + imagePaths[i] + "Clicked.png"), 0, 200 + i * 42, true);
+            int count = authority.get(i);
+            MyButton temp = new MyButton(new ImageIcon("images/left_" + imagePaths[count - 1] + ".png"), new ImageIcon
+                    ("images/left_" + imagePaths[count - 1] + "Clicked.png"), 0, 200 + i * 42, true);
             leftButtons.add(temp);
-            temp.addActionListener(new LeftButtonListener(i + 1));
+            temp.addActionListener(new LeftButtonListener(count));
         }
 
     }

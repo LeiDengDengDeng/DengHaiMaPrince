@@ -1,4 +1,4 @@
-package src.businesslogic.loginblservice;
+package src.businesslogicservice.loginblservice;
 
 import src.businesslogic.userbl.ResultMessage;
 import src.vo.UserVO;

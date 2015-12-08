@@ -9,7 +9,7 @@ import src.presentation.mainui.MainFrame;
 public class ExpressSystem {
 
     public static void main(String[] args){
-        MainFrame ui = new MainFrame();
+//        MainFrame ui = new MainFrame();
     }
 
 }

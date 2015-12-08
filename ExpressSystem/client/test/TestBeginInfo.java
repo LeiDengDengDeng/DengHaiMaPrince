@@ -1,22 +1,23 @@
 package test;
 
-import static org.junit.Assert.fail;
-
 import java.util.ArrayList;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import src.businesslogic.accountbl.Account;
 import src.businesslogic.accountbl.MockAccount;
-import src.businesslogic.beginInfobl.BeginInfo;
-import src.businesslogic.commoditybl.MockCommodity;
 import src.businesslogic.logbl.MockLog;
 import src.businesslogic.nonUserbl.MockNonUser;
 import src.businesslogic.nonUserbl.Sex;
-import src.businesslogic.presheetbl.MockSheet;
 import src.businesslogic.userbl.MockUser;
-import src.vo.*;
+import src.vo.AccountVO;
+import src.vo.BeginInfoVO;
+import src.vo.ConstantVO;
+import src.vo.DriverInfoVO;
+import src.vo.InitUserVO;
+import src.vo.LogVO;
+import src.vo.StorageInitVO;
+import src.vo.TruckInfoVO;
 
 public class TestBeginInfo {
 
@@ -33,7 +34,7 @@ public class TestBeginInfo {
 		MockUser user=new MockUser(null);
 //		MockCommodity commodity=new MockCommodity(log);
 		MockNonUser nonuser=new MockNonUser(log);
-		MockSheet sheet=new MockSheet(null);
+//		MockSheet sheet=new MockSheet(null);
 		
 //		BeginInfo beginInfo=new BeginInfo(log, account, user, nonuser, commodity, sheet);
 		ArrayList<DriverInfoVO> beginDriver=new ArrayList<DriverInfoVO>();

@@ -50,7 +50,12 @@ public class MainFrame extends JFrame {
     int frameLocationX;
     int frameLocationY;
 
-    public MainFrame() {
+    public MainFrame(ArrayList<Integer> authority) {
+        // 登陆后设置权限，初始化左侧按钮和Panel
+        this.authority = authority;
+        leftButtonGroup = new LeftButtonGroup(this, authority);
+        controller = new PanelController(this);
+
         ButtonMouseListener closeMouseListener = new ButtonMouseListener(
                 closeClickedIcon, closeIcon);
         ButtonMouseListener hideMouseListener = new ButtonMouseListener(
@@ -123,6 +128,8 @@ public class MainFrame extends JFrame {
                 }
             }
         });
+
+        System.out.println("init over");
 
     }
 

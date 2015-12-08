@@ -1,8 +1,7 @@
 package src.businesslogic.loginbl;
 
-import src.businesslogic.loginblservice.LogInBLService;
+import src.businesslogicservice.loginblservice.LogInBLService;
 import src.businesslogic.userbl.ResultMessage;
-import src.businesslogicservice.userblservice.UserBLService;
 import src.vo.UserVO;
 
 public class LogInController {

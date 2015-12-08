@@ -7,7 +7,7 @@ import src.businesslogic.accountbl.Account;
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.logbl.Log;
 import src.businesslogic.nonUserbl.Nonuser;
-import src.businesslogic.presheetbl.PreSheet;
+import src.businesslogic.sheetbl.Sheet;
 import src.businesslogic.userbl.User;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
 import src.dataservice.beginInfodataservice.BeginInfoDataService;
@@ -27,10 +27,10 @@ public class BeginInfo implements BeginInfoBLService {
 	User user;
 	Nonuser nonuser;
 	Commodity commodity;
-	PreSheet sheet;
+	Sheet sheet;
 	String position="财务人员";
 	
-	public BeginInfo(Log log,Account account,User user,Nonuser nonuser,Commodity commodity,PreSheet sheet) {
+	public BeginInfo(Log log,Account account,User user,Nonuser nonuser,Commodity commodity,Sheet sheet) {
 		this.log = log;
 		this.account=account;
 		this.user=user;
@@ -52,7 +52,7 @@ public class BeginInfo implements BeginInfoBLService {
 		account.initAmount(beginAccount);
 		user.initial(beginUser);
 		commodity.initStorageInfo(beginStorage);
-		sheet.formulateConstant(beginConstant);
+//		sheet.formulateConstant(beginConstant);
 		nonuser.initDriver(beginDriver);
 		nonuser.initTruck(beginTruck);
 		//写入文件

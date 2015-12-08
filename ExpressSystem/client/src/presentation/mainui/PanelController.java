@@ -9,6 +9,7 @@ import src.businesslogic.logbl.Log;
 import src.businesslogic.sheetbl.OrderSheet;
 import src.businesslogic.sheetbl.PaymentSheet;
 import src.businesslogic.sheetbl.ReceivingMoneySheet;
+import src.presentation.accountui.AccountPanel;
 import src.presentation.logui.CheckLogPanel;
 import src.presentation.sheetui.OrderSheetPanel;
 import src.presentation.sheetui.PaymentSheetPanel;
@@ -37,11 +38,20 @@ public class PanelController {
         if (presentPanel != null)
             frame.getContentPane().remove(presentPanel);
         switch (i) {
-            case 1:
-                presentPanel = new CheckLogPanel(new Log());
-                break;
-            case 2:
+            case 7:
                 presentPanel = new OrderSheetPanel(new OrderSheet());
+                break;
+            case 8:
+                presentPanel = new ReceivingSheetPanel(new OrderSheet());
+                break;
+            case 12:
+                presentPanel = new AccountPanel(new Log());
+                break;
+            case 15:
+                presentPanel = new PaymentSheetPanel(new PaymentSheet(new Account(new Log())));
+                break;
+            case 16:
+                presentPanel = new CheckLogPanel(new Log());
                 break;
         }
         presentPanel.setBounds(PANEL_MARGIN_LEFT, PANEL_MARGIN_TOP, PANEL_WIDTH, PANEL_HEIGHT);
