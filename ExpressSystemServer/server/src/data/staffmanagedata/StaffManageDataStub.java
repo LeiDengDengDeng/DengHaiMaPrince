@@ -12,7 +12,7 @@ import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.po.UserPO;
 
-public class StaffManageData_Stub implements StaffManageDataService{
+public class StaffManageDataStub implements StaffManageDataService{
 
 //	private static final String UserFILE_PATH = "user.ser";
 //	File file = new File(UserFILE_PATH);

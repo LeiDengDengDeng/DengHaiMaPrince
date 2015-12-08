@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
@@ -15,9 +16,19 @@ import src.dataservice.institutiondataservice.InstitutionDataService;
 import src.po.InstitutionPO;
 import src.po.UserPO;
 
-public class InstitutionData implements InstitutionDataService{
+public class InstitutionData extends UnicastRemoteObject implements InstitutionDataService{
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4549343829871236083L;
+	
 	public static final String InsFILE_PATH = "institution.ser";
 	File file = new File(InsFILE_PATH); 
+	
+	public InstitutionData() throws RemoteException {
+	}
 
 	@Override
 	public InstitutionPO find(long InstitutionId) throws RemoteException {

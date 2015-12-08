@@ -1,4 +1,4 @@
-package src.data.userdata;
+package src.presentation.userui;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,28 +8,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.userdataservice.UserDataService;
 import src.po.LogPO;
 import src.po.UserPO;
 
-public class UserData extends UnicastRemoteObject implements UserDataService{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7922427457532947554L;
+public class UserData_Stub implements UserDataService{
 	
 	private static final String UserFILE_PATH = "user.ser";
 	File file = new File(UserFILE_PATH);
 
-	public UserData() throws RemoteException {
-		
-	}
-	
 	@Override
 	public UserPO find(long UserId) throws RemoteException {
 		// TODO Auto-generated method stub

@@ -1,8 +1,12 @@
 package src.businesslogic.staffmanagebl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.staffmanageblservice.StaffManageBLService;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.dataservice.userdataservice.UserDataService;
@@ -13,8 +17,21 @@ import src.vo.UserVO;
 public class StaffManage implements StaffManageBLService{
 
 	StaffManageDataService StaffManageData;
-	public StaffManage(StaffManageDataService StaffManageData){
-		this.StaffManageData = StaffManageData;
+	Log log;
+	public StaffManage(Log log){
+		this.log = log;
+		try {
+			this.StaffManageData = (StaffManageDataService) Naming.lookup("rmi://127.0.0.1:6600/staffManageData");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

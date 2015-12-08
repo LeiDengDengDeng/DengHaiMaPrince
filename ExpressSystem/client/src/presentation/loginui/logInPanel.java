@@ -1,21 +1,22 @@
 package src.presentation.loginui;
 
-import java.awt.AWTException;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Robot;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
-import src.businesslogic.loginbl.LogInController;
+import src.businesslogic.loginbl.LogIn;
+import src.businesslogic.userbl.ResultMessage;
 import src.businesslogic.userbl.User;
+import src.presentation.userui.ChangePasswordPanel;
+import src.presentation.userui.UserData_Stub;
+import src.presentation.userui.UserPanel;
 import src.presentation.util.MyButton;
 
 public class logInPanel extends JPanel{
@@ -24,6 +25,9 @@ public class logInPanel extends JPanel{
 	static final int WIDTH = 850;
 	static final int HEIGHT = 646;
 	
+	UserData_Stub data_Stub = new UserData_Stub();
+	User user;
+	LogIn logIn;
 	JFrame frame;
 	MyPanel myPanel;
 	private static final ImageIcon CHECK_ICON = new ImageIcon("images/logIn_check.png");
@@ -45,6 +49,11 @@ public class logInPanel extends JPanel{
 		componentsInstantiation();
 		initial();
 		
+		buttonActionListener listener = new buttonActionListener(this);
+        checkButton.addActionListener(listener);
+        loginButton.addActionListener(listener);
+//		login();
+		
 	}
 	
 
@@ -52,8 +61,10 @@ public class logInPanel extends JPanel{
 	public void componentsInstantiation(){
 		frame = new JFrame();
 		myPanel = new MyPanel();
-		checkButton = new MyButton(CHECK_ICON, CHECKENTER_ICON, 370, 450);
-		loginButton = new MyButton(LOG_ICON, LOGENTER_ICON, 560, 450);
+		user = new User(null);
+		logIn = new LogIn(user);
+		checkButton = new MyButton(CHECK_ICON, CHECKENTER_ICON, 370, 450,false);
+		loginButton = new MyButton(LOG_ICON, LOGENTER_ICON, 560, 450,false);
 		accountField = new JTextField();
 		passwordField = new JPasswordField();
 	}
@@ -90,6 +101,10 @@ public class logInPanel extends JPanel{
 	public void login(){
 		account = Long.parseLong(accountField.getText());
 		password = passwordField.getText();
+		if(logIn.logIn(account, password) == ResultMessage.CORRECT){
+			UserPanel userPanel = new UserPanel(user.getPersonalInfo(account));
+			
+		}
 		
 		
 	}
@@ -100,6 +115,26 @@ public class logInPanel extends JPanel{
 		
 	}
 	
+	class buttonActionListener implements ActionListener {
+	       logInPanel container;
+		       
+	        public buttonActionListener(logInPanel container) {
+	            this.container = container;
+	        }
+
+		        @Override
+		        public void actionPerformed(ActionEvent e) {
+		        	if(e.getSource() == checkButton){
+		        		
+		        	}else if (e.getSource() == loginButton) {
+		        		ChangePasswordPanel changePasswordPanel = new ChangePasswordPanel();
+		        		container.frame.setContentPane(changePasswordPanel.myPanel);
+						
+					}
+		        	container.repaint();
+		        	
+		        }
+	}
 	
 
 }

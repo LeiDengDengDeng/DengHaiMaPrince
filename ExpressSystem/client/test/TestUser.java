@@ -18,7 +18,7 @@ public class TestUser {
 		ArrayList<LogVO> logs = new ArrayList<>();
 		logs.add(new LogVO("2015/11/2","总经理"," 李莹 ","制定常量","无"));
 		MockLog log = new MockLog(logs);
-		MockUser mockUser = new MockUser(log,null);
+		MockUser mockUser = new MockUser(log);
 		UserVO userVO = new UserVO(000000, 000000, "aaaaa", "曹姝玥", "营业厅业务员", null, null,null,null);
 		mockUser.changeInfo(userVO);
 		mockUser.initial(null);

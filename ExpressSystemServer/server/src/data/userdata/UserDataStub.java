@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import src.dataservice.userdataservice.UserDataService;
 import src.po.UserPO;
 
-public class UserData_Stub implements UserDataService{
+public class UserDataStub implements UserDataService{
 
 	public UserPO find(long UserId) throws RemoteException {
 		// TODO Auto-generated method stub

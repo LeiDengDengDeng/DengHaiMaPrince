@@ -29,8 +29,8 @@ public class AddStaffPanel extends JPanel{
 	private final static ImageIcon STAFFINFOHEAD_ICON = new ImageIcon("images/staff_InfoHead.png");
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
-	private final static ImageIcon CANCEL_ICON = new ImageIcon("images/取消.png");
-	private final static ImageIcon CANCELENTER_ICON = new ImageIcon("images/取消1.png");
+	private final static ImageIcon CANCEL_ICON = new ImageIcon("images/cancel.png");
+	private final static ImageIcon CANCELENTER_ICON = new ImageIcon("images/cancel_Enter.png");
 
 	private JFrame frame;
 	private JLabel head;
@@ -41,6 +41,14 @@ public class AddStaffPanel extends JPanel{
 	private	JTextField position;
 	private	JTextField city;
 	private	JTextField businessHall;
+	
+	long staffID;
+	long staffAccount;
+	String staffPassword;
+	String staffName;
+	String staffPosition;
+	String staffCity;
+	String staffbusinessHall;
 	
 	MyButton cancelButton;
 	MyButton confirmButton;
@@ -104,6 +112,18 @@ public class AddStaffPanel extends JPanel{
 		city = new JTextField();
 		businessHall = new JTextField();
 	}
+	
+	public void getInfo(){
+		staffID = Long.parseLong(ID.getText());
+		staffAccount = Long.parseLong(account.getText());
+		staffPassword = password.getText();
+		staffName = name.getText();
+		staffPosition = position.getText();
+		staffCity = city.getText();
+		staffbusinessHall = businessHall.getText();
+		
+	}
+	
 	
 	  class StaffInfoActionListener implements ActionListener {
 	       AddStaffPanel container;

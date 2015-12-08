@@ -26,8 +26,8 @@ public class StaffListPanel extends JPanel{
 	
 	static final int WIDTH = 850;
 	static final int HEIGHT = 646;
-	private static final ImageIcon SEARCH = new ImageIcon("images/search.png");
-	private static final ImageIcon SEARCHENTER = new ImageIcon("images/searchClicked.png");
+//	private static final ImageIcon SEARCH = new ImageIcon("images/search.png");
+//	private static final ImageIcon SEARCHENTER = new ImageIcon("images/searchClicked.png");
 	private static final ImageIcon IMAGE_LABEL_ICON = new ImageIcon("images/staffManage_head.png");
 	
 	private static final int Line_Num = 16;

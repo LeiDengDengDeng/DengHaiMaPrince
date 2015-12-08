@@ -12,8 +12,8 @@ import src.vo.UserVO;
 public class MockUser extends User{
 	
 	
-public MockUser(Log log,UserDataService userData) {
-		super(log,userData);
+public MockUser(Log log) {
+		super(log);
 		// TODO Auto-generated constructor stub
 	}
 	

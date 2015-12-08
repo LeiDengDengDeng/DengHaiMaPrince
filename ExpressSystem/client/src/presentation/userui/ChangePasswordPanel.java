@@ -19,19 +19,23 @@ public class ChangePasswordPanel {
 	
 	
 	private static final ImageIcon PASSWORD_ICON = new ImageIcon("images/user_passwordHead.png");
-	private static final ImageIcon CANCEL_ICON= new ImageIcon("images/取消.png");
-	private static final ImageIcon CANCELENTER_ICON = new ImageIcon("images/取消enter.png");
+	private static final ImageIcon CANCEL_ICON= new ImageIcon("images/cancel.png");
+	private static final ImageIcon CANCELENTER_ICON = new ImageIcon("images/cancel_Enter.png");
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
 	
 //	JFrame frame;
-	MyPanel myPanel;
+	public MyPanel myPanel;
 	private JLabel head;
 	private JTextField oldpassField;
 	private JTextField newpassField;
 	private JTextField confirmField;
 	MyButton confirmButton;
 	MyButton cancelButton;
+	
+	String oldpass;
+	String newpass;
+	String confirmpass;
 	
 	public ChangePasswordPanel(){
 		componentsInstantiation();
@@ -69,6 +73,14 @@ public class ChangePasswordPanel {
 		myPanel.add(confirmField);
 		myPanel.add(confirmButton);
 		myPanel.add(cancelButton);
+		
+		
+	}
+	
+	public void getPass(){
+		oldpass = oldpassField.getText();
+		newpass = newpassField.getText();
+		confirmpass = confirmField.getText();
 		
 		
 	}

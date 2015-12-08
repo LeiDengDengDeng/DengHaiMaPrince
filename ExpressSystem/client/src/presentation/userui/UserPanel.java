@@ -109,8 +109,8 @@ public class UserPanel extends JPanel{
 		frame = new JFrame();
 		myPanel = new MyPanel();
 		headJLabel = new JLabel();
-		change = new MyButton(CHANGE_ICON, CHANGEENTER_ICON, 610, 580);
-		confirm = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 700, 580);
+		change = new MyButton(CHANGE_ICON, CHANGEENTER_ICON, 610, 580,false);
+		confirm = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 700, 580,false);
 
 	}
 	

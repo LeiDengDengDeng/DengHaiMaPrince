@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
@@ -15,10 +16,19 @@ import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.po.LogPO;
 import src.po.UserPO;
 
-public class StaffManageData implements StaffManageDataService{
+public class StaffManageData extends UnicastRemoteObject implements StaffManageDataService{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3569048787590592232L;
 	
 	private static final String UserFILE_PATH = "user.ser";
 	File file = new File(UserFILE_PATH);
+
+	public StaffManageData() throws RemoteException {
+	}
+
+	
 
 	@Override
 	public UserPO find(long StaffId) throws RemoteException {

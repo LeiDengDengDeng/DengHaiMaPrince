@@ -30,7 +30,7 @@ public class TestBeginInfo {
 		logs.add(new LogVO("2015/11/2","总经理"," 李莹 ","制定常量","无"));
 		MockLog log = new MockLog(logs);
 		MockAccount account = new MockAccount(log);
-		MockUser user=new MockUser(null,null);
+		MockUser user=new MockUser(null);
 //		MockCommodity commodity=new MockCommodity(log);
 		MockNonUser nonuser=new MockNonUser(log);
 		MockSheet sheet=new MockSheet(null);

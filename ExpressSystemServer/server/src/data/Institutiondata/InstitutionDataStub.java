@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import src.dataservice.institutiondataservice.InstitutionDataService;
 import src.po.InstitutionPO;
 
-public class InstitutionData_Stub implements InstitutionDataService{
+public class InstitutionDataStub implements InstitutionDataService{
 
 	public InstitutionPO find(long InstitutionId) throws RemoteException {
 		// TODO Auto-generated method stub

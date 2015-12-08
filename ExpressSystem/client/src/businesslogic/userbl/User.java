@@ -1,5 +1,8 @@
 package src.businesslogic.userbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,13 +23,20 @@ public class User implements UserBLService{
 	UserDataService userData;
 	Log log;
 //	Map<String, Integer> map = new HashMap<>();
-	public User(Log log,UserDataService userData){
+	public User(Log log){
 		this.log = log;
-		this.userData = userData;
-//		map.put("南京中转中心业务员", 0);
-//		map.put("北京中转中心业务员", 1);
-//		map.put("上海中转中心业务员", 2);
-//		map.put("广州中转中心业务员", 3);
+		try {
+			this.userData = (UserDataService) Naming.lookup("rmi://127.0.0.1:6600/userData");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
