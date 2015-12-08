@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import src.businesslogic.accountbl.Account;
+import src.businesslogic.logbl.Log;
+import src.businesslogic.sheetbl.OrderSheet;
 import src.businesslogic.sheetbl.PaymentSheet;
 import src.businesslogic.sheetbl.ReceivingMoneySheet;
+import src.presentation.logui.CheckLogPanel;
 import src.presentation.sheetui.OrderSheetPanel;
 import src.presentation.sheetui.PaymentSheetPanel;
 import src.presentation.sheetui.ReceivingMoneySheetPanel;
@@ -36,11 +39,10 @@ public class PanelController {
 			frame.getContentPane().remove(presentPanel);
 		switch (i) {
 		case 1:
-			presentPanel = new ReceivingSheetPanel(null);
+			presentPanel = new CheckLogPanel(new Log());
 			break;
 		case 2:
-			presentPanel = new OrderSheetPanel(null);
-//			presentPanel = new PaymentSheetPanel(new PaymentSheet(new Account(null)));
+			presentPanel = new OrderSheetPanel(new OrderSheet());
 			break;
 		}
 		presentPanel.setBounds(PANEL_MARGIN_LEFT, PANEL_MARGIN_TOP, PANEL_WIDTH, PANEL_HEIGHT);

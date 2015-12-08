@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.AbstractButton;
@@ -17,6 +18,7 @@ import javax.swing.event.MouseInputListener;
 
 import src.presentation.logui.CheckLogPanel;
 import src.presentation.util.ButtonMouseListener;
+import src.presentation.util.MyButton;
 
 public class MainFrame extends JFrame {
 
@@ -86,8 +88,8 @@ public class MainFrame extends JFrame {
 		mainPanel.setLayout(null);
 		mainPanel.setOpaque(false);
 
-		for (Enumeration<AbstractButton> e = leftButtonGroup.getLeftButtons(); e.hasMoreElements();)
-			this.add(e.nextElement());
+		for (MyButton e : leftButtonGroup.getLeftButtons())
+			this.add(e);
 		this.setResizable(false);
 		this.setSize(WIDTH, HEIGHT);
 		this.setLocationRelativeTo(null);

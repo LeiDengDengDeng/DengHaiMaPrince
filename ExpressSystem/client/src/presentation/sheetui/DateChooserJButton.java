@@ -53,6 +53,7 @@ public class DateChooserJButton extends JButton {
 
     public DateChooserJButton(Date date) {
         this("", date);
+        this.setBackground(new Color(135, 209, 196));
     }
 
     public DateChooserJButton(String preLabel, Date date) {
@@ -236,7 +237,7 @@ public class DateChooserJButton extends JButton {
         }
 
         private JPanel createWeekAndDayPanal() {
-            String colname[] = { "日", "一", "二", "三", "四", "五", "六" };
+            String colname[] = {"日", "一", "二", "三", "四", "五", "六"};
             JPanel result = new JPanel();
             //设置固定字体，以免调用环境改变影响界面美观
             result.setFont(new Font("宋体", Font.PLAIN, 12));

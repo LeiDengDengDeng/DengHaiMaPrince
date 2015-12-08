@@ -2,7 +2,9 @@ package src.presentation.logui;
 
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.logblservice.LogBLService;
+import src.presentation.sheetui.DateChooserJButton;
 import src.presentation.util.MyButton;
+import src.presentation.util.SearchButton;
 import src.vo.LogVO;
 
 import java.awt.event.ActionEvent;
@@ -23,12 +25,14 @@ public class CheckLogPanel extends JPanel {
 
     // ΩÁ√Ê
     ArrayList<LogVO> logs;
+    DateChooserJButton dateChooser;
+    SearchButton searchButton;
     TextLabelGroup logLabels;
-    JLabel imageLabel;
-    ImageIcon bkgImg;
     JComboBox pageComboBox;
     MyButton previousPageButton;
     MyButton nextPageButton;
+    JLabel imageLabel;
+    ImageIcon bkgImg;
 
     private static final int NUM_OF_LINES = 16;
 
@@ -37,17 +41,20 @@ public class CheckLogPanel extends JPanel {
         logs = logBL.checkLog(null);
 
         init();
+        dateChooser.setBounds(410, 42, 80, 23);
         PageButtonActionListener listener = new PageButtonActionListener(this);
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
         nextPageButton.addActionListener(listener);
-        pageComboBox.setBounds(540, 504, 44, 23);
+        pageComboBox.setBounds(530, 508, 44, 23);
         setPageComboBox();
         pageComboBox.addActionListener(listener);
         imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(40, 40, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 
         addLogLabel();
+        this.add(dateChooser);
+        this.add(searchButton);
         this.add(pageComboBox);
         this.add(nextPageButton);
         this.add(previousPageButton);
@@ -57,11 +64,13 @@ public class CheckLogPanel extends JPanel {
     }
 
     private void init() {
+        dateChooser = new DateChooserJButton();
+        searchButton = new SearchButton(505, 41);
         previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
-                ("images/previousPageClicked.png"), 330, 504);
+                ("images/previousPageClicked.png"), 322, 508);
         nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
-                ("images/nextPageClicked.png"), 410, 504);
-        logLabels = new TextLabelGroup(logs, NUM_OF_LINES, 48, 110);
+                ("images/nextPageClicked.png"), 402, 508);
+        logLabels = new TextLabelGroup(logs, NUM_OF_LINES, 48, 115);
         pageComboBox = new JComboBox();
         imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/log.png");

@@ -30,7 +30,6 @@ public class OrderSheetPO implements SheetPO {
     String time; // 收件时间
 
     SheetState state = SheetState.NOT_EXAMINED;
-    long ID;
     SheetType type = SheetType.ORDER_SHEET;
 
     public OrderSheetPO(long courierNumber, String senderName,
@@ -59,7 +58,7 @@ public class OrderSheetPO implements SheetPO {
     }
 
     public void setID(long ID) {
-        this.ID = ID;
+        this.courierNumber = ID;
     }
 
     public long getCourierNumber() {
@@ -125,7 +124,7 @@ public class OrderSheetPO implements SheetPO {
 
     public long getID() {
         // TODO 自动生成的方法存根
-        return ID;
+        return courierNumber;
     }
 
     @Override

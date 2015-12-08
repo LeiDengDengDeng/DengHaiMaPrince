@@ -69,6 +69,8 @@ public class OrderSheetPanel extends JPanel implements SheetPanel {
         imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(40, 20, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 
+        confirmButton.addActionListener(new ConfirmButtonListener(this));
+
         for (int i = 0; i < 10; i++) {
             this.add(idGroup.getTextField(i));
         }
