@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import src.presentation.userui.UserFrame;
 import src.vo.StaffInfoVO;
 
 public class StaffList extends JPanel{

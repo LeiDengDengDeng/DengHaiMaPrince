@@ -42,7 +42,7 @@ public interface StaffManageBLService {
 	 * @param StaffInfo
 	 * 
 	 */
-	public void addStaffInfo(UserVO StaffInfo);
+	public void addStaffInfo(StaffInfoVO StaffInfo);
 	
 	/**
 	 * 删除一个员工帐号
@@ -50,6 +50,8 @@ public interface StaffManageBLService {
 	 * 
 	 */
 	public void deleteStaff(long StaffId);
+	
+
 	
 	/**
 	 * 结束管理

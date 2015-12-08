@@ -135,6 +135,7 @@ public class AddStaffPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		           if(e.getSource() == confirmButton){
+		        	   getInfo();
 		        	   
 		           }else if(e.getSource() == cancelButton){
 		        	   

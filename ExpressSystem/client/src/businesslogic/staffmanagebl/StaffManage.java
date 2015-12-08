@@ -7,19 +7,20 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import src.businesslogic.logbl.Log;
+import src.businesslogic.userbl.Position;
 import src.businesslogicservice.staffmanageblservice.StaffManageBLService;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
-import src.dataservice.userdataservice.UserDataService;
 import src.po.UserPO;
 import src.vo.StaffInfoVO;
-import src.vo.UserVO;
 
 public class StaffManage implements StaffManageBLService{
 
 	StaffManageDataService StaffManageData;
+	Position position;
 	Log log;
-	public StaffManage(Log log){
+	public StaffManage(Log log,Position position){
 		this.log = log;
+		this.position = position;
 		try {
 			this.StaffManageData = (StaffManageDataService) Naming.lookup("rmi://127.0.0.1:6600/staffManageData");
 		} catch (MalformedURLException e) {
@@ -105,11 +106,14 @@ public class StaffManage implements StaffManageBLService{
 	}
 
 	@Override
-	public void addStaffInfo(UserVO StaffInfo) {
+	public void addStaffInfo(StaffInfoVO StaffInfo) {
 		// TODO Auto-generated method stub
-		UserPO userPO = new UserPO(StaffInfo.getpersonalID(), StaffInfo.getpersonalAccount(),
-				StaffInfo.getMyPassword(), StaffInfo.getpersonalName(),
-				StaffInfo.getMyPosition(), StaffInfo.getAuthority());
+		
+		StaffInfo.setAuthority(position.initialAuthority(StaffInfo));
+		
+		UserPO userPO = new UserPO(StaffInfo.getID(), StaffInfo.getAccount(),
+				StaffInfo.getPassword(), StaffInfo.getStaffName(),
+				StaffInfo.getPosition(), StaffInfo.getAuthority());
 		try {
 			StaffManageData.insert(userPO);
 		} catch (RemoteException e) {
@@ -152,5 +156,7 @@ public class StaffManage implements StaffManageBLService{
 		}
 		
 	}
+
+
 
 }

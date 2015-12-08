@@ -25,7 +25,7 @@ public class LeftButtonGroup {
 
     public void init() {
         leftButtons = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < authority.size(); i++) {
             MyButton temp = new MyButton(new ImageIcon("images/left_" + imagePaths[i] + ".png"), new ImageIcon
                     ("images/left_" + imagePaths[i] + "Clicked.png"), 0, 200 + i * 42, true);
             leftButtons.add(temp);

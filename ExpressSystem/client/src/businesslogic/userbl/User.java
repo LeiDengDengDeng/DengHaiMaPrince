@@ -13,8 +13,6 @@ import src.businesslogicservice.userblservice.UserBLService;
 import src.dataservice.logdataservice.LogDataService;
 import src.dataservice.userdataservice.UserDataService;
 import src.po.UserPO;
-import src.presentation.userui.PasswordPanel;
-import src.presentation.userui.UserFrame;
 import src.vo.InitUserVO;
 import src.vo.UserVO;
 

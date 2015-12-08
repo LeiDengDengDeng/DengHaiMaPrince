@@ -52,7 +52,7 @@ public class StaffManageBLService_Stub implements StaffManageBLService{
 	}
 
 	@Override
-	public void addStaffInfo(UserVO StaffInfo) {
+	public void addStaffInfo(StaffInfoVO StaffInfo) {
 		// TODO Auto-generated method stub
 		System.out.println("add succeed!");
 		

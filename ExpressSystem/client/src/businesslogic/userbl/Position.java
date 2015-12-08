@@ -1,8 +1,10 @@
-package src.bussinesslogic.positionbl;
+package src.businesslogic.userbl;
 
+import java.util.ArrayList;
+
+import src.businesslogicservice.userblservice.PositionBLService;
 import src.businesslogicservice.userblservice.UserBLService;
-import src.bussinesslogic.positionservice.PositionBLService;
-import src.po.UserPO;
+import src.vo.StaffInfoVO;
 import src.vo.UserVO;
 
 public class Position implements PositionBLService{
@@ -12,6 +14,54 @@ public class Position implements PositionBLService{
 	public Position(UserBLService userBL){
 		this.userBL = userBL;
 	}
+	
+	@Override
+	public ArrayList<Integer> initialAuthority(StaffInfoVO staff) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> authority = new ArrayList<Integer>();
+		switch (staff.getPosition()) {
+		case "总经理":
+			authority.add(12);
+			authority.add(13);
+			authority.add(14);
+			break;
+		case "管理员":
+			authority.add(1);
+			authority.add(18);
+			break;
+		case "财务人员":
+			authority.add(11);
+			authority.add(15);
+			authority.add(16);
+			authority.add(17);
+			break;
+		case "中转中心仓库管理员":
+			authority.add(9);
+			break;
+		case "中转中心业务员":
+			authority.add(2);
+			authority.add(6);
+			break;
+		case "营业厅业务员":
+			authority.add(3);
+			authority.add(4);
+			authority.add(5);
+			authority.add(10);
+			break;
+		case "快递员":
+			authority.add(7);
+			authority.add(8);
+			break;
+		default:
+			break;
+		}
+		return authority;
+		
+		
+		
+		
+	}
+	
 	@Override
 	public void changeStaffPosition(String position, long StaffId) {
 		// TODO Auto-generated method stub

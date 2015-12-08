@@ -1,11 +1,16 @@
 package src.presentation.userui;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+
+import src.businesslogic.loginbl.LogIn;
+import src.businesslogic.userbl.User;
 import src.presentation.util.MyButton;
+import src.vo.UserVO;
 
 
 public class ChangePasswordPanel {
@@ -27,12 +32,14 @@ public class ChangePasswordPanel {
 //	JFrame frame;
 	public MyPanel myPanel;
 	private JLabel head;
-	private JTextField oldpassField;
-	private JTextField newpassField;
-	private JTextField confirmField;
+	private JPasswordField oldpassField;
+	private JPasswordField newpassField;
+	private JPasswordField confirmField;
 	MyButton confirmButton;
 	MyButton cancelButton;
 	
+	User user = new User(null);
+	LogIn logIn = new LogIn(user);
 	String oldpass;
 	String newpass;
 	String confirmpass;
@@ -41,17 +48,21 @@ public class ChangePasswordPanel {
 		componentsInstantiation();
 		initial();
 		
+		buttonActionListener listener = new buttonActionListener(this);
+        confirmButton.addActionListener(listener);
+        cancelButton.addActionListener(listener);
+		
 	}
 	
 	public void componentsInstantiation(){
 //		frame = new JFrame();
 		myPanel = new MyPanel();
 		head = new JLabel();
-		oldpassField = new JTextField();
-		newpassField = new JTextField();
-		confirmField = new JTextField();
-		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 610, 580);
-		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, 700, 580);
+		oldpassField = new JPasswordField();
+		newpassField = new JPasswordField();
+		confirmField = new JPasswordField();
+		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 610, 580,false);
+		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, 700, 580,false);
 		
 	}
 	
@@ -77,12 +88,45 @@ public class ChangePasswordPanel {
 		
 	}
 	
-	public void getPass(){
-		oldpass = oldpassField.getText();
-		newpass = newpassField.getText();
-		confirmpass = confirmField.getText();
-		
-		
+//	public void getPass(){
+//		oldpass = oldpassField.getText();
+//		newpass = newpassField.getText();
+//		confirmpass = confirmField.getText();
+//		if(oldpass.equals(logIn.getCurrentUser().getMyPassword())){
+//			if(newpass.equals(confirmpass)){
+//				logIn.getCurrentUser().setMyPassword(confirmpass);
+//				user.changeInfo(logIn.getCurrentUser());
+//			}
+//		}
+//		
+//		
+//	}
+	class buttonActionListener implements ActionListener {
+	       ChangePasswordPanel container;
+		       
+	        public buttonActionListener(ChangePasswordPanel container) {
+	            this.container = container;
+	        }
+
+		        @Override
+		        public void actionPerformed(ActionEvent e) {
+		        	if(e.getSource() == cancelButton){
+		        		
+		        	}else if (e.getSource() == confirmButton) {
+		        		oldpass = oldpassField.getText();
+		        		newpass = newpassField.getText();
+		        		confirmpass = confirmField.getText();
+		        		if(oldpass.equalsIgnoreCase(logIn.getCurrentUser().getMyPassword())){
+		        			if(newpass.equalsIgnoreCase(confirmpass)){
+		        				logIn.getCurrentUser().setMyPassword(confirmpass);
+		        				user.changeInfo(logIn.getCurrentUser());
+		        			}
+		        		}
+		        		UserPanel userPanel = new UserPanel(user.getPersonalInfo(
+		        				logIn.getCurrentUser().getpersonalAccount()));
+					}
+		        	
+		        }
 	}
 	
 	

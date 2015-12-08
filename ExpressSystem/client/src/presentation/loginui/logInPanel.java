@@ -19,7 +19,7 @@ import src.presentation.userui.UserData_Stub;
 import src.presentation.userui.UserPanel;
 import src.presentation.util.MyButton;
 
-public class LogInPanel extends JPanel{
+public class logInPanel extends JPanel{
 	
 	
 	static final int WIDTH = 850;
@@ -45,7 +45,7 @@ public class LogInPanel extends JPanel{
 	private String password;
 	
 	
-	public LogInPanel(){
+	public logInPanel(){
 		componentsInstantiation();
 		initial();
 		
@@ -107,13 +107,15 @@ public class LogInPanel extends JPanel{
 	}
 	
 	public static void main(String[] args){
-		LogInPanel logInPanel = new LogInPanel();
+		logInPanel logInPanel = new logInPanel();
+
+
 	}
 	
 	class buttonActionListener implements ActionListener {
-	       LogInPanel container;
+	       logInPanel container;
 		       
-	        public buttonActionListener(LogInPanel container) {
+	        public buttonActionListener(logInPanel container) {
 	            this.container = container;
 	        }
 
