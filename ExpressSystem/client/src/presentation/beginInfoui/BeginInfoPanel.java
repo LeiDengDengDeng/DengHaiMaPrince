@@ -2,15 +2,18 @@ package src.presentation.beginInfoui;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.TextField;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
+import src.vo.AccountVO;
 
 public class BeginInfoPanel extends JPanel {
 
@@ -31,18 +34,18 @@ public class BeginInfoPanel extends JPanel {
 	protected static final ImageIcon IMG_Driver = new ImageIcon("images/beginInfo_driver.png");
 	protected static final ImageIcon IMG_Truck = new ImageIcon("images/beginInfo_truck.png");
 	protected static final ImageIcon IMG_User = new ImageIcon("images/beginInfo_user.png");
-
+	protected static final ImageIcon IMG_Button_Confirm = new ImageIcon("images/account_confirm.png");
 	protected static final ImageIcon[] images = { IMG_ButtonAccount, IMG_ButtonCommodity, IMG_ButtonDriver,
 			IMG_ButtonTruck, IMG_ButtonUser };
 
 	protected static final ImageIcon[] imageEnter = { IMG_ButtonAccountEnter, IMG_ButtonCommodityEnter,
 			IMG_ButtonDriverEnter, IMG_ButtonTruckEnter, IMG_ButtonUserEnter };
 
-	protected  SubPanel accountPanel = new PanelAccount(IMG_Account);
-	protected  SubPanel commodityPanel = new PanelCommodity(IMG_Commodity);
-	protected  SubPanel driverPanel = new PanelDriver(IMG_Driver);
-	protected  SubPanel truckPanel = new PanelTruck(IMG_Truck);
-	protected  SubPanel userPanel = new PanelUser(IMG_User);
+	protected SubPanel accountPanel = new PanelAccount(IMG_Account);
+	protected SubPanel commodityPanel = new PanelCommodity(IMG_Commodity);
+	protected SubPanel driverPanel = new PanelDriver(IMG_Driver);
+	protected SubPanel truckPanel = new PanelTruck(IMG_Truck);
+	protected SubPanel userPanel = new PanelUser(IMG_User);
 
 	protected SubPanel[] panelList = { accountPanel, commodityPanel, driverPanel, truckPanel, userPanel };
 
@@ -58,11 +61,11 @@ public class BeginInfoPanel extends JPanel {
 		this.log = log;
 		this.setBounds(x, y, IMG_BG.getIconWidth(), IMG_BG.getIconHeight());
 		this.buttonList = new ArrayList<BeginInfoButton>();
-		this.buttonClickList=new ArrayList<BeginInfoButton>();
+		this.buttonClickList = new ArrayList<BeginInfoButton>();
 		for (int j = 0; j < images.length; j++) {
 			Point p = new Point(0, images[0].getIconHeight() * (j + 1));
 			BeginInfoButton button = new BeginInfoButton(images[j], imageEnter[j], p);
-			BeginInfoButton buttonClick=new BeginInfoButton(imageEnter[j],imageEnter[j],p);
+			BeginInfoButton buttonClick = new BeginInfoButton(imageEnter[j], imageEnter[j], p);
 			buttonClickList.add(buttonClick);
 			buttonList.add(button);
 			this.add(buttonClick);
@@ -77,14 +80,13 @@ public class BeginInfoPanel extends JPanel {
 
 				public void mouseClicked(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
+
 					for (int j = 0; j < buttonList.size(); j++) {
-						BeginInfoButton button=(BeginInfoButton) e.getSource();
-						if (buttonList.indexOf(button) == j){
+						BeginInfoButton button = (BeginInfoButton) e.getSource();
+						if (buttonList.indexOf(button) == j) {
 							panelList[j].setVisible(true);
 							buttonClickList.get(j).setVisible(true);
-						}
-						else{
+						} else {
 							panelList[j].setVisible(false);
 							buttonClickList.get(j).setVisible(false);
 						}
@@ -119,10 +121,60 @@ public class BeginInfoPanel extends JPanel {
 
 			});
 		}
+		JButton confirm = new JButton(IMG_Button_Confirm);
+		confirm.setBounds(500, 350, IMG_Button_Confirm.getIconWidth(), IMG_Button_Confirm.getIconHeight());
+		confirm.setContentAreaFilled(false);
+		confirm.setBorderPainted(false);
+		confirm.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				((JButton) e.getSource()).setIcon(IMG_Button_Confirm);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				((JButton) e.getSource()).setIcon(null);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				save();
+			}
+		});
+		;
+		this.add(confirm);
 
 	}
 
-	public void Save() {
+	public void save() {
+		ArrayList<ArrayList<TextField>> accountList = this.panelList[0].getArrayList();
+		for (int i = 0; i < accountList.get(0).size(); i++) {
+			if (accountList.get(0).get(i).getText() != null && accountList.get(1).get(i).getText() != null
+					&& accountList.get(2).get(i).getText() != null) {
+				String name = accountList.get(0).get(i).getText();
+				long num = Long.parseLong(accountList.get(1).get(i).getText());
+				double amount = Double.parseDouble(accountList.get(2).get(i).getText());
+				AccountVO beginInfo = new AccountVO(name, num, amount);
+			}
+			
+			
+		}
 		// DriverInfoVO beginDriver=new DriverInfoVO(number, name, year, month,
 		// day, iD, mobNum, sex, yearOfExpiring)
 		// BeginInfoVO vo=new BeginInfoVO(beginDriver, beginTruck, beginAccount,

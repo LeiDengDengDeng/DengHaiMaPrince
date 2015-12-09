@@ -63,7 +63,7 @@ public class PanelAccount extends SubPanel {
 		JLabel yuan = new JLabel("Ԫ");
 		yuan.setFont(myFont);
 		yuan.setForeground(Color.white);
-		yuan.setBounds(Name_x + Name_w + distance_x + Num_w + distance_x+Amount_w, Name_y + distance_y * i, 16, 16);
+		yuan.setBounds(Name_x + Name_w + distance_x + Num_w + distance_x+Amount_w+5, Name_y + distance_y * i, 16, 16);
 		if (i != 0) {
 			this.add(yuan);
 		}

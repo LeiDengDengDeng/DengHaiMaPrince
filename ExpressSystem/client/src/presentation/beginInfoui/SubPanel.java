@@ -30,8 +30,9 @@ public abstract class SubPanel extends JPanel {
 	public abstract void drawCom(int i);
 	public JButton addButton(){
 		JButton button = new JButton(buttonIcon);
-		button.setBounds(200, 63+63 , buttonIcon.getIconWidth(), buttonIcon.getIconHeight());
-
+		button.setBounds(500, 70+30 , buttonIcon.getIconWidth(), buttonIcon.getIconHeight());
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
 		button.addMouseListener(new MouseListener() {
 			int i=0;
 			@Override
@@ -64,7 +65,7 @@ public abstract class SubPanel extends JPanel {
 				// TODO Auto-generated method stub
 				i++;
 				drawCom(i);
-				((JButton)e.getSource()).setLocation(((JButton)e.getSource()).getLocation().x, ((JButton)e.getSource()).getLocation().y+63);
+				((JButton)e.getSource()).setLocation(((JButton)e.getSource()).getLocation().x, ((JButton)e.getSource()).getLocation().y+30);
 			}
 		});
 		return button;
