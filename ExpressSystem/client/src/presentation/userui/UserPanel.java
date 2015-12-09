@@ -34,8 +34,8 @@ public class UserPanel extends JPanel{
 	static final int h = 30;
 	static final int linesp = 53;
 	static final int columnsp = 250;
-	static final int coordinate_X = 300;
-	static final int coordinate_Y = 130;
+	static final int coordinate_X = 150;
+	static final int coordinate_Y = 90;
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
@@ -49,6 +49,10 @@ public class UserPanel extends JPanel{
 	UserVO userVO;
 	MyButton change;
 	MyButton confirm;
+	
+	JLabel imageLabel;
+    ImageIcon bkgImg;
+    
 	private	JLabel ID;
 	private	JLabel account;
 	private	JLabel password;
@@ -69,14 +73,14 @@ public class UserPanel extends JPanel{
         confirm.addActionListener(listener);
 	}
 	
-	public void paintComponent(Graphics g){
-		
-		Image image = new ImageIcon("images/user_InfoBG.png").getImage();
-		
-		g.drawImage(image,0,0,this);
-		
-	}
-	
+//	public void paintComponent(Graphics g){
+//		
+//		Image image = new ImageIcon("images/user_InfoBG.png").getImage();
+//		
+//		g.drawImage(image,0,0,this);
+//		
+//	}
+//	
 	
 	public void initial(){
 		// 设置标题
@@ -96,9 +100,11 @@ public class UserPanel extends JPanel{
 		frame.setLayout(null);
 		// 设置默认panel
 		this.setLayout(null);
-		this.setBounds(0, 0, WIDTH, HEIGHT);
+//		this.setBounds(0, 0, IMG.getIconWidth(), IMG.getIconHeight());
 		
-		
+		imageLabel.setIcon(bkgImg);
+        imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
+
 		this.add(ID);
 		this.add(account);
 		this.add(password);
@@ -109,6 +115,8 @@ public class UserPanel extends JPanel{
 		this.add(salary);
 		this.add(change);
 		this.add(confirm);
+		this.add(imageLabel);
+		this.setOpaque(false);
 		
 		frame.setContentPane(this);
 		frame.setVisible(true);
@@ -119,8 +127,10 @@ public class UserPanel extends JPanel{
 	
 	public void componentsInstantiation(){
 		frame = new JFrame();
-		change = new MyButton(CHANGE_ICON, CHANGEENTER_ICON, 350, 480,false);
-		confirm = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 450, 480,false);
+		imageLabel = new JLabel();
+        bkgImg = new ImageIcon("images/user_InfoBG.png");
+		change = new MyButton(CHANGE_ICON, CHANGEENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
+		confirm = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480,false);
 
 	}
 	
@@ -135,14 +145,14 @@ public class UserPanel extends JPanel{
 			city = new JLabel(userVO.getCity());
 			businessHall = new JLabel(userVO.getBusinessHall());
 			
-			name.setBounds(x, y, w, h);
-			position.setBounds(x + columnsp, y, w, h);
-			ID.setBounds(x, y + linesp, w, h);
-			account.setBounds(x, y + linesp * 2, w, h);
-			password.setBounds(x + columnsp, y + linesp * 2, w, h);
-			city.setBounds(x, y + linesp * 3 - 1, w, h);
-			salary.setBounds(x, y + linesp * 4, w, h);
-			businessHall.setBounds(x + columnsp + 20, y + linesp * 3 - 1, w, h);
+			name.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
+			position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y, w, h);
+			ID.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
+			account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
+			password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
+			city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3 - 1, w, h);
+			salary.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 4, w, h);
+			businessHall.setBounds(coordinate_X + x + columnsp + 20, coordinate_Y + y + linesp * 3 - 1, w, h);
 			
 			name.setFont(myFont);
 			name.setForeground(Color.WHITE);

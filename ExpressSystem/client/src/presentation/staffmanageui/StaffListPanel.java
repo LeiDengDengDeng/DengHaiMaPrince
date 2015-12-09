@@ -2,6 +2,7 @@ package src.presentation.staffmanageui;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,13 +24,15 @@ import src.vo.UserVO;
 
 public class StaffListPanel extends JPanel{
 	
-	static final int WIDTH = 665;
-	static final int HEIGHT = 601;
+
+	static final int coordinate_X = 150;
+	static final int coordinate_Y = 90;
+	
 //	private static final ImageIcon SEARCH = new ImageIcon("images/search.png");
 //	private static final ImageIcon SEARCHENTER = new ImageIcon("images/searchClicked.png");
-//	private static final ImageIcon IMAGE_LABEL_ICON = new ImageIcon("images/staffManage_head.png");
+//	private static final ImageIcon IMAGE_LABEL_ICON = new ImageIcon("images/staff_ListBG.png");
 	
-	private static final int Line_Num = 16;
+	private static final int Line_Num = 15;
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 
@@ -38,19 +41,25 @@ public class StaffListPanel extends JPanel{
 //	private JLabel addLabel;
 //	private JLabel searchLabel;
 	JLabel imageLabel;
+	ImageIcon bkgImg;
 	JComboBox pageComboBox;
-    MyButton previousPageButton;
+
+	MyButton previousPageButton;
     MyButton nextPageButton;
     
-    public StaffListPanel(){
+    
+    
+    
+    public StaffListPanel(ArrayList<StaffInfoVO> Staffs){
+    	this.Staffs = Staffs;
 //    	componentsInstantiation();
     	initial();
-    	setUsers();
+    	setUsers(Staffs);
     	PageButtonActionListener listener = new PageButtonActionListener(this);
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
         nextPageButton.addActionListener(listener);
-        pageComboBox.setBounds(480, 490, 44, 23);
+        pageComboBox.setBounds(coordinate_X + 470, coordinate_Y + 490, 40, 20);
         setPageComboBox();
         pageComboBox.addActionListener(listener);
         
@@ -60,10 +69,15 @@ public class StaffListPanel extends JPanel{
     }
 	
 	public void initial(){		
+		
+		
+		
 		imageLabel = new JLabel();
 		pageComboBox = new JComboBox();
+		bkgImg = new ImageIcon("images/staff_ListBG.png");
 		
-		
+		imageLabel.setIcon(bkgImg);
+        imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 //		addLabel.setIcon(ADD_ICON);
 		
 //		searchLabel.setIcon(SEARCH);
@@ -101,9 +115,9 @@ public class StaffListPanel extends JPanel{
 //			}
 //		});
 		previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
-	                ("images/previousPageClicked.png"), 300, 490);
+	                ("images/previousPageClicked.png"), coordinate_X + 250, coordinate_Y + 490);
 	    nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
-	                ("images/nextPageClicked.png"), 370, 490);
+	                ("images/nextPageClicked.png"), coordinate_X + 320, coordinate_Y + 490);
 		
 		
 		
@@ -114,18 +128,15 @@ public class StaffListPanel extends JPanel{
         this.add(imageLabel);
         this.setLayout(null);
         this.setOpaque(false);
+        
+
 		
 //		frame.setContentPane(mainPanel);
 //		frame.setVisible(true);
 	}
 	
-	public void setUsers(){
-		Staffs = new ArrayList<StaffInfoVO>();
-		for(int i = 0; i < 50;i++)
-			Staffs.add(new StaffInfoVO(100000, 100000, "aaaaaa", "张三", "快递员",
-					null, "南京", "鼓楼营业厅"));
-		
-		staffGroup = new StaffGroup(Staffs, Line_Num, 90, 110);
+	public void setUsers(ArrayList<StaffInfoVO> Staffs){
+		staffGroup = new StaffGroup(Staffs, Line_Num, coordinate_X + 40, coordinate_Y + 70);
 		
 	}
 	private void setPageComboBox() {
@@ -190,7 +201,18 @@ public class StaffListPanel extends JPanel{
 	            container.repaint();
 	        }
 	    }
-   
+   public static void main(String[] args) {
+
+			ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
+			
+			for(int i = 0;i < 40; i++)
+				staffInfoVOs.add(new StaffInfoVO(100000, 100000, "aaaaaa",
+						"张三", "管理员", null, null, null));
+			StaffListPanel staffListPanel = new StaffListPanel(staffInfoVOs);
+			
+	
+   }
+  
   
 }
 

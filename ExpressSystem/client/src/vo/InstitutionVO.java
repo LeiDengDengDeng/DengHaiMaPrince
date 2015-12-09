@@ -7,11 +7,11 @@ import src.po.UserPO;
 public class InstitutionVO {
 	private String InstitutionName;
 	private long InstitutionID;
-	private ArrayList<UserPO> staff;
+	private ArrayList<UserVO> staff;
 	private String function;
 	
 	public InstitutionVO(String InstitutionName,long InstitutionID
-			,ArrayList<UserPO> staff,String function) {
+			,ArrayList<UserVO> staff,String function) {
 		// TODO Auto-generated constructor stub
 		this.InstitutionName = InstitutionName;
 		this.InstitutionID = InstitutionID;
@@ -37,11 +37,11 @@ public class InstitutionVO {
 		return InstitutionID;
 	}
 	
-	public void updateStaff(ArrayList<UserPO> staff){
+	public void updateStaff(ArrayList<UserVO> staff){
 		this.staff = staff;
 	}
 	
-	public ArrayList<UserPO> getStaff(){
+	public ArrayList<UserVO> getStaff(){
 		return staff;
 	}
 	

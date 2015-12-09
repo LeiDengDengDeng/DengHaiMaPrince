@@ -7,13 +7,16 @@ import java.awt.List;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
+import src.presentation.staffmanageui.StaffGroup;
 import src.presentation.util.MyButton;
 import src.vo.InstitutionVO;
 
-public class Institution_InfoPanel {
+public class Institution_InfoPanel extends JPanel{
 	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
@@ -22,6 +25,8 @@ public class Institution_InfoPanel {
 	static final int w = 200;
 	static final int h = 30;
 	static final int linesp = 48;
+	static final int coordinate_X = 150;
+	static final int coordinate_Y = 90;
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
@@ -33,14 +38,18 @@ public class Institution_InfoPanel {
 	InstitutionVO institutionVO;
 	
 	JFrame frame;
-	MainPanel mainPanel;
 	
+	JLabel imageLabel;
+    ImageIcon bkgImg;
+	
+    StaffGroup staffGroup;
 	MyButton confirmButton;
 	MyButton deleteButton;
 	
 	private JLabel institutionID;
 	private JLabel institutionName;
 	private JLabel institutionfunction;
+	private JComboBox pageComboBox;
 	
 	
 	public Institution_InfoPanel(InstitutionVO institutionVO){
@@ -54,7 +63,7 @@ public class Institution_InfoPanel {
 	public void initial(){
 		// 设置标题
 		frame.setUndecorated(true);
-		frame.setSize(WIDTH, HEIGHT);
+		frame.setSize(850, 646);
 		// 不允许用户改变窗口大小
 		frame.setResizable(false);
 		// 获得屏幕大小
@@ -66,30 +75,34 @@ public class Institution_InfoPanel {
 
 		frame.setLocation(x, y);
 		// 设置默认panel
-		mainPanel.setLayout(null);
-		mainPanel.setBounds(0, 0, WIDTH, HEIGHT);
+		this.setLayout(null);
 		
+		imageLabel.setIcon(bkgImg);
+        imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 		
+        this.add(institutionID);
+        this.add(institutionName);
+        this.add(institutionfunction);
+        this.add(confirmButton);
+        this.add(deleteButton);
+        this.add(imageLabel);
+        this.setOpaque(false);
 		
-		mainPanel.add(institutionID);
-		mainPanel.add(institutionName);
-		mainPanel.add(institutionfunction);
-		mainPanel.add(confirmButton);
-		mainPanel.add(deleteButton);
-		
-		frame.setContentPane(mainPanel);
+		frame.setContentPane(this);
 		frame.setVisible(true);
 		
 	}
 	
 	public void componentsInstantiation(){
 		frame = new JFrame();
-		mainPanel = new MainPanel();
+		imageLabel = new JLabel();
+		bkgImg = new ImageIcon("images/institution_InfoBG.png");
 		institutionID = new JLabel();
 		institutionName = new JLabel();
 		institutionfunction = new JLabel();
-		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 450, 220,false);
-		deleteButton = new MyButton(DELETE_ICON, DELETEENTER_ICON, 350, 220,false);
+		pageComboBox = new JComboBox();
+		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 480, coordinate_Y + 220,false);
+		deleteButton = new MyButton(DELETE_ICON, DELETEENTER_ICON, coordinate_X + 400, coordinate_Y + 220,false);
 		
 		
 	}
@@ -97,14 +110,15 @@ public class Institution_InfoPanel {
 		institutionID = new JLabel(String.valueOf(institutionVO.getInstitutionID()));
 		institutionName = new JLabel(institutionVO.getInstitutionName());
 		institutionfunction = new JLabel(institutionVO.getFunction());
+//		staffGroup = new StaffGroup(institutionVO.getStaff(), 5, coordinate_X + 90, coordinate_Y + 300);
 		
-		institutionID.setBounds(x, y, w, h);
+		institutionID.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
 		institutionID.setFont(myFont);
 		institutionID.setForeground(Color.WHITE);
-		institutionName.setBounds(x, y + linesp, w, h);
+		institutionName.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
 		institutionName.setFont(myFont);
 		institutionName.setForeground(Color.WHITE);
-		institutionfunction.setBounds(x + 20, y + linesp * 2 + 2, w , h);
+		institutionfunction.setBounds(coordinate_X + x + 20, coordinate_Y + y + linesp * 2 + 2, w , h);
 		institutionfunction.setFont(myFont);
 		institutionfunction.setForeground(Color.WHITE);
 		

@@ -11,7 +11,6 @@ import src.vo.UserVO;
 
 public class StaffGroup {
 	
-	
 	private ArrayList<StaffInfoVO> staffs;
     private int num; // textÐÐÊý
     private int page;  // Ò³Êý
@@ -56,8 +55,8 @@ public class StaffGroup {
             JLabel name = new JLabel(staffs.get(i).getStaffName());
 
             ID.setBounds(x, y + (i - start) * height, 80, height);
-            name.setBounds(x + 185, y + (i - start) * height, 80, height);
-            position.setBounds(x + 360, y + (i - start) * height, 80, height);
+            name.setBounds(x + 163, y + (i - start) * height, 80, height);
+            position.setBounds(x + 315, y + (i - start) * height, 80, height);
 
             presentStaffs[i - start][0] = ID;
             presentStaffs[i - start][1] = name;

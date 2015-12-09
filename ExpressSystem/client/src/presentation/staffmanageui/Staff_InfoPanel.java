@@ -8,12 +8,13 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import src.presentation.util.MyButton;
 import src.vo.StaffInfoVO;
 import src.vo.UserVO;
 
-public class Staff_InfoPanel {
+public class Staff_InfoPanel extends JPanel{
 	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
@@ -23,6 +24,9 @@ public class Staff_InfoPanel {
 	static final int h = 30;
 	static final int linesp = 49;
 	static final int columnsp = 250;
+	static final int coordinate_X = 150;
+	static final int coordinate_Y = 90;
+	
 	Font myFont = new Font("Œ¢»Ì—≈∫⁄", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
@@ -33,10 +37,12 @@ public class Staff_InfoPanel {
 	StaffInfoVO staffInfoVO;
 
 	JFrame frame;
-	MainPanel panel;
 	
 	MyButton confirmButton;
 	MyButton deleteButton;
+	
+	JLabel imageLabel;
+    ImageIcon bkgImg;
 	
 	private	JLabel ID;
 	private	JLabel account;
@@ -63,9 +69,10 @@ public class Staff_InfoPanel {
 	
 	public void componentsInstantiation(){
 		frame = new JFrame();
-		panel = new MainPanel();
-		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 450, 480,false);
-		deleteButton = new MyButton(DELETE_ICON, DELETEENTER_ICON, 350, 480,false);
+		imageLabel = new JLabel();
+		bkgImg = new ImageIcon("images/staff_InfoBG.png");
+		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480,false);
+		deleteButton = new MyButton(DELETE_ICON, DELETEENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
 	}
 	
 	public void initial(){
@@ -84,21 +91,24 @@ public class Staff_InfoPanel {
 		frame.setLocation(x, y);
 		
 		// …Ë÷√ƒ¨»œpanel
-		panel.setLayout(null);
-		panel.setBounds(0, 0, WIDTH, HEIGHT);
+		this.setLayout(null);
+
+		imageLabel.setIcon(bkgImg);
+        imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 		
+        this.add(confirmButton);
+        this.add(deleteButton);
+        this.add(ID);
+        this.add(account);
+        this.add(password);
+        this.add(name);
+        this.add(position);
+        this.add(city);
+        this.add(businessHall);
+        this.add(imageLabel);
+        this.setOpaque(false);
 		
-		panel.add(confirmButton);
-		panel.add(deleteButton);
-		panel.add(ID);
-		panel.add(account);
-		panel.add(password);
-		panel.add(name);
-		panel.add(position);
-		panel.add(city);
-		panel.add(businessHall);
-		
-		frame.setContentPane(panel);
+		frame.setContentPane(this);
 		frame.setVisible(true);
 		
 		
@@ -113,13 +123,13 @@ public class Staff_InfoPanel {
 		city = new JLabel(staffInfoVO.getCity());
 		businessHall = new JLabel(staffInfoVO.getBusinessHall());
 				
-		name.setBounds(x, y, w, h);
-		position.setBounds(x + columnsp, y, w, h);
-		ID.setBounds(x, y + linesp, w, h);
-		account.setBounds(x, y + linesp * 2, w, h);
-		password.setBounds(x + columnsp, y + linesp * 2, w, h);
-		city.setBounds(x, y + linesp * 3 , w, h);
-		businessHall.setBounds(x + columnsp + 20, y + linesp * 3, w, h);
+		name.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
+		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y, w, h);
+		ID.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
+		account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
+		password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
+		city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3 , w, h);
+		businessHall.setBounds(coordinate_X + x + columnsp + 20, coordinate_Y + y + linesp * 3, w, h);
 				
 		name.setFont(myFont);
 		name.setForeground(Color.WHITE);

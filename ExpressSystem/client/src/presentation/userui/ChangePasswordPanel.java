@@ -29,6 +29,8 @@ public class ChangePasswordPanel extends JPanel{
 	static final int w = 200;
 	static final int h = 16;
 	static final int linesp = 61;
+	static final int coordinate_X = 150;
+	static final int coordinate_Y = 90;
 	
 	
 	private static final ImageIcon CANCEL_ICON= new ImageIcon("images/cancel.png");
@@ -43,7 +45,9 @@ public class ChangePasswordPanel extends JPanel{
 	MyButton confirmButton;
 	MyButton cancelButton;
 	
-	
+	JLabel imageLabel;
+    ImageIcon bkgImg;
+    
 	UserVO userVO;
 	User user = new User(null);
 	LogIn logIn = new LogIn(user);
@@ -62,31 +66,35 @@ public class ChangePasswordPanel extends JPanel{
 		
 	}
 	
-	public void paintComponent(Graphics g){
-		
-		Image image = new ImageIcon("images/password_BG.png").getImage();
-		
-		g.drawImage(image,0,0,this);
-		
-	}
+//	public void paintComponent(Graphics g){
+//		
+//		Image image = new ImageIcon("images/password_BG.png").getImage();
+//		
+//		g.drawImage(image,0,0,this);
+//		
+//	}
 	
 	public void componentsInstantiation(){
 //		frame = new JFrame();
+		bkgImg = new ImageIcon("images/password_BG.png");
+		imageLabel = new JLabel();
 		oldpassField = new JPasswordField();
 		newpassField = new JPasswordField();
 		confirmField = new JPasswordField();
-		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 350, 480,false);
-		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, 450, 480,false);
+		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
+		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 450, coordinate_Y + 480,false);
 		
 	}
 
 	public void initial(){
-		this.setBounds(0, 0, WIDTH, HEIGHT);
 		this.setLayout(null);
 		
-		oldpassField.setBounds(x, y, w, h);
-		newpassField.setBounds(x, y + linesp * 2, w, h);
-		confirmField.setBounds(x + 10, y + linesp * 4, w, h);
+		imageLabel.setIcon(bkgImg);
+        imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
+		
+		oldpassField.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
+		newpassField.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
+		confirmField.setBounds(coordinate_X + x + 10, coordinate_Y + y + linesp * 4, w, h);
 		
 		
 		this.add(oldpassField);
@@ -94,6 +102,8 @@ public class ChangePasswordPanel extends JPanel{
 		this.add(confirmField);
 		this.add(confirmButton);
 		this.add(cancelButton);
+		this.add(imageLabel);
+		this.setOpaque(false);
 		
 		
 	}

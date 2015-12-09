@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 import src.presentation.util.MyButton;
 
-public class AddStaffPanel{
+public class AddStaffPanel extends JPanel{
 
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
@@ -23,6 +23,8 @@ public class AddStaffPanel{
 	static final int h = 16;
 	static final int linesp = 49;
 	static final int columnsp = 250;
+	static final int coordinate_X = 150;
+	static final int coordinate_Y = 90;
 	
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
@@ -38,6 +40,9 @@ public class AddStaffPanel{
 	private	JTextField city;
 	private	JTextField businessHall;
 	
+	JLabel imageLabel;
+    ImageIcon bkgImg;
+	
 	long staffID;
 	long staffAccount;
 	String staffPassword;
@@ -48,7 +53,6 @@ public class AddStaffPanel{
 	
 	MyButton cancelButton;
 	MyButton confirmButton;
-	MainPanel mainPanel;
 	StaffListPanel staffManagePanel;
 	
 	public AddStaffPanel(){
@@ -77,38 +81,43 @@ public class AddStaffPanel{
 		frame.setLocation(coo_x, coo_y);
 				
 		// …Ë÷√ƒ¨»œpanel
-		mainPanel.setBounds(0, 0, WIDTH, HEIGHT);
-		mainPanel.setLayout(null);
+		this.setLayout(null);
 		
-		name.setBounds(x, y, w, h);
-		position.setBounds(x + columnsp, y, w, h);
-		ID.setBounds(x, y + linesp, w, h);
-		account.setBounds(x, y + linesp * 2, w, h);
-		password.setBounds(x + columnsp, y + linesp * 2, w, h);
-		city.setBounds(x, y + linesp * 3, w, h);
-		businessHall.setBounds(x + columnsp + 13, y + linesp * 3, w, h);
+		imageLabel.setIcon(bkgImg);
+        imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
+		
+		name.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
+		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y, w, h);
+		ID.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
+		account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
+		password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
+		city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3, w, h);
+		businessHall.setBounds(coordinate_X + x + columnsp + 13, coordinate_Y + y + linesp * 3, w, h);
 		
 		
-		mainPanel.add(confirmButton);
-		mainPanel.add(cancelButton);
-		mainPanel.add(ID);
-		mainPanel.add(account);
-		mainPanel.add(name);
-		mainPanel.add(password);
-		mainPanel.add(position);
-		mainPanel.add(city);
-		mainPanel.add(businessHall);
+		this.add(confirmButton);
+		this.add(cancelButton);
+		this.add(ID);
+		this.add(account);
+		this.add(name);
+		this.add(password);
+		this.add(position);
+		this.add(city);
+		this.add(businessHall);
+		this.add(imageLabel);
+		this.setOpaque(false);
 		
-		frame.add(mainPanel);
+		frame.add(this);
 		frame.setVisible(true);
 		
 	}
 	
 	public void componentsInstantiation(){
 		frame = new JFrame();
-		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 450, 480, false);
-		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, 350, 480, false);
-		mainPanel = new MainPanel();
+		imageLabel = new JLabel();
+		bkgImg = new ImageIcon("images/staff_InfoBG.png");
+		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480, false);
+		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 350, coordinate_Y + 480, false);
 		ID = new JTextField();
 		account = new JTextField();
 		password = new JTextField();
