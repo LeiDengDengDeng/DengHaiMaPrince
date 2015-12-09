@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c61c9de-ceaa-429a-9229-c8641526a892" name="Default" comment="">
-      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\client\src\main\TestRMIMain.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/LeftButtonGroup.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/LeftButtonGroup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/accountbl/Account.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/accountbl/Account.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/userui/ChangePasswordPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/userui/ChangePasswordPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/LogInPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/LogInPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/MainFrame.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/util/MyButton.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/util/MyButton.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/util/MyLabel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/util/MyLabel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/PanelController.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/PanelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/PaymentSheetPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/PaymentSheetPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/ReceivingSheetPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/ReceivingSheetPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/sheetbl/Sheet.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/sheetbl/Sheet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/pom.xml" afterPath="$PROJECT_DIR$/../ExpressSystem/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ExpressSystem/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/util/TipDialog.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/util/TipDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account.ser" afterPath="$PROJECT_DIR$/account.ser" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/paymentSheet.ser" afterPath="$PROJECT_DIR$/paymentSheet.ser" />
     </list>
     <ignored path="ExpressSystemServer.iws" />
     <ignored path=".idea/workspace.xml" />

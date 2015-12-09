@@ -115,7 +115,7 @@ public class Account implements AccountBLService {
 			AccountPO account = accountData.find(ID);
 			double amount=account.getAmount()-difference;
 			account.setAmount(amount);
-//			accountData.update(account);
+			accountData.update(account);
 			System.out.println("update");
 
 		} catch (RemoteException e) {

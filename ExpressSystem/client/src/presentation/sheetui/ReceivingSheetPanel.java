@@ -99,10 +99,11 @@ public class ReceivingSheetPanel extends JPanel implements SheetPanel {
             vo = (OrderSheetVO) orderSheetBL.find(Long.parseLong(group.getNumberString()));
             if (vo == null) {
                 System.out.println("未找到对应单号");
+                sendingInfo[0].setText("");
                 sendingInfo[1].setText("");
                 sendingInfo[2].setText("");
                 sendingInfo[3].setText("");
-                TipDialog dialog = new TipDialog(null,"",true,"未找到对应单号");
+                TipDialog dialog = new TipDialog(null,"",true,"未找到对应单号",false);
             } else {
                 sendingInfo[0].setText(String.valueOf(vo.getCourierNumber()));
                 sendingInfo[1].setText(vo.getSenderName());

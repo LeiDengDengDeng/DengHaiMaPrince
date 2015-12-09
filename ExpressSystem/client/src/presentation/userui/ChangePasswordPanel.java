@@ -79,7 +79,7 @@ public class ChangePasswordPanel extends JPanel{
 		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, 450, 480,false);
 		
 	}
-	
+
 	public void initial(){
 		this.setBounds(0, 0, WIDTH, HEIGHT);
 		this.setLayout(null);

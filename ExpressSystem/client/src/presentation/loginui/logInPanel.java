@@ -1,9 +1,7 @@
 package src.presentation.loginui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -22,18 +20,16 @@ import src.presentation.util.MyButton;
 public class LogInPanel extends JPanel {
 
 
-    static final int WIDTH = 850;
-    static final int HEIGHT = 646;
+    Point origin;
 
     UserData_Stub data_Stub = new UserData_Stub();
     User user;
     LogIn logIn;
-    JFrame frame;
-    MyPanel myPanel;
     private static final ImageIcon CHECK_ICON = new ImageIcon("images/logIn_check.png");
     private static final ImageIcon CHECKENTER_ICON = new ImageIcon("images/logIn_checkEnter.png");
     private static final ImageIcon LOG_ICON = new ImageIcon("images/logIn_log.png");
     private static final ImageIcon LOGENTER_ICON = new ImageIcon("images/logIn_logEnter.png");
+    private static final ImageIcon backgroundImage = new ImageIcon("images/logIn_BG.png");
 
 
     MyButton checkButton;
@@ -45,11 +41,11 @@ public class LogInPanel extends JPanel {
     private String password;
 
 
-    public LogInPanel() {
+    public LogInPanel(JFrame father) {
         componentsInstantiation();
         initial();
 
-        buttonActionListener listener = new buttonActionListener();
+        MyButtonActionListener listener = new MyButtonActionListener(father);
         checkButton.addActionListener(listener);
         loginButton.addActionListener(listener);
 //		login();
@@ -57,44 +53,29 @@ public class LogInPanel extends JPanel {
     }
 
     public void componentsInstantiation() {
-        frame = new JFrame();
-        myPanel = new MyPanel();
         user = new User(null);
         logIn = new LogIn(user);
-        checkButton = new MyButton(CHECK_ICON, CHECKENTER_ICON, 370, 450, false);
-        loginButton = new MyButton(LOG_ICON, LOGENTER_ICON, 560, 450, false);
+        checkButton = new MyButton(CHECK_ICON, CHECKENTER_ICON, 80, 425, false);
+        loginButton = new MyButton(LOG_ICON, LOGENTER_ICON, 230, 425, false);
         accountField = new JTextField();
         passwordField = new JPasswordField();
     }
 
     public void initial() {
-        myPanel.setLayout(null);
-        myPanel.setOpaque(false);
+        this.setLayout(null);
+        this.setOpaque(false);
+        this.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
+        accountField.setBounds(140, 308, 190, 23);
+        passwordField.setBounds(140, 370, 190,23);
 
-        frame.setSize(WIDTH, HEIGHT);
-        frame.setLocationRelativeTo(null);
-        // 获得屏幕大小
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension screen = toolkit.getScreenSize();
-        // 设置窗体位置
-        final int x = (screen.width - WIDTH) >> 1;
-        final int y = ((screen.height - HEIGHT) >> 1) - 32;
+        this.add(accountField);
+        this.add(passwordField);
+        this.add(checkButton);
+        this.add(loginButton);
 
-        frame.setLocation(x, y);
-
-        accountField.setBounds(455, 330, 190, 20);
-        passwordField.setBounds(455, 400, 190, 20);
-
-        myPanel.add(checkButton);
-        myPanel.add(loginButton);
-        myPanel.add(accountField);
-        myPanel.add(passwordField);
-
-        frame.setContentPane(myPanel);
-        frame.setUndecorated(true);
-        frame.setVisible(true);
 
     }
+
 
     public boolean login() {
         account = Long.parseLong(accountField.getText());
@@ -107,11 +88,19 @@ public class LogInPanel extends JPanel {
 
     }
 
-    public static void main(String[] args) {
-        LogInPanel logInPanel = new LogInPanel();
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(backgroundImage.getImage(), 0, 0, null);
     }
 
-    class buttonActionListener implements ActionListener {
+    class MyButtonActionListener implements ActionListener {
+
+        JFrame father;
+
+        public MyButtonActionListener(JFrame father){
+            this.father = father;
+        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -125,12 +114,13 @@ public class LogInPanel extends JPanel {
                 ArrayList<Integer> test2 = new ArrayList<>();
                 test2.add(7);
                 test2.add(8);
-                MainFrame m = new MainFrame(test2);
-                frame.dispose();
+                MainFrame m = new MainFrame(test1);
+                father.dispose();
             }
 
         }
+//    }
+
+
     }
-
-
 }
