@@ -1,8 +1,6 @@
 package src.presentation.loginui;
 
 import com.sun.awt.AWTUtilities;
-import src.businesslogic.logbl.Log;
-import src.presentation.accountui.AccountPanel;
 
 import javax.swing.*;
 import java.awt.*;
