@@ -16,6 +16,7 @@ import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyLabel;
 import src.presentation.util.SearchButton;
+import src.presentation.util.TipDialog;
 import src.vo.OrderSheetVO;
 
 /**
@@ -48,6 +49,10 @@ public class ReceivingSheetPanel extends JPanel implements SheetPanel {
 
         imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(40, 35, bkgImg.getIconWidth(), bkgImg.getIconHeight());
+
+        name.setBounds(MARGIN_LEFT + 10, 121, 80, COMPONENT_HEIGHT);
+        dateChooser.setBounds(MARGIN_LEFT, 162, 80, COMPONENT_HEIGHT);
+        state.setBounds(MARGIN_LEFT + 230, 162, 80, COMPONENT_HEIGHT);
 
         confirmButton.addActionListener(new ConfirmButtonListener(this));
         searchButton.addActionListener(new SearchButtonListener());
@@ -92,13 +97,18 @@ public class ReceivingSheetPanel extends JPanel implements SheetPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             vo = (OrderSheetVO) orderSheetBL.find(Long.parseLong(group.getNumberString()));
-            name.setBounds(MARGIN_LEFT + 10, 121, 80, COMPONENT_HEIGHT);
-            dateChooser.setBounds(MARGIN_LEFT, 162, 80, COMPONENT_HEIGHT);
-            state.setBounds(MARGIN_LEFT + 230, 162, 80, COMPONENT_HEIGHT);
-            sendingInfo[0].setText(String.valueOf(vo.getCourierNumber()));
-            sendingInfo[1].setText(vo.getSenderName());
-            sendingInfo[2].setText(vo.getSenderAddress());
-            sendingInfo[3].setText(vo.getSenderOrganization());
+            if (vo == null) {
+                System.out.println("未找到对应单号");
+                sendingInfo[1].setText("");
+                sendingInfo[2].setText("");
+                sendingInfo[3].setText("");
+                TipDialog dialog = new TipDialog(null,"",true,"未找到对应单号");
+            } else {
+                sendingInfo[0].setText(String.valueOf(vo.getCourierNumber()));
+                sendingInfo[1].setText(vo.getSenderName());
+                sendingInfo[2].setText(vo.getSenderAddress());
+                sendingInfo[3].setText(vo.getSenderOrganization());
+            }
         }
     }
 

@@ -29,7 +29,7 @@ public class LeftButtonGroup {
         for (int i = 0; i < authority.size(); i++) {
             int count = authority.get(i);
             MyButton temp = new MyButton(new ImageIcon("images/left_" + imagePaths[count - 1] + ".png"), new ImageIcon
-                    ("images/left_" + imagePaths[count - 1] + "Clicked.png"), 0, 200 + i * 42, true);
+                    ("images/left_" + imagePaths[count - 1] + "Clicked.png"), 0, 200 + i * 44, true);
             leftButtons.add(temp);
             temp.addActionListener(new LeftButtonListener(count));
         }

@@ -52,9 +52,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame(ArrayList<Integer> authority) {
         // 登陆后设置权限，初始化左侧按钮和Panel
-        this.authority = authority;
-        leftButtonGroup = new LeftButtonGroup(this, authority);
-        controller = new PanelController(this);
+        setAuthority(authority);
 
         ButtonMouseListener closeMouseListener = new ButtonMouseListener(
                 closeClickedIcon, closeIcon);
@@ -150,5 +148,6 @@ public class MainFrame extends JFrame {
     public ArrayList<Integer> getAuthority() {
         return authority;
     }
+
 
 }

@@ -10,6 +10,7 @@ import src.businesslogic.sheetbl.OrderSheet;
 import src.businesslogic.sheetbl.PaymentSheet;
 import src.businesslogic.sheetbl.ReceivingMoneySheet;
 import src.presentation.accountui.AccountPanel;
+import src.presentation.commodityui.storageoutsheetui.StorageOutSheetPanel;
 import src.presentation.logui.CheckLogPanel;
 import src.presentation.sheetui.OrderSheetPanel;
 import src.presentation.sheetui.PaymentSheetPanel;

@@ -6,6 +6,8 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 public class MyLabel extends JLabel{
+	int fontSize = 14;
+	Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, fontSize);
 
 	public MyLabel() {
 		// TODO Auto-generated constructor stub
@@ -16,10 +18,19 @@ public class MyLabel extends JLabel{
 		super(text);
 		setStyle();
 	}
+
+	public void setFontSize(int fontSize){
+		this.fontSize = fontSize;
+	}
+
+	public void setFontColor(Color color){
+		this.setForeground(color);
+		this.repaint();
+	}
 	
-	public void setStyle(){
+	private void setStyle(){
 		this.setForeground(Color.WHITE);
-		this.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+		this.setFont(myFont);
 	}
 
 }

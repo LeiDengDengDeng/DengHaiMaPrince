@@ -23,9 +23,9 @@ import java.util.ArrayList;
 public abstract class Sheet implements SheetBLService {
     SheetDataService sheetData;
 
-    public Sheet(){
+    public Sheet() {
         try {
-            sheetData =  (SheetDataService) Naming.lookup("rmi://127.0.0.1:6600/sheetData");
+            sheetData = (SheetDataService) Naming.lookup("rmi://127.0.0.1:6600/sheetData");
         } catch (NotBoundException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -53,7 +53,7 @@ public abstract class Sheet implements SheetBLService {
     }
 
     @Override
-    public boolean modify(long ID, SheetVO vo){
+    public boolean modify(long ID, SheetVO vo) {
         SheetPO po = generatePO(vo);
         po.setID(ID);
         try {
@@ -69,8 +69,10 @@ public abstract class Sheet implements SheetBLService {
     final public SheetVO find(long ID) {
         try {
             SheetPO po = sheetData.find(ID, getType());
-            SheetVO vo = generateVO(po);
-            return vo;
+            if (po != null) {
+                SheetVO vo = generateVO(po);
+                return vo;
+            }
         } catch (RemoteException e) {
             e.printStackTrace();
         }

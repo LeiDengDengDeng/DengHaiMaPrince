@@ -12,6 +12,14 @@ public class MyButton extends JButton {
     int x;
     int y;
 
+    public MyButton(ImageIcon unclickedImage, ImageIcon clickedImage){
+        this.unclickedImage = unclickedImage;
+        this.clickedImage = clickedImage;
+        init();
+        this.addMouseListener(new ButtonMouseListener(clickedImage,
+                unclickedImage));
+    }
+
     public MyButton(ImageIcon unclickedImage, ImageIcon clickedImage, int x,
                     int y) {
         this.unclickedImage = unclickedImage;
