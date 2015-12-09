@@ -2,25 +2,26 @@ package src.businesslogic.userbl;
 
 import java.util.ArrayList;
 
+import src.businesslogicservice.userblservice.UserBLService;
 import src.vo.InitUserVO;
 import src.vo.UserVO;
 
 public class UserController {
-//	UserBLService user;
-//	
-//	public UserController(UserBLService user){
-//		this.user = user;
-//		
-//	}
-//	
+	UserBLService user;
+	
+	public UserController(UserBLService user){
+		this.user = user;
+		
+	}
 
-//	public ResultMessage logIn(long UserId,String password);
 	
 	public UserVO getPersonalInfo(long UserId){
-		return null;
+		
+		return user.getPersonalInfo(UserId);
 	}
 	
-	public void changePassword(String password){
+	public void changePassword(String password,long UserId){
+		user.changePassword(password, UserId);
 		
 	}
 	
@@ -33,6 +34,7 @@ public class UserController {
 //	}
 	
 	public void changeInfo(UserVO userVO){
+		user.changeInfo(userVO);
 		
 	}
 	

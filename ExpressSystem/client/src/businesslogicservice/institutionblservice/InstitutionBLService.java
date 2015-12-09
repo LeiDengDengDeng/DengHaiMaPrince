@@ -33,7 +33,7 @@ public interface InstitutionBLService {
 	 * @param Institution
 	 *  
 	 */
-	public void addInstitution(InstitutionVO Institution);
+	public boolean addInstitution(InstitutionVO Institution);
 	
 //	/**
 //	 * 更改某个人员的职位
@@ -54,11 +54,11 @@ public interface InstitutionBLService {
 	 * @param InstitutionId
 	 * 
 	 */
-	public void deleteInstitution(long InstitutionId);
+	public boolean deleteInstitution(long InstitutionId);
 	
 	/**
 	 * 结束管理
 	 */
-	public void endManagement();
+	public boolean endManagement();
 	
 }

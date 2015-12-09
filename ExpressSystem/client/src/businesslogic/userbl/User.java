@@ -57,23 +57,29 @@ public class User implements UserBLService{
 	
 
 	@Override
-	public void changePassword(String password,long UserId) {
+	public boolean changePassword(String password,long UserId) {
 		// TODO Auto-generated method stub
-		UserPO userPO = null;
-		try {
-			userPO = userData.find(UserId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		userPO.setMyPassword(password);
-//		PasswordPanel passwordPanel = new PasswordPanel(userPO.getMyPassword(),
-//				password, password);
-		try {
-			userData.update(userPO);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(password == null) 
+			return false;
+		
+		else{
+			UserPO userPO = null;
+			try {
+				userPO = userData.find(UserId);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			userPO.setMyPassword(password);
+//			PasswordPanel passwordPanel = new PasswordPanel(userPO.getMyPassword(),
+//					password, password);
+			try {
+				userData.update(userPO);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return true;
 		}
 		
 	}
@@ -101,7 +107,7 @@ public class User implements UserBLService{
 //	}
 
 	@Override
-	public void changeInfo(UserVO userVO) {
+	public boolean changeInfo(UserVO userVO) {
 		// TODO Auto-generated method stub
 		UserPO userPO = new UserPO(userVO.getpersonalID(), userVO.getpersonalAccount(),
 				userVO.getMyPassword(),	userVO.getpersonalName(),
@@ -116,11 +122,11 @@ public class User implements UserBLService{
 			e.printStackTrace();
 		}
 		
-		
+		return true;
 	}
 
 	@Override
-	public void endManagement() {
+	public boolean endManagement() {
 		// TODO Auto-generated method stub
 		try {
 			userData.finish();
@@ -128,11 +134,11 @@ public class User implements UserBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return true;
 	}
 
 	@Override
-	public void initial(ArrayList<InitUserVO> User) {
+	public boolean initial(ArrayList<InitUserVO> User) {
 		// TODO Auto-generated method stub
 		ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
 		for(int i = 0;i < User.size();i++){
@@ -146,6 +152,7 @@ public class User implements UserBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return true;
 	}
 
 

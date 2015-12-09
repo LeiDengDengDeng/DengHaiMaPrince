@@ -1,5 +1,7 @@
 package src.presentation.staffmanageui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,29 +13,23 @@ import javax.swing.JTextField;
 
 import src.presentation.util.MyButton;
 
-public class AddStaffPanel extends JPanel{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class AddStaffPanel{
 
-	private final static int WIDTH = 850;
-	private final static int HEIGHT = 646;
-	static final int x = 315;
-	static final int y = 134;
-	static final int w = 150;
-	static final int h = 18;
-	static final int linesp = 53;
+	static final int WIDTH = 665;
+	static final int HEIGHT = 601;
+	static final int x = 95;
+	static final int y = 64;
+	static final int w = 170;
+	static final int h = 16;
+	static final int linesp = 49;
 	static final int columnsp = 250;
 	
-	private final static ImageIcon STAFFINFOHEAD_ICON = new ImageIcon("images/staff_InfoHead.png");
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
 	private final static ImageIcon CANCEL_ICON = new ImageIcon("images/cancel.png");
 	private final static ImageIcon CANCELENTER_ICON = new ImageIcon("images/cancel_Enter.png");
 
 	private JFrame frame;
-	private JLabel head;
 	private	JTextField ID;
 	private	JTextField account;
 	private	JTextField password;
@@ -66,12 +62,23 @@ public class AddStaffPanel extends JPanel{
 	
 	
 	public void initial(){
+		// 设置标题
+		frame.setUndecorated(true);
+		frame.setSize(850, 646);
+		// 不允许用户改变窗口大小
+		frame.setResizable(false);
+		// 获得屏幕大小
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Dimension screen = toolkit.getScreenSize();
+		// 设置窗体位置
+		final int coo_x = (screen.width - WIDTH) >> 1;
+		final int coo_y = ((screen.height - HEIGHT) >> 1) - 32;
+
+		frame.setLocation(coo_x, coo_y);
+				
+		// 设置默认panel
 		mainPanel.setBounds(0, 0, WIDTH, HEIGHT);
 		mainPanel.setLayout(null);
-		
-		head.setIcon(STAFFINFOHEAD_ICON);
-		head.setBounds(0, 0, 
-				STAFFINFOHEAD_ICON.getIconWidth(), STAFFINFOHEAD_ICON.getIconHeight());
 		
 		name.setBounds(x, y, w, h);
 		position.setBounds(x + columnsp, y, w, h);
@@ -84,7 +91,6 @@ public class AddStaffPanel extends JPanel{
 		
 		mainPanel.add(confirmButton);
 		mainPanel.add(cancelButton);
-		mainPanel.add(head);
 		mainPanel.add(ID);
 		mainPanel.add(account);
 		mainPanel.add(name);
@@ -100,9 +106,8 @@ public class AddStaffPanel extends JPanel{
 	
 	public void componentsInstantiation(){
 		frame = new JFrame();
-		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 610, 580);
-		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, 700, 580);
-		head = new JLabel();
+		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 450, 480, false);
+		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, 350, 480, false);
 		mainPanel = new MainPanel();
 		ID = new JTextField();
 		account = new JTextField();
@@ -143,7 +148,7 @@ public class AddStaffPanel extends JPanel{
 		           
 		        	   
 
-		            container.repaint();
+//		            container.repaint();
 		        }
 		    }
 }

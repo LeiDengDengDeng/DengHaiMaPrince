@@ -15,7 +15,7 @@ public class Salary implements SalaryBLService{
 	}
 
 	@Override
-	public void changeSalary(long StaffId, SalaryVO salary) {
+	public boolean changeSalary(long StaffId, SalaryVO salary) {
 		// TODO Auto-generated method stub
 		SalaryPO salaryPO = new SalaryPO(salary.getBasic());
 		salaryPO.setCommission(salary.getCommission());
@@ -23,6 +23,8 @@ public class Salary implements SalaryBLService{
 		UserVO userVO = userBL.getPersonalInfo(StaffId);
 		userVO.setSalary(salaryPO);
 		userBL.changeInfo(userVO);	
+		
+		return true;
 		
 	}
 	

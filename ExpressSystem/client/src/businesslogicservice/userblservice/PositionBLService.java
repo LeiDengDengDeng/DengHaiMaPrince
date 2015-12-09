@@ -25,14 +25,14 @@ public interface PositionBLService {
 	 * @param position, StaffId
 	 * @return
 	 */
-	public void changeStaffPosition(String position, long StaffId);
+	public boolean changeStaffPosition(String position, long StaffId);
 	
 	/**
 	 * 设置某个人的城市
 	 * @param city, StaffId
 	 * @return
 	 */
-	public void setCity(String city, long StaffId);
+	public boolean setCity(String city, long StaffId);
 	
 	
 	/**
@@ -40,5 +40,5 @@ public interface PositionBLService {
 	 * @param businessHall, StaffId
 	 * @return
 	 */
-	public void setBusinessHall(String businessHall, long StaffId);
+	public boolean setBusinessHall(String businessHall, long StaffId);
 }

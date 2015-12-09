@@ -16,5 +16,5 @@ public interface SalaryBLService {
 	 * @param StaffId,salary
 	 * 
 	 */
-	public void changeSalary(long StaffId,SalaryVO salary);
+	public boolean changeSalary(long StaffId,SalaryVO salary);
 }

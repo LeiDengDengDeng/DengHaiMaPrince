@@ -3,6 +3,8 @@ package src.presentation.userui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,19 +21,24 @@ import src.vo.UserVO;
 
 
 public class UserPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	static final int WIDTH = 850;
-	static final int HEIGHT = 646;
-	static final int x = 315;
-	static final int y = 130;
+	static final int WIDTH = 665;
+	static final int HEIGHT = 601;
+	static final int x = 80;
+	static final int y = 40;
 	static final int w = 200;
 	static final int h = 30;
 	static final int linesp = 53;
 	static final int columnsp = 250;
+	static final int coordinate_X = 300;
+	static final int coordinate_Y = 130;
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
-	private static final ImageIcon HEAD_ICON = new ImageIcon("images/user_InfoHead.png");
 	private static final ImageIcon CHANGE_ICON = new ImageIcon("images/user_InfoChange.png");
 	private static final ImageIcon CHANGEENTER_ICON = new ImageIcon("images/user_InfoChangeEnter.png");
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
@@ -39,11 +46,9 @@ public class UserPanel extends JPanel{
 
 	
 	JFrame frame;
-	MyPanel myPanel;
 	UserVO userVO;
 	MyButton change;
 	MyButton confirm;
-	private JLabel headJLabel;
 	private	JLabel ID;
 	private	JLabel account;
 	private	JLabel password;
@@ -64,11 +69,19 @@ public class UserPanel extends JPanel{
         confirm.addActionListener(listener);
 	}
 	
+	public void paintComponent(Graphics g){
+		
+		Image image = new ImageIcon("images/user_InfoBG.png").getImage();
+		
+		g.drawImage(image,0,0,this);
+		
+	}
+	
 	
 	public void initial(){
 		// 设置标题
 		frame.setUndecorated(true);
-		frame.setSize(WIDTH, HEIGHT);
+		frame.setSize(850, 646);
 		// 不允许用户改变窗口大小
 		frame.setResizable(false);
 		// 获得屏幕大小
@@ -79,26 +92,25 @@ public class UserPanel extends JPanel{
 		final int y = ((screen.height - HEIGHT) >> 1) - 32;
 
 		frame.setLocation(x, y);
+		
+		frame.setLayout(null);
 		// 设置默认panel
-		myPanel.setLayout(null);
-		myPanel.setBounds(0, 0, WIDTH, HEIGHT);
+		this.setLayout(null);
+		this.setBounds(0, 0, WIDTH, HEIGHT);
 		
-		headJLabel.setIcon(HEAD_ICON);
-		headJLabel.setBounds(0, 0, HEAD_ICON.getIconWidth(), HEAD_ICON.getIconHeight());
 		
-		myPanel.add(headJLabel);
-		myPanel.add(ID);
-		myPanel.add(account);
-		myPanel.add(password);
-		myPanel.add(name);
-		myPanel.add(position);
-		myPanel.add(city);
-		myPanel.add(businessHall);
-		myPanel.add(salary);
-		myPanel.add(change);
-		myPanel.add(confirm);
+		this.add(ID);
+		this.add(account);
+		this.add(password);
+		this.add(name);
+		this.add(position);
+		this.add(city);
+		this.add(businessHall);
+		this.add(salary);
+		this.add(change);
+		this.add(confirm);
 		
-		frame.setContentPane(myPanel);
+		frame.setContentPane(this);
 		frame.setVisible(true);
 		
 		
@@ -107,10 +119,8 @@ public class UserPanel extends JPanel{
 	
 	public void componentsInstantiation(){
 		frame = new JFrame();
-		myPanel = new MyPanel();
-		headJLabel = new JLabel();
-		change = new MyButton(CHANGE_ICON, CHANGEENTER_ICON, 610, 580,false);
-		confirm = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 700, 580,false);
+		change = new MyButton(CHANGE_ICON, CHANGEENTER_ICON, 350, 480,false);
+		confirm = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 450, 480,false);
 
 	}
 	
@@ -168,8 +178,8 @@ public class UserPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == change){
-		        		ChangePasswordPanel change = new ChangePasswordPanel();
-		        		container.frame.setContentPane(change.myPanel);
+		        		ChangePasswordPanel change = new ChangePasswordPanel(userVO);
+		        		container.frame.setContentPane(change);
 		        		
 		        	}
 		        	else if (e.getSource() == confirm) {

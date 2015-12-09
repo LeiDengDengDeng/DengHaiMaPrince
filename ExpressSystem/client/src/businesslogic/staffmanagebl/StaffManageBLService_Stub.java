@@ -45,30 +45,34 @@ public class StaffManageBLService_Stub implements StaffManageBLService{
 	}
 
 	@Override
-	public void changeAuthority(ArrayList<Integer> authority, String position) {
+	public boolean changeAuthority(ArrayList<Integer> authority, String position) {
 		// TODO Auto-generated method stub
 		System.out.println("change succeed!");
+		return true;
 		
 	}
 
 	@Override
-	public void addStaffInfo(StaffInfoVO StaffInfo) {
+	public boolean addStaffInfo(StaffInfoVO StaffInfo) {
 		// TODO Auto-generated method stub
 		System.out.println("add succeed!");
+		return true;
 		
 	}
 
 	@Override
-	public void deleteStaff(long StaffId) {
+	public boolean deleteStaff(long StaffId) {
 		// TODO Auto-generated method stub
 		System.out.println("delete succeed!");
+		return true;
 		
 	}
 
 	@Override
-	public void endManagement() {
+	public boolean endManagement() {
 		// TODO Auto-generated method stub
 		System.out.println("End the management!");
+		return true;
 		
 	}
 

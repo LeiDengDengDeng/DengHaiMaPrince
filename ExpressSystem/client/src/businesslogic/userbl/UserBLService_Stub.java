@@ -40,15 +40,19 @@ public class UserBLService_Stub implements UserBLService{
 	}
 
 	@Override
-	public void changePassword(String password,long UserId) {
+	public boolean changePassword(String password,long UserId) {
 		// TODO Auto-generated method stub
 		System.out.println("Password has been changed!");
+		
+		return true;
 	}
 
 	@Override
-	public void endManagement() {
+	public boolean endManagement() {
 		// TODO Auto-generated method stub
 		System.out.println("End the management!");
+		
+		return true;
 	}
 
 //	@Override
@@ -59,16 +63,18 @@ public class UserBLService_Stub implements UserBLService{
 //	}
 
 	@Override
-	public void changeInfo(UserVO userVO) {
+	public boolean changeInfo(UserVO userVO) {
 		// TODO Auto-generated method stub
 		System.out.println("change information successfully!");
+		return true;
 		
 	}
 
 	@Override
-	public void initial(ArrayList<InitUserVO> User) {
+	public boolean initial(ArrayList<InitUserVO> User) {
 		// TODO Auto-generated method stub
 		System.out.println("initialize successfully!");
+		return true;
 		
 	}
 

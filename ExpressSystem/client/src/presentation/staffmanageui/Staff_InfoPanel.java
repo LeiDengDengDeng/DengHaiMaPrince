@@ -15,28 +15,29 @@ import src.vo.UserVO;
 
 public class Staff_InfoPanel {
 	
-	private final static int WIDTH = 850;
-	private final static int HEIGHT = 646;
-	static final int x = 315;
-	static final int y = 130;
+	static final int WIDTH = 665;
+	static final int HEIGHT = 601;
+	static final int x = 95;
+	static final int y = 58;
 	static final int w = 200;
 	static final int h = 30;
-	static final int linesp = 53;
+	static final int linesp = 49;
 	static final int columnsp = 250;
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
-	private final static ImageIcon STAFFINFOHEAD_ICON = new ImageIcon("images/staff_InfoHead.png");
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
-	private static final ImageIcon DELETE_ICON = new ImageIcon("images/删除.png");
-	private static final ImageIcon DELETEENTER_ICON = new ImageIcon("images/删除1.png");
+	private static final ImageIcon DELETE_ICON = new ImageIcon("images/delete.png");
+	private static final ImageIcon DELETEENTER_ICON = new ImageIcon("images/delete_Enter.png");
 	
+	StaffInfoVO staffInfoVO;
+
 	JFrame frame;
 	MainPanel panel;
+	
 	MyButton confirmButton;
 	MyButton deleteButton;
-	StaffInfoVO staffInfoVO;
-	private JLabel head;
+	
 	private	JLabel ID;
 	private	JLabel account;
 	private	JLabel password;
@@ -63,15 +64,14 @@ public class Staff_InfoPanel {
 	public void componentsInstantiation(){
 		frame = new JFrame();
 		panel = new MainPanel();
-		head = new JLabel();
-		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 700, 580,false);
-		deleteButton = new MyButton(DELETE_ICON, DELETEENTER_ICON, 610, 580,false);
+		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, 450, 480,false);
+		deleteButton = new MyButton(DELETE_ICON, DELETEENTER_ICON, 350, 480,false);
 	}
 	
 	public void initial(){
 		// 设置标题
 		frame.setUndecorated(true);
-		frame.setSize(WIDTH, HEIGHT);
+		frame.setSize(850, 646);
 		// 不允许用户改变窗口大小
 		frame.setResizable(false);
 		// 获得屏幕大小
@@ -82,15 +82,12 @@ public class Staff_InfoPanel {
 		final int y = ((screen.height - HEIGHT) >> 1) - 32;
 
 		frame.setLocation(x, y);
+		
 		// 设置默认panel
-		panel.setBounds(0, 0, WIDTH, HEIGHT);
 		panel.setLayout(null);
+		panel.setBounds(0, 0, WIDTH, HEIGHT);
 		
-		head.setIcon(STAFFINFOHEAD_ICON);
-		head.setBounds(0, 0, 
-				STAFFINFOHEAD_ICON.getIconWidth(), STAFFINFOHEAD_ICON.getIconHeight());
 		
-		panel.add(head);
 		panel.add(confirmButton);
 		panel.add(deleteButton);
 		panel.add(ID);
@@ -121,8 +118,8 @@ public class Staff_InfoPanel {
 		ID.setBounds(x, y + linesp, w, h);
 		account.setBounds(x, y + linesp * 2, w, h);
 		password.setBounds(x + columnsp, y + linesp * 2, w, h);
-		city.setBounds(x, y + linesp * 3 - 1, w, h);
-		businessHall.setBounds(x + columnsp + 20, y + linesp * 3 - 1, w, h);
+		city.setBounds(x, y + linesp * 3 , w, h);
+		businessHall.setBounds(x + columnsp + 20, y + linesp * 3, w, h);
 				
 		name.setFont(myFont);
 		name.setForeground(Color.WHITE);

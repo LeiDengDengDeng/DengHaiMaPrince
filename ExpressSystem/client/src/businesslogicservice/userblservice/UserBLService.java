@@ -29,14 +29,14 @@ public interface UserBLService {
 	 * @param password
 	 * 
 	 */
-	public void changePassword(String password,long UserId);
+	public boolean changePassword(String password,long UserId);
 	
 	/**
 	 * 初始化
 	 * @param User
 	 * 
 	 */
-	public void initial(ArrayList<InitUserVO> User);
+	public boolean initial(ArrayList<InitUserVO> User);
 	
 //	/**
 //	 * 获得仓库管理对应的城市
@@ -51,14 +51,14 @@ public interface UserBLService {
 	 * @param userVO
 	 *  
 	 */
-	public void changeInfo(UserVO userVO); 
+	public boolean changeInfo(UserVO userVO); 
 	
 	
 	/**
 	 * 结束管理
 	 * 
 	 */
-	public void endManagement();
+	public boolean endManagement();
 	
 	
 }

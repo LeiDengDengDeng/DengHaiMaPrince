@@ -35,21 +35,21 @@ public interface StaffManageBLService {
 	 * @param authority,position
 	 * 
 	 */
-	public void changeAuthority(ArrayList<Integer> authority,String position);
+	public boolean changeAuthority(ArrayList<Integer> authority,String position);
 	
 	/**
 	 * 增加一个员工帐号
 	 * @param StaffInfo
 	 * 
 	 */
-	public void addStaffInfo(StaffInfoVO StaffInfo);
+	public boolean addStaffInfo(StaffInfoVO StaffInfo);
 	
 	/**
 	 * 删除一个员工帐号
 	 * @param StaffId
 	 * 
 	 */
-	public void deleteStaff(long StaffId);
+	public boolean deleteStaff(long StaffId);
 	
 
 	
@@ -57,5 +57,5 @@ public interface StaffManageBLService {
 	 * 结束管理
 	 * 
 	 */
-	public void endManagement();
+	public boolean endManagement();
 }

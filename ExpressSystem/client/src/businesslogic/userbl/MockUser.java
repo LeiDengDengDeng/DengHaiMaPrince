@@ -17,11 +17,13 @@ public MockUser(Log log) {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void changeInfo(UserVO userVO){
+	public boolean changeInfo(UserVO userVO){
 		System.out.println("User information has been updated!!");
+		return true;
 	}
-	public void initial(ArrayList<InitUserVO> User){
+	public boolean initial(ArrayList<InitUserVO> User){
 		System.out.println("initialize successfully!!");
+		return true;
 	}
 
 }

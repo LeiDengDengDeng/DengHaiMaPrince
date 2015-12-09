@@ -17,18 +17,17 @@ import javax.swing.JPanel;
 
 import src.po.SalaryPO;
 import src.presentation.logui.CheckLogPanel;
-import src.presentation.userui.MainPanel;
 import src.presentation.util.MyButton;
 import src.vo.StaffInfoVO;
 import src.vo.UserVO;
 
 public class StaffListPanel extends JPanel{
 	
-	static final int WIDTH = 850;
-	static final int HEIGHT = 646;
+	static final int WIDTH = 665;
+	static final int HEIGHT = 601;
 //	private static final ImageIcon SEARCH = new ImageIcon("images/search.png");
 //	private static final ImageIcon SEARCHENTER = new ImageIcon("images/searchClicked.png");
-	private static final ImageIcon IMAGE_LABEL_ICON = new ImageIcon("images/staffManage_head.png");
+//	private static final ImageIcon IMAGE_LABEL_ICON = new ImageIcon("images/staffManage_head.png");
 	
 	private static final int Line_Num = 16;
 	
@@ -51,7 +50,7 @@ public class StaffListPanel extends JPanel{
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
         nextPageButton.addActionListener(listener);
-        pageComboBox.setBounds(540, 504, 44, 23);
+        pageComboBox.setBounds(480, 490, 44, 23);
         setPageComboBox();
         pageComboBox.addActionListener(listener);
         
@@ -63,11 +62,6 @@ public class StaffListPanel extends JPanel{
 	public void initial(){		
 		imageLabel = new JLabel();
 		pageComboBox = new JComboBox();
-		
-		imageLabel.setIcon(IMAGE_LABEL_ICON);
-        imageLabel.setBounds(40, 40, 
-        		IMAGE_LABEL_ICON.getIconWidth(), IMAGE_LABEL_ICON.getIconHeight());
-		
 		
 		
 //		addLabel.setIcon(ADD_ICON);
@@ -107,9 +101,9 @@ public class StaffListPanel extends JPanel{
 //			}
 //		});
 		previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
-	                ("images/previousPageClicked.png"), 330, 504);
+	                ("images/previousPageClicked.png"), 300, 490);
 	    nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
-	                ("images/nextPageClicked.png"), 410, 504);
+	                ("images/nextPageClicked.png"), 370, 490);
 		
 		
 		
@@ -155,6 +149,7 @@ public class StaffListPanel extends JPanel{
         }
         this.add(imageLabel);
     }
+   
 
    class PageButtonActionListener implements ActionListener {
        StaffListPanel container;
@@ -195,5 +190,7 @@ public class StaffListPanel extends JPanel{
 	            container.repaint();
 	        }
 	    }
+   
+  
 }
 

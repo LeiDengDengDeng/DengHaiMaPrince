@@ -39,9 +39,10 @@ public class InstitutionBLService_Stub implements InstitutionBLService{
 	}
 
 	@Override
-	public void addInstitution(InstitutionVO Institution) {
+	public boolean addInstitution(InstitutionVO Institution) {
 		// TODO Auto-generated method stub
 		System.out.println("add institution succeed!");
+		return true;
 		
 	}
 
@@ -58,15 +59,17 @@ public class InstitutionBLService_Stub implements InstitutionBLService{
 //	}
 
 	@Override
-	public void deleteInstitution(long InstitutionId) {
+	public boolean deleteInstitution(long InstitutionId) {
 		// TODO Auto-generated method stub
 		System.out.println("delete succeed!");
+		return true;
 	}
 
 	@Override
-	public void endManagement() {
+	public boolean endManagement() {
 		// TODO Auto-generated method stub
 		System.out.println("End the management!");
+		return true;
 		
 	}
 

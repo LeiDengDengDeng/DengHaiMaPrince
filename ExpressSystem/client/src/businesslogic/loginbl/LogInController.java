@@ -21,7 +21,7 @@ public class LogInController {
 	}
 	
 	public UserVO getCurrentUser(){
-		return null;
+		return loginBL.getCurrentUser();
 		
 	}
 }

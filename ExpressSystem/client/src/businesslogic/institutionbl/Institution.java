@@ -75,17 +75,22 @@ public class Institution implements InstitutionBLService{
 	}
 
 	@Override
-	public void addInstitution(InstitutionVO Institution) {
+	public boolean addInstitution(InstitutionVO Institution) {
 		// TODO Auto-generated method stub
-		InstitutionPO institutionPO = new InstitutionPO(Institution.getInstitutionName(),
-				Institution.getInstitutionID(), Institution.getFunction());
-		try {
-			institutionData.insert(institutionPO);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		if(Institution == null)
+			return false;
 		
+		else{
+			InstitutionPO institutionPO = new InstitutionPO(Institution.getInstitutionName(),
+					Institution.getInstitutionID(), Institution.getFunction());
+			try {
+				institutionData.insert(institutionPO);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return true;
+		}
 	}
 
 
@@ -102,7 +107,7 @@ public class Institution implements InstitutionBLService{
 //	}
 
 	@Override
-	public void deleteInstitution(long InstitutionId) {
+	public boolean deleteInstitution(long InstitutionId) {
 		// TODO Auto-generated method stub
 		InstitutionPO institutionPO = null;
 		try {
@@ -112,16 +117,24 @@ public class Institution implements InstitutionBLService{
 			e.printStackTrace();
 		}
 		
-		try {
-			institutionData.delete(institutionPO);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(institutionPO == null){
+			System.out.println("Not exist!!");
+			return false;
+		}
+		
+		else{
+			try {
+				institutionData.delete(institutionPO);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return true;
 		}
 	}
 
 	@Override
-	public void endManagement() {
+	public boolean endManagement() {
 		// TODO Auto-generated method stub
 		try {
 			institutionData.finish();
@@ -129,6 +142,7 @@ public class Institution implements InstitutionBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return true;
 		
 	}
 

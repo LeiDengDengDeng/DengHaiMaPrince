@@ -63,17 +63,19 @@ public class Position implements PositionBLService{
 	}
 	
 	@Override
-	public void changeStaffPosition(String position, long StaffId) {
+	public boolean changeStaffPosition(String position, long StaffId) {
 		// TODO Auto-generated method stub
 		UserVO userVO = userBL.getPersonalInfo(StaffId);
 		userVO.setMyPosition(position);
 		userBL.changeInfo(userVO);		
+		
+		return true;
 	}
 	
 	
 	
 	@Override
-	public void setCity(String city, long StaffId) {
+	public boolean setCity(String city, long StaffId) {
 		// TODO Auto-generated method stub
 		UserVO userVO = userBL.getPersonalInfo(StaffId);
 //		UserPO userPO = new UserPO(userVO.getpersonalID(), userVO.getpersonalAccount(),
@@ -82,15 +84,18 @@ public class Position implements PositionBLService{
 		userVO.setCity(city);
 		userBL.changeInfo(userVO);
 		
+		return true;
+		
 		
 	}
 	@Override
-	public void setBusinessHall(String businessHall, long StaffId) {
+	public boolean setBusinessHall(String businessHall, long StaffId) {
 		// TODO Auto-generated method stub
 		UserVO userVO = userBL.getPersonalInfo(StaffId);
 		userVO.setBusinessHall(businessHall);
 		userBL.changeInfo(userVO);
 		
+		return true;
 	}
 	
 

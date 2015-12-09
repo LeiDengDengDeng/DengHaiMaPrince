@@ -81,50 +81,60 @@ public class StaffManage implements StaffManageBLService{
 	}
 
 	@Override
-	public void changeAuthority(ArrayList<Integer> authority, String position) {
+	public boolean changeAuthority(ArrayList<Integer> authority, String position) {
 		// TODO Auto-generated method stub
-		ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
-		try {
-			userPOs = StaffManageData.finds();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for(int i = 0;i < userPOs.size();i++){
-			if(userPOs.get(i).getMyPosition().equalsIgnoreCase(position)){
-				userPOs.get(i).setAuthority(authority);
-				try {
-					StaffManageData.update(userPOs.get(i));
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+		if(position == null) 
+			return false;
+		else{
 			
+			ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
+			try {
+				userPOs = StaffManageData.finds();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			for(int i = 0;i < userPOs.size();i++){
+				if(userPOs.get(i).getMyPosition().equalsIgnoreCase(position)){
+					userPOs.get(i).setAuthority(authority);
+					try {
+						StaffManageData.update(userPOs.get(i));
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						}
+					}
+			
+				}
+			return true;
 		}
 	}
 
 	@Override
-	public void addStaffInfo(StaffInfoVO StaffInfo) {
+	public boolean addStaffInfo(StaffInfoVO StaffInfo) {
 		// TODO Auto-generated method stub
+		if(StaffInfo == null)
+			return false;
 		
-		StaffInfo.setAuthority(position.initialAuthority(StaffInfo));
+		else{
+			StaffInfo.setAuthority(position.initialAuthority(StaffInfo));
 		
-		UserPO userPO = new UserPO(StaffInfo.getID(), StaffInfo.getAccount(),
-				StaffInfo.getPassword(), StaffInfo.getStaffName(),
-				StaffInfo.getPosition(), StaffInfo.getAuthority());
-		try {
-			StaffManageData.insert(userPO);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			UserPO userPO = new UserPO(StaffInfo.getID(), StaffInfo.getAccount(),
+					StaffInfo.getPassword(), StaffInfo.getStaffName(),
+					StaffInfo.getPosition(), StaffInfo.getAuthority());
+			try {
+				StaffManageData.insert(userPO);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			return true;
 		}
-		
 	}
 
 	@Override
-	public void deleteStaff(long StaffId) {
+	public boolean deleteStaff(long StaffId) {
 		// TODO Auto-generated method stub
 		UserPO userPO = null;
 		try {
@@ -141,12 +151,16 @@ public class StaffManage implements StaffManageBLService{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			return true;
 		}
-		else System.out.println("Not exist!!");
+		else{
+			System.out.println("Not exist!!");
+			return false;
+		}
 	}
 
 	@Override
-	public void endManagement() {
+	public boolean endManagement() {
 		// TODO Auto-generated method stub
 		try {
 			StaffManageData.finish();
@@ -154,6 +168,7 @@ public class StaffManage implements StaffManageBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return true;
 		
 	}
 
