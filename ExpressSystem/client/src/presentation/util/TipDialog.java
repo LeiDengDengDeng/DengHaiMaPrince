@@ -31,7 +31,7 @@ public class TipDialog extends JDialog {
 
     private void init(String text) {
         label = new MyLabel(text);
-        label.setBounds(160 - text.length() * 8, 90, 100, 20);
+        label.setBounds(160 - text.length() *7, 90, 100, 20);
         label.setFontColor(new Color(20, 77, 85));
 
         imageLabel = new JLabel(backgroundImage);

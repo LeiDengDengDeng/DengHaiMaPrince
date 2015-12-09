@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 
 public class LogInFrame extends JFrame {
-    static final int WIDTH = 850;
-    static final int HEIGHT = 646;
     private static final ImageIcon backgroundImage = new ImageIcon("images/logIn_BG.png");
 public LogInFrame(){
 
@@ -30,8 +28,8 @@ public LogInFrame(){
         frame.setVisible(true);
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screen = toolkit.getScreenSize();
-        int x = (screen.width - WIDTH) >> 1;
-        int y = ((screen.height - HEIGHT) >> 1) - 32;
+        int x = (screen.width - panel.getWidth()) >> 1;
+        int y = ((screen.height - 640) >> 1) - 32;
         frame.setLayout(null);
         frame.setLocation(x, y);
 

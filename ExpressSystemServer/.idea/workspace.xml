@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c61c9de-ceaa-429a-9229-c8641526a892" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/accountbl/Account.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/accountbl/Account.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/userui/ChangePasswordPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/userui/ChangePasswordPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/LogInPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/LogInPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/MainFrame.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/PanelController.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/PanelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/LogInFrame.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/LogInFrame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/PaymentSheetPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/PaymentSheetPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/ReceivingSheetPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/ReceivingSheetPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/util/TipDialog.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/util/TipDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/data/userdata/UserData.java" afterPath="$PROJECT_DIR$/server/src/data/userdata/UserData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account.ser" afterPath="$PROJECT_DIR$/account.ser" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/paymentSheet.ser" afterPath="$PROJECT_DIR$/paymentSheet.ser" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/user.ser" afterPath="$PROJECT_DIR$/user.ser" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ExpressSystem/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\client\src\presentation\loginui\logInPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/LogInPanel.java" />
+      <change type="MOVED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\dialogue_success.png" afterPath="$PROJECT_DIR$/../ExpressSystem/images/dialog_success.png" />
     </list>
     <ignored path="ExpressSystemServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,11 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ServerMain.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/src/main/ServerMain.java">
+      <file leaf-file-name="UserData.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/src/data/userdata/UserData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29694322">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.14628822">
+              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="133" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -71,6 +72,8 @@
         <option value="$PROJECT_DIR$/server/src/po/OrderSheetPO.java" />
         <option value="$PROJECT_DIR$/orderSheet.ser" />
         <option value="$PROJECT_DIR$/server/src/main/ServerMain.java" />
+        <option value="$PROJECT_DIR$/user.ser" />
+        <option value="$PROJECT_DIR$/server/src/data/userdata/UserData.java" />
       </list>
     </option>
   </component>
@@ -221,11 +224,37 @@
               <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userdata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExpressSystemServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExpressSystemServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -250,6 +279,20 @@
   <component name="RunManager" selected="Application.ServerMain">
     <configuration default="false" name="ServerMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.main.ServerMain" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ExpressSystemServer" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="UserData" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.data.userdata.UserData" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -322,12 +365,14 @@
       <envs />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.ServerMain" />
+      <item index="1" class="java.lang.String" itemvalue="Application.UserData" />
     </list>
     <recent_temporary>
-      <list size="1">
+      <list size="2">
         <item index="0" class="java.lang.String" itemvalue="Application.ServerMain" />
+        <item index="1" class="java.lang.String" itemvalue="Application.UserData" />
       </list>
     </recent_temporary>
     <configuration default="true" type="Applet" factoryName="小应用程序">
@@ -377,7 +422,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -388,7 +433,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23861852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23861852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24670571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -427,6 +472,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/server/src/main/ServerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/ServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -556,13 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/po/ReceivingMoneySheetPO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.545">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/po/OrderSheetPO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17">
@@ -584,21 +630,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/data/userdata/UserData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11147541">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user.ser">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11147541">
-          <caret line="4" column="61" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/data/sheetdata/SheetData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -607,10 +638,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/user.ser">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/ServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29694322">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.22052401">
+          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/po/ReceivingMoneySheetPO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.037117902">
+          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/po/UserPO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14628822">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/data/userdata/UserData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14628822">
+          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="133" selection-end-column="27" />
           <folding />
         </state>
       </provider>

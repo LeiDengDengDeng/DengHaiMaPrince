@@ -66,7 +66,7 @@ public class LogInPanel extends JPanel {
         this.setOpaque(false);
         this.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
         accountField.setBounds(140, 308, 190, 23);
-        passwordField.setBounds(140, 370, 190,23);
+        passwordField.setBounds(140, 370, 190, 23);
 
         this.add(accountField);
         this.add(passwordField);
@@ -80,6 +80,7 @@ public class LogInPanel extends JPanel {
     public boolean login() {
         account = Long.parseLong(accountField.getText());
         password = passwordField.getText();
+        System.out.println(logIn.logIn(account, password));
         if (logIn.logIn(account, password) == ResultMessage.CORRECT)
             return true;
         else
@@ -98,7 +99,7 @@ public class LogInPanel extends JPanel {
 
         JFrame father;
 
-        public MyButtonActionListener(JFrame father){
+        public MyButtonActionListener(JFrame father) {
             this.father = father;
         }
 
@@ -107,15 +108,17 @@ public class LogInPanel extends JPanel {
             if (e.getSource() == checkButton) {
 
             } else if (e.getSource() == loginButton) {
-                ArrayList<Integer> test1 = new ArrayList<>();
-                test1.add(12);
-                test1.add(15);
-                test1.add(16);
-                ArrayList<Integer> test2 = new ArrayList<>();
-                test2.add(7);
-                test2.add(8);
-                MainFrame m = new MainFrame(test1);
-                father.dispose();
+//                if (login()) {
+                    ArrayList<Integer> test1 = new ArrayList<>();
+                    test1.add(7);
+                    test1.add(8);
+                    ArrayList<Integer> test2 = new ArrayList<>();
+                    test2.add(12);
+                    test2.add(15);
+                    test2.add(16);
+                    MainFrame m = new MainFrame(test2);
+                    father.dispose();
+//                }
             }
 
         }

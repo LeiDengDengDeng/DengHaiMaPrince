@@ -45,6 +45,22 @@ public class PaymentSheetPanel extends JPanel implements SheetPanel {
         this.paymentSheetBL = paymentSheetBL;
 
         init();
+    }
+
+    private void init() {
+        accountInfo = paymentSheetBL.getExistedInfo();
+        String[] detail = {"租金", "运费", "人员工资", "奖金"};
+        detailComboBox = new JComboBox(detail);
+        accountComboBox = new JComboBox(getAccount());
+        name = new MyLabel(accountInfo[0][1]);
+        accountMoney = new MyLabel(accountInfo[0][2]);
+        priceField = new JTextField();
+        dateChooser = new DateChooserJButton();
+        tip = new JTextArea();
+        confirmButton = new ConfirmButton(520, 375);
+        imageLabel = new JLabel();
+        bkgImg = new ImageIcon("images/sheet_payment.png");
+
 
         accountComboBox.setBounds(MARGIN_LEFT, 85, 170, COMPONENT_HEIGHT);
         accountComboBox.addActionListener(new ActionListener() {
@@ -83,21 +99,6 @@ public class PaymentSheetPanel extends JPanel implements SheetPanel {
         this.setOpaque(false);
     }
 
-    private void init() {
-        accountInfo = paymentSheetBL.getExistedInfo();
-        String[] detail = {"租金", "运费", "人员工资", "奖金"};
-        detailComboBox = new JComboBox(detail);
-        accountComboBox = new JComboBox(getAccount());
-        name = new MyLabel(accountInfo[0][1]);
-        accountMoney = new MyLabel(accountInfo[0][2]);
-        priceField = new JTextField();
-        dateChooser = new DateChooserJButton();
-        tip = new JTextArea();
-        confirmButton = new ConfirmButton(520, 375);
-        imageLabel = new JLabel();
-        bkgImg = new ImageIcon("images/sheet_payment.png");
-    }
-
     private String[] getAccount() {
         String[] accounts = new String[accountInfo.length];
         for (int i = 0; i < accounts.length; i++)
@@ -113,7 +114,8 @@ public class PaymentSheetPanel extends JPanel implements SheetPanel {
 
         // 界面层响应
         TipDialog dialog = new TipDialog(null, "", true, "单据提交成功", true);
-        init();
+        this.removeAll();
+        this.init();
         return true;
     }
 
