@@ -31,6 +31,7 @@ public class AccountPanel extends JPanel {
 	protected static final ImageIcon IMG_REC1 = new ImageIcon("images/account_rec1.png");
 	protected static final ImageIcon IMG_REC2 = new ImageIcon("images/account_rec2.png");
 	protected static final ImageIcon IMG_ADD = new ImageIcon("images/account_add.png");
+	
 	protected static final int font = 14;
 	Font myFont = new Font("Œ¢»Ì—≈∫⁄", Font.LAYOUT_NO_LIMIT_CONTEXT, font);
 	protected static final int x = 195;// panel Œª÷√x
