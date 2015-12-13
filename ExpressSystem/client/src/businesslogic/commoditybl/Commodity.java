@@ -267,10 +267,10 @@ public class Commodity implements CommodityBLService{
 		while(svolist.get(i) != null){
 			spo = new StoragePO(svolist.get(i).getStorageId(), 
 					0, 0, 0, 0, 0, svolist.get(i).getAlarmScale(), 
-					svolist.get(i).getShippingSize(), 
-					svolist.get(i).getRailSize(),
-					svolist.get(i).getTransportSize(),
-					svolist.get(i).getFlxibleSize(), null);
+					svolist.get(i).getSeatNum()/4, 
+					svolist.get(i).getSeatNum()/4,
+					svolist.get(i).getSeatNum()/4,
+					svolist.get(i).getSeatNum()/4, null);
 			try {
 				storageDataService.insert(spo);
 			} catch (RemoteException e) {

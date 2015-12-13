@@ -30,7 +30,7 @@ public class StorageInSheetPanel extends JPanel{
 	ArrayList<Integer> rowNumbers;//≈≈∫≈
 	ArrayList<Integer> shelfNumbers;//º‹∫≈
 	ArrayList<Integer> seatNumbers;//Œª∫≈
-	
+
 	ArrayList<ButtonDel> buttonDelList;
 	ArrayList<JLabel> formList;
 	ArrayList<JLabel> nameList;
@@ -45,7 +45,7 @@ public class StorageInSheetPanel extends JPanel{
 //	ArrayList<StorageInSheetVO> inStorages;
 	TextLabel TextAdd;
 	ArrayList<TextLabel> TextDelList;
-	protected static final ImageIcon IMG_BG = new ImageIcon("images/account_bg.png");
+	protected static final ImageIcon IMG_BG = new ImageIcon("images/storageinsheet_bg.png");
 	protected static final ImageIcon IMG_MOD = new ImageIcon("images/account_mod.png");
 	protected static final ImageIcon IMG_REC1 = new ImageIcon("images/account_rec1.png");
 	protected static final ImageIcon IMG_REC2 = new ImageIcon("images/account_rec2.png");
