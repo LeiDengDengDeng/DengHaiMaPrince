@@ -25,6 +25,7 @@ import src.businesslogicservice.logblservice.LogBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
 import src.presentation.accountui.AccountPanel;
+import src.presentation.logui.CheckLogPanel;
 import src.presentation.sheetui.DateChooserJButton;
 
 public class PreStorageInSheetPanel extends JPanel{
@@ -108,8 +109,8 @@ public class PreStorageInSheetPanel extends JPanel{
 	public static void main(String[] args) {
 		GoodsDataService goodsDataService = null;
 		StorageDataService storageDataService = null;
-		Log log = null;
-		AccountPanel sp = new AccountPanel(log);
+		Log log = new Log();
+		CheckLogPanel sp = new CheckLogPanel(log);
 //		PreStorageInSheetPanel sp = new PreStorageInSheetPanel
 //				(goodsDataService, storageDataService);
 		JFrame frame = new JFrame();

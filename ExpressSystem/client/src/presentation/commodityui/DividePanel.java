@@ -1,6 +1,7 @@
 package src.presentation.commodityui;
 
 import java.awt.Checkbox;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
 import src.businesslogic.commoditybl.GoodsType;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
@@ -53,7 +55,7 @@ public class DividePanel extends JPanel{
     
     public DividePanel(GoodsDataService goodsDataService,
 			StorageDataService storageDataService){
-    	commodityBL = new CommodityBLService_Stub(goodsDataService,
+    	commodityBL = new Commodity(goodsDataService,
 				storageDataService);
     	storages = new ArrayList<ExpressInfoVO>();
     	for (int i = 0; i < 28; i++) {
@@ -67,31 +69,31 @@ public class DividePanel extends JPanel{
             storages.add(temp);
         }
     	previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
-                ("images/previousPageClicked.png"), 330, 504);
+                ("images/previousPageClicked.png"), 322, 508);
         nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
-                ("images/nextPageClicked.png"), 410, 504);
+                ("images/nextPageClicked.png"), 402, 508);
         pageComboBox = new JComboBox();
         imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/log.png");
         
-        storageLabels = new DivideInfoLabelGroup(storages, NUM_OF_LINES, 48, 110);
-        storageCheckBoxs = new DivideInfoCheckBoxGroup(storages, NUM_OF_LINES, 48, 110);
+        storageLabels = new DivideInfoLabelGroup(storages, NUM_OF_LINES, 48, 115);
+        storageCheckBoxs = new DivideInfoCheckBoxGroup(storages, NUM_OF_LINES, 48, 115);
         PageButtonActionListener listener = new PageButtonActionListener(this);
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
         nextPageButton.addActionListener(listener);
-        pageComboBox.setBounds(540, 504, 44, 23);
+        pageComboBox.setBounds(530, 508, 44, 23);
         setPageComboBox();
         pageComboBox.addActionListener(listener);
         
         
         imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(40, 40, bkgImg.getIconWidth(), bkgImg.getIconHeight());
-        addStorageLabel();
         
         remind = new JLabel("以下分区的货物数量已超出警戒比例！请手动调整分区！");
-        remind.setBounds(40, 30, 500, 30);
+        remind.setBounds(40, 40, 500, 30);
         remind.setFont(new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+        remind.setForeground(Color.WHITE);
         
         if(storages.get(0).getAreaNumber() == GoodsType.SHIPPING){
         	areaNumber = new JLabel("航运区");
@@ -105,11 +107,11 @@ public class DividePanel extends JPanel{
         else if(storages.get(0).getAreaNumber() == GoodsType.FLXIBLE){
         	areaNumber = new JLabel("机动区");
         }
-        areaNumber.setBounds(40, 60, 80, 23);
+        areaNumber.setBounds(40, 65, 80, 23);
         areaNumber.setFont(myFont);
         
         confirmButton = new JButton(IMG_CONFIRM);
-        confirmButton.setBounds(250, 504, IMG_CONFIRM.getIconWidth(), 
+        confirmButton.setBounds(250, 508, IMG_CONFIRM.getIconWidth(), 
 				IMG_CONFIRM.getIconHeight());
         ConfirmButtonListener listener2 = new ConfirmButtonListener(this);
         confirmButton.addActionListener(listener2);
@@ -117,7 +119,6 @@ public class DividePanel extends JPanel{
         this.add(pageComboBox);
         this.add(nextPageButton);
         this.add(previousPageButton);
-        this.add(imageLabel);
         
         this.add(remind);
         this.add(confirmButton);
@@ -126,6 +127,7 @@ public class DividePanel extends JPanel{
         this.setLayout(null);
 		this.setBounds(x, y, w, h);
 		this.setOpaque(false);
+		addStorageLabel();
     }
     
     private void setPageComboBox() {
@@ -150,7 +152,7 @@ public class DividePanel extends JPanel{
             }
             this.add(storageCheckBoxs.getCheckBox()[m]);
         }
-        this.add(imageLabel);        
+        this.add(imageLabel);   
     }
     
     class ConfirmButtonListener implements ActionListener{
@@ -174,6 +176,7 @@ public class DividePanel extends JPanel{
 						storages.get(m).setFlxible(true);
 					}
 				}
+				commodityBL.divide("南京", storages);
 			}
 		}
     	

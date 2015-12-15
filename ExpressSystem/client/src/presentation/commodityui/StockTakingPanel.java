@@ -58,19 +58,19 @@ public class StockTakingPanel extends JPanel{
             storages.add(temp);
         }
     	previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
-                ("images/previousPageClicked.png"), 330, 504);
+                ("images/previousPageClicked.png"), 322, 508);
         nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
-                ("images/nextPageClicked.png"), 410, 504);
+                ("images/nextPageClicked.png"), 402, 508);
         pageComboBox = new JComboBox();
         imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/log.png");
         
-        storageLabels = new ExpressInfoLabelGroup(storages, NUM_OF_LINES, 48, 110);
+        storageLabels = new ExpressInfoLabelGroup(storages, NUM_OF_LINES, 48, 115);
         PageButtonActionListener listener = new PageButtonActionListener(this);
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
         nextPageButton.addActionListener(listener);
-        pageComboBox.setBounds(540, 504, 44, 23);
+        pageComboBox.setBounds(530, 508, 44, 23);
         setPageComboBox();
         pageComboBox.addActionListener(listener);
         

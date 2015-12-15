@@ -1,6 +1,7 @@
 package src.presentation.commodityui;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
 import src.businesslogic.commoditybl.GoodsType;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
@@ -33,6 +35,9 @@ public class StockCheckPanel extends JPanel{
 	protected static final int y = 59;// panel Î»ÖÃy
 	protected static final int w = 641;// panel¿í
 	protected static final int h = 572;// panel¸ß
+	protected static final ImageIcon IMG_BG = new ImageIcon("images/stockcheck_bg.png");
+	protected static final int Word_x = 76;// word x
+	protected static final int Word_y = 55;// word y
 	private static final int NUM_OF_LINES = 16;
 	Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
@@ -63,14 +68,14 @@ public class StockCheckPanel extends JPanel{
 	
 	public StockCheckPanel(GoodsDataService goodsDataService,
 			StorageDataService storageDataService){
-		commodityBL = new CommodityBLService_Stub(goodsDataService,
+		commodityBL = new Commodity(goodsDataService,
 				storageDataService);
 		storages = new ArrayList<StorageInfoVO>();
 		
 		previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
-                ("images/previousPageClicked.png"), 330, 504);
+                ("images/previousPageClicked.png"), 322, 508);
         nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
-                ("images/nextPageClicked.png"), 410, 504);
+                ("images/nextPageClicked.png"), 402, 508);
         
         pageComboBox = new JComboBox();
         imageLabel = new JLabel();
@@ -92,13 +97,13 @@ public class StockCheckPanel extends JPanel{
 		confirmButton.addActionListener(listener2);
 		startTime = new DateChooserJButton();
 		endTime = new DateChooserJButton();
-		remind.setBounds(30, 40, 250, 30);
+		remind.setBounds(50, 70, 250, 30);
 		remind.setFont(myFont);
 		confirmButton.setBounds(480, 250, IMG_CONFIRM.getIconWidth(),
 				IMG_CONFIRM.getIconHeight());
-		startTime.setBounds(100, 120, 100, 40);
-		endTime.setBounds(350, 120, 100, 40);
-		fromTo.setBounds(250, 120, 100, 30);
+		startTime.setBounds(120, 140, 100, 40);
+		endTime.setBounds(370, 140, 100, 40);
+		fromTo.setBounds(270, 140, 100, 30);
 		fromTo.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 30));
 		inNumLabel.setBounds(40, 15, 200, 40);
 		inNumLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
@@ -182,12 +187,12 @@ public class StockCheckPanel extends JPanel{
 							GoodsType.TRANSPORT, 003, 005, 007);
 					storages.add(tempSvo);
 				}
-				storageLabels = new StorageInfoLabelGroup(storages, NUM_OF_LINES, 48, 110);
+				storageLabels = new StorageInfoLabelGroup(storages, NUM_OF_LINES, 48, 115);
 				PageButtonActionListener listener = new PageButtonActionListener(scp);
 		        previousPageButton.addActionListener(listener);
 		        previousPageButton.setVisible(false);
 		        nextPageButton.addActionListener(listener);
-		        pageComboBox.setBounds(540, 504, 44, 23);
+		        pageComboBox.setBounds(530, 508, 44, 23);
 		        setPageComboBox();
 		        pageComboBox.addActionListener(listener);
 		        
@@ -242,6 +247,17 @@ public class StockCheckPanel extends JPanel{
             container.repaint();
         }
     }
+    
+    public void paintComponent(Graphics g) 
+    { 
+    super.paintComponent(g); 
+
+
+    g.drawImage(IMG_BG.getImage(),40, 40,null);
+
+
+    }
+    
 	public static void main(String[] args) {
 		GoodsDataService goodsDataService = null;
 		StorageDataService storageDataService = null;

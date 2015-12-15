@@ -1,5 +1,6 @@
 package src.data.nonUserdata;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,6 +18,7 @@ import src.po.TruckPO;
 public class TruckData implements TruckDataService{
 	
 	public static final String TruckFILE_PATH = "truck.ser";
+	File file = new File(TruckFILE_PATH);
 
 	@Override
 	public TruckPO findTruckPO(long id) throws RemoteException {
@@ -24,7 +26,7 @@ public class TruckData implements TruckDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("TruckFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				TruckPO po = (TruckPO) os.readObject();
@@ -37,11 +39,13 @@ public class TruckData implements TruckDataService{
 
 			os.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND");
+		} catch (EOFException e) {
+			System.out.println("END OF FILE");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("CLASS NOT FOUND");
 		}
 		if(tpo == null)	System.out.println("Not found!!");
 		
@@ -55,7 +59,7 @@ public class TruckData implements TruckDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("TruckFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				TruckPO po = (TruckPO) os.readObject();
@@ -66,11 +70,13 @@ public class TruckData implements TruckDataService{
 
 			os.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND");
+		} catch (EOFException e) {
+			System.out.println("END OF FILE");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("CLASS NOT FOUND");
 		}
 		
 		
@@ -79,33 +85,31 @@ public class TruckData implements TruckDataService{
 
 	@Override
 	public void insert(TruckPO tpo) throws RemoteException {
-		if(findTruckPO(tpo.getNumber()) == null){
 			ObjectOutputStream oos = null;
 			MyObjectOutputStream moos = null;
 			File file = new File(TruckFILE_PATH);
 			
 			try {
-				oos = new ObjectOutputStream(new FileOutputStream(file));
-				moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 				if (file.length() == 0) {
+					oos = new ObjectOutputStream(new FileOutputStream(file));
 					oos.writeObject(tpo);
 					oos.flush();
 					oos.close();
 				} else {
+					moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 					moos.writeObject(tpo);
 					moos.flush();
 					moos.close();
 				}
 			} catch (FileNotFoundException e) {
-				System.out.println("TruckFile not found");
-				e.printStackTrace();
+				System.out.println("FILE NOT FOUND ");
+			} catch (EOFException e) {
+				System.out.println("END OF FILE");
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("IO EXCEPTION");
 			}
 			
-		}
 		
-		else System.out.println("Already exist!!");
 	}
 
 	@Override
@@ -139,9 +143,9 @@ public class TruckData implements TruckDataService{
 			os.close();
 			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND ");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO EXCEPTION");
 		}		
 	}
 

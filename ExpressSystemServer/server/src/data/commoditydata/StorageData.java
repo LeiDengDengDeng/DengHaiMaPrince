@@ -1,5 +1,6 @@
 package src.data.commoditydata;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,11 +13,13 @@ import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.commoditydataservice.StorageDataService;
+import src.po.GoodsPO;
 import src.po.StoragePO;
 
 public class StorageData implements StorageDataService{
 	
 	public static final String StorageFILE_PATH = "storage.ser";
+	File file = new File(StorageFILE_PATH);
 
 	@Override
 	public StoragePO findStoragePO(String id) throws RemoteException {
@@ -24,7 +27,7 @@ public class StorageData implements StorageDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("StorageFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				StoragePO po = (StoragePO) os.readObject();
@@ -37,11 +40,13 @@ public class StorageData implements StorageDataService{
 
 			os.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND");
+		} catch (EOFException e) {
+			System.out.println("END OF FILE");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("CLASS NOT FOUND");
 		}
 		if(spo == null)	System.out.println("Not found!!");
 		
@@ -52,25 +57,25 @@ public class StorageData implements StorageDataService{
 	@Override
 	public ArrayList<StoragePO> finds() throws RemoteException {
 		ArrayList<StoragePO> spos = new ArrayList<StoragePO>();
+		StoragePO spo = null;
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("StorageFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
-			for (;;) {
-				StoragePO po = (StoragePO) os.readObject();
-				if (po == null)
-					break;
-				spos.add(po);
+			while ((spo = (StoragePO) os.readObject()) != null) {
+				spos.add(spo);
 			}
 
 			os.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND");
+		} catch (EOFException e) {
+			System.out.println("END OF FILE");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("CLASS NOT FOUND");
 		}
 		
 		
@@ -79,33 +84,30 @@ public class StorageData implements StorageDataService{
 
 	@Override
 	public void insert(StoragePO spo) throws RemoteException {
-		if(findStoragePO(spo.getCity()) == null){
 			ObjectOutputStream oos = null;
 			MyObjectOutputStream moos = null;
 			File file = new File(StorageFILE_PATH);
 			
 			try {
-				oos = new ObjectOutputStream(new FileOutputStream(file));
-				moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 				if (file.length() == 0) {
+					oos = new ObjectOutputStream(new FileOutputStream(file));
 					oos.writeObject(spo);
 					oos.flush();
 					oos.close();
 				} else {
+					moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 					moos.writeObject(spo);
 					moos.flush();
 					moos.close();
 				}
 			} catch (FileNotFoundException e) {
-				System.out.println("TruckFile not found");
-				e.printStackTrace();
+				System.out.println("FILE NOT FOUND ");
+			} catch (EOFException e) {
+				System.out.println("END OF FILE");
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("IO EXCEPTION");
 			}
 			
-		}
-		
-		else System.out.println("Already exist!!");
 	}
 
 	@Override
@@ -121,7 +123,7 @@ public class StorageData implements StorageDataService{
 		spos = finds();
 		
 		for(int i = 0;i < spos.size();i++){
-			if(spos.get(i).getCity() == id){
+			if(spos.get(i).getCity().equals(id)){
 				spos.remove(i);
 				break;
 			}
@@ -139,9 +141,9 @@ public class StorageData implements StorageDataService{
 			os.close();
 			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND ");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO EXCEPTION");
 		}		
 	}
 

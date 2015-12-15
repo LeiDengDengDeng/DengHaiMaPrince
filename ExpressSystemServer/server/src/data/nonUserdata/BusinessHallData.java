@@ -1,5 +1,6 @@
 package src.data.nonUserdata;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,6 +18,7 @@ import src.po.BussinessHallPO;
 public class BusinessHallData implements BusinessHallDataService{
 	
 	public static final String BussinessHallFILE_PATH = "bussinesshall.ser";
+	File file = new File(BussinessHallFILE_PATH);
 
 	@Override
 	public BussinessHallPO findBussinessHallPO(String id)
@@ -25,7 +27,7 @@ public class BusinessHallData implements BusinessHallDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("BussinessHallFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				BussinessHallPO po = (BussinessHallPO) os.readObject();
@@ -38,11 +40,13 @@ public class BusinessHallData implements BusinessHallDataService{
 
 			os.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND");
+		} catch (EOFException e) {
+			System.out.println("END OF FILE");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("CLASS NOT FOUND");
 		}
 		if(bpo == null)	System.out.println("Not found!!");
 		
@@ -57,7 +61,7 @@ public class BusinessHallData implements BusinessHallDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("BussinessHallFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
 			for (;;) {
 				BussinessHallPO po = (BussinessHallPO) os.readObject();
@@ -68,11 +72,13 @@ public class BusinessHallData implements BusinessHallDataService{
 
 			os.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND");
+		} catch (EOFException e) {
+			System.out.println("END OF FILE");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("CLASS NOT FOUND");
 		}
 		
 		
@@ -81,33 +87,31 @@ public class BusinessHallData implements BusinessHallDataService{
 
 	@Override
 	public void insert(BussinessHallPO bpo) throws RemoteException {
-		if(findBussinessHallPO(bpo.getHallName()) == null){
 			ObjectOutputStream oos = null;
 			MyObjectOutputStream moos = null;
 			File file = new File(BussinessHallFILE_PATH);
 			
 			try {
-				oos = new ObjectOutputStream(new FileOutputStream(file));
-				moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 				if (file.length() == 0) {
+					oos = new ObjectOutputStream(new FileOutputStream(file));
 					oos.writeObject(bpo);
 					oos.flush();
 					oos.close();
 				} else {
+					moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 					moos.writeObject(bpo);
 					moos.flush();
 					moos.close();
 				}
 			} catch (FileNotFoundException e) {
-				System.out.println("BussinessHallFile not found");
-				e.printStackTrace();
+				System.out.println("FILE NOT FOUND ");
+			} catch (EOFException e) {
+				System.out.println("END OF FILE");
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("IO EXCEPTION");
 			}
 			
-		}
 		
-		else System.out.println("Already exist!!");
 	}
 
 	@Override
@@ -117,7 +121,7 @@ public class BusinessHallData implements BusinessHallDataService{
 		bpos = findsBussinessHallPO();
 		
 		for(int i = 0;i < bpos.size();i++){
-			if(bpos.get(i).getHallName() == id){
+			if(bpos.get(i).getHallName().equals(id)){
 				bpos.remove(i);
 				break;
 			}
@@ -135,9 +139,9 @@ public class BusinessHallData implements BusinessHallDataService{
 			os.close();
 			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND ");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO EXCEPTION");
 		}		
 	}
 

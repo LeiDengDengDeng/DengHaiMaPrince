@@ -1,5 +1,6 @@
 package src.data.commoditydata;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,6 +19,7 @@ import src.po.GoodsPO;
 public class GoodsData implements GoodsDataService{
 	
 	public static final String GoodsFILE_PATH = "goods.ser";
+	File file = new File(GoodsFILE_PATH);
 
 	@Override
 	public GoodsPO findGoodsPO(long id) throws RemoteException {
@@ -25,24 +27,22 @@ public class GoodsData implements GoodsDataService{
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("GoodsFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
-			for (;;) {
-				GoodsPO po = (GoodsPO) os.readObject();
-				if (po.getExpressNumber() == id){
-					gpo = po;
+			while ((gpo = (GoodsPO) os.readObject()) != null) {
+				if (gpo.getExpressNumber() == id)
 					break;
-				}
-				if(po == null) break;
 			}
 
 			os.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND");
+		} catch (EOFException e) {
+			System.out.println("END OF FILE");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("CLASS NOT FOUND");
 		}
 		if(gpo == null)	System.out.println("Not found!!");
 		
@@ -53,25 +53,31 @@ public class GoodsData implements GoodsDataService{
 	@Override
 	public ArrayList<GoodsPO> finds(GoodsType type) throws RemoteException {
 		ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
+		GoodsPO gpo = null;
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("GoodsFILE_PATH"));
-
-			for (;;) {
-				GoodsPO po = (GoodsPO) os.readObject();
-				if (po.getAreaNumber() == type)
-					break;
-				gpos.add(po);
+			os = new ObjectInputStream(new FileInputStream(file));
+			while ((gpo = (GoodsPO) os.readObject()) != null && gpo.getAreaNumber() == type) {
+				gpos.add(gpo);
 			}
+
+//			for (;;) {
+//				GoodsPO po = (GoodsPO) os.readObject();
+//				if (po.getAreaNumber() == type)
+//					break;
+//				gpos.add(po);
+//			}
 
 			os.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND");
+		} catch (EOFException e) {
+			System.out.println("END OF FILE");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("CLASS NOT FOUND");
 		}
 		
 		
@@ -81,25 +87,25 @@ public class GoodsData implements GoodsDataService{
 	@Override
 	public ArrayList<GoodsPO> finds() throws RemoteException {
 		ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
+		GoodsPO gpo = null;
 		ObjectInputStream os = null;
 		
 		try {
-			os = new ObjectInputStream(new FileInputStream("GoodsFILE_PATH"));
+			os = new ObjectInputStream(new FileInputStream(file));
 
-			for (;;) {
-				GoodsPO po = (GoodsPO) os.readObject();
-				if (po == null)
-					break;
-				gpos.add(po);
+			while ((gpo = (GoodsPO) os.readObject()) != null) {
+				gpos.add(gpo);
 			}
 
 			os.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND");
+		} catch (EOFException e) {
+			System.out.println("END OF FILE");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("CLASS NOT FOUND");
 		}
 		
 		
@@ -108,33 +114,31 @@ public class GoodsData implements GoodsDataService{
 
 	@Override
 	public void insert(GoodsPO gpo) throws RemoteException {
-		if(findGoodsPO(gpo.getExpressNumber()) == null){
 			ObjectOutputStream oos = null;
 			MyObjectOutputStream moos = null;
 			File file = new File(GoodsFILE_PATH);
 			
 			try {
-				oos = new ObjectOutputStream(new FileOutputStream(file));
-				moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 				if (file.length() == 0) {
+					oos = new ObjectOutputStream(new FileOutputStream(file));
 					oos.writeObject(gpo);
 					oos.flush();
 					oos.close();
 				} else {
+					moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 					moos.writeObject(gpo);
 					moos.flush();
 					moos.close();
 				}
 			} catch (FileNotFoundException e) {
-				System.out.println("GoodsFile not found");
-				e.printStackTrace();
+				System.out.println("FILE NOT FOUND ");
+			} catch (EOFException e) {
+				System.out.println("END OF FILE");
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("IO EXCEPTION");
 			}
 			
-		}
 		
-		else System.out.println("Already exist!!");
 	}
 
 	@Override
@@ -168,10 +172,10 @@ public class GoodsData implements GoodsDataService{
 			os.close();
 			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("FILE NOT FOUND ");
 		} catch (IOException e) {
-			e.printStackTrace();
-		}		
+			System.out.println("IO EXCEPTION");
+		}	
 	}
 
 	@Override

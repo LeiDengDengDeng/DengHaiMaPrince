@@ -3,6 +3,7 @@ package src.presentation.commodityui;
 import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
@@ -30,6 +32,8 @@ public class AlarmScaleChangingPanel extends JPanel{
 	protected static final int w = 641;// panel宽
 	protected static final int h = 572;// panel高
 	
+	protected static final ImageIcon IMG_BG = new ImageIcon("images/alarmscalechanging_bg.png");
+	
 	protected static final ImageIcon IMG_CONFIRM = new ImageIcon("images/confirm.png");
 	
 	private JLabel alarmScaleRemind;
@@ -42,24 +46,26 @@ public class AlarmScaleChangingPanel extends JPanel{
 	
 	public AlarmScaleChangingPanel(GoodsDataService goodsDataService,
 			StorageDataService storageDataService){
-		commodityBL = new CommodityBLService_Stub(goodsDataService,
+		commodityBL = new Commodity(goodsDataService,
 				storageDataService);
 		alarmScaleRemind = new JLabel("请输入警戒比例：");
-		alarmScaleRemind.setBounds(30, 30, 200, 30);
+		alarmScaleRemind.setBounds(50, 70, 200, 30);
 		alarmScaleRemind.setFont(new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+		alarmScaleRemind.setForeground(Color.WHITE);
 		this.add(alarmScaleRemind);
 		
 		alarmScale = new JTextField();
-		alarmScale.setBounds(60, 90, 150, 30);
+		alarmScale.setBounds(80, 120, 150, 30);
 		this.add(alarmScale);
 		
 		inputRemind = new JLabel("(请输入一个介于0与1之间的小数，如0.9)");
-		inputRemind.setBounds(230, 90, 400, 30);
+		inputRemind.setBounds(250, 120, 400, 30);
 		inputRemind.setFont(new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+		inputRemind.setForeground(Color.WHITE);
 		this.add(inputRemind);
 		
 		remind = new JLabel("在提交前请确认您的警戒比例！");
-		remind.setBounds(170, 145, 350, 50);
+		remind.setBounds(170, 170, 350, 50);
 		remind.setFont(new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
 		remind.setForeground(Color.RED);
 		this.add(remind);
@@ -94,6 +100,16 @@ public class AlarmScaleChangingPanel extends JPanel{
 		}
 		
 	}
+	
+	public void paintComponent(Graphics g) 
+    { 
+    super.paintComponent(g); 
+
+
+    g.drawImage(IMG_BG.getImage(),40, 40,null);
+
+
+    }
 	
 	public static void main(String[] args) {
 		GoodsDataService goodsDataService = null;
