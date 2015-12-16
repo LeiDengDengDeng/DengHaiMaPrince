@@ -3,7 +3,7 @@ package src.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import src.businesslogic.commoditybl.GoodsType;
+import src.enums.GoodsType;
 
 /**
  * 商品信息持久化对象

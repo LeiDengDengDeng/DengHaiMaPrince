@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.nonUserblservice.NonUserBLService;
+import src.enums.Sex;
 import src.po.DriverPO;
 import src.po.TruckPO;
 import src.vo.BussinessHallVO;

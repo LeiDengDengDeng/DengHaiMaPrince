@@ -3,6 +3,7 @@ package src.businesslogic.nonUserbl;
 import java.util.ArrayList;
 
 import src.businesslogicservice.logblservice.LogBLService;
+import src.enums.Sex;
 import src.vo.BussinessHallVO;
 import src.vo.DriverInfoVO;
 import src.vo.TruckInfoVO;

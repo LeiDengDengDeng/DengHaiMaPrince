@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
@@ -16,8 +17,13 @@ import src.dataservice.commoditydataservice.StorageDataService;
 import src.po.GoodsPO;
 import src.po.StoragePO;
 
-public class StorageData implements StorageDataService{
+public class StorageData extends UnicastRemoteObject implements StorageDataService{
 	
+	public StorageData() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public static final String StorageFILE_PATH = "storage.ser";
 	File file = new File(StorageFILE_PATH);
 
@@ -31,7 +37,7 @@ public class StorageData implements StorageDataService{
 
 			for (;;) {
 				StoragePO po = (StoragePO) os.readObject();
-				if (po.getCity() == id){
+				if (po.getCity().equals(id)){
 					spo = po;
 					break;
 				}

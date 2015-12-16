@@ -1,6 +1,6 @@
 package src.vo;
 
-import src.businesslogic.nonUserbl.Sex;
+import src.enums.Sex;
 
 public class DriverInfoVO {
 	private long number; // Ë¾»ú±àºÅ

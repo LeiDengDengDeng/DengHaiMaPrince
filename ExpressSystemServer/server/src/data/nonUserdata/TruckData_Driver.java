@@ -10,11 +10,11 @@ public class TruckData_Driver {
 		TruckPO tpo2 = new TruckPO(025000001, 10, "À’A00001");
 //		truckData.insert(tpo1);
 //		truckData.insert(tpo2);
-		truckData.deleteTruckPO(025000000);
-//		System.out.println(truckData.findsTruckPO().size());
+//		truckData.deleteTruckPO(025000000);
+		System.out.println(truckData.findsTruckPO().size());
 //		System.out.println(truckData.findsTruckPO().get(0).getLicensePlateNum() 
 //				+ " " + truckData.findsTruckPO().get(1).getLicensePlateNum());
-//		System.out.println(truckData.findsTruckPO().get(0).getLicensePlateNum());
+		System.out.println(truckData.findsTruckPO().get(0).getLicensePlateNum());
 	}
 
 }

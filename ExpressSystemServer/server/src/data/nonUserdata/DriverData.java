@@ -9,14 +9,20 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.nonUserdataservice.DriverDataService;
 import src.po.DriverPO;
 
-public class DriverData implements DriverDataService{
+public class DriverData extends UnicastRemoteObject implements DriverDataService{
 	
+	public DriverData() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public static final String DriverFILE_PATH = "driver.ser";
 	File file = new File(DriverFILE_PATH);
 

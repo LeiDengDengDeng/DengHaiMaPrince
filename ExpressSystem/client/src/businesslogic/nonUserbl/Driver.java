@@ -1,23 +1,33 @@
 package src.businesslogic.nonUserbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.nonUserblservice.DriverBLService;
+import src.dataservice.nonUserdataservice.BusinessHallDataService;
 import src.dataservice.nonUserdataservice.DriverDataService;
 import src.po.DriverPO;
 import src.vo.DriverInfoVO;
 
 public class Driver implements DriverBLService{
 	
-	LogBLService logBLService;
+	Log log;
 	DriverDataService driverDataService;
 	
-	public Driver(DriverDataService driverDataService){
+	public Driver(Log log){
 		super();
-		this.driverDataService = driverDataService;
+		try {
+			driverDataService =(DriverDataService) Naming.lookup("rmi://127.0.0.1:6600/driverData");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -45,14 +55,13 @@ public class Driver implements DriverBLService{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		int i = 0;
-		while(dpos.get(i) != null){
+		
+		for(int i = 0;i < dpos.size();i++){
 			dvos.add(new DriverInfoVO(dpos.get(i).getNumber(), 
 					dpos.get(i).getName(), dpos.get(i).getYear(), 
 					dpos.get(i).getMonth(), dpos.get(i).getDay(), 
 					dpos.get(i).getID(), dpos.get(i).getMobNum(), 
 					dpos.get(i).getSex(), dpos.get(i).getYearOfExpiring()));
-			i++;
 		}
 		return dvos;
 	}
@@ -95,8 +104,8 @@ public class Driver implements DriverBLService{
 
 	@Override
 	public void initDriver(ArrayList<DriverInfoVO> dvolist) {
-		int i = 0;
-		while(dvolist.get(i) != null){
+		
+		for(int i = 0;i < dvolist.size();i++){
 			DriverPO dpo = new DriverPO(dvolist.get(i).getNumber(), 
 					dvolist.get(i).getName(), dvolist.get(i).getYear(), 
 					dvolist.get(i).getMonth(), dvolist.get(i).getDay(), 
@@ -107,7 +116,6 @@ public class Driver implements DriverBLService{
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
-			i++;
 		}
 	}
 

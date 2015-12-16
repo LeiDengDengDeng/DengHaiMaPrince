@@ -1,9 +1,12 @@
 package src.businesslogic.nonUserbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import src.businesslogicservice.logblservice.LogBLService;
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.nonUserblservice.BussinessHallBLService;
 import src.dataservice.nonUserdataservice.BusinessHallDataService;
 import src.po.BussinessHallPO;
@@ -11,12 +14,17 @@ import src.vo.BussinessHallVO;
 
 public class BussinessHall implements BussinessHallBLService{
 	
-	LogBLService logBLService;
+	Log log;
 	BusinessHallDataService businessHallDataService;
 	
-	public BussinessHall(BusinessHallDataService businessHallDataService){
+	public BussinessHall(Log log){
 		super();
-		this.businessHallDataService = businessHallDataService;
+		try {
+			businessHallDataService =(BusinessHallDataService) Naming.lookup("rmi://127.0.0.1:6600/businessHallData");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -43,11 +51,10 @@ public class BussinessHall implements BussinessHallBLService{
 			e.printStackTrace();
 		}
 		
-		int i =0;
-		while(bpos.get(i) != null){
+		
+		for(int i =0;i < bpos.size();i++){
 			bvos.add(new BussinessHallVO(bpos.get(i).getHallName(), 
 					bpos.get(i).getHallId()));
-			i++;
 		}
 		return bvos;
 	}

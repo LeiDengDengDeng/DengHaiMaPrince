@@ -11,6 +11,7 @@ public class IntermediateCenterData_Driver {
 //		intermediateCenterData.insert(ipo1);
 //		intermediateCenterData.insert(ipo2);
 //		intermediateCenterData.deleteIntermediateCenterPO("ÉÏº£");
+//		System.out.println(intermediateCenterData.findsIntermediateCenterPO().size());
 //		System.out.println(intermediateCenterData.findsIntermediateCenterPO()
 //				.get(0).getCity() + " " + intermediateCenterData.findsIntermediateCenterPO()
 //				.get(1).getCity());

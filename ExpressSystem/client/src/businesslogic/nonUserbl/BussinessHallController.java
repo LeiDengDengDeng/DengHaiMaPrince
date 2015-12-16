@@ -2,6 +2,7 @@ package src.businesslogic.nonUserbl;
 
 import java.util.ArrayList;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.nonUserblservice.BussinessHallBLService;
 import src.dataservice.nonUserdataservice.BusinessHallDataService;
 import src.vo.BussinessHallVO;
@@ -10,9 +11,10 @@ public class BussinessHallController implements BussinessHallBLService{
 	
 	BusinessHallDataService businessHallDataService;
 	BussinessHallBLService bussinessHallimpl;
+	Log log;
 	
 	public BussinessHallController(){
-		bussinessHallimpl = new BussinessHall(businessHallDataService);
+		bussinessHallimpl = new BussinessHall(log);
 	}
 
 	@Override

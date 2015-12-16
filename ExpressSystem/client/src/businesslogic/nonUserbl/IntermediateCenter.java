@@ -1,23 +1,32 @@
 package src.businesslogic.nonUserbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.nonUserblservice.IntermediateCenterBLService;
+import src.dataservice.nonUserdataservice.BusinessHallDataService;
 import src.dataservice.nonUserdataservice.IntermediateCenterDataService;
 import src.po.IntermediateCenterPO;
 import src.vo.IntermediateCenterVO;
 
 public class IntermediateCenter implements IntermediateCenterBLService{
 	
-	LogBLService logBLService;
+	Log log;
 	IntermediateCenterDataService intermediateCenterDataService;
 	
-	public IntermediateCenter(IntermediateCenterDataService 
-			intermediateCenterDataService){
+	public IntermediateCenter(Log log){
 		super();
-		this.intermediateCenterDataService = intermediateCenterDataService;
+		try {
+			intermediateCenterDataService =(IntermediateCenterDataService) Naming.lookup("rmi://127.0.0.1:6600/intermediateCenterData");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -46,11 +55,10 @@ public class IntermediateCenter implements IntermediateCenterBLService{
 			e.printStackTrace();
 		}
 		
-		int i = 0;
-		while(ipos.get(i) != null){
+		
+		for(int i = 0;i < ipos.size();i++){
 			ivos.add(new IntermediateCenterVO(ipos.get(i).getCity(), 
 					ipos.get(i).getSpo(), ipos.get(i).getBpos()));
-			i++;
 		}
 		return ivos;
 	}
@@ -85,12 +93,11 @@ public class IntermediateCenter implements IntermediateCenterBLService{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		int i = 0;
-		while(ipos.get(i) != null){
+		
+		for(int i = 0;i < ipos.size();i++){
 			if(!cs.contains(ipos.get(i).getCity())){
 				cs.add(ipos.get(i).getCity());
 			}
-			i++;
 		}
 		
 		return cs;

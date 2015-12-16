@@ -1,4 +1,4 @@
-package src.businesslogic.commoditybl;
+package src.enums;
 
 public enum GoodsType {
 	SHIPPING,RAIL,TRANSPORT,FLXIBLE,ECONOMIC,STANDARD,EXPRESS,PAPERPAKAGE,

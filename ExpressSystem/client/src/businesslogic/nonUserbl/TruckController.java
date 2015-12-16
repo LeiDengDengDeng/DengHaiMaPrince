@@ -2,6 +2,7 @@ package src.businesslogic.nonUserbl;
 
 import java.util.ArrayList;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.nonUserblservice.TruckBLService;
 import src.dataservice.nonUserdataservice.TruckDataService;
 import src.vo.TruckInfoVO;
@@ -12,12 +13,12 @@ import src.vo.TruckInfoVO;
  *
  */
 public class TruckController implements TruckBLService{
-	
+	Log log;
 	TruckDataService truckDataService;
 	TruckBLService truckimpl;
 	
 	public TruckController(){
-		truckimpl = new Truck(truckDataService);
+		truckimpl = new Truck(log);
 	}
 
 	@Override

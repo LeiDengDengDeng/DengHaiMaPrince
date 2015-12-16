@@ -2,7 +2,7 @@ package src.po;
 
 import java.io.Serializable;
 
-import src.businesslogic.nonUserbl.Sex;
+import src.enums.Sex;
 
 public class DriverPO implements Serializable {
 

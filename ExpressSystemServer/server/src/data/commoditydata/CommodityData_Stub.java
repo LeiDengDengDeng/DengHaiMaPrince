@@ -31,8 +31,7 @@ public class CommodityData_Stub implements CommodityDataService{
 		System.out.println("成功找到StoragePO!");
 		ArrayList<GoodsPO> gposList = new ArrayList<GoodsPO>();
 		gposList.add(findGoodsPO(1));
-		StoragePO spo = new StoragePO("南京",100, 100, 1000, 200, 300, 300, 200,
-				0.9, 1, 200, 201, 500, 501, 800, 801, 1000, gposList);
+		StoragePO spo = null;
 		return spo;
 	}
 

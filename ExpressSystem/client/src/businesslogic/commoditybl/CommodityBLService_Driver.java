@@ -3,6 +3,7 @@ package src.businesslogic.commoditybl;
 import java.util.ArrayList;
 
 import src.businesslogicservice.commodityblservice.CommodityBLService;
+import src.enums.GoodsType;
 import src.po.GoodsPO;
 import src.po.StoragePO;
 

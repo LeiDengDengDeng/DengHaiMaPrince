@@ -3,8 +3,8 @@ package src.po;
 import java.util.ArrayList;
 
 
-import src.businesslogic.commoditybl.GoodsType;
 
+import src.enums.GoodsType;
 import src.enums.SheetState;
 import src.enums.SheetType;
 

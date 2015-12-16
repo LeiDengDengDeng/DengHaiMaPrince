@@ -9,14 +9,20 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.nonUserdataservice.BusinessHallDataService;
 import src.po.BussinessHallPO;
 
-public class BusinessHallData implements BusinessHallDataService{
+public class BusinessHallData extends UnicastRemoteObject implements BusinessHallDataService{
 	
+	public BusinessHallData() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public static final String BussinessHallFILE_PATH = "bussinesshall.ser";
 	File file = new File(BussinessHallFILE_PATH);
 
@@ -31,7 +37,7 @@ public class BusinessHallData implements BusinessHallDataService{
 
 			for (;;) {
 				BussinessHallPO po = (BussinessHallPO) os.readObject();
-				if (po.getHallName() == id){
+				if (po.getHallName().equals(id)){
 					bpo = po;
 					break;
 				}

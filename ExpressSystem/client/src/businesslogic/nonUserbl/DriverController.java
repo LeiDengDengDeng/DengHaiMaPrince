@@ -2,17 +2,18 @@ package src.businesslogic.nonUserbl;
 
 import java.util.ArrayList;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.nonUserblservice.DriverBLService;
 import src.dataservice.nonUserdataservice.DriverDataService;
 import src.vo.DriverInfoVO;
 
 public class DriverController implements DriverBLService{
-	
+	Log log;
 	DriverDataService driverDataService;
 	DriverBLService driverimpl;
 	
 	public DriverController(){
-		driverimpl = new Driver(driverDataService);
+		driverimpl = new Driver(log);
 	}
 
 	@Override

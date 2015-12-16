@@ -15,10 +15,11 @@ import javax.swing.JPanel;
 
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
-import src.businesslogic.commoditybl.GoodsType;
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
+import src.enums.GoodsType;
 import src.presentation.sheetui.DateChooserJButton;
 import src.presentation.util.MyButton;
 import src.vo.StorageInfoVO;
@@ -66,10 +67,8 @@ public class StockCheckPanel extends JPanel{
 	public StorageInfoVO sivo;
 	public StorageNumVO snvo;
 	
-	public StockCheckPanel(GoodsDataService goodsDataService,
-			StorageDataService storageDataService){
-		commodityBL = new Commodity(goodsDataService,
-				storageDataService);
+	public StockCheckPanel(Log log){
+		commodityBL = new Commodity(log);
 		storages = new ArrayList<StorageInfoVO>();
 		
 		previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
@@ -259,9 +258,10 @@ public class StockCheckPanel extends JPanel{
     }
     
 	public static void main(String[] args) {
-		GoodsDataService goodsDataService = null;
-		StorageDataService storageDataService = null;
-		StockCheckPanel sp = new StockCheckPanel(goodsDataService, storageDataService);
+//		GoodsDataService goodsDataService = null;
+//		StorageDataService storageDataService = null;
+		Log log = null;
+		StockCheckPanel sp = new StockCheckPanel(log);
 		sp.run();
 	}
 	

@@ -3,7 +3,7 @@ package src.businesslogicservice.commodityblservice;
 import java.util.ArrayList;
 
 import src.businesslogic.commoditybl.AlarmMessage;
-import src.businesslogic.commoditybl.GoodsType;
+import src.enums.GoodsType;
 import src.po.GoodsPO;
 import src.po.StorageInSheetPO;
 import src.po.StorageOutSheetPO;

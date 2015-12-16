@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
-import src.businesslogic.commoditybl.GoodsType;
+import src.enums.GoodsType;
 import src.vo.ExpressInfoVO;
 
 public class DivideInfoLabelGroup {

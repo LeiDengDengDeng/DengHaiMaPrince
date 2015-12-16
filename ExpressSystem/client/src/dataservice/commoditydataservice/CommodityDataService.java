@@ -4,7 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import src.businesslogic.commoditybl.GoodsType;
+import src.enums.GoodsType;
 import src.po.GoodsPO;
 import src.po.StoragePO;
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.businesslogicservice.logblservice.LogBLService;
+import src.enums.GoodsType;
 import src.po.GoodsPO;
 import src.po.StorageInSheetPO;
 import src.po.StorageOutSheetPO;

@@ -1,13 +1,19 @@
 package src.businesslogic.commoditybl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import src.enums.GoodsType;
 import src.enums.SheetType;
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.businesslogicservice.logblservice.LogBLService;
+import src.dataservice.accountdataservice.AccountDataService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
 import src.po.GoodsPO;
@@ -21,16 +27,20 @@ import src.vo.StorageNumVO;
 
 public class Commodity implements CommodityBLService{
 	
-	LogBLService log;
+	Log log;
 	GoodsDataService goodsDataService;
 	StorageDataService storageDataService;
 	
 
-	public Commodity(GoodsDataService goodsDataService,
-			StorageDataService storageDataService) {
+	public Commodity(Log log) {
 		super();
-		this.goodsDataService = goodsDataService;
-		this.storageDataService = storageDataService;
+		try {
+			goodsDataService =(GoodsDataService) Naming.lookup("rmi://127.0.0.1:6600/goodsData");
+			storageDataService = (StorageDataService) Naming.lookup("rmi://127.0.0.1:6600/storageData");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -46,8 +56,8 @@ public class Commodity implements CommodityBLService{
 			e.printStackTrace();
 		}
 		gpos = spo.getGpos();
-		int i = 0;
-		while(gpos.get(i) != null){
+//		System.out.println(gpos.size());
+		for(int i = 0;i < gpos.size();i++){
 			//判断是否是当天入库
 			if(matter1.format(dt).equals(gpos.get(i).getInTime() + "")){
 				evos.add(new ExpressInfoVO(gpos.get(i).getGoodsName(),gpos.get(i).getExpressNumber(), 
@@ -55,8 +65,8 @@ public class Commodity implements CommodityBLService{
 						gpos.get(i).getAreaNumber(), gpos.get(i).getRowNumber(),
 						gpos.get(i).getShelfNumber(), gpos.get(i).getSeatNumber(),false));
 			}
-			i++;
 		}
+//		System.out.println("esize: " + evos.size());
 		return evos;
 	}
 
@@ -69,18 +79,18 @@ public class Commodity implements CommodityBLService{
 	@Override
 	public void changeAlarmScale(double alarmScale,String storageId) {
 		StoragePO spo = null;
-		ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
+//		ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
 		try {
 			spo = storageDataService.findStoragePO(storageId);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		gpos = spo.getGpos();
-		try {
-			spo = storageDataService.findStoragePO(storageId);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+//		gpos = spo.getGpos();
+//		try {
+//			spo = storageDataService.findStoragePO(storageId);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
 		spo.setAlarmScale(alarmScale);
 		try {
 			storageDataService.update(storageId,spo);
@@ -100,8 +110,8 @@ public class Commodity implements CommodityBLService{
 			e.printStackTrace();
 		}
 		gpos = spo.getGpos();
-		int i = 0;
-		while(gpos.get(i) != null){
+		
+		for(int i = 0;i < gpos.size();i++){
 			//判断是否在指定时间内
 			if((gpos.get(i).getInTime() >= startTime) && 
 					(gpos.get(i).getInTime() <= endTime)){
@@ -109,7 +119,6 @@ public class Commodity implements CommodityBLService{
 						gpos.get(i).getRowNumber(), gpos.get(i).getShelfNumber(),
 						gpos.get(i).getSeatNumber()));
 			}
-			i++;
 		}
 		return svos;
 	}
@@ -126,14 +135,13 @@ public class Commodity implements CommodityBLService{
 			e.printStackTrace();
 		}
 		gpos = spo.getGpos();
-		int i = 0;
-		while(gpos.get(i) != null){
+		
+		for(int i = 0;i < gpos.size();i++){
 			//判断是否在指定时间内
 			if((gpos.get(i).getInTime() >= startTime) && 
 					(gpos.get(i).getInTime() <= endTime)){
 				inNum++;
 			}
-			i++;
 		}
 		//TODO outNum
 		StorageNumVO svo = new StorageNumVO(inNum, outNum, 
@@ -200,8 +208,8 @@ public class Commodity implements CommodityBLService{
 			e.printStackTrace();
 		}
 		gpos = spo.getGpos();
-		int i = 0;
-		while(gpos.get(i) != null){
+		
+		for(int i = 0;i < gpos.size();i++){
 			if(gpos.get(i).getAreaNumber() == areaNumber){
 				evos.add(new ExpressInfoVO(gpos.get(i).getGoodsName(),gpos.get(i).getExpressNumber(), 
 						gpos.get(i).getInTime(), gpos.get(i).getDestination(), 
@@ -209,7 +217,6 @@ public class Commodity implements CommodityBLService{
 						gpos.get(i).getShelfNumber(), gpos.get(i).getSeatNumber(),
 						false));
 			}
-			i++;
 		}
 		return evos;
 	}
@@ -224,19 +231,17 @@ public class Commodity implements CommodityBLService{
 			e.printStackTrace();
 		}
 		gpos = spo.getGpos();
-		int i = 0;
-		int j = 0;
-		while(evos.get(i) != null){
+		
+		
+		for(int i = 0;i < evos.size();i++){
 			if(evos.get(i).isFlxible() == true){
-				while(gpos.get(j) != null){
+				for(int j = 0;j < gpos.size();j++){
 					if(gpos.get(j).getExpressNumber() == 
 							evos.get(i).getExpressNumber()){
 						gpos.get(j).setAreaNumber(GoodsType.FLXIBLE);
 					}
 				}
-				j++;
 			}
-			i++;
 		}
 		try {
 			storageDataService.update(storageId, spo);
@@ -263,8 +268,7 @@ public class Commodity implements CommodityBLService{
 	@Override
 	public void initStorageInfo(ArrayList<StorageInitVO> svolist) {
 		StoragePO spo = null;
-		int i = 0;
-		while(svolist.get(i) != null){
+		for(int i = 0;i < svolist.size();i++){
 			spo = new StoragePO(svolist.get(i).getStorageId(), 
 					0, 0, 0, 0, 0, svolist.get(i).getAlarmScale(), 
 					svolist.get(i).getSeatNum()/4, 
@@ -276,7 +280,6 @@ public class Commodity implements CommodityBLService{
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
-			i++;
 		}
 	}
 

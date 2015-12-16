@@ -2,6 +2,7 @@ package src.businesslogic.commoditybl;
 
 import java.util.ArrayList;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
@@ -10,9 +11,8 @@ import src.vo.StorageInitVO;
 
 public class MockCommodity extends Commodity{
 
-	public MockCommodity(GoodsDataService goodsDataService,
-			StorageDataService storageDataService,String storageId) {
-		super(goodsDataService,storageDataService);
+	public MockCommodity(Log log,String storageId) {
+		super(log);
 	}
 	
 	public String getStorageId() {

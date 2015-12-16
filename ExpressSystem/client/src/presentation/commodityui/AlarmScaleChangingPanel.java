@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
@@ -44,10 +45,8 @@ public class AlarmScaleChangingPanel extends JPanel{
 	
 	private CommodityBLService commodityBL;
 	
-	public AlarmScaleChangingPanel(GoodsDataService goodsDataService,
-			StorageDataService storageDataService){
-		commodityBL = new Commodity(goodsDataService,
-				storageDataService);
+	public AlarmScaleChangingPanel(Log log){
+		commodityBL = new Commodity(log);
 		alarmScaleRemind = new JLabel("«Î ‰»ÎæØΩ‰±»¿˝£∫");
 		alarmScaleRemind.setBounds(50, 70, 200, 30);
 		alarmScaleRemind.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
@@ -112,9 +111,10 @@ public class AlarmScaleChangingPanel extends JPanel{
     }
 	
 	public static void main(String[] args) {
-		GoodsDataService goodsDataService = null;
-		StorageDataService storageDataService = null;
-		AlarmScaleChangingPanel ap = new AlarmScaleChangingPanel(goodsDataService, storageDataService);
+//		GoodsDataService goodsDataService = null;
+//		StorageDataService storageDataService = null;
+		Log log = null;
+		AlarmScaleChangingPanel ap = new AlarmScaleChangingPanel(log);
 		ap.run();
 	}
 	

@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JComboBox;
 
-import src.businesslogic.commoditybl.GoodsType;
+import src.enums.GoodsType;
 
 public class ButtonConfirmListener extends CommodityMouseListener {
 	TextField textFieldName;

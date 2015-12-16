@@ -1,5 +1,6 @@
 package src.presentation.commodityui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,11 +13,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
-import src.businesslogic.commoditybl.GoodsType;
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
+import src.enums.GoodsType;
 import src.presentation.util.MyButton;
 import src.vo.ExpressInfoVO;
 
@@ -46,17 +49,16 @@ public class StockTakingPanel extends JPanel{
     private CommodityBLService commodityBL;
     private ExpressInfoVO evo;
     
-    public StockTakingPanel(GoodsDataService goodsDataService,
-			StorageDataService storageDataService){
-    	commodityBL = new CommodityBLService_Stub(goodsDataService,
-				storageDataService);
+    public StockTakingPanel(Log log){
+    	commodityBL = new Commodity(log);
     	storages = new ArrayList<ExpressInfoVO>();
-//    	storages = commodityBL.stockTaking("南京");
-    	for (int i = 0; i < 54; i++) {
-            ExpressInfoVO temp = new ExpressInfoVO("血吼", 0000000000000006,
-            		20151205, "奥格瑞玛", GoodsType.FLXIBLE,006,007,114,false);
-            storages.add(temp);
-        }
+    	storages = commodityBL.stockTaking("南京");
+//    	System.out.println("size: " + storages.size());
+//    	for (int i = 0; i < 54; i++) {
+//            ExpressInfoVO temp = new ExpressInfoVO("血吼", 0000000000000006,
+//            		20151205, "奥格瑞玛", GoodsType.FLXIBLE,006,007,114,false);
+//            storages.add(temp);
+//        }
     	previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
                 ("images/previousPageClicked.png"), 322, 508);
         nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
@@ -77,14 +79,14 @@ public class StockTakingPanel extends JPanel{
         
         imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(40, 40, bkgImg.getIconWidth(), bkgImg.getIconHeight());
-        addStorageLabel();
         
         remind = new JLabel("今天的库存快照如下，若想导出Excel请点击左下角");
-        remind.setBounds(40, 30, 500, 30);
+        remind.setBounds(40, 35, 500, 30);
         remind.setFont(new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+        remind.setForeground(Color.WHITE);
         
         excelButton = new JButton("导出Excel");
-        excelButton.setBounds(80, 500, 100, 30);
+        excelButton.setBounds(80, 505, 100, 30);
         ExcelButtonActionListener listener2 = new ExcelButtonActionListener(this);
         excelButton.addActionListener(listener2);
         
@@ -99,6 +101,7 @@ public class StockTakingPanel extends JPanel{
         this.setLayout(null);
 		this.setBounds(x, y, w, h);
 		this.setOpaque(false);
+		addStorageLabel();
     }
     
     private void setPageComboBox() {
@@ -182,9 +185,10 @@ public class StockTakingPanel extends JPanel{
         }
     }
     public static void main(String[] args) {
-		GoodsDataService goodsDataService = null;
-		StorageDataService storageDataService = null;
-		StockTakingPanel sp = new StockTakingPanel(goodsDataService, storageDataService);
+//		GoodsDataService goodsDataService = null;
+//		StorageDataService storageDataService = null;
+    	Log log = null;
+		StockTakingPanel sp = new StockTakingPanel(log);
 		sp.run();
 	}
 	

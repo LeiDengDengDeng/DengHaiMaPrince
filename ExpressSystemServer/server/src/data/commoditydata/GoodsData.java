@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
@@ -16,8 +17,13 @@ import src.dataservice.commoditydataservice.GoodsDataService;
 import src.enums.GoodsType;
 import src.po.GoodsPO;
 
-public class GoodsData implements GoodsDataService{
+public class GoodsData extends UnicastRemoteObject implements GoodsDataService{
 	
+	public GoodsData() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public static final String GoodsFILE_PATH = "goods.ser";
 	File file = new File(GoodsFILE_PATH);
 

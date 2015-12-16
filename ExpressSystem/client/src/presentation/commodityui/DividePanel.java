@@ -16,10 +16,11 @@ import javax.swing.JPanel;
 
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
-import src.businesslogic.commoditybl.GoodsType;
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
+import src.enums.GoodsType;
 import src.presentation.util.MyButton;
 import src.vo.ExpressInfoVO;
 
@@ -53,10 +54,8 @@ public class DividePanel extends JPanel{
     private CommodityBLService commodityBL;
     private ExpressInfoVO evo;
     
-    public DividePanel(GoodsDataService goodsDataService,
-			StorageDataService storageDataService){
-    	commodityBL = new Commodity(goodsDataService,
-				storageDataService);
+    public DividePanel(Log log){
+    	commodityBL = new Commodity(log);
     	storages = new ArrayList<ExpressInfoVO>();
     	for (int i = 0; i < 28; i++) {
             ExpressInfoVO temp = new ExpressInfoVO("Ñªºð", 0000000000000006,
@@ -223,9 +222,10 @@ public class DividePanel extends JPanel{
         }
     }
     public static void main(String[] args) {
-		GoodsDataService goodsDataService = null;
-		StorageDataService storageDataService = null;
-		DividePanel dp = new DividePanel(goodsDataService, storageDataService);
+//		GoodsDataService goodsDataService = null;
+//		StorageDataService storageDataService = null;
+    	Log log = null;
+		DividePanel dp = new DividePanel(log);
 		dp.run();
 	}
 	

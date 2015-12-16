@@ -1,22 +1,32 @@
 package src.businesslogic.nonUserbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.nonUserblservice.TruckBLService;
+import src.dataservice.nonUserdataservice.BusinessHallDataService;
 import src.dataservice.nonUserdataservice.TruckDataService;
 import src.po.TruckPO;
 import src.vo.TruckInfoVO;
 
 public class Truck implements TruckBLService{
 	
-	LogBLService logBLService;
+	Log log;
 	TruckDataService truckDataService;
 	
-	public Truck(TruckDataService truckDataService){
+	public Truck(Log log){
 		super();
-		this.truckDataService = truckDataService;
+		try {
+			truckDataService =(TruckDataService) Naming.lookup("rmi://127.0.0.1:6600/truckData");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -42,12 +52,11 @@ public class Truck implements TruckBLService{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		int i = 0;
-		while(tpos.get(i) != null){
+		
+		for(int i = 0;i < tpos.size();i++){
 			tvos.add(new TruckInfoVO(tpos.get(i).getNumber(), 
 					tpos.get(i).getActiveTime(), 
 					tpos.get(i).getLicensePlateNum()));
-			i++;
 		}
 		return tvos;
 	}
@@ -89,8 +98,8 @@ public class Truck implements TruckBLService{
 
 	@Override
 	public void initTruck(ArrayList<TruckInfoVO> tvolist) {
-		int i = 0;
-		while(tvolist.get(i) != null){
+		
+		for(int i = 0;i < tvolist.size();i++){
 			TruckPO tpo = new TruckPO(tvolist.get(i).getNumber(),
 					tvolist.get(i).getActiveTime(), 
 					tvolist.get(i).getLicensePlateNum());
@@ -99,7 +108,6 @@ public class Truck implements TruckBLService{
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
-			i++;
 		}
 		
 	}

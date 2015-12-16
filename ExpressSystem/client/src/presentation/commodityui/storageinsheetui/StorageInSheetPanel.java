@@ -12,12 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
-import src.businesslogic.commoditybl.GoodsType;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
+import src.enums.GoodsType;
 import src.presentation.accountui.AccountPanel;
 import src.vo.StorageInSheetVO;
 
@@ -78,10 +79,8 @@ public class StorageInSheetPanel extends JPanel{
 	protected static final int del_x = 30;// del按钮到amount结尾的距离
 	boolean isfirst = true;
 
-	public StorageInSheetPanel(GoodsDataService goodsDataService,
-			StorageDataService storageDataService) {
-		commodityBL = new CommodityBLService_Stub(goodsDataService,
-				storageDataService);
+	public StorageInSheetPanel(Log log) {
+		commodityBL = new Commodity(log);
 		goodsNames = new ArrayList<String>();
 		expressNumbers = new ArrayList<Long>();
 		inTime = 0;
@@ -252,10 +251,10 @@ g.drawImage(IMG_BG.getImage(),Word_x - 33, Word_y - 35,null);
 }
 
 public static void main(String[] args) {
-	GoodsDataService goodsDataService = null;
-	StorageDataService storageDataService = null;
+//	GoodsDataService goodsDataService = null;
+//	StorageDataService storageDataService = null;
 	Log log = null;
-	StorageInSheetPanel sp = new StorageInSheetPanel(goodsDataService, storageDataService);
+	StorageInSheetPanel sp = new StorageInSheetPanel(log);
 	sp.run();
 }
 

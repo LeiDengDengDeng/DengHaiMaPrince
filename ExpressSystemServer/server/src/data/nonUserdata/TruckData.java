@@ -9,14 +9,20 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.nonUserdataservice.TruckDataService;
 import src.po.TruckPO;
 
-public class TruckData implements TruckDataService{
+public class TruckData extends UnicastRemoteObject implements TruckDataService{
 	
+	public TruckData() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public static final String TruckFILE_PATH = "truck.ser";
 	File file = new File(TruckFILE_PATH);
 

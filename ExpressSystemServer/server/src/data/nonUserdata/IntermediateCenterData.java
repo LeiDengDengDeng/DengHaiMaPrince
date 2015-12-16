@@ -9,14 +9,20 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.nonUserdataservice.IntermediateCenterDataService;
 import src.po.IntermediateCenterPO;
 
-public class IntermediateCenterData implements IntermediateCenterDataService{
+public class IntermediateCenterData extends UnicastRemoteObject implements IntermediateCenterDataService{
 	
+	public IntermediateCenterData() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public static final String IntermediateCenterFILE_PATH = "intermediatecenter.ser";
 	File file = new File(IntermediateCenterFILE_PATH);
 
@@ -31,7 +37,7 @@ public class IntermediateCenterData implements IntermediateCenterDataService{
 
 			for (;;) {
 				IntermediateCenterPO po = (IntermediateCenterPO) os.readObject();
-				if (po.getCity() == id){
+				if (po.getCity().equals(id)){
 					ipo = po;
 					break;
 				}

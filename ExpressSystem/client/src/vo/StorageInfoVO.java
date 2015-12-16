@@ -2,7 +2,7 @@ package src.vo;
 
 import java.io.Serializable;
 
-import src.businesslogic.commoditybl.GoodsType;
+import src.enums.GoodsType;
 
 /**
  * 用于显示将被查看的库存信息

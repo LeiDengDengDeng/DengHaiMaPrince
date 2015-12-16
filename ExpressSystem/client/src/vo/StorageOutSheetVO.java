@@ -2,7 +2,7 @@ package src.vo;
 
 import java.util.ArrayList;
 
-import src.businesslogic.commoditybl.GoodsType;
+import src.enums.GoodsType;
 import src.enums.SheetType;
 
 public class StorageOutSheetVO implements SheetVO {
