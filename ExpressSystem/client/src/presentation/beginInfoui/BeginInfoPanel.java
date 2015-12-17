@@ -2,7 +2,6 @@ package src.presentation.beginInfoui;
 
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.TextField;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -14,6 +13,11 @@ import javax.swing.JPanel;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
 import src.vo.AccountVO;
+import src.vo.BeginInfoVO;
+import src.vo.DriverInfoVO;
+import src.vo.InitUserVO;
+import src.vo.StorageInitVO;
+import src.vo.TruckInfoVO;
 
 public class BeginInfoPanel extends JPanel {
 
@@ -94,7 +98,6 @@ public class BeginInfoPanel extends JPanel {
 					}
 
 				}
-
 				@Override
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
@@ -163,23 +166,23 @@ public class BeginInfoPanel extends JPanel {
 	}
 
 	public void save() {
-		ArrayList<ArrayList<TextField>> accountList = this.panelList[0].getArrayList();
-		for (int i = 0; i < accountList.get(0).size(); i++) {
-			if (accountList.get(0).get(i).getText() != null && accountList.get(1).get(i).getText() != null
-					&& accountList.get(2).get(i).getText() != null) {
-				String name = accountList.get(0).get(i).getText();
-				long num = Long.parseLong(accountList.get(1).get(i).getText());
-				double amount = Double.parseDouble(accountList.get(2).get(i).getText());
-				AccountVO beginInfo = new AccountVO(name, num, amount);
-			}
-			
-			
+		//account
+		ArrayList<AccountVO> beginAccount=new ArrayList<AccountVO>();
+		ArrayList<StorageInitVO> beginStorage=new ArrayList<StorageInitVO>();
+		ArrayList<DriverInfoVO> beginDriver=new ArrayList<DriverInfoVO>();
+		ArrayList<TruckInfoVO> beginTruck=new ArrayList<TruckInfoVO>();
+		ArrayList<InitUserVO> beginUser=new ArrayList<InitUserVO>();
+		
+		for (int i = 0; i < this.panelList[0].getVO().size(); i++) {
+			AccountVO vo= (AccountVO)this.panelList[0].getVO().get(i);
+			beginAccount.add(vo);
 		}
-		// DriverInfoVO beginDriver=new DriverInfoVO(number, name, year, month,
-		// day, iD, mobNum, sex, yearOfExpiring)
-		// BeginInfoVO vo=new BeginInfoVO(beginDriver, beginTruck, beginAccount,
-		// beginConstant, beginStorage, beginUser)
-		// beginInfoBL.fillInfo(vo);
+		BeginInfoVO vo=new BeginInfoVO(beginDriver, beginTruck, beginAccount, beginStorage, beginUser);
+		beginInfoBL.fillInfo(vo);
+		
+		
+			
+		
 	}
 
 	public void paintComponent(Graphics g) {

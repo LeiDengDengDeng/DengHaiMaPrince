@@ -13,27 +13,14 @@ public class PanelCommodity extends SubPanel {
 
 	ImageIcon img;
 	ArrayList<JComboBox<String>> name;
-	ArrayList<TextField> jia;
-	ArrayList<TextField> pai;
-	ArrayList<TextField> wei;
-	ArrayList<TextField> percent;
-	ArrayList<ArrayList<TextField>> a;
+	ArrayList<TextField[]> a;
 	protected PanelCommodity(ImageIcon img) {
 		super(img);
 		this.img = img;
 		this.setBounds(0, 0, getImageIcon().getIconWidth(), getImageIcon().getIconHeight());
 		name = new ArrayList<JComboBox<String>>();
-		jia = new ArrayList<TextField>();
-		pai = new ArrayList<TextField>();
-		wei = new ArrayList<TextField>();
-		percent = new ArrayList<TextField>();
 		
-		a = new ArrayList<ArrayList<TextField>>();
-		
-		this.a.add(jia);
-		this.a.add(pai);
-		this.a.add(wei);
-		this.a.add(percent);
+		a = new ArrayList<TextField[]>();
 		this.drawCom(0);
 		this.addButton();
 		// TODO Auto-generated constructor stub
@@ -78,10 +65,9 @@ public class PanelCommodity extends SubPanel {
 		this.add(text);
 		
 		this.getJComBox().add(textName);
-		this.getArrayList().get(0).add(textjia);
-		this.getArrayList().get(1).add(textpai);
-		this.getArrayList().get(2).add(textwei);
-		this.getArrayList().get(3).add(textpercent);
+		TextField[] t={textjia,textpai,textwei,textpercent};
+		
+		this.getArrayList().add(t);
 		
 		this.add(textName);
 		this.add(textjia);
@@ -100,7 +86,7 @@ public class PanelCommodity extends SubPanel {
 		return null;
 	}
 	@Override
-	public ArrayList<ArrayList<TextField>> getArrayList() {
+	public ArrayList<TextField[]> getArrayList() {
 		// TODO Auto-generated method stub
 		return a;
 	}
@@ -109,6 +95,18 @@ public class PanelCommodity extends SubPanel {
 	public ArrayList<JComboBox<String>> getJComBox() {
 		// TODO Auto-generated method stub
 		return name;
+	}
+
+	@Override
+	public ArrayList<Object> getVO() {
+		// TODO Auto-generated method stub
+		ArrayList<Object> a=new ArrayList<Object>();
+		for (int i = 0; i < this.getJComBox().size(); i++) {
+			String name=(String)this.getJComBox().get(i).getSelectedItem();
+			
+		}
+		
+		return null;
 	}
 
 }

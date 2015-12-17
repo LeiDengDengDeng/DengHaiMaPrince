@@ -47,7 +47,6 @@ public class BeginInfo implements BeginInfoBLService {
 		ArrayList<TruckInfoVO> beginTruck=vo.getBeginTruck();
 		ArrayList<DriverInfoVO> beginDriver=vo.getBeginDriver();
 		ArrayList<StorageInitVO> beginStorage=vo.getBeginStorage();
-		ArrayList<ConstantVO> beginConstant=vo.getBeginConstant();
 		ArrayList<InitUserVO>  beginUser=vo.getBeginUser();
 		account.initAmount(beginAccount);
 		user.initial(beginUser);
@@ -70,11 +69,10 @@ public class BeginInfo implements BeginInfoBLService {
 		ArrayList<DriverInfoVO> beginDriver=null;
 		ArrayList<TruckInfoVO> beginTruck=null;
 		ArrayList<AccountVO> beginAccount=null;
-		ArrayList<ConstantVO> beginConstant=null;
 		ArrayList<StorageInitVO> beginStorage=null;
 		ArrayList<InitUserVO> beginUser=null;
 		//TODO –¥µΩ’‚¿Ô
-		BeginInfoVO beginInfoVO=new BeginInfoVO(beginDriver, beginTruck, beginAccount, beginConstant, beginStorage, beginUser);
+		BeginInfoVO beginInfoVO=new BeginInfoVO(beginDriver, beginTruck, beginAccount, beginStorage, beginUser);
 		return beginInfoVO;
 	}
 

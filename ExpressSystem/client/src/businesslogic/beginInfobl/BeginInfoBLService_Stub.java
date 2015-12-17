@@ -24,7 +24,7 @@ public class BeginInfoBLService_Stub implements BeginInfoBLService {
 	@Override
 	public BeginInfoVO getInfo() {
 		// TODO Auto-generated method stub
-		return new BeginInfoVO(null, null, null, null, null, null);
+		return new BeginInfoVO(null,  null, null, null, null);
 	}
 
 	@Override

@@ -7,25 +7,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
+import src.vo.InitUserVO;
+
 public class PanelUser extends SubPanel {
 	ImageIcon img;
 	ArrayList<JComboBox<String>> position;
-	ArrayList<TextField> name;
-	ArrayList<TextField> amount;
-	ArrayList<TextField> month;
-	ArrayList<ArrayList<TextField>> a;
+	
+	ArrayList<TextField[]> a;
 	protected PanelUser(ImageIcon img) {
 		super(img);
 		this.setLayout(null);
 		this.img = img;
 		position=new ArrayList<JComboBox<String>>();
-		name = new ArrayList<TextField>();
-		amount = new ArrayList<TextField>();
-		month=	new ArrayList<TextField>();
-		a = new ArrayList<ArrayList<TextField>>();
-		this.a.add(name);
-		this.a.add(amount);
-		this.a.add(month);
+		a = new ArrayList<TextField[]>();
 		this.drawCom(0);
 		this.addButton();
 		// TODO Auto-generated constructor stub
@@ -61,9 +55,7 @@ public class PanelUser extends SubPanel {
 		this.add(textAmount);
 		this.add(textMonth);
 		this.getJComBox().add(textNum);
-		this.getArrayList().get(0).add(textName);
-		this.getArrayList().get(1).add(textAmount);
-		this.getArrayList().get(2).add(textMonth);
+		TextField[] t={textName,textName,textName};
 		textName.setFont(myFont);
 		textNum.setFont(myFont);
 		textAmount.setFont(myFont);
@@ -75,7 +67,7 @@ public class PanelUser extends SubPanel {
 	}
 
 	@Override
-	public ArrayList<ArrayList<TextField>> getArrayList() {
+	public ArrayList<TextField[]> getArrayList() {
 		// TODO Auto-generated method stub
 		return a;
 	}
@@ -84,5 +76,20 @@ public class PanelUser extends SubPanel {
 	public ArrayList<JComboBox<String>> getJComBox() {
 		// TODO Auto-generated method stub
 		return position;
+	}
+
+	@Override
+	public ArrayList<Object> getVO() {
+		// TODO Auto-generated method stub
+		ArrayList<Object> a=new ArrayList<Object>();
+		for (int i = 0; i < this.getJComBox().size(); i++) {
+			String name=this.getArrayList().get(i)[0].getText();
+			String positon=(String)getJComBox().get(i).getSelectedItem();
+			int salary=Integer.parseInt(this.getArrayList().get(i)[1].getText());
+			long id=Long.parseLong(this.getArrayList().get(i)[2].getText());
+		InitUserVO vo=new InitUserVO(id, positon, salary, name);
+		a.add(vo);
+		}
+		return a;
 	}
 }
