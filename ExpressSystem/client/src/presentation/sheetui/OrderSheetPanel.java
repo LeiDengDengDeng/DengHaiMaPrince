@@ -13,7 +13,7 @@ import src.vo.OrderSheetVO;
 /**
  * Created by dell on 2015/11/26. 用途：寄件单界面
  */
-public class OrderSheetPanel extends JPanel implements SheetPanel {
+public class OrderSheetPanel extends SheetPanel {
     SheetBLService orderSheetBL;
 
     TextFieldGroup idGroup;

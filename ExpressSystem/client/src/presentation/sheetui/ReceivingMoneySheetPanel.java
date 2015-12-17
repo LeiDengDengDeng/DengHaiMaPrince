@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by dell on 2015/12/2.
  * ”√Õæ
  */
-public class ReceivingMoneySheetPanel extends JPanel implements SheetPanel{
+public class ReceivingMoneySheetPanel extends SheetPanel{
 
     SheetBLService receivingMoneySheetBL;
 

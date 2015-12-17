@@ -6,20 +6,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
-import java.util.Enumeration;
 
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.event.MouseInputListener;
 
-import src.presentation.logui.CheckLogPanel;
-import src.presentation.nonuserui.DriverPanel;
-import src.presentation.staffmanageui.AddStaffPanel;
-import src.presentation.userui.ChangePasswordPanel;
+import src.presentation.sheetui.InstitutionTruckSheetPanel;
 import src.presentation.util.ButtonMouseListener;
 import src.presentation.util.MyButton;
 
@@ -53,9 +47,13 @@ public class MainFrame extends JFrame {
     int frameLocationX;
     int frameLocationY;
 
+    public static void main(String[] args){
+        new MainFrame(null);
+    }
+
     public MainFrame(ArrayList<Integer> authority) {
         // 登陆后设置权限，初始化左侧按钮和Panel
-        setAuthority(authority);
+//        setAuthority(authority);
 
         ButtonMouseListener closeMouseListener = new ButtonMouseListener(
                 closeClickedIcon, closeIcon);
@@ -95,8 +93,10 @@ public class MainFrame extends JFrame {
         mainPanel.setLayout(null);
         mainPanel.setOpaque(false);
 
-        for (MyButton e : leftButtonGroup.getLeftButtons())
-            this.add(e);
+        controller = new PanelController(this);
+        this.setPresentPanel(100);
+//        for (MyButton e : leftButtonGroup.getLeftButtons())
+//            this.add(e);
         this.setResizable(false);
         this.setSize(WIDTH, HEIGHT);
         this.setLocationRelativeTo(null);

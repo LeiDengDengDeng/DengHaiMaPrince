@@ -11,11 +11,9 @@ import src.businesslogic.sheetbl.PaymentSheet;
 import src.businesslogic.sheetbl.ReceivingMoneySheet;
 import src.presentation.accountui.AccountPanel;
 import src.presentation.commodityui.storageoutsheetui.StorageOutSheetPanel;
+import src.presentation.institutionui.InstitutionListPanel;
 import src.presentation.logui.CheckLogPanel;
-import src.presentation.sheetui.OrderSheetPanel;
-import src.presentation.sheetui.PaymentSheetPanel;
-import src.presentation.sheetui.ReceivingMoneySheetPanel;
-import src.presentation.sheetui.ReceivingSheetPanel;
+import src.presentation.sheetui.*;
 
 /**
  * Created by dell on 2015/12/5.
@@ -53,6 +51,9 @@ public class PanelController {
                 break;
             case 16:
                 presentPanel = new CheckLogPanel(new Log());
+                break;
+            case 100:
+                presentPanel = new InstitutionTruckSheetPanel();
                 break;
         }
         presentPanel.setBounds(PANEL_MARGIN_LEFT, PANEL_MARGIN_TOP, PANEL_WIDTH, PANEL_HEIGHT);

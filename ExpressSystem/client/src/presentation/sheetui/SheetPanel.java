@@ -1,7 +1,9 @@
 package src.presentation.sheetui;
 
-public interface SheetPanel {
+import javax.swing.*;
 
-	public boolean confirm();
+public abstract class SheetPanel extends JPanel{
+
+	public abstract boolean confirm();
 
 }

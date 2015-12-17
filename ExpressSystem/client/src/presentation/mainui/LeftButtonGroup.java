@@ -15,7 +15,7 @@ public class LeftButtonGroup {
     ArrayList<MyButton> leftButtons;
     String[] imagePaths = {"user", "centerGoodsIn", "centerGoodsOut", "centerTruck",
             "check", "examineSheet", "order", "receiving", "commodity",
-            "car&driver", "dataSheet", "account", "institutionGoodsIn", "institutionGoodsOut",
+            "car&driver", "dataSheet", "account", "institutionGoodsIn", "institutionTruck",
             "payment", "log", "constant", "modifyAuthority", "personal"};
 
     public LeftButtonGroup(MainFrame frame, ArrayList<Integer> authority) {

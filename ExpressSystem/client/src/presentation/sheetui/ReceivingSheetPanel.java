@@ -22,7 +22,7 @@ import src.vo.OrderSheetVO;
 /**
  * Created by dell on 2015/11/27. 用途：收件单界面
  */
-public class ReceivingSheetPanel extends JPanel implements SheetPanel {
+public class ReceivingSheetPanel extends SheetPanel {
     SheetBLService orderSheetBL;
     OrderSheetVO vo;
 
@@ -103,7 +103,7 @@ public class ReceivingSheetPanel extends JPanel implements SheetPanel {
                 sendingInfo[1].setText("");
                 sendingInfo[2].setText("");
                 sendingInfo[3].setText("");
-                TipDialog dialog = new TipDialog(null,"",true,"未找到对应单号",false);
+                new TipDialog(null,"",true,"未找到对应单号",false);
             } else {
                 sendingInfo[0].setText(String.valueOf(vo.getCourierNumber()));
                 sendingInfo[1].setText(vo.getSenderName());

@@ -1,13 +1,13 @@
 package src.businesslogic.sheetbl;
 
-import src.dataservice.logdataservice.LogDataService;
-import src.enums.FindingType;
+import src.businesslogic.logbl.Log;
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.dataservice.sheetdataservice.SheetDataService;
+import src.enums.FindingType;
+import src.enums.SheetState;
 import src.enums.SheetType;
 import src.po.SheetPO;
-import src.enums.SheetState;
-import src.vo.OrderSheetVO;
 import src.vo.SheetVO;
 
 import java.net.MalformedURLException;
@@ -22,6 +22,10 @@ import java.util.ArrayList;
  */
 public abstract class Sheet implements SheetBLService {
     SheetDataService sheetData;
+
+    // 与其它bl包的交互
+    Log logBL;
+    LogIn logInBL;
 
     public Sheet() {
         try {
