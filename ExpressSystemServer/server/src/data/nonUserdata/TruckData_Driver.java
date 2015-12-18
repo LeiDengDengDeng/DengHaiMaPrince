@@ -6,8 +6,8 @@ import src.po.TruckPO;
 public class TruckData_Driver {
 	public static void main(String[] args) throws RemoteException {
 		TruckData truckData = new TruckData();
-		TruckPO tpo1 = new TruckPO(025000000, 10, "À’A00000");
-		TruckPO tpo2 = new TruckPO(025000001, 10, "À’A00001");
+		TruckPO tpo1 = new TruckPO("025000000", 10, "À’A00000");
+		TruckPO tpo2 = new TruckPO("025000001", 10, "À’A00001");
 //		truckData.insert(tpo1);
 //		truckData.insert(tpo2);
 //		truckData.deleteTruckPO(025000000);
@@ -15,6 +15,7 @@ public class TruckData_Driver {
 //		System.out.println(truckData.findsTruckPO().get(0).getLicensePlateNum() 
 //				+ " " + truckData.findsTruckPO().get(1).getLicensePlateNum());
 		System.out.println(truckData.findsTruckPO().get(0).getLicensePlateNum());
+		System.out.println("”™“µÃ¸£∫ " + truckData.findsTruckPO("025000").size());
 	}
 
 }

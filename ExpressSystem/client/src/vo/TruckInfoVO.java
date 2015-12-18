@@ -1,22 +1,22 @@
 package src.vo;
 
 public class TruckInfoVO {
-	private long number; // 车辆代号
+	private String number; // 车辆代号
 	private int activeTime; // 服役时间
 	private String licensePlateNum; // 车牌号
 	
-	public TruckInfoVO(long number, int activeTime, String licensePlateNum) {
+	public TruckInfoVO(String number, int activeTime, String licensePlateNum) {
 		super();
 		this.number = number;
 		this.activeTime = activeTime;
 		this.licensePlateNum = licensePlateNum;
 	}
 
-	public long getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(long number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 

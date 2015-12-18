@@ -30,7 +30,7 @@ public class Truck implements TruckBLService{
 	}
 
 	@Override
-	public TruckInfoVO getTruckInfo(long truckId) {
+	public TruckInfoVO getTruckInfo(String truckId) {
 		TruckPO tPo = null;
 		try {
 			tPo = truckDataService.findTruckPO(truckId);
@@ -74,7 +74,7 @@ public class Truck implements TruckBLService{
 	}
 
 	@Override
-	public void deleteTruckInfo(long truckId) {
+	public void deleteTruckInfo(String truckId) {
 		try {
 			truckDataService.deleteTruckPO(truckId);
 		} catch (RemoteException e) {
@@ -84,7 +84,7 @@ public class Truck implements TruckBLService{
 	}
 
 	@Override
-	public void changeTruckInfo(long truckId,TruckInfoVO tvo) {
+	public void changeTruckInfo(String truckId,TruckInfoVO tvo) {
 		TruckPO tpo = new TruckPO(tvo.getNumber(), tvo.getActiveTime(), 
 				tvo.getLicensePlateNum());
 		

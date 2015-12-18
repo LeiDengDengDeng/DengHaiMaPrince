@@ -29,13 +29,13 @@ public class NonUserBLService_Stub implements NonUserBLService{
 	@Override
 	public TruckInfoVO getTruckInfo(long truckId) {
 		System.out.println("得到车辆信息");
-		return new TruckInfoVO(025000000, 10, "苏A00000");
+		return new TruckInfoVO("025000000", 10, "苏A00000");
 	}
 
 	@Override
 	public ArrayList<TruckInfoVO> getAllTruckInfo() {
 		ArrayList<TruckInfoVO> trucklist = new ArrayList<TruckInfoVO>();
-		trucklist.add(new TruckInfoVO(025000000, 10, "苏A00000"));
+		trucklist.add(new TruckInfoVO("025000000", 10, "苏A00000"));
 		return trucklist;
 	}
 
@@ -57,14 +57,14 @@ public class NonUserBLService_Stub implements NonUserBLService{
 	@Override
 	public DriverInfoVO getDriverInfo(long driverId) {
 		System.out.println("得到司机信息");
-		return new DriverInfoVO(025000000, "叶良辰", 2015, 11, 5, 
+		return new DriverInfoVO("025000000", "叶良辰", 2015, 11, 5, 
 				"321002000100010000", "88888888888", Sex.MALE, 2015);
 	}
 
 	@Override
 	public ArrayList<DriverInfoVO> getAllDriverInfo() {
 		ArrayList<DriverInfoVO> driverlist = new ArrayList<DriverInfoVO>();
-		driverlist.add(new DriverInfoVO(025000000, "叶良辰", 2015, 11, 5, "321002000100010000", "88888888888", Sex.MALE, 2015));
+		driverlist.add(new DriverInfoVO("025000000", "叶良辰", 2015, 11, 5, "321002000100010000", "88888888888", Sex.MALE, 2015));
 		return driverlist;
 	}
 
@@ -87,14 +87,15 @@ public class NonUserBLService_Stub implements NonUserBLService{
 	@Override
 	public BussinessHallVO getBussinessHallInfo(long bussinessHallId) {
 		System.out.println("得到营业厅信息！");
-		return new BussinessHallVO("赵日天",000);
+//		return new BussinessHallVO("赵日天",000);
+		return null;
 	}
 
 
 	@Override
 	public ArrayList<BussinessHallVO> getAllBussinessHallInfo() {
 		ArrayList<BussinessHallVO> bussinessHallList = new ArrayList<BussinessHallVO>();
-		bussinessHallList.add(new BussinessHallVO("赵日天",000));
+//		bussinessHallList.add(new BussinessHallVO("赵日天",000));
 		return bussinessHallList;
 	}
 

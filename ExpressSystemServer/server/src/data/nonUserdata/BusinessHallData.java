@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.nonUserdataservice.BusinessHallDataService;
 import src.po.BussinessHallPO;
+import src.po.IntermediateCenterPO;
 
 public class BusinessHallData extends UnicastRemoteObject implements BusinessHallDataService{
 	
@@ -23,6 +24,7 @@ public class BusinessHallData extends UnicastRemoteObject implements BusinessHal
 		// TODO Auto-generated constructor stub
 	}
 
+	IntermediateCenterData intermediateCenterData = new IntermediateCenterData();
 	public static final String BussinessHallFILE_PATH = "bussinesshall.ser";
 	File file = new File(BussinessHallFILE_PATH);
 
@@ -37,7 +39,8 @@ public class BusinessHallData extends UnicastRemoteObject implements BusinessHal
 
 			for (;;) {
 				BussinessHallPO po = (BussinessHallPO) os.readObject();
-				if (po.getHallName().equals(id)){
+//				System.out.println("b: " + po.getHallId());
+				if (po.getHallId().equals(id)){
 					bpo = po;
 					break;
 				}
@@ -61,6 +64,14 @@ public class BusinessHallData extends UnicastRemoteObject implements BusinessHal
 	}
 
 	@Override
+	public ArrayList<BussinessHallPO> findBussinessHallPOByCity(String city)
+			throws RemoteException {
+		ArrayList<BussinessHallPO> bpos = intermediateCenterData.findIntermediateCenterPO(city)
+				.getBpos();
+		return bpos;
+	}
+	
+	@Override
 	public ArrayList<BussinessHallPO> findsBussinessHallPO()
 			throws RemoteException {
 		ArrayList<BussinessHallPO> bpos = new ArrayList<BussinessHallPO>();
@@ -73,6 +84,7 @@ public class BusinessHallData extends UnicastRemoteObject implements BusinessHal
 				BussinessHallPO po = (BussinessHallPO) os.readObject();
 				if (po == null)
 					break;
+				System.out.println("-----"+po.getHallName());
 				bpos.add(po);
 			}
 
@@ -117,7 +129,29 @@ public class BusinessHallData extends UnicastRemoteObject implements BusinessHal
 				System.out.println("IO EXCEPTION");
 			}
 			
-		
+			IntermediateCenterPO ipo = null;
+			ArrayList<IntermediateCenterPO> ipos = intermediateCenterData.findsIntermediateCenterPO();
+			ArrayList<BussinessHallPO> bpos = new ArrayList<BussinessHallPO>();
+			for(int i = 0;i < ipos.size();i++){
+//				System.out.println(ipos.get(i).getId().substring(0,3).equals(bpo.getHallId().substring(0,3)));
+//				System.out.println("i: " + ipos.get(i).getId().substring(0,3));
+//				System.out.println("b: " + bpo.getHallId().substring(0,3));
+				if(ipos.get(i).getId().substring(0,3).equals(bpo.getHallId().substring(0,3))){
+					ipo = ipos.get(i);
+				}
+			}
+			if(ipo.getBpos() != null){
+				bpos = ipo.getBpos();
+			}
+			bpos.add(bpo);
+			ipo.setBpos(bpos);
+			intermediateCenterData.update(ipo.getCity(), ipo);
+	}
+	
+	@Override
+	public void update(String id, BussinessHallPO bpo) throws RemoteException {
+		deleteBussinessHallPO(id);
+		insert(bpo);
 	}
 
 	@Override
@@ -125,9 +159,9 @@ public class BusinessHallData extends UnicastRemoteObject implements BusinessHal
 		File file = new File(BussinessHallFILE_PATH);
 		ArrayList<BussinessHallPO> bpos = new ArrayList<BussinessHallPO>();
 		bpos = findsBussinessHallPO();
-		
 		for(int i = 0;i < bpos.size();i++){
-			if(bpos.get(i).getHallName().equals(id)){
+//			System.out.println(bpos.get(i).getHallName());
+			if(bpos.get(i).getHallId().equals(id)){
 				bpos.remove(i);
 				break;
 			}
@@ -148,7 +182,27 @@ public class BusinessHallData extends UnicastRemoteObject implements BusinessHal
 			System.out.println("FILE NOT FOUND ");
 		} catch (IOException e) {
 			System.out.println("IO EXCEPTION");
-		}		
+		}
+		
+		IntermediateCenterPO ipo = null;
+		ArrayList<IntermediateCenterPO> ipos = intermediateCenterData.findsIntermediateCenterPO();
+		ArrayList<BussinessHallPO> bpos2 = new ArrayList<BussinessHallPO>();
+		for(int i = 0;i < ipos.size();i++){
+//			System.out.println(hallId);
+			if(ipos.get(i).getId().substring(0,3).equals(id.substring(0,3))){
+				ipo = ipos.get(i);
+			}
+		}
+		if(ipo.getBpos() != null){
+			for(int i = 0;i < ipo.getBpos().size();i++){
+				if(ipo.getBpos().get(i).getHallId().equals(id)){
+					bpos2 = ipo.getBpos();
+					bpos2.remove(i);
+					ipo.setBpos(bpos2);
+				}
+			}
+			intermediateCenterData.update(ipo.getCity(), ipo);
+		}
 	}
 
 	@Override
@@ -156,5 +210,7 @@ public class BusinessHallData extends UnicastRemoteObject implements BusinessHal
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

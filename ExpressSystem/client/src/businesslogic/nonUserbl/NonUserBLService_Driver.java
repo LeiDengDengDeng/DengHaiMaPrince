@@ -41,8 +41,8 @@ public class NonUserBLService_Driver {
 //		System.out.println(intermediateCenter.getcity());
 //		System.out.println(truck.getTruckInfo(025000001).getLicensePlateNum());
 		ArrayList<TruckInfoVO> tvolist = new ArrayList<TruckInfoVO>();
-		TruckInfoVO tvo1 = new TruckInfoVO(025000000, 10, "À’A00000");
-		TruckInfoVO tvo2 = new TruckInfoVO(025000001, 10, "À’A00001");
+		TruckInfoVO tvo1 = new TruckInfoVO("025000000", 10, "À’A00000");
+		TruckInfoVO tvo2 = new TruckInfoVO("025000001", 10, "À’A00001");
 		tvolist.add(tvo1);
 		tvolist.add(tvo2);
 		truck.initTruck(tvolist);

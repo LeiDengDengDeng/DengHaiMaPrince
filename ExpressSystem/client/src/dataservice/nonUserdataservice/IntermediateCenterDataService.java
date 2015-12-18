@@ -31,6 +31,14 @@ public interface IntermediateCenterDataService extends Remote{
 	public void insert(IntermediateCenterPO ipo) throws RemoteException;
 	
 	/**
+	 * 更新一个IntermediateCenterPO
+	 * @param id
+	 * @param ipo
+	 * @throws RemoteException
+	 */
+	public void update(String id,IntermediateCenterPO ipo) throws RemoteException;
+	
+	/**
 	 * 删除一个IntermediateCenterPO
 	 * @param id
 	 * @throws RemoteException

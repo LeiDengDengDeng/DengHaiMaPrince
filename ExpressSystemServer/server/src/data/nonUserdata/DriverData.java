@@ -12,8 +12,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.nonUserdataservice.DriverDataService;
+import src.po.BussinessHallPO;
 import src.po.DriverPO;
 
 public class DriverData extends UnicastRemoteObject implements DriverDataService{
@@ -23,11 +26,12 @@ public class DriverData extends UnicastRemoteObject implements DriverDataService
 		// TODO Auto-generated constructor stub
 	}
 
+	BusinessHallData businessHallData = new BusinessHallData();
 	public static final String DriverFILE_PATH = "driver.ser";
 	File file = new File(DriverFILE_PATH);
 
 	@Override
-	public DriverPO findDriverPO(long id) throws RemoteException {
+	public DriverPO findDriverPO(String id) throws RemoteException {
 		DriverPO dpo = null;
 		ObjectInputStream os = null;
 		
@@ -36,7 +40,7 @@ public class DriverData extends UnicastRemoteObject implements DriverDataService
 
 			for (;;) {
 				DriverPO po = (DriverPO) os.readObject();
-				if (po.getNumber() == id){
+				if (po.getNumber().equals(id)){
 					dpo = po;
 					break;
 				}
@@ -57,6 +61,12 @@ public class DriverData extends UnicastRemoteObject implements DriverDataService
 		
 		
 		return dpo;
+	}
+	
+	@Override
+	public ArrayList<DriverPO> findsDriverPO(String id) throws RemoteException {
+		ArrayList<DriverPO> dpos = businessHallData.findBussinessHallPO(id.substring(0,6)).getDrivers();
+		return dpos;
 	}
 
 	@Override
@@ -115,23 +125,33 @@ public class DriverData extends UnicastRemoteObject implements DriverDataService
 				System.out.println("IO EXCEPTION");
 			}
 			
-		
+//			System.out.println(dpo.getNumber()
+//					.substring(0, 6));
+			BussinessHallPO bpo = businessHallData.findBussinessHallPO(dpo.getNumber()
+					.substring(0, 6));
+			ArrayList<DriverPO> dpos = new ArrayList<DriverPO>();
+			if(bpo.getDrivers() != null){
+				dpos = bpo.getDrivers();
+			}
+			dpos.add(dpo);
+			bpo.setDrivers(dpos);
+			businessHallData.update(dpo.getNumber().substring(0, 6), bpo);
 	}
 
 	@Override
-	public void update(long id,DriverPO dpo) throws RemoteException {
+	public void update(String id,DriverPO dpo) throws RemoteException {
 		deleteDriverPO(id);
 		insert(dpo);
 	}
 
 	@Override
-	public void deleteDriverPO(long id) throws RemoteException {
+	public void deleteDriverPO(String id) throws RemoteException {
 		File file = new File(DriverFILE_PATH);
 		ArrayList<DriverPO> dpos = new ArrayList<DriverPO>();
 		dpos = findsDriverPO();
 		
 		for(int i = 0;i < dpos.size();i++){
-			if(dpos.get(i).getNumber() == id){
+			if(dpos.get(i).getNumber().equals(id)){
 				dpos.remove(i);
 				break;
 			}
@@ -152,7 +172,20 @@ public class DriverData extends UnicastRemoteObject implements DriverDataService
 			System.out.println("FILE NOT FOUND ");
 		} catch (IOException e) {
 			System.out.println("IO EXCEPTION");
-		}		
+		}
+		
+		BussinessHallPO bpo = businessHallData.findBussinessHallPO(id.substring(0, 6));
+		ArrayList<DriverPO> dpos2  = new ArrayList<DriverPO>();
+		if(bpo != null){
+			for(int i = 0;i < bpo.getDrivers().size();i++){
+				if( bpo.getDrivers().get(i).getNumber().equals(id)){
+					dpos2 = bpo.getDrivers();
+					dpos2.remove(i);
+					bpo.setDrivers(dpos2);
+				}
+			}
+			businessHallData.update(id.substring(0, 6), bpo);
+		}
 	}
 
 	@Override
@@ -160,5 +193,6 @@ public class DriverData extends UnicastRemoteObject implements DriverDataService
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

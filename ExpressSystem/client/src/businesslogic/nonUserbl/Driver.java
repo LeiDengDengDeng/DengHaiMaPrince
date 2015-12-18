@@ -31,7 +31,7 @@ public class Driver implements DriverBLService{
 	}
 
 	@Override
-	public DriverInfoVO getDriverInfo(long driverId) {
+	public DriverInfoVO getDriverInfo(String driverId) {
 		DriverPO dPo = null;
 		try {
 			dPo = driverDataService.findDriverPO(driverId);
@@ -81,7 +81,7 @@ public class Driver implements DriverBLService{
 	}
 
 	@Override
-	public void deleteDriverInfo(long driverId) {
+	public void deleteDriverInfo(String driverId) {
 		try {
 			driverDataService.deleteDriverPO(driverId);
 		} catch (RemoteException e) {
@@ -90,7 +90,7 @@ public class Driver implements DriverBLService{
 	}
 
 	@Override
-	public void changeDriverInfo(long driverId, DriverInfoVO dvo) {
+	public void changeDriverInfo(String driverId, DriverInfoVO dvo) {
 		DriverPO dpo = new DriverPO(dvo.getNumber(), dvo.getName(), 
 				dvo.getYear(), dvo.getMonth(), dvo.getDay(), dvo.getID(), 
 				dvo.getMobNum(), dvo.getSex(), dvo.getYearOfExpiring());

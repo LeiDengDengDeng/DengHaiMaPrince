@@ -18,7 +18,15 @@ public interface TruckDataService extends Remote{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public TruckPO findTruckPO(long id) throws RemoteException;
+	public TruckPO findTruckPO(String id) throws RemoteException;
+	
+	/**
+	 * 根据营业厅编号返回其所属车辆
+	 * @param id
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ArrayList<TruckPO> findsTruckPO(String id) throws RemoteException;
 	
 	/**
 	 * 返回所有TruckPO
@@ -40,14 +48,14 @@ public interface TruckDataService extends Remote{
 	 * @param tpo
 	 * @throws RemoteException
 	 */
-	public void update(long id,TruckPO tpo) throws RemoteException;
+	public void update(String id,TruckPO tpo) throws RemoteException;
 	
 	/**
 	 * 删除一个TruckPO
 	 * @param id
 	 * @throws RemoteException
 	 */
-	public void deleteTruckPO(long id) throws RemoteException;
+	public void deleteTruckPO(String id) throws RemoteException;
 	
 	/**
 	 * 结束持久化数据库的使用
