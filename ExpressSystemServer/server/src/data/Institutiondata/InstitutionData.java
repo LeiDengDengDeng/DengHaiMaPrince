@@ -1,5 +1,6 @@
 package src.data.Institutiondata;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -52,9 +53,15 @@ public class InstitutionData extends UnicastRemoteObject implements InstitutionD
 		} catch (FileNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			System.out.println("File not found");
+		} catch (EOFException e) {
+			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+			System.out.println("End of file");
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			System.out.println("IOException");
 		} catch (ClassNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -85,9 +92,15 @@ public class InstitutionData extends UnicastRemoteObject implements InstitutionD
 		} catch (FileNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			System.out.println("File not found");
+		} catch (EOFException e) {
+			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+			System.out.println("End of file");
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			System.out.println("IOException");
 		} catch (ClassNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -105,24 +118,29 @@ public class InstitutionData extends UnicastRemoteObject implements InstitutionD
 			MyObjectOutputStream moos = null;
 			
 			try {
-				oos = new ObjectOutputStream(new FileOutputStream(file));
-				moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 				if (file.length() == 0) {
+					oos = new ObjectOutputStream(new FileOutputStream(file));
 					oos.writeObject(po);
 					oos.flush();
 					oos.close();
 				} else {
+					moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 					moos.writeObject(po);
 					moos.flush();
 					moos.close();
 				}
 			} catch (FileNotFoundException e) {
 				// TODO 自动生成的 catch 块
-				System.out.println("UserFile not found");
 				e.printStackTrace();
+				System.out.println("File not found");
+			} catch (EOFException e) {
+				// TODO 自动生成的 catch 块
+//				e.printStackTrace();
+				System.out.println("End of file");
 			} catch (IOException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
+				System.out.println("IOException");
 			}
 			
 		}
@@ -134,9 +152,12 @@ public class InstitutionData extends UnicastRemoteObject implements InstitutionD
 	@Override
 	public void update(InstitutionPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		delete(find(po.getInstitutionID()));
-		insert(po);
-		
+		InstitutionPO institutionPO = find(po.getInstitutionID());
+		if(institutionPO != null){
+			delete(institutionPO);
+			insert(po);
+		}
+		else System.out.println("Not exist!!");
 	}
 
 	@Override
@@ -144,38 +165,68 @@ public class InstitutionData extends UnicastRemoteObject implements InstitutionD
 		// TODO Auto-generated method stub
 		ArrayList<InstitutionPO> institutionPOs = new ArrayList<InstitutionPO>();
 		institutionPOs = finds();
+		boolean exist = true;
 		
 		for(int i = 0;i < institutionPOs.size();i++){
-			if(institutionPOs.get(i) == po){
+			if(institutionPOs.get(i).getInstitutionID() == po.getInstitutionID()){
 				institutionPOs.remove(i);
 				break;
+			}else{
+				if(i == institutionPOs.size() - 1){
+					System.out.println("Not found!!!");
+					exist = false;
+				}
 			}
 		}
 		
 		ObjectOutputStream os = null;
 		
-		try {
-			os = new ObjectOutputStream(new FileOutputStream(file,false));
+		if(exist){
+			try {
+				os = new ObjectOutputStream(new FileOutputStream(file,false));
+				
+				for(int j = 0;j < institutionPOs.size();j++){
+					os.writeObject(institutionPOs.get(j));
+					os.flush();
+				}
+				os.close();
 			
-			for(int j = 0;j < institutionPOs.size();j++){
-				os.writeObject(institutionPOs.get(j));
-				os.flush();
+			} catch (FileNotFoundException e) {
+				// TODO 自动生成的 catch 块
+				System.out.println("File not found");
+				e.printStackTrace();
+			} catch (EOFException e) {
+				// TODO 自动生成的 catch 块
+//				e.printStackTrace();
+				System.out.println("End of file");
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+				System.out.println("IOException");
 			}
-			os.close();
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+			System.out.println("delete!!");
+		}
 	}
 
 	@Override
 	public void finish() throws RemoteException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public static void main(String[] args) {
+		try {
+			InstitutionData data = new InstitutionData();
+//			data.insert(new InstitutionPO("中转中心", 200000, "中转与接收"));
+//			System.out.println(data.find(100000).getInstitutionName());
+//			System.out.println(data.finds().size());
+//			data.delete(new InstitutionPO("中转中心", 200000, "中转与接收"));
+			data.update(new InstitutionPO("营业厅", 100000, "负责中转与接收"));
+			System.out.println(data.find(100000).getInstitutionName());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -4,12 +4,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.businesslogic.staffmanagebl.StaffManageController;
+import src.presentation.userui.ChangePasswordPanel;
+import src.presentation.userui.UserPanel;
+import src.presentation.userui.testmain;
 import src.presentation.util.MyButton;
 import src.vo.StaffInfoVO;
 import src.vo.UserVO;
@@ -35,8 +41,7 @@ public class Staff_InfoPanel extends JPanel{
 	private static final ImageIcon DELETEENTER_ICON = new ImageIcon("images/delete_Enter.png");
 	
 	StaffInfoVO staffInfoVO;
-
-	JFrame frame;
+	StaffManageController controller;
 	
 	MyButton confirmButton;
 	MyButton deleteButton;
@@ -56,19 +61,24 @@ public class Staff_InfoPanel extends JPanel{
 	
 	public Staff_InfoPanel(StaffInfoVO staffInfoVO){
 		this.staffInfoVO = staffInfoVO;
-		componentsInstantiation();
+		controller = new StaffManageController(null);
+		buttonActionListener listener = new buttonActionListener(this);
+		
+        componentsInstantiation();
 		getInfo(staffInfoVO);
 		initial();
+
+		confirmButton.addActionListener(listener);
+		deleteButton.addActionListener(listener);
 	}
 	
-	public static void main(String[] args){
-		Staff_InfoPanel staff_InfoPanel = new Staff_InfoPanel(new StaffInfoVO(100000, 100000, 
-				"aaaaaa", "张三", "快递员", null, "南京", "鼓楼营业厅"));
-	}
+//	public static void main(String[] args){
+//		Staff_InfoPanel staff_InfoPanel = new Staff_InfoPanel(new StaffInfoVO(100000, 100000, 
+//				"aaaaaa", "张三", "快递员", null, "南京", "鼓楼营业厅"));
+//	}
 
 	
 	public void componentsInstantiation(){
-		frame = new JFrame();
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/staff_InfoBG.png");
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480,false);
@@ -76,23 +86,6 @@ public class Staff_InfoPanel extends JPanel{
 	}
 	
 	public void initial(){
-		// 设置标题
-		frame.setUndecorated(true);
-		frame.setSize(850, 646);
-		// 不允许用户改变窗口大小
-		frame.setResizable(false);
-		// 获得屏幕大小
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Dimension screen = toolkit.getScreenSize();
-		// 设置窗体位置
-		final int x = (screen.width - WIDTH) >> 1;
-		final int y = ((screen.height - HEIGHT) >> 1) - 32;
-
-		frame.setLocation(x, y);
-		
-		// 设置默认panel
-		this.setLayout(null);
-
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 		
@@ -106,10 +99,9 @@ public class Staff_InfoPanel extends JPanel{
         this.add(city);
         this.add(businessHall);
         this.add(imageLabel);
+
+        this.setLayout(null);
         this.setOpaque(false);
-		
-		frame.setContentPane(this);
-		frame.setVisible(true);
 		
 		
 	}
@@ -145,6 +137,26 @@ public class Staff_InfoPanel extends JPanel{
 		city.setForeground(Color.WHITE);
 		businessHall.setFont(myFont);
 		businessHall.setForeground(Color.WHITE);
-			}
+	}
+	
+	class buttonActionListener implements ActionListener {
+		Staff_InfoPanel container;
+		       
+	        public buttonActionListener(Staff_InfoPanel container) {
+	            this.container = container;
+	        }
+
+		        @Override
+		        public void actionPerformed(ActionEvent e) {
+		        	if(e.getSource() == confirmButton){
+		        		StaffListPanel listPanel = new StaffListPanel(controller.getAllStaff());
+		        	}
+		        	else if (e.getSource() == deleteButton) {
+						
+					}
+		        	
+		        	
+		        }
+	}
 
 }

@@ -26,10 +26,28 @@ public class UserDataStub implements UserDataService{
 	}
 
 	@Override
-	public void insert(ArrayList<UserPO> User) throws RemoteException {
+	public void InitialInsert(ArrayList<UserPO> User) throws RemoteException {
 		System.out.println("initialize successfully!!");
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void insert(UserPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(UserPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<UserPO> finds() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

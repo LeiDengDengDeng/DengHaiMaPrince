@@ -49,23 +49,32 @@ public class Institution implements InstitutionBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
-		for(int i = 0; i < institutionPO.getStaff().size();i++){
-			userVOs.add(new UserVO(institutionPO.getStaff().get(i).getPersonalID(),
-					institutionPO.getStaff().get(i).getPersonalAccount(),
-					institutionPO.getStaff().get(i).getMyPassword(),
-					institutionPO.getStaff().get(i).getPersonalName(),
-					institutionPO.getStaff().get(i).getMyPosition(),
-					institutionPO.getStaff().get(i).getAuthority(),
-					institutionPO.getStaff().get(i).getSalary(),
-					institutionPO.getStaff().get(i).getCity(),
-					institutionPO.getStaff().get(i).getBusinessHall()));
-		}
-		InstitutionVO institutionVO = new InstitutionVO(institutionPO.getInstitutionName(),
-				institutionPO.getInstitutionID(), 
-				userVOs, institutionPO.getFunction());
+		if(institutionPO == null){
+			System.out.println("Not exist!!");
+			return null;
+		}else{
+			ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
+			for(int i = 0; i < institutionPO.getStaff().size();i++){
+				SalaryVO salaryVO = new SalaryVO(institutionPO.getStaff().get(i).getSalary().getBasic());
+				salaryVO.setCommission(institutionPO.getStaff().get(i).getSalary().getCommission());
+				salaryVO.setEachPay(institutionPO.getStaff().get(i).getSalary().getEachPay());
+				salaryVO.setTime(institutionPO.getStaff().get(i).getSalary().getTime());
+				userVOs.add(new UserVO(institutionPO.getStaff().get(i).getPersonalID(),
+						institutionPO.getStaff().get(i).getPersonalAccount(),
+						institutionPO.getStaff().get(i).getMyPassword(),
+						institutionPO.getStaff().get(i).getPersonalName(),
+						institutionPO.getStaff().get(i).getMyPosition(),
+						institutionPO.getStaff().get(i).getAuthority(),
+						salaryVO,
+						institutionPO.getStaff().get(i).getCity(),
+						institutionPO.getStaff().get(i).getBusinessHall()));
+			}
+			InstitutionVO institutionVO = new InstitutionVO(institutionPO.getInstitutionName(),
+					institutionPO.getInstitutionID(), 
+					userVOs, institutionPO.getFunction());
 		
-		return institutionVO;
+			return institutionVO;
+		}
 	}
 
 	@Override
@@ -79,24 +88,33 @@ public class Institution implements InstitutionBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(int i = 0;i < institutionPOs.size();i++){
-			ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
-			for(int j = 0; j < institutionPOs.get(i).getStaff().size();j++){
-				userVOs.add(new UserVO(institutionPOs.get(i).getStaff().get(j).getPersonalID(),
-						institutionPOs.get(i).getStaff().get(j).getPersonalAccount(),
-						institutionPOs.get(i).getStaff().get(j).getMyPassword(),
-						institutionPOs.get(i).getStaff().get(j).getPersonalName(),
-						institutionPOs.get(i).getStaff().get(j).getMyPosition(),
-						institutionPOs.get(i).getStaff().get(j).getAuthority(),
-						institutionPOs.get(i).getStaff().get(j).getSalary(),
-						institutionPOs.get(i).getStaff().get(j).getCity(),
-						institutionPOs.get(i).getStaff().get(j).getBusinessHall()));
+		if(institutionPOs == null){
+			System.out.println("None!!");
+			return null;
+		}else{
+			for(int i = 0;i < institutionPOs.size();i++){
+				ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
+				for(int j = 0; j < institutionPOs.get(i).getStaff().size();j++){
+					SalaryVO salaryVO = new SalaryVO(institutionPOs.get(i).getStaff().get(j).getSalary().getBasic());
+					salaryVO.setCommission(institutionPOs.get(i).getStaff().get(j).getSalary().getCommission());
+					salaryVO.setEachPay(institutionPOs.get(i).getStaff().get(j).getSalary().getEachPay());
+					salaryVO.setTime(institutionPOs.get(i).getStaff().get(j).getSalary().getTime());
+					userVOs.add(new UserVO(institutionPOs.get(i).getStaff().get(j).getPersonalID(),
+							institutionPOs.get(i).getStaff().get(j).getPersonalAccount(),
+							institutionPOs.get(i).getStaff().get(j).getMyPassword(),
+							institutionPOs.get(i).getStaff().get(j).getPersonalName(),
+							institutionPOs.get(i).getStaff().get(j).getMyPosition(),
+							institutionPOs.get(i).getStaff().get(j).getAuthority(),
+							salaryVO,
+							institutionPOs.get(i).getStaff().get(j).getCity(),
+							institutionPOs.get(i).getStaff().get(j).getBusinessHall()));
+				}
+				institutionVOs.add(new InstitutionVO(institutionPOs.get(i).getInstitutionName(), 
+						institutionPOs.get(i).getInstitutionID(), 
+						userVOs, institutionPOs.get(i).getFunction()));
 			}
-			institutionVOs.add(new InstitutionVO(institutionPOs.get(i).getInstitutionName(), 
-					institutionPOs.get(i).getInstitutionID(), 
-					userVOs, institutionPOs.get(i).getFunction()));
+			return institutionVOs;
 		}
-		return institutionVOs;
 	}
 
 	@Override
@@ -114,6 +132,7 @@ public class Institution implements InstitutionBLService{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("add successfully!");
 			return true;
 		}
 	}
@@ -169,6 +188,12 @@ public class Institution implements InstitutionBLService{
 		}
 		return true;
 		
+	}
+	
+	public static void main(String[] args) {
+		Institution institution = new Institution(null);
+		System.out.println(institution.getInstitutionInfo(100000).getInstitutionName());
+//		institution.addInstitution(new InstitutionVO("营业厅", 100000, null, "中转与接收"));
 	}
 
 }

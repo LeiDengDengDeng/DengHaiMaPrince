@@ -2,6 +2,8 @@ package src.vo;
 
 import java.util.ArrayList;
 
+import src.po.SalaryPO;
+
 public class StaffInfoVO {
 	private long StaffID;        //工号
 	private long StaffAccount;   //账号
@@ -11,6 +13,7 @@ public class StaffInfoVO {
 	private ArrayList<Integer> authority;  //权限
 	private String city;			//城市
 	private String businessHall;	//营业厅
+	private SalaryVO salary;		//薪水
 	
 	public StaffInfoVO(long StaffID,long StaffAccount,String password
 			,String StaffName,String position,ArrayList<Integer> authority,
@@ -23,6 +26,7 @@ public class StaffInfoVO {
 		this.authority = authority;
 		this.city = city;
 		this.businessHall = businessHall;
+		this.salary = new SalaryVO(0);
 	}
 	
 	public void setStaffID(long StaffID){
@@ -90,4 +94,9 @@ public class StaffInfoVO {
 	public void setBusinessHall(String businessHall){
 		this.businessHall = businessHall;
 	}
+	
+	public SalaryVO getSalary(){
+		return salary;
+	}
+	
 }

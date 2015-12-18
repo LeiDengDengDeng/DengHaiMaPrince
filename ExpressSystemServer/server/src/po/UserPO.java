@@ -5,14 +5,22 @@ import java.util.ArrayList;
 
 public class UserPO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7067844558930052226L;
+	
 	private long personalID;   //工号，6位
 	private long personalAccount;   //账号，6位
 	private String myPassword;//密码
 	private String personalName;    //姓名
 	private String myPosition;//职位
 	private ArrayList<Integer> authority;  //权限
-	private int salary;     //薪水
-//	public boolean isFromUser = false;
+	private SalaryPO salary;     //薪水
+	private String city;			//城市
+	private String businessHall;	//营业厅
+	
+	
 	
 	public UserPO(long personalID,long personalAccount,String myPassword
 			,String personalName,String myPosition,ArrayList<Integer> authority){
@@ -21,7 +29,9 @@ public class UserPO implements Serializable{
 		this.myPassword = myPassword;
 		this.personalName = personalName;
 		this.myPosition = myPosition;
-		this.salary = 0;
+		this.salary = new SalaryPO(0);
+		this.city = null;
+		this.businessHall = null;
 		
 	}
 	
@@ -74,11 +84,28 @@ public class UserPO implements Serializable{
 		this.authority = authority;
 	}
 	
-	public int getSalary(){
+	public SalaryPO getSalary(){
 		return salary;
 	}
 	
-	public void setSalary(int salary){
+	public void setSalary(SalaryPO salary){
 		this.salary = salary;
+	}
+	
+	public String getCity(){
+		return city;
+	}
+	
+	public void setCity(String city){
+		this.city = city;
+	}
+	
+	public String getBusinessHall(){
+		return businessHall;
+	}
+	
+	public void setBusinessHall(String businessHall){
+		this.businessHall = businessHall;
+		
 	}
 }

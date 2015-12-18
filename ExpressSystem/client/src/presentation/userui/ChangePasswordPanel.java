@@ -1,5 +1,6 @@
 package src.presentation.userui;
 
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -38,7 +39,6 @@ public class ChangePasswordPanel extends JPanel{
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
 	
-//	JFrame frame;
 	private JPasswordField oldpassField;
 	private JPasswordField newpassField;
 	private JPasswordField confirmField;
@@ -75,7 +75,6 @@ public class ChangePasswordPanel extends JPanel{
 //	}
 	
 	public void componentsInstantiation(){
-//		frame = new JFrame();
 		bkgImg = new ImageIcon("images/password_BG.png");
 		imageLabel = new JLabel();
 		oldpassField = new JPasswordField();
@@ -144,7 +143,7 @@ public class ChangePasswordPanel extends JPanel{
 		        		}
 		        		UserPanel userPanel = new UserPanel(userVO);
 					}
-		        	
+		        	container.repaint();
 		        }
 	}
 	

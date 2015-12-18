@@ -28,7 +28,7 @@ public class StaffManageController{
 		
 	}
 
-	public void addStaffInfo(UserVO StaffInfo) {
+	public void addStaffInfo(StaffInfoVO StaffInfo) {
 		// TODO Auto-generated method stub
 		
 	}

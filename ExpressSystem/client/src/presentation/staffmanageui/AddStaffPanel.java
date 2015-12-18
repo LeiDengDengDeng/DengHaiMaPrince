@@ -11,7 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import src.businesslogic.staffmanagebl.StaffManageController;
 import src.presentation.util.MyButton;
+import src.vo.StaffInfoVO;
 
 public class AddStaffPanel extends JPanel{
 
@@ -31,7 +33,6 @@ public class AddStaffPanel extends JPanel{
 	private final static ImageIcon CANCEL_ICON = new ImageIcon("images/cancel.png");
 	private final static ImageIcon CANCELENTER_ICON = new ImageIcon("images/cancel_Enter.png");
 
-	private JFrame frame;
 	private	JTextField ID;
 	private	JTextField account;
 	private	JTextField password;
@@ -54,34 +55,19 @@ public class AddStaffPanel extends JPanel{
 	MyButton cancelButton;
 	MyButton confirmButton;
 	StaffListPanel staffManagePanel;
+	StaffManageController controller;
 	
 	public AddStaffPanel(){
 		componentsInstantiation();
 		initial();
 	}
 	
-	public static void main(String[] args){
-		AddStaffPanel staffInfoPanel = new AddStaffPanel();
-	}
-	
+//	public static void main(String[] args){
+//		AddStaffPanel staffInfoPanel = new AddStaffPanel();
+//	}
+//	
 	
 	public void initial(){
-		// 设置标题
-		frame.setUndecorated(true);
-		frame.setSize(850, 646);
-		// 不允许用户改变窗口大小
-		frame.setResizable(false);
-		// 获得屏幕大小
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Dimension screen = toolkit.getScreenSize();
-		// 设置窗体位置
-		final int coo_x = (screen.width - WIDTH) >> 1;
-		final int coo_y = ((screen.height - HEIGHT) >> 1) - 32;
-
-		frame.setLocation(coo_x, coo_y);
-				
-		// 设置默认panel
-		this.setLayout(null);
 		
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
@@ -105,15 +91,14 @@ public class AddStaffPanel extends JPanel{
 		this.add(city);
 		this.add(businessHall);
 		this.add(imageLabel);
+
+		this.setLayout(null);
 		this.setOpaque(false);
 		
-		frame.add(this);
-		frame.setVisible(true);
 		
 	}
 	
 	public void componentsInstantiation(){
-		frame = new JFrame();
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/staff_InfoBG.png");
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480, false);
@@ -125,6 +110,7 @@ public class AddStaffPanel extends JPanel{
 		position = new JTextField();
 		city = new JTextField();
 		businessHall = new JTextField();
+		controller = new StaffManageController(null);
 	}
 	
 	public void getInfo(){
@@ -150,6 +136,8 @@ public class AddStaffPanel extends JPanel{
 		        public void actionPerformed(ActionEvent e) {
 		           if(e.getSource() == confirmButton){
 		        	   getInfo();
+		        	   controller.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
+		        			   staffName, staffPosition, null, staffCity, staffbusinessHall));
 		        	   
 		           }else if(e.getSource() == cancelButton){
 		        	   

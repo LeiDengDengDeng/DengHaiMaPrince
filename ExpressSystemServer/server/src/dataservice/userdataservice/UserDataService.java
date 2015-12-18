@@ -18,7 +18,23 @@ public interface UserDataService extends Remote{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public void insert(ArrayList<UserPO> User) throws RemoteException;
+	public void InitialInsert(ArrayList<UserPO> User) throws RemoteException;
+	
+	/**
+	 * 增加一个po
+	 * @param po
+	 * @return
+	 * @throws RemoteException
+	 */
+	public void insert(UserPO po) throws RemoteException;
+	
+	/**
+	 * 删除一个po
+	 * @param po
+	 * @return
+	 * @throws RemoteException
+	 */
+	public void delete(UserPO po) throws RemoteException;
 	
 	/**
 	 * 根据ID返回UserPO
@@ -27,6 +43,15 @@ public interface UserDataService extends Remote{
 	 * @throws RemoteException
 	 */
 	public UserPO find(long UserId) throws RemoteException;
+	
+	
+	/**
+	 * 获得所有po
+	 * @param 
+	 * @return	
+	 * @throws RemoteException
+	 */
+	public ArrayList<UserPO> finds() throws RemoteException;
 	
 	/**
 	 * 更新一个po

@@ -17,11 +17,11 @@ public class Salary implements SalaryBLService{
 	@Override
 	public boolean changeSalary(long StaffId, SalaryVO salary) {
 		// TODO Auto-generated method stub
-		SalaryPO salaryPO = new SalaryPO(salary.getBasic());
-		salaryPO.setCommission(salary.getCommission());
-		salaryPO.setTime(salary.getTime());
+//		SalaryPO salaryPO = new SalaryPO(salary.getBasic());
+//		salaryPO.setCommission(salary.getCommission());
+//		salaryPO.setTime(salary.getTime());
 		UserVO userVO = userBL.getPersonalInfo(StaffId);
-		userVO.setSalary(salaryPO);
+		userVO.setSalary(salary);
 		userBL.changeInfo(userVO);	
 		
 		return true;
