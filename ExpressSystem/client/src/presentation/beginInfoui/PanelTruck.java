@@ -56,6 +56,7 @@ public class PanelTruck extends SubPanel {
 		textDay.setBounds(Name_x + Name_w + distance_x + Num_w + distance_x + Amount_w + distance_x - 3 + distance_x - 3
 				+ Amount_w, Name_y + distance_y * i, Amount_w, Name_h);
 		TextField[] t = { textName, textNum, textAmount, textMonth, textDay };
+		this.getArrayList().add(t);
 		for (int j = 0; j < t.length; j++) {
 			this.add(t[j]);
 			t[j].setFont(myFont);
@@ -85,7 +86,7 @@ public class PanelTruck extends SubPanel {
 		// TODO Auto-generated method stub
 		ArrayList<Object> a=new ArrayList<Object>();
 		for (int i = 0; i < getArrayList().size(); i++) {
-			long number=Long.parseLong(getArrayList().get(i)[0].getText());
+			String number=getArrayList().get(i)[0].getText();
 			String license=getArrayList().get(i)[1].getText();
 			int activeTime=Integer.parseInt(getArrayList().get(i)[2].getText())*365+
 					Integer.parseInt(getArrayList().get(i)[3].getText())*30+

@@ -56,6 +56,7 @@ public class PanelUser extends SubPanel {
 		this.add(textMonth);
 		this.getJComBox().add(textNum);
 		TextField[] t={textName,textName,textName};
+		this.getArrayList().add(t);
 		textName.setFont(myFont);
 		textNum.setFont(myFont);
 		textAmount.setFont(myFont);

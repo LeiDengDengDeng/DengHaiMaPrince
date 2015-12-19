@@ -9,7 +9,7 @@ import javax.swing.JButton;
 
 public class BeginInfoButton extends JButton{
 	ImageIcon img;
-	ImageIcon imgEnter;
+	ImageIcon imgEnter;		
 	protected BeginInfoButton (ImageIcon img,ImageIcon imgEnter,Point p){
 		this.img=img;
 		this.imgEnter=imgEnter;

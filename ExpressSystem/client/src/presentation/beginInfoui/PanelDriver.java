@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
-import src.businesslogic.nonUserbl.Sex;
+import src.enums.Sex;
 import src.vo.DriverInfoVO;
 
 public class PanelDriver extends SubPanel {
@@ -68,6 +68,7 @@ public class PanelDriver extends SubPanel {
 				+ distance_x + Tel_w + distance_x, Num_y + distance_y * i, Year_w, Num_h);
 		TextField[] t = { textNum, textName, textIdentity, textTel, textYear };
 		this.getArrayList().add(t);
+		this.getJComBox().add(textsex);
 		for (int j = 0; j < t.length; j++) {
 			this.add(t[j]);
 			t[j].setFont(myFont);
@@ -99,7 +100,7 @@ public class PanelDriver extends SubPanel {
 		// TODO Auto-generated method stub
 		ArrayList<Object> a = new ArrayList<Object>();
 		for (int i = 0; i < getArrayList().size(); i++) {
-			long num = Long.parseLong(this.getArrayList().get(i)[0].getText());
+			String num = this.getArrayList().get(i)[0].getText();
 			String name = this.getArrayList().get(i)[1].getText();
 			Sex sex;
 			if ((String) this.getJComBox().get(i).getSelectedItem() == "ÄÐ")

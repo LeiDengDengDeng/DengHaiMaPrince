@@ -114,6 +114,7 @@ public class Account implements AccountBLService {
 		try {
 			AccountPO account = accountData.find(ID);
 			double amount=account.getAmount()-difference;
+			if(amount<0)return false;
 			account.setAmount(amount);
 			accountData.update(account);
 			System.out.println("update");

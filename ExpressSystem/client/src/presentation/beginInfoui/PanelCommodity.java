@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import src.vo.StorageInitVO;
+
 public class PanelCommodity extends SubPanel {
 
 	ImageIcon img;
@@ -103,10 +105,15 @@ public class PanelCommodity extends SubPanel {
 		ArrayList<Object> a=new ArrayList<Object>();
 		for (int i = 0; i < this.getJComBox().size(); i++) {
 			String name=(String)this.getJComBox().get(i).getSelectedItem();
-			
+			double alarmScale=Double.parseDouble(this.getArrayList().get(i)[3].getText());//¾¯½ä±ÈÀý
+			int rowNum=Integer.parseInt(this.getArrayList().get(i)[1].getText());//²Ö¿âÅÅÊý
+			int shelfNum=Integer.parseInt(this.getArrayList().get(i)[0].getText());//²Ö¿â¼ÜÊý
+			int seatNum=Integer.parseInt(this.getArrayList().get(i)[2].getText());//²Ö¿âÎ»Êý
+			StorageInitVO vo= new StorageInitVO(name, alarmScale, rowNum, shelfNum, seatNum);
+			a.add(vo);
 		}
 		
-		return null;
+		return a;
 	}
 
 }

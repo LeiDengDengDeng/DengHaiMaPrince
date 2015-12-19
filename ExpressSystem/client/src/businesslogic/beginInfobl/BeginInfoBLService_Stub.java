@@ -11,13 +11,16 @@ public class BeginInfoBLService_Stub implements BeginInfoBLService {
 	
 	public BeginInfoBLService_Stub(LogBLService log) {
 		super();
-		this.log = log;
 	}
 
 	@Override
 	public boolean fillInfo(BeginInfoVO vo) {
 		// TODO Auto-generated method stub
-		log.generateLog(position, "小王子", "填写期初信息","");
+		System.out.println(vo.getBeginAccount().get(0).getName());
+		System.out.println(vo.getBeginDriver().get(0).getName());
+		System.out.println(vo.getBeginStorage().get(0).getAlarmScale());
+		System.out.println(vo.getBeginTruck().get(0).getNumber());
+		System.out.println(vo.getBeginUser().get(0).getMyPosition());
 		return true;
 	}
 

@@ -7,6 +7,7 @@ import java.rmi.registry.LocateRegistry;
 
 import src.data.Institutiondata.InstitutionData;
 import src.data.accountdata.AccountData;
+import src.data.beginInfodata.BeginInfoData;
 import src.data.commoditydata.GoodsData;
 import src.data.commoditydata.StorageData;
 import src.data.logdata.LogData;
@@ -18,6 +19,7 @@ import src.data.sheetdata.SheetData;
 import src.data.staffmanagedata.StaffManageData;
 import src.data.userdata.UserData;
 import src.dataservice.accountdataservice.AccountDataService;
+import src.dataservice.beginInfodataservice.BeginInfoDataService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
 import src.dataservice.institutiondataservice.InstitutionDataService;
@@ -38,6 +40,7 @@ public class ServerMain {
 			LogDataService logData = new LogData();
 			SheetDataService sheetData = new SheetData();
 			AccountDataService accountData = new AccountData();
+			BeginInfoDataService beginInfoData=new BeginInfoData();
 			UserDataService userData = new UserData();
 			StaffManageDataService staffManageData = new StaffManageData();
 			InstitutionDataService institutionData = new InstitutionData();
@@ -60,7 +63,7 @@ public class ServerMain {
 			Naming.rebind("rmi://127.0.0.1:6600/intermediateCenterData", intermediateCenterData);
 			Naming.rebind("rmi://127.0.0.1:6600/driverData", driverData);
 			Naming.rebind("rmi://127.0.0.1:6600/truckData", truckData);
-			
+			Naming.rebind("rmi://127.0.0.1:6600/beginInfoData",beginInfoData);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {

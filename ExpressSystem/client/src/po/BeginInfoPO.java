@@ -13,7 +13,34 @@ public class BeginInfoPO implements Serializable{
 	ArrayList<DriverPO> beginDriver;
 	ArrayList<TruckPO> beginTruck;
 	ArrayList<AccountPO> beginAccount;
-	ConstantPO beginConstant;
-	StoragePO beginStorage;
+	ArrayList<StoragePO> beginStorage;
 	ArrayList<UserPO> beginUser;
+	public BeginInfoPO(ArrayList<DriverPO> beginDriver, ArrayList<TruckPO> beginTruck,
+			ArrayList<AccountPO> beginAccount, ArrayList<StoragePO> beginStorage, ArrayList<UserPO> beginUser) {
+		super();
+		this.beginDriver = beginDriver;
+		this.beginTruck = beginTruck;
+		this.beginAccount = beginAccount;
+		this.beginStorage = beginStorage;
+		this.beginUser = beginUser;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public ArrayList<DriverPO> getBeginDriver() {
+		return beginDriver;
+	}
+	public ArrayList<TruckPO> getBeginTruck() {
+		return beginTruck;
+	}
+	public ArrayList<AccountPO> getBeginAccount() {
+		return beginAccount;
+	}
+	public ArrayList<StoragePO> getBeginStorage() {
+		return beginStorage;
+	}
+	public ArrayList<UserPO> getBeginUser() {
+		return beginUser;
+	}
+	
 }
