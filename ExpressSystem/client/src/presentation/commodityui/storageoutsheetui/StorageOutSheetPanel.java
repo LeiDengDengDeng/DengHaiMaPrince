@@ -3,24 +3,22 @@ package src.presentation.commodityui.storageoutsheetui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.text.DecimalFormat;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.businesslogic.commoditybl.Commodity;
-import src.businesslogic.commoditybl.CommodityBLService_Stub;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
-import src.dataservice.commoditydataservice.GoodsDataService;
-import src.dataservice.commoditydataservice.StorageDataService;
 import src.enums.GoodsType;
-import src.presentation.accountui.AccountPanel;
-import src.vo.StorageInSheetVO;
+import src.presentation.sheetui.DateChooserJButton;
 
 public class StorageOutSheetPanel extends JPanel{
 	ArrayList<String> goodsNames;//内件品名
@@ -38,6 +36,9 @@ public class StorageOutSheetPanel extends JPanel{
 	ArrayList<JComboBox> destinationList;
 	ArrayList<JComboBox> transportFormList;
 	ButtonAdd buttonAdd;
+	JButton confirmButton;
+	JLabel inDateJLabel;
+	DateChooserJButton dateChooser;
 	CommodityBLService commodityBL;
 //	ArrayList<StorageInSheetVO> inStorages;
 	TextLabel TextAdd;
@@ -47,6 +48,7 @@ public class StorageOutSheetPanel extends JPanel{
 	protected static final ImageIcon IMG_REC1 = new ImageIcon("images/account_rec1.png");
 	protected static final ImageIcon IMG_REC2 = new ImageIcon("images/account_rec2.png");
 	protected static final ImageIcon IMG_ADD = new ImageIcon("images/account_add.png");
+	protected static final ImageIcon IMG_CONFIRM = new ImageIcon("images/confirm.png");
 	protected static final int font = 14;
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, font);
 	protected static final int x = 195;// panel 位置x
@@ -54,7 +56,7 @@ public class StorageOutSheetPanel extends JPanel{
 	protected static final int w = 641;// panel宽
 	protected static final int h = 572;// panel高
 	protected static final int Word_x = 76;// word x
-	protected static final int Word_y = 55;// word y
+	protected static final int Word_y = 80;// word y
 	protected static final int width = 26;// 两行字之间的距离
 	protected static final int formHeight = 26;// 单行表格的高度
 	protected static final int formWidth = 550;// 单行表格的宽度
@@ -87,6 +89,9 @@ public class StorageOutSheetPanel extends JPanel{
 		transNumList = new ArrayList<JLabel>();
 		destinationList = new ArrayList<JComboBox>();
 		transportFormList = new ArrayList<JComboBox>();
+		dateChooser = new DateChooserJButton();
+		inDateJLabel = new JLabel("出库日期：");
+		confirmButton = new JButton(IMG_CONFIRM);
 		this.initial();
 
 	}
@@ -96,6 +101,16 @@ public class StorageOutSheetPanel extends JPanel{
 		this.setBounds(x, y, w, h);
 		this.setOpaque(false);
 		JLabel word = new JLabel(IMG_BG);
+		inDateJLabel.setBounds(Word_x - 33, 10, 100, 30);
+		inDateJLabel.setFont(myFont);
+		dateChooser.setBounds(120, 10, 100, 30);
+		ConfirmButtonListener listener2 = new ConfirmButtonListener(this);
+		confirmButton.addActionListener(listener2);
+		confirmButton.setBounds(300, 480, IMG_CONFIRM.getIconWidth(),
+				IMG_CONFIRM.getIconHeight());
+		this.add(inDateJLabel);
+		this.add(dateChooser);
+		this.add(confirmButton);
 		this.drawCommodity();
 //		word.setBounds(Word_x - 33, Word_y - 35, IMG_BG.getIconWidth(), IMG_BG.getIconHeight());
 //		this.add(word);
@@ -211,6 +226,24 @@ public class StorageOutSheetPanel extends JPanel{
 		this.formList.add(rec);
 		return true;
 	}
+	
+	class ConfirmButtonListener implements ActionListener{
+
+    	StorageOutSheetPanel sop;
+    	
+    	public ConfirmButtonListener(StorageOutSheetPanel sop){
+    		this.sop = sop;
+    	}
+    	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == confirmButton){
+//				System.out.println(goodsNames.get(0));
+			}
+				
+		}
+    	
+    }
 
 public void paintComponent(Graphics g) 
 { 

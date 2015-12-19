@@ -78,7 +78,7 @@ public class StockCheckPanel extends JPanel{
         
         pageComboBox = new JComboBox();
         imageLabel = new JLabel();
-        bkgImg = new ImageIcon("images/log.png");
+        bkgImg = new ImageIcon("images/stockcheck2_bg.png");
         
         imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(40, 40, bkgImg.getIconWidth(), bkgImg.getIconHeight());
@@ -104,11 +104,11 @@ public class StockCheckPanel extends JPanel{
 		endTime.setBounds(370, 140, 100, 40);
 		fromTo.setBounds(270, 140, 100, 30);
 		fromTo.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 30));
-		inNumLabel.setBounds(40, 15, 200, 40);
+		inNumLabel.setBounds(40, 5, 200, 40);
 		inNumLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		outNumLabel.setBounds(300, 15, 200, 40);
+		outNumLabel.setBounds(200, 5, 200, 40);
 		outNumLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		totalNumLabel.setBounds(40, 40, 200, 40);
+		totalNumLabel.setBounds(360, 5, 200, 40);
 		totalNumLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
 		this.add(remind);
 		this.add(confirmButton);
@@ -181,6 +181,7 @@ public class StockCheckPanel extends JPanel{
 				imageLabel.setVisible(true);
 				
 //				storages = commodityBL.checkStorageMessage("ÄÏ¾©", 20151025, 20151026);
+				System.out.println(Long.parseLong(startTime.getText().replaceAll("-", "")));
 				for(int i = 0;i < 55;i++){
 					StorageInfoVO tempSvo = new StorageInfoVO("Ñªºð",
 							GoodsType.TRANSPORT, 003, 005, 007);

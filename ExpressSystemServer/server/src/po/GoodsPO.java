@@ -27,8 +27,8 @@ public class GoodsPO implements Serializable {
 	private String goodsName;//内件品名
 	private GoodsType expressForm;//快递方式
 	private GoodsType packagingForm;//包装方式
-	private long expressNumber;//快递编号
-	private long inTime;//入库日期
+	private String expressNumber;//快递编号
+	private String inTime;//入库日期
 	private String destination;//目的地
 	private GoodsType areaNumber;//区号
 	private int rowNumber;//排号
@@ -41,7 +41,7 @@ public class GoodsPO implements Serializable {
 	public GoodsPO(ArrayList<String> logisticsState, int goodsNumber,
 			double length, double width, double height, double factWeight,
 			double size, String goodsName, GoodsType expressForm, GoodsType packagingForm,
-			long expressNumber, long inTime, String destination,
+			String expressNumber, String inTime, String destination,
 			GoodsType areaNumber, int rowNumber, int shelfNumber, int seatNumber,
 			int transportForm, String transferNumber, String transportNumber) {
 		super();
@@ -147,19 +147,19 @@ public class GoodsPO implements Serializable {
 		this.packagingForm = packagingForm;
 	}
 
-	public long getExpressNumber() {
+	public String getExpressNumber() {
 		return expressNumber;
 	}
 
-	public void setExpressNumber(long expressNumber) {
+	public void setExpressNumber(String expressNumber) {
 		this.expressNumber = expressNumber;
 	}
 
-	public long getInTime() {
+	public String getInTime() {
 		return inTime;
 	}
 
-	public void setInTime(long inTime) {
+	public void setInTime(String inTime) {
 		this.inTime = inTime;
 	}
 

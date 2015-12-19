@@ -17,8 +17,8 @@ public class ExpressInfoVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	String goodsName;//内件品名
-	long expressNumber;//快递编号
-	long inTime;//入库日期
+	String expressNumber;//快递编号
+	String inTime;//入库日期
 	String destination;//目的地
 	GoodsType areaNumber;//区号
 	int rowNumber;//排号
@@ -26,7 +26,7 @@ public class ExpressInfoVO implements Serializable{
 	int seatNumber;//位号
 	boolean isFlxible;//是否转入机动区
 	
-	public ExpressInfoVO(String goodsName,long expressNumber, long inTime, String destination,
+	public ExpressInfoVO(String goodsName,String expressNumber, String inTime, String destination,
 			GoodsType areaNumber, int rowNumber, int shelfNumber, int seatNumber,boolean isFlxible) {
 		super();
 		this.goodsName = goodsName;
@@ -50,19 +50,19 @@ public class ExpressInfoVO implements Serializable{
 		this.goodsName = goodsName;
 	}
 
-	public long getExpressNumber() {
+	public String getExpressNumber() {
 		return expressNumber;
 	}
 
-	public void setExpressNumber(long expressNumber) {
+	public void setExpressNumber(String expressNumber) {
 		this.expressNumber = expressNumber;
 	}
 
-	public long getInTime() {
+	public String getInTime() {
 		return inTime;
 	}
 
-	public void setInTime(long inTime) {
+	public void setInTime(String inTime) {
 		this.inTime = inTime;
 	}
 

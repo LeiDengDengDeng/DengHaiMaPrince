@@ -49,7 +49,7 @@ public class Commodity implements CommodityBLService{
 		ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
 		ArrayList<ExpressInfoVO> evos = new ArrayList<ExpressInfoVO>();
 		Date dt=new Date();     
-		SimpleDateFormat matter1 = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat matter1 = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			spo = storageDataService.findStoragePO(storageId);
 		} catch (RemoteException e) {
@@ -59,6 +59,9 @@ public class Commodity implements CommodityBLService{
 //		System.out.println(gpos.size());
 		for(int i = 0;i < gpos.size();i++){
 			//判断是否是当天入库
+//			System.out.println(matter1.format(dt));
+//			System.out.println(gpos.get(i).getInTime());
+//			System.out.println(matter1.format(dt).equals(gpos.get(i).getInTime() + ""));
 			if(matter1.format(dt).equals(gpos.get(i).getInTime() + "")){
 				evos.add(new ExpressInfoVO(gpos.get(i).getGoodsName(),gpos.get(i).getExpressNumber(), 
 						gpos.get(i).getInTime(), gpos.get(i).getDestination(), 
@@ -113,8 +116,8 @@ public class Commodity implements CommodityBLService{
 		
 		for(int i = 0;i < gpos.size();i++){
 			//判断是否在指定时间内
-			if((gpos.get(i).getInTime() >= startTime) && 
-					(gpos.get(i).getInTime() <= endTime)){
+			if((Long.parseLong(gpos.get(i).getInTime().replaceAll("-", "")) >= startTime) && 
+					(Long.parseLong(gpos.get(i).getInTime().replaceAll("-", "")) <= endTime)){
 				svos.add(new StorageInfoVO(gpos.get(i).getGoodsName(),gpos.get(i).getAreaNumber(), 
 						gpos.get(i).getRowNumber(), gpos.get(i).getShelfNumber(),
 						gpos.get(i).getSeatNumber()));
@@ -138,8 +141,8 @@ public class Commodity implements CommodityBLService{
 		
 		for(int i = 0;i < gpos.size();i++){
 			//判断是否在指定时间内
-			if((gpos.get(i).getInTime() >= startTime) && 
-					(gpos.get(i).getInTime() <= endTime)){
+			if((Long.parseLong(gpos.get(i).getInTime().replaceAll("-", "")) >= startTime) && 
+					(Long.parseLong(gpos.get(i).getInTime().replaceAll("-", "")) <= endTime)){
 				inNum++;
 			}
 		}

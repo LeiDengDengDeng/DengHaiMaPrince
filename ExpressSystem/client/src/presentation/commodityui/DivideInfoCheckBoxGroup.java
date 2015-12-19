@@ -59,7 +59,7 @@ public class DivideInfoCheckBoxGroup {
         for (int i = start; i < num * page && i < storages.size(); i++) {
             JCheckBox checkBox = boxs.get(i);
 
-            checkBox.setBounds(x + 450, y + (i - start) * height, 50, height);
+            checkBox.setBounds(x + 485, y + (i - start) * height, 50, height);
             checkBox.setOpaque(false);
             
             presentBoxs[i - start] = checkBox;

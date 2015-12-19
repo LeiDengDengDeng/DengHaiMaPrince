@@ -14,7 +14,7 @@ public interface GoodsDataService extends Remote{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public GoodsPO findGoodsPO(long id) throws RemoteException;
+	public GoodsPO findGoodsPO(String id) throws RemoteException;
 	
 	/**
 	 * 根据type返回一组GoodsPO
@@ -50,7 +50,7 @@ public interface GoodsDataService extends Remote{
 	 * @param id
 	 * @throws RemoteException
 	 */
-	public void delete(long id) throws RemoteException;
+	public void delete(String id) throws RemoteException;
 	
 	/**
 	 * 结束持久化数据库的使用
