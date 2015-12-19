@@ -34,8 +34,8 @@ public class UserPanel extends JPanel{
 	static final int h = 30;
 	static final int linesp = 53;
 	static final int columnsp = 250;
-	static final int coordinate_X = 150;
-	static final int coordinate_Y = 90;
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 100;
 	
 	Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	

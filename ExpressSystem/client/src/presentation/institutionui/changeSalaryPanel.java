@@ -1,8 +1,5 @@
-package src.presentation.userui;
+package src.presentation.institutionui;
 
-import java.awt.Container;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,14 +7,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import src.businesslogic.loginbl.LogIn;
+import src.businesslogic.userbl.Salary;
 import src.businesslogic.userbl.User;
+import src.presentation.userui.ChangePasswordPanel;
+import src.presentation.userui.UserPanel;
 import src.presentation.util.MyButton;
+import src.vo.SalaryVO;
 import src.vo.UserVO;
 
-
-public class ChangePasswordPanel extends JPanel{
+public class changeSalaryPanel extends JPanel{
 	/**
 	 * 
 	 */
@@ -25,9 +26,9 @@ public class ChangePasswordPanel extends JPanel{
 	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
-	static final int x = 120;
+	static final int x = 95;
 	static final int y = 63;
-	static final int w = 200;
+	static final int w = 100;
 	static final int h = 16;
 	static final int linesp = 49;
 	static final int coordinate_X = 230;
@@ -39,9 +40,9 @@ public class ChangePasswordPanel extends JPanel{
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
 	
-	private JPasswordField oldpassField;
-	private JPasswordField newpassField;
-	private JPasswordField confirmField;
+	private JTextField basicField;
+	private JTextField eachPayField;
+	private JTextField commissionField;
 	MyButton confirmButton;
 	MyButton cancelButton;
 	
@@ -49,13 +50,18 @@ public class ChangePasswordPanel extends JPanel{
     ImageIcon bkgImg;
     
 	UserVO userVO;
-	User user = new User(null);
-	LogIn logIn = new LogIn(user);
-	String oldpass;
-	String newpass;
-	String confirmpass;
+	User user;
+	LogIn logIn;
+	Salary salary;
+	int basic;
+	int eachPay;
+	int commission;
 	
-	public ChangePasswordPanel(UserVO userVO){
+	public changeSalaryPanel(UserVO userVO){
+		user = new User(null);
+		logIn = new LogIn(user); 
+		salary = new Salary(user);
+		
 		this.userVO = userVO;
 		componentsInstantiation();
 		initial();
@@ -75,13 +81,13 @@ public class ChangePasswordPanel extends JPanel{
 //	}
 	
 	public void componentsInstantiation(){
-		bkgImg = new ImageIcon("images/password_BG.png");
+		bkgImg = new ImageIcon("images/institution_salary.png");
 		imageLabel = new JLabel();
-		oldpassField = new JPasswordField();
-		newpassField = new JPasswordField();
-		confirmField = new JPasswordField();
-		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 350, coordinate_Y + 280,false);
-		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 450, coordinate_Y + 280,false);
+		basicField = new JTextField();
+		eachPayField = new JTextField();
+		commissionField = new JTextField();
+		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 350, coordinate_Y + 210,false);
+		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 450, coordinate_Y + 210,false);
 		
 	}
 
@@ -91,14 +97,14 @@ public class ChangePasswordPanel extends JPanel{
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 		
-		oldpassField.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
-		newpassField.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
-		confirmField.setBounds(coordinate_X + x + 10, coordinate_Y + y + linesp * 2, w, h);
+		basicField.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
+		eachPayField.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
+		commissionField.setBounds(coordinate_X + x + 20, coordinate_Y + y + linesp * 2, w - 20, h);
 		
 		
-		this.add(oldpassField);
-		this.add(newpassField);
-		this.add(confirmField);
+		this.add(basicField);
+		this.add(eachPayField);
+		this.add(commissionField);
 		this.add(confirmButton);
 		this.add(cancelButton);
 		this.add(imageLabel);
@@ -108,9 +114,9 @@ public class ChangePasswordPanel extends JPanel{
 	}
 	
 	class buttonActionListener implements ActionListener {
-	       ChangePasswordPanel container;
+	       changeSalaryPanel container;
 		       
-	        public buttonActionListener(ChangePasswordPanel container) {
+	        public buttonActionListener(changeSalaryPanel container) {
 	            this.container = container;
 	        }
 
@@ -119,22 +125,17 @@ public class ChangePasswordPanel extends JPanel{
 		        	if(e.getSource() == cancelButton){
 		        		
 		        	}else if (e.getSource() == confirmButton) {
-		        		oldpass = String.valueOf(oldpassField.getPassword());
-		        		newpass = String.valueOf(newpassField.getPassword());
-		        		confirmpass = String.valueOf(confirmField.getPassword());;
-		        		if(oldpass.equals(userVO.getMyPassword())){
-		        			System.out.println("oldpass correct");
-		        			if(newpass.equals(confirmpass)){
-		        				System.out.println("same");
-		        				logIn.getCurrentUser().setMyPassword(confirmpass);
-		        				user.changeInfo(logIn.getCurrentUser());
-		        			}
-		        		}
-		        		UserPanel userPanel = new UserPanel(userVO);
-					}
+		        		basic = Integer.parseInt(basicField.getText());
+		        		eachPay = Integer.parseInt(eachPayField.getText());
+		        		commission = Integer.parseInt(commissionField.getText());
+		        		
+		        		SalaryVO salaryVO = new SalaryVO(basic);
+		        		salaryVO.setEachPay(eachPay);
+		        		salaryVO.setCommission(commission);
+		        		salary.changeSalary(userVO.getpersonalID(), salaryVO);
+
+		        	}
 		        	container.repaint();
 		        }
 	}
-	
-	
 }

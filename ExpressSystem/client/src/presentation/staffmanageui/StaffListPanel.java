@@ -25,8 +25,8 @@ import src.vo.UserVO;
 public class StaffListPanel extends JPanel{
 	
 
-	static final int coordinate_X = 150;
-	static final int coordinate_Y = 90;
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 100;
 	
 //	private static final ImageIcon SEARCH = new ImageIcon("images/search.png");
 //	private static final ImageIcon SEARCHENTER = new ImageIcon("images/searchClicked.png");

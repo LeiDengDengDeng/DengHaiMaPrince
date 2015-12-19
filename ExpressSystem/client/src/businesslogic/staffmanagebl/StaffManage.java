@@ -100,7 +100,7 @@ public class StaffManage implements StaffManageBLService{
 			}
 		
 			for(int i = 0;i < userPOs.size();i++){
-				if(userPOs.get(i).getMyPosition().equalsIgnoreCase(position)){
+				if(userPOs.get(i).getMyPosition().equals(position)){
 					userPOs.get(i).setAuthority(authority);
 					try {
 						staffManageData.update(userPOs.get(i));
@@ -118,12 +118,13 @@ public class StaffManage implements StaffManageBLService{
 	@Override
 	public boolean addStaffInfo(StaffInfoVO StaffInfo) {
 		// TODO Auto-generated method stub
+		System.out.println("add");
 		if(StaffInfo == null)
 			return false;
 		
 		else{
 			StaffInfo.setAuthority(position.initialAuthority(StaffInfo));
-		
+			System.out.println(StaffInfo.getAuthority().size());
 			UserPO userPO = new UserPO(StaffInfo.getID(), StaffInfo.getAccount(),
 					StaffInfo.getPassword(), StaffInfo.getStaffName(),
 					StaffInfo.getPosition(), StaffInfo.getAuthority());
@@ -176,11 +177,15 @@ public class StaffManage implements StaffManageBLService{
 		
 	}
 
-//	public static void main(String[] args) {
-//		StaffManage staffManage = new StaffManage(null, new Position(new User(null)));
+	public static void main(String[] args) {
+		StaffManage staffManage = new StaffManage(null, new Position(new User(null)));
 //		staffManage.addStaffInfo(new StaffInfoVO(200000, 200000, "123456", "小燕子", "快递员", null, null, null));
 //		staffManage.deleteStaff(200000);
-//		System.out.println(staffManage.getAllStaff().size());
-//	}
-//
+		System.out.println(staffManage.getStaffInfo(200000).getPosition());
+		if(staffManage.getStaffInfo(200000).getAuthority() == null)
+			System.out.println("null");
+		else
+			System.out.println(staffManage.getStaffInfo(200000).getAuthority().size());
+	}
+
 }

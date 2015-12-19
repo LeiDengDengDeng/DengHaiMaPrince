@@ -19,6 +19,7 @@ public class Position implements PositionBLService{
 	public ArrayList<Integer> initialAuthority(StaffInfoVO staff) {
 		// TODO Auto-generated method stub
 		ArrayList<Integer> authority = new ArrayList<Integer>();
+//		System.out.println(staff.getPosition());
 		switch (staff.getPosition()) {
 		case "总经理":
 			authority.add(12);
@@ -55,11 +56,8 @@ public class Position implements PositionBLService{
 		default:
 			break;
 		}
+		
 		return authority;
-		
-		
-		
-		
 	}
 	
 	@Override
@@ -98,5 +96,10 @@ public class Position implements PositionBLService{
 		return true;
 	}
 	
+//	public static void main(String[] args) {
+//		Position position = new Position(new User(null));
+//		position.initialAuthority(new StaffInfoVO(200000, 200000, "123456", "小燕子", "快递员", null, null, null));
+//		System.out.println(position.initialAuthority(new StaffInfoVO(200000, 200000, "123456", "小燕子", "快递员", null, null, null)).size());
+//	}
 
 }

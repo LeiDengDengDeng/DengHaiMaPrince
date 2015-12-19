@@ -25,8 +25,8 @@ public class AddStaffPanel extends JPanel{
 	static final int h = 16;
 	static final int linesp = 49;
 	static final int columnsp = 250;
-	static final int coordinate_X = 150;
-	static final int coordinate_Y = 90;
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 100;
 	
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");

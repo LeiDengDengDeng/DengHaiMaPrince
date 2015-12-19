@@ -11,7 +11,6 @@ import src.businesslogicservice.userblservice.UserBLService;
 import src.dataservice.userdataservice.UserDataService;
 import src.po.SalaryPO;
 import src.po.UserPO;
-import src.presentation.userui.UserData_Stub;
 import src.vo.InitUserVO;
 import src.vo.SalaryVO;
 import src.vo.UserVO;
@@ -42,7 +41,6 @@ public class UserBLService_Stub implements UserBLService{
 //		return true;
 //	}
 	Log log;
-	UserData_Stub userData;
 	public UserBLService_Stub(Log log){
 		this.log = log;
 //		try {
@@ -57,85 +55,27 @@ public class UserBLService_Stub implements UserBLService{
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		userData = new UserData_Stub();
 	}
 
 	@Override
 	public UserVO getPersonalInfo(long UserId) {
 		// TODO Auto-generated method stub
-		UserPO userPO = null;
-		try {
-			userPO = userData.find(UserId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(userPO == null){
-			System.out.println("userPO is null");
-			return null;
-		}
-		SalaryVO salaryVO = new SalaryVO(userPO.getSalary().getBasic());
-		salaryVO.setCommission(userPO.getSalary().getCommission());
-		salaryVO.setEachPay(userPO.getSalary().getEachPay());
-		salaryVO.setTime(userPO.getSalary().getTime());
-		UserVO userVO = new UserVO(userPO.getPersonalID(), userPO.getPersonalAccount(),
-				userPO.getMyPassword(), userPO.getPersonalName(),
-				userPO.getMyPosition(), userPO.getAuthority(), salaryVO,
-				userPO.getCity(),userPO.getBusinessHall());
-		
-		return userVO;
+		System.out.println("get!!");
+		return null;
 	}
 	
 
 	@Override
 	public boolean changePassword(String password,long UserId) {
 		// TODO Auto-generated method stub
-		if(password == null) 
-			return false;
-		
-		else{
-			UserPO userPO = null;
-			try {
-				userPO = userData.find(UserId);
-				if(userPO == null) System.out.println("a");
-				else userPO.setMyPassword(password);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-//			PasswordPanel passwordPanel = new PasswordPanel(userPO.getMyPassword(),
-//					password, password);
-			try {
-				userData.update(userPO);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return true;
-		}
-		
+		System.out.println("change!!");
+		return true;
 	}
 
 
 	@Override
 	public boolean changeInfo(UserVO userVO) {
 		// TODO Auto-generated method stub
-		UserPO userPO = new UserPO(userVO.getpersonalID(), userVO.getpersonalAccount(),
-				userVO.getMyPassword(),	userVO.getpersonalName(),
-				userVO.getMyPosition(), userVO.getAuthority());
-		SalaryPO salaryPO = new SalaryPO(userVO.getSalary().getBasic());
-		salaryPO.setCommission(userVO.getSalary().getCommission());
-		salaryPO.setEachPay(userVO.getSalary().getEachPay());
-		salaryPO.setTime(userVO.getSalary().getTime());
-		userPO.setSalary(salaryPO);
-		userPO.setCity(userVO.getCity());
-		userPO.setBusinessHall(userVO.getBusinessHall());
-		try {
-			userData.update(userPO);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		return true;
 	}
@@ -143,35 +83,14 @@ public class UserBLService_Stub implements UserBLService{
 	@Override
 	public boolean endManagement() {
 		// TODO Auto-generated method stub
-		try {
-			userData.finish();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return true;
 	}
 
 	@Override
 	public boolean initial(ArrayList<InitUserVO> User) {
 		// TODO Auto-generated method stub
-		ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
-		for(int i = 0;i < User.size();i++){
-			userPOs.add(new UserPO(User.get(i).getPersonalID(), User.get(i).getPersonalID(),
-					null, User.get(i).getPersonalName(), User.get(i).getMyPosition(), 
-					null));
-		}
-		try {
-			userData.insert(userPOs);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return true;
 	}
 
-
-
-	
 
 }

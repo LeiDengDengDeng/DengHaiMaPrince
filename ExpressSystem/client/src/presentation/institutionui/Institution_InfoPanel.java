@@ -25,8 +25,8 @@ public class Institution_InfoPanel extends JPanel{
 	static final int w = 200;
 	static final int h = 30;
 	static final int linesp = 48;
-	static final int coordinate_X = 150;
-	static final int coordinate_Y = 90;
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 100;
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
@@ -37,7 +37,6 @@ public class Institution_InfoPanel extends JPanel{
 	
 	InstitutionVO institutionVO;
 	
-	JFrame frame;
 	
 	JLabel imageLabel;
     ImageIcon bkgImg;
@@ -61,21 +60,6 @@ public class Institution_InfoPanel extends JPanel{
 	}
 	
 	public void initial(){
-		// 设置标题
-		frame.setUndecorated(true);
-		frame.setSize(850, 646);
-		// 不允许用户改变窗口大小
-		frame.setResizable(false);
-		// 获得屏幕大小
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Dimension screen = toolkit.getScreenSize();
-		// 设置窗体位置
-		final int x = (screen.width - WIDTH) >> 1;
-		final int y = ((screen.height - HEIGHT) >> 1) - 32;
-
-		frame.setLocation(x, y);
-		// 设置默认panel
-		this.setLayout(null);
 		
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
@@ -86,15 +70,13 @@ public class Institution_InfoPanel extends JPanel{
         this.add(confirmButton);
         this.add(deleteButton);
         this.add(imageLabel);
+        this.setLayout(null);
         this.setOpaque(false);
 		
-		frame.setContentPane(this);
-		frame.setVisible(true);
 		
 	}
 	
 	public void componentsInstantiation(){
-		frame = new JFrame();
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/institution_InfoBG.png");
 		institutionID = new JLabel();
@@ -123,10 +105,5 @@ public class Institution_InfoPanel extends JPanel{
 		institutionfunction.setForeground(Color.WHITE);
 		
 	}
-	public static void main(String[] args) {
-		Institution_InfoPanel p = new Institution_InfoPanel(new
-				InstitutionVO("财务部", 100000, null, "负责财务管理"));
-	}
-	
 
 }
