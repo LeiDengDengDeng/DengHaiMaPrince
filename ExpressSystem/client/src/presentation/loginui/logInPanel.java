@@ -11,10 +11,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import src.businesslogic.loginbl.LogIn;
+import src.businesslogic.loginbl.LogInController;
 import src.businesslogic.userbl.ResultMessage;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.MainFrame;
-import src.presentation.userui.UserData_Stub;
 import src.presentation.util.MyButton;
 
 public class LogInPanel extends JPanel {
@@ -22,9 +22,8 @@ public class LogInPanel extends JPanel {
 
     Point origin;
 
-    UserData_Stub data_Stub = new UserData_Stub();
     User user;
-    LogIn logIn;
+    LogInController logInController;
     private static final ImageIcon CHECK_ICON = new ImageIcon("images/logIn_check.png");
     private static final ImageIcon CHECKENTER_ICON = new ImageIcon("images/logIn_checkEnter.png");
     private static final ImageIcon LOG_ICON = new ImageIcon("images/logIn_log.png");
@@ -54,7 +53,7 @@ public class LogInPanel extends JPanel {
 
     public void componentsInstantiation() {
         user = new User(null);
-        logIn = new LogIn(user);
+        logInController = new LogInController(new LogIn(user));
         checkButton = new MyButton(CHECK_ICON, CHECKENTER_ICON, 80, 425, false);
         loginButton = new MyButton(LOG_ICON, LOGENTER_ICON, 230, 425, false);
         accountField = new JTextField();
@@ -78,11 +77,13 @@ public class LogInPanel extends JPanel {
 
 
     public boolean login() {
-        account = Long.parseLong(accountField.getText());
-        password = passwordField.getText();
-        System.out.println(logIn.logIn(account, password));
-        if (logIn.logIn(account, password) == ResultMessage.CORRECT)
-            return true;
+    	account = Long.parseLong(accountField.getText());
+        password = String.valueOf(passwordField.getPassword());
+//        System.out.println(logIn.logIn(account, password));
+        if (logInController.logIn(account, password) == ResultMessage.CORRECT){
+        	System.out.println("true");
+        	return true;
+        }
         else
             return false;
 
@@ -108,8 +109,9 @@ public class LogInPanel extends JPanel {
             if (e.getSource() == checkButton) {
 
             } else if (e.getSource() == loginButton) {
-//                if (login()) {
-                    ArrayList<Integer> test1 = new ArrayList<>();
+            	System.out.println("login");
+                if (login()) {
+                	ArrayList<Integer> test1 = new ArrayList<>();
                     test1.add(7);
                     test1.add(8);
                     ArrayList<Integer> test2 = new ArrayList<>();
@@ -118,7 +120,7 @@ public class LogInPanel extends JPanel {
                     test2.add(16);
                     MainFrame m = new MainFrame(test2);
                     father.dispose();
-//                }
+                }
             }
 
         }
