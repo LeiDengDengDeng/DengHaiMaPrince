@@ -38,9 +38,9 @@ public class TestBeginInfo {
 		
 //		BeginInfo beginInfo=new BeginInfo(log, account, user, nonuser, commodity, sheet);
 		ArrayList<DriverInfoVO> beginDriver=new ArrayList<DriverInfoVO>();
-		beginDriver.add(new DriverInfoVO(025001001L, "曹大爷", 1998, 01, 01, "320521199801013421", "13492302391", Sex.FEMALE, 2015));
+//		beginDriver.add(new DriverInfoVO(025001001L, "曹大爷", 1998, 01, 01, "320521199801013421", "13492302391", Sex.FEMALE, 2015));
 		ArrayList<TruckInfoVO> beginTruck=new ArrayList<TruckInfoVO>();
-		beginTruck.add(	new TruckInfoVO(025001001L, 100, "苏A09R98"));
+//		beginTruck.add(	new TruckInfoVO(025001001L, 100, "苏A09R98"));
 		ArrayList<AccountVO> beginAccount=new ArrayList<AccountVO>();
 		beginAccount.add(new AccountVO("小王子",2303240520304205321L , 20000));
 		ArrayList<StorageInitVO> beginStorage=new ArrayList<StorageInitVO>();

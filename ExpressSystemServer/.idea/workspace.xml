@@ -2,55 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c61c9de-ceaa-429a-9229-c8641526a892" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ExpressSystem/images/examine_payment.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ExpressSystem/images/sheet_examine.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/ExamineSheetPanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/IDLabelListener.java" />
-      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\client\src\presentation\util\TestDialog.java" afterPath="" />
-      <change type="DELETED" beforePath="K:\Git仓库\DengHaiMaPrince\ExpressSystem\images\sheet_institutionTruckLines.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/logui/CheckLogPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/logui/CheckLogPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/po/ConstantPO.java" afterPath="$PROJECT_DIR$/server/src/po/ConstantPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/po/ConstantPO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/po/ConstantPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/ConstantVO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/ConstantVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/CourierNumberPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/CourierNumberPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/FormulateConstantPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/FormulateConstantPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/MainFrame.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/util/MyButton.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/util/MyButton.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/sheetbl/OrderSheet.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/sheetbl/OrderSheet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/po/OrderSheetPO.java" afterPath="$PROJECT_DIR$/server/src/po/OrderSheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/po/OrderSheetPO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/po/OrderSheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/OrderSheetPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/OrderSheetPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/OrderSheetVO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/OrderSheetVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/PanelController.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/mainui/PanelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/sheetbl/PaymentSheet.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/sheetbl/PaymentSheet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/po/PaymentSheetPO.java" afterPath="$PROJECT_DIR$/server/src/po/PaymentSheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/po/PaymentSheetPO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/po/PaymentSheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/PaymentSheetPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/PaymentSheetPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/PaymentSheetVO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/PaymentSheetVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/sheetbl/ReceivingMoneySheet.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/sheetbl/ReceivingMoneySheet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/po/ReceivingMoneySheetPO.java" afterPath="$PROJECT_DIR$/server/src/po/ReceivingMoneySheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/po/ReceivingMoneySheetPO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/po/ReceivingMoneySheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/ReceivingMoneySheetPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/ReceivingMoneySheetPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/ReceivingMoneySheetVO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/ReceivingMoneySheetVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/sheetbl/Sheet.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/businesslogic/sheetbl/Sheet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/data/sheetdata/SheetData.java" afterPath="$PROJECT_DIR$/server/src/data/sheetdata/SheetData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/po/SheetPO.java" afterPath="$PROJECT_DIR$/server/src/po/SheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/po/SheetPO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/po/SheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/SheetVO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/SheetVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/po/StorageInSheetPO.java" afterPath="$PROJECT_DIR$/server/src/po/StorageInSheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/po/StorageInSheetPO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/po/StorageInSheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/StorageInSheetVO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/StorageInSheetVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/po/StorageOutSheetPO.java" afterPath="$PROJECT_DIR$/server/src/po/StorageOutSheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/po/StorageOutSheetPO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/po/StorageOutSheetPO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/StorageOutSheetVO.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/vo/StorageOutSheetVO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/test/TestBeginInfo.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/test/TestBeginInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/TextFieldGroup.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/sheetui/TextFieldGroup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account.ser" afterPath="$PROJECT_DIR$/account.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/.idea/misc.xml" afterPath="$PROJECT_DIR$/../ExpressSystem/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orderSheet.ser" afterPath="$PROJECT_DIR$/orderSheet.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/paymentSheet.ser" afterPath="$PROJECT_DIR$/paymentSheet.ser" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/logInPanel.java" afterPath="$PROJECT_DIR$/../ExpressSystem/client/src/presentation/loginui/logInPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ExpressSystem/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ExpressSystem/.idea/workspace.xml" />
     </list>
     <ignored path="ExpressSystemServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,8 +30,8 @@
       <file leaf-file-name="SheetData.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/src/data/sheetdata/SheetData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.371179">
-              <caret line="148" column="17" selection-start-line="148" selection-start-column="17" selection-end-line="148" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.1069869">
+              <caret line="99" column="21" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -112,8 +67,9 @@
         <option value="$PROJECT_DIR$/server/src/data/userdata/UserData.java" />
         <option value="$PROJECT_DIR$/server/src/po/PaymentSheetPO.java" />
         <option value="$PROJECT_DIR$/paymentSheet.ser" />
-        <option value="$PROJECT_DIR$/server/src/data/sheetdata/SheetData.java" />
         <option value="$PROJECT_DIR$/orderSheet.ser" />
+        <option value="$PROJECT_DIR$/server/src/data/sheetdata/SheetData.java" />
+        <option value="$PROJECT_DIR$/account.ser" />
       </list>
     </option>
   </component>
@@ -419,7 +375,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -429,7 +385,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23861852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23861852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24231333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -652,10 +608,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/institution.ser">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account.ser">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/data/sheetdata/SheetData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.371179">
-          <caret line="148" column="17" selection-start-line="148" selection-start-column="17" selection-end-line="148" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.1069869">
+          <caret line="99" column="21" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
           <folding />
         </state>
       </provider>

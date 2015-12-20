@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.presentation.sheetui.InstitutionTruckSheetPanel;
 import src.presentation.util.ButtonMouseListener;
 import src.presentation.util.MyButton;
 
@@ -94,7 +93,7 @@ public class MainFrame extends JFrame {
 
         // ÐèÒªÉ¾³ý
         PanelController.frame = this;
-        this.setPresentPanel(7);
+        this.setPresentPanel(12);
 //        for (MyButton e : leftButtonGroup.getLeftButtons())
 //            this.add(e);
         this.setResizable(false);
