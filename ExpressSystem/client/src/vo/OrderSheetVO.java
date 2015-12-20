@@ -1,10 +1,14 @@
 package src.vo;
 
 
+import src.enums.SheetState;
 import src.enums.SheetType;
 
 public class OrderSheetVO implements SheetVO {
     SheetType type = SheetType.ORDER_SHEET;
+    SheetState state;
+    String builder;
+    String time;
 
     long courierNumber; // 快递物流编号
     String senderName; // 姓名
@@ -19,14 +23,16 @@ public class OrderSheetVO implements SheetVO {
     String receiverMobNum;
     String actualReceiverName; // 实际收件人
     String recevingState; //收件状态
-    String time;
+    String receivingTime;
 
-    public OrderSheetVO(long courierNumber, String senderName,
+    public OrderSheetVO(String builder, String time, long courierNumber, String senderName,
                         String senderAddress, String senderOrganization,
                         String senderTelNum, String senderMobNum, String receiverName,
                         String receiverAddress, String receiverOrganization,
                         String receiverTelNum, String receiverMobNum) {
         super();
+        this.builder = builder;
+        this.time = time;
         this.courierNumber = courierNumber;
         this.senderName = senderName;
         this.senderAddress = senderAddress;
@@ -38,8 +44,6 @@ public class OrderSheetVO implements SheetVO {
         this.receiverOrganization = receiverOrganization;
         this.receiverTelNum = receiverTelNum;
         this.receiverMobNum = receiverMobNum;
-//        this.actualReceiverName = actualReceiverName;
-//        this.recevingState = recevingState;
     }
 
     public void setReceivingInformation(String actualReceiverName, String recevingState, String time) {
@@ -100,12 +104,35 @@ public class OrderSheetVO implements SheetVO {
         return actualReceiverName;
     }
 
-    public String getTime() {
-        return time;
+    public String getReceivingTime() {
+        return receivingTime;
+    }
+
+    public String getBuilder() {
+        return builder;
     }
 
     @Override
+    public void setID(long ID) {
+    }
+
+    public long getID() {
+        return courierNumber;
+    }
+
+    public void setState(SheetState state) {
+        this.state = state;
+    }
+
+    public SheetState getState() {
+        return state;
+    }
+
     public SheetType getType() {
         return type;
+    }
+
+    public String getTime() {
+        return time;
     }
 }

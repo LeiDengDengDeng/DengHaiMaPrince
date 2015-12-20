@@ -128,7 +128,7 @@ public class CheckLogPanel extends JPanel {
             if (pageNum == 1) {
                 container.previousPageButton.setVisible(false);
                 container.nextPageButton.setVisible(true);
-            } else if (pageNum == container.logs.size() / NUM_OF_LINES + 1) {
+            } else if (pageNum == logs.size() / NUM_OF_LINES + 1) {
                 container.nextPageButton.setVisible(false);
 //                container.previousPageButton.setVisible(true);
             } else {

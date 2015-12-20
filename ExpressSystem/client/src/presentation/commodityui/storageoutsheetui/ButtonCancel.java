@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import src.presentation.accountui.TextLabel;
+
 public class ButtonCancel extends storageOutButton {
 	TextField textFieldName;
 	TextField textFieldNum;

@@ -21,9 +21,11 @@ public class StorageInSheetPO implements SheetPO{
 	private ArrayList<Integer> rowNumberList;//排号
 	private ArrayList<Integer> shelfNumberList;//架号
 	private ArrayList<Integer> seatNumberList;//位号
-	
-	SheetState state = SheetState.NOT_EXAMINED;
+
+	String builder;
+	String time;
 	private long ID;
+	SheetState state = SheetState.NOT_EXAMINED;
 	private SheetType type = SheetType.STORAGE_IN_SHEET;
 	
 	public StorageInSheetPO(ArrayList<Long> expressNumberList,
@@ -125,6 +127,16 @@ public class StorageInSheetPO implements SheetPO{
 		// TODO 自动生成的方法存根
 		return state;
 	}
-	
+
+	@Override
+	public String getBuilder() {
+		return builder;
+	}
+
+	@Override
+	public String getTime() {
+		return time;
+	}
+
 
 }

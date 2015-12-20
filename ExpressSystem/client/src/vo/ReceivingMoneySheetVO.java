@@ -1,5 +1,6 @@
 package src.vo;
 
+import src.enums.SheetState;
 import src.enums.SheetType;
 
 import java.util.ArrayList;
@@ -10,12 +11,17 @@ import java.util.ArrayList;
  */
 public class ReceivingMoneySheetVO implements SheetVO {
     SheetType type = SheetType.RECEIVING_MONEY_SHEET;
+    SheetState state;
+    String builder;
+    String time;
+    long ID;
 
     ArrayList<String[]> items;
 
-    public ReceivingMoneySheetVO(ArrayList<String[]> items) {
+    public ReceivingMoneySheetVO(String builder, String time, ArrayList<String[]> items) {
+        this.builder = builder;
+        this.time = time;
         this.items = items;
-
     }
 
     public ArrayList<String[]> getItems() {
@@ -26,7 +32,30 @@ public class ReceivingMoneySheetVO implements SheetVO {
         this.items = items;
     }
 
-    @Override
+    public String getTime() {
+        return time;
+    }
+
+    public String getBuilder() {
+        return builder;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setState(SheetState state) {
+        this.state = state;
+    }
+
+    public SheetState getState() {
+        return state;
+    }
+
     public SheetType getType() {
         return type;
     }

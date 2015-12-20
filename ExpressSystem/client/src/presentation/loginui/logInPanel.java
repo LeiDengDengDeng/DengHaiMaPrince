@@ -18,7 +18,7 @@ import src.presentation.mainui.MainFrame;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
 
-public class LogInPanel extends JPanel {
+class LogInPanel extends JPanel {
 
 
     Point origin;

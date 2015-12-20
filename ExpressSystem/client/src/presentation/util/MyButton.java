@@ -44,6 +44,7 @@ public class MyButton extends JButton {
     }
 
     public void init() {
+        this.setSize(unclickedImage.getIconWidth(),unclickedImage.getIconHeight());
         this.setIcon(unclickedImage);
         this.setBounds(x, y, clickedImage.getIconWidth(),
                 clickedImage.getIconHeight());

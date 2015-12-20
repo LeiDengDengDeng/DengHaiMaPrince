@@ -30,13 +30,17 @@ public class ReceivingMoneySheet extends Sheet {
 
     @Override
     public SheetVO generateVO(SheetPO po) {
-        ReceivingMoneySheetVO vo = new ReceivingMoneySheetVO(((ReceivingMoneySheetPO) po).getItems());
+        ReceivingMoneySheetVO vo = new ReceivingMoneySheetVO(po.getBuilder(), po.getTime(),
+                ((ReceivingMoneySheetPO) po).getItems());
+        vo.setID(po.getID());
         return vo;
     }
 
     @Override
     public SheetPO generatePO(SheetVO vo) {
-        ReceivingMoneySheetPO po = new ReceivingMoneySheetPO(((ReceivingMoneySheetVO) vo).getItems());
+        ReceivingMoneySheetPO po = new ReceivingMoneySheetPO(vo.getBuilder(), vo.getTime(),
+                ((ReceivingMoneySheetVO) vo).getItems());
+        po.setID(vo.getID());
         return po;
     }
 }

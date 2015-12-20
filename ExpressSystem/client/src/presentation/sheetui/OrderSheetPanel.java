@@ -6,8 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import src.businesslogic.util.CommonUtil;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.presentation.util.ConfirmButton;
+import src.presentation.util.TipDialog;
 import src.vo.OrderSheetVO;
 
 /**
@@ -125,10 +127,31 @@ public class OrderSheetPanel extends SheetPanel {
     }
 
     public boolean confirm() {
-        OrderSheetVO vo = new OrderSheetVO(Long.parseLong(idGroup.getNumberString()), senName.getText(), senAdd
-                .getText(), senOrg.getText(), senTel.getText(), senMob.getText(), recName.getText(), recAdd.getText()
-                , recOrg.getText(), recTel.getText(), recMob.getText());
-        orderSheetBL.add(vo);
+        if (!CommonUtil.isValidNumberString(idGroup.getNumberString(), 10)) {
+            new TipDialog(null, "", true, "快递物流编号格式错误", false);
+            return false;
+        } else if (!CommonUtil.isValidNumberString(senMob.getText(), 11) || !CommonUtil.isValidNumberString(senMob
+                .getText(), 11)) {
+            new TipDialog(null, "", true, "手机号码格式错误", false);
+            return false;
+        } else if (senName.getText().equals("") || senAdd.getText().equals("") || senOrg.getText().equals("") ||
+                senTel.getText().equals("")) {
+            new TipDialog(null, "", true, "寄件信息存在未填写的部分", false);
+            return false;
+        } else if (recName.getText().equals("") || recAdd.getText().equals("") || recOrg.getText().equals("") ||
+                recTel.getText().equals("")) {
+            new TipDialog(null, "", true, "收件信息存在未填写的部分", false);
+            return false;
+        }
+
+        OrderSheetVO vo = new OrderSheetVO("XXXX", CommonUtil.getDate(), Long.parseLong(idGroup.getNumberString()),
+                senName.getText(), senAdd.getText(), senOrg.getText(), senTel.getText(), senMob.getText(), recName
+                .getText(), recAdd.getText(), recOrg.getText(), recTel.getText(), recMob.getText());
+        if (orderSheetBL.add(vo))
+            new TipDialog(null, "", true, "单据提交成功", true);
+        else
+            new TipDialog(null, "", true, "单据提交失败", false);
+
         return true;
     }
 

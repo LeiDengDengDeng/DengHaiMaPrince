@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Created by dell on 2015/12/16.
- * 用途:
+ * 用途:用于填写多个快递物流编号
  */
 public class CourierNumberPanel extends JScrollPane {
     ArrayList<JTextField> textFields = new ArrayList<>();
@@ -21,8 +21,6 @@ public class CourierNumberPanel extends JScrollPane {
     }
 
     private void init() {
-//        this.JScrol(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER,
-//                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         layout = new GridLayout(0, 4, 2, 2);
         panel = new JPanel();
 

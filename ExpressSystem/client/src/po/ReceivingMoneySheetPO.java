@@ -10,13 +10,17 @@ import java.util.ArrayList;
  * ”√Õæ:
  */
 public class ReceivingMoneySheetPO implements SheetPO {
+    String builder;
+    String time;
     SheetType type = SheetType.RECEIVING_MONEY_SHEET;
     SheetState state = SheetState.NOT_EXAMINED;
     long ID;
 
     ArrayList<String[]> items;
 
-    public ReceivingMoneySheetPO(ArrayList<String[]> items) {
+    public ReceivingMoneySheetPO(String builder, String time, ArrayList<String[]> items) {
+        this.builder = builder;
+        this.time = time;
         this.items = items;
     }
 
@@ -51,5 +55,15 @@ public class ReceivingMoneySheetPO implements SheetPO {
     @Override
     public SheetState getSheetState() {
         return state;
+    }
+
+    @Override
+    public String getBuilder() {
+        return builder;
+    }
+
+    @Override
+    public String getTime() {
+        return time;
     }
 }

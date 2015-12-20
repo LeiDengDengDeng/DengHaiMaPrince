@@ -11,8 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import src.businesslogic.util.CommonUtil;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.presentation.mainui.MainFrame;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyLabel;
 import src.presentation.util.TipDialog;
@@ -108,14 +110,23 @@ public class PaymentSheetPanel extends SheetPanel {
 
     public boolean confirm() {
         // 逻辑层响应
-        PaymentSheetVO vo = new PaymentSheetVO(dateChooser.getText(), Double.parseDouble(priceField.getText()), "",
-                (String) accountComboBox.getSelectedItem(), (String) detailComboBox.getSelectedItem(), tip.getText());
-        paymentSheetBL.add(vo);
+        String payerName = "";
+        for (int i = 0; i < accountInfo.length; i++) {
+            if (accountInfo[i][0].equals(accountComboBox.getSelectedItem())) {
+                payerName = accountInfo[i][1];
+                break;
+            }
+        }
+        PaymentSheetVO vo = new PaymentSheetVO("XXXX", dateChooser.getText(), Double
+                .parseDouble(priceField.getText()), payerName, (String) accountComboBox.getSelectedItem(), (String)
+                detailComboBox.getSelectedItem(), tip.getText());
 
         // 界面层响应
-        TipDialog dialog = new TipDialog(null, "", true, "单据提交成功", true);
-        this.removeAll();
-        this.init();
+        if(paymentSheetBL.add(vo))
+             new TipDialog(null, "", true, "单据提交成功", true);
+        else
+            new TipDialog(null, "", true, "单据提交失败", false);
+        PanelController.refreshPresentPanel();
         return true;
     }
 

@@ -1,6 +1,7 @@
 package src.presentation.sheetui;
 
 import src.businesslogic.sheetbl.ReceivingMoneySheet;
+import src.businesslogic.util.CommonUtil;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.presentation.util.MyButton;
 import src.vo.ReceivingMoneySheetVO;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * Created by dell on 2015/12/2.
  * 用途
  */
-public class ReceivingMoneySheetPanel extends SheetPanel{
+public class ReceivingMoneySheetPanel extends SheetPanel {
 
     SheetBLService receivingMoneySheetBL;
 
@@ -115,17 +116,17 @@ public class ReceivingMoneySheetPanel extends SheetPanel{
         lineLabels.remove(lineLabels.size() - 1);
     }
 
-    public boolean confirm(){
+    public boolean confirm() {
         // 逻辑层响应
         ArrayList<String[]> items = new ArrayList<>();
-        for(Component[] c : inputFields){
+        for (Component[] c : inputFields) {
             String[] temp = new String[4];
-            temp[0] = ((JButton)c[0]).getText();
-            temp[1] = ((TextField)c[1]).getText();
-            temp[2] = ((TextField)c[2]).getText();
-            temp[3] = ((TextField)c[3]).getText();
+            temp[0] = ((JButton) c[0]).getText();
+            temp[1] = ((TextField) c[1]).getText();
+            temp[2] = ((TextField) c[2]).getText();
+            temp[3] = ((TextField) c[3]).getText();
         }
-        ReceivingMoneySheetVO vo = new ReceivingMoneySheetVO(items);
+        ReceivingMoneySheetVO vo = new ReceivingMoneySheetVO("XXXX", CommonUtil.getDate(), items);
         receivingMoneySheetBL.add(vo);
 
         // 界面层响应

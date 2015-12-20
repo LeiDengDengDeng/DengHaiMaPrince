@@ -71,9 +71,9 @@ public class ExpressSystem_Stub {
 		staffManageDriver.drive(staffManageBLService_Stub);
 		
 		System.out.println("----------UserDriver----------");
-		UserBLService userBLService_Stub = new UserBLService_Stub();
+//		UserBLService userBLService_Stub = new UserBLService_Stub();
 		UserBLService_Driver userDriver = new UserBLService_Driver();
-		userDriver.drive(userBLService_Stub);
+//		userDriver.drive(userBLService_Stub);
 		
 		System.out.println("----------InstitutionDriver----------");
 		InstitutionBLService institutionBLService_Stub = new InstitutionBLService_Stub();
