@@ -18,6 +18,7 @@ import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.enums.GoodsType;
+import src.presentation.accountui.TextLabel;
 import src.presentation.sheetui.DateChooserJButton;
 
 public class StorageOutSheetPanel extends JPanel{
@@ -132,7 +133,7 @@ public class StorageOutSheetPanel extends JPanel{
 			String expressNumberGood = "";
 			for (int j = 0; j < 4; j++)
 				expressNumberGood += expressNumber.substring(j * 4, (j + 1) * 4) + " ";
-			expressNumberGood += expressNumber.substring(16, 19);
+//			expressNumberGood += expressNumber.substring(16, 19);
 			JLabel expressNum = new JLabel(expressNumberGood);
 			expressNum.setLocation(Word_x + wordToNum - 40, Word_y + wordToword + width * i);
 			expressNum.setSize(numWidth, font + 1);

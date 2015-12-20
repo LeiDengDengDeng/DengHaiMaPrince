@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import src.presentation.accountui.TextLabel;
+
 public class ButtonAddListener extends CommodityMouseListener {
 	int i;
 	TextField textFieldName;
