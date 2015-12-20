@@ -179,13 +179,15 @@ public class StaffManage implements StaffManageBLService{
 
 	public static void main(String[] args) {
 		StaffManage staffManage = new StaffManage(null, new Position(new User(null)));
-//		staffManage.addStaffInfo(new StaffInfoVO(200000, 200000, "123456", "小燕子", "快递员", null, null, null));
+//		staffManage.addStaffInfo(new StaffInfoVO(700000, 700000, "123456", "安妮", "总经理", null, null, null));
 //		staffManage.deleteStaff(200000);
-		System.out.println(staffManage.getStaffInfo(200000).getPosition());
-		if(staffManage.getStaffInfo(200000).getAuthority() == null)
-			System.out.println("null");
-		else
-			System.out.println(staffManage.getStaffInfo(200000).getAuthority().size());
+//		System.out.println(staffManage.getStaffInfo(200000).getPosition());
+//		if(staffManage.getStaffInfo(200000).getAuthority() == null)
+//			System.out.println("null");
+//		else
+//			System.out.println(staffManage.getStaffInfo(200000).getAuthority().size());
+//		System.out.println(staffManage.getStaffInfo(100000).getPosition());
+		System.out.println(staffManage.getAllStaff().size());
 	}
 
 }

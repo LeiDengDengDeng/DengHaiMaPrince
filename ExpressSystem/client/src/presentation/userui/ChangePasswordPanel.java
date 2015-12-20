@@ -123,11 +123,14 @@ public class ChangePasswordPanel extends JPanel{
 		        		oldpass = String.valueOf(oldpassField.getPassword());
 		        		newpass = String.valueOf(newpassField.getPassword());
 		        		confirmpass = String.valueOf(confirmField.getPassword());
-		        		if(oldpass == null || newpass == null ||
-		        				confirmpass == null){
+		        		if(oldpassField.getPassword().length == 0 || newpassField.getPassword().length == 0 ||
+		        				confirmField.getPassword().length == 0){
 		        			TipDialog tipDialog = new TipDialog(null, "", true, "请完整填写！", false);
 		        		}else if(oldpass.equals(userVO.getMyPassword())){
 		        			System.out.println("oldpass correct");
+		        			if(newpass.equals(oldpass)){
+		        				TipDialog tipDialog = new TipDialog(null, "", true, "新密码与原密码相同！", false);
+		        			}
 		        			if(newpass.equals(confirmpass)){
 		        				System.out.println("same");
 		        				logIn.getCurrentUser().setMyPassword(confirmpass);

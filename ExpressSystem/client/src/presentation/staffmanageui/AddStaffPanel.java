@@ -4,15 +4,19 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.staffmanagebl.StaffManageController;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
 import src.vo.StaffInfoVO;
 
 public class AddStaffPanel extends JPanel{
@@ -38,7 +42,7 @@ public class AddStaffPanel extends JPanel{
 	private	JTextField password;
 	private	JTextField name;
 	private	JTextField position;
-	private	JTextField city;
+	private	JComboBox<String> city;
 	private	JTextField businessHall;
 	
 	JLabel imageLabel;
@@ -56,6 +60,7 @@ public class AddStaffPanel extends JPanel{
 	MyButton confirmButton;
 	StaffListPanel staffManagePanel;
 	StaffManageController controller;
+	IntermediateCenter intermediateCenter;
 	
 	public AddStaffPanel(){
 		componentsInstantiation();
@@ -77,9 +82,10 @@ public class AddStaffPanel extends JPanel{
 		ID.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
 		account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
 		password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
-		city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3, w, h);
+		city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3, 30, h);
 		businessHall.setBounds(coordinate_X + x + columnsp + 13, coordinate_Y + y + linesp * 3, w, h);
 		
+		ArrayList<String> citys = intermediateCenter.getcity();
 		
 		this.add(confirmButton);
 		this.add(cancelButton);
@@ -108,9 +114,10 @@ public class AddStaffPanel extends JPanel{
 		password = new JTextField();
 		name = new JTextField();
 		position = new JTextField();
-		city = new JTextField();
+		city = new JComboBox<String>();
 		businessHall = new JTextField();
 		controller = new StaffManageController(null);
+		intermediateCenter = new IntermediateCenter(null);
 	}
 	
 	public void getInfo(){
@@ -119,7 +126,7 @@ public class AddStaffPanel extends JPanel{
 		staffPassword = password.getText();
 		staffName = name.getText();
 		staffPosition = position.getText();
-		staffCity = city.getText();
+		staffCity = (String) city.getSelectedItem();
 		staffbusinessHall = businessHall.getText();
 		
 	}
@@ -136,9 +143,16 @@ public class AddStaffPanel extends JPanel{
 		        public void actionPerformed(ActionEvent e) {
 		           if(e.getSource() == confirmButton){
 		        	   getInfo();
-		        	   controller.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
-		        			   staffName, staffPosition, null, staffCity, staffbusinessHall));
-		        	   
+		        	   if(ID.getText().length() == 0 || account.getText().length() == 0
+		        			   || password.getText().length() == 0 || name.getText().length() == 0
+		        			   || position.getText().length() == 0){
+		        		   TipDialog tipDialog = new TipDialog(null, "", true, "«ÎÕÍ’˚ÃÓ–¥£°", false);
+		           		}else{
+		           			if(businessHall.getText().length() == 0)
+		           				staffbusinessHall = null;
+		           			controller.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
+		           					staffName, staffPosition, null, staffCity, staffbusinessHall));
+		           		}
 		           }else if(e.getSource() == cancelButton){
 		        	   
 		           }

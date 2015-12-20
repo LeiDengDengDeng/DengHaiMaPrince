@@ -111,9 +111,9 @@ public class LogInPanel extends JPanel {
 
             } else if (e.getSource() == loginButton) {
             	System.out.println("login");
-                if(accountField.getText() == null){
+                if(accountField.getText().length() == 0){
                 	TipDialog tipDialog = new TipDialog(null, "", true, "«Î ‰»Î’ ∫≈£°", false);
-                }else if(passwordField.getPassword() == null){
+                }else if(passwordField.getPassword().length == 0){
                 	TipDialog tipDialog = new TipDialog(null, "", true, "«Î ‰»Î√‹¬Î£°", false);
 				}else{
 					account = Long.parseLong(accountField.getText());

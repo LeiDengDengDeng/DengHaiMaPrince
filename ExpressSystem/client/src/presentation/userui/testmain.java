@@ -15,6 +15,7 @@ import src.presentation.institutionui.changeSalaryPanel;
 import src.presentation.mainui.MainFrame;
 import src.presentation.staffmanageui.StaffListPanel;
 import src.presentation.staffmanageui.Staff_InfoPanel;
+import src.presentation.staffmanageui.changeAuthorityPanel;
 import src.vo.InstitutionVO;
 import src.vo.SalaryVO;
 import src.vo.StaffInfoVO;
@@ -58,23 +59,23 @@ public class testmain extends JFrame{
 //						"张三", "管理员", null, null, null)));
 //		test.setContentPane(new UserPanel(new UserVO(100000, 100000, "aaaaaa"
 //				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
-//		test.setContentPane(new ChangePasswordPanel(new UserVO(100000, 100000, "aaaaaa"
-//				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
+		test.setContentPane(new ChangePasswordPanel(new UserVO(100000, 100000, "aaaaaa"
+				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
 //		test.setContentPane(new changeSalaryPanel(new UserVO(100000, 100000, "aaaaaa"
 //				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
-		ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
-		for (int i = 0; i < 20; i++)
-			userVOs.add(new UserVO(100000, 100000, "aaaaaa"
-					, "张三", "快递员", null, new SalaryVO(3000), null, null));
-		test.setContentPane(new Institution_InfoPanel(new InstitutionVO("营业厅",
-				100000, userVOs, "负责中转与接收")));
+//		ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
+//		for (int i = 0; i < 20; i++)
+//			userVOs.add(new UserVO(100000, 100000, "aaaaaa"
+//					, "张三", "快递员", null, new SalaryVO(3000), null, null));
+//		test.setContentPane(new Institution_InfoPanel(new InstitutionVO("营业厅",
+//				100000, userVOs, "负责中转与接收")));
 		
 //		ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
 //		for(int i = 0;i < 50; i++)
 //			staffInfoVOs.add(new StaffInfoVO(100000, 100000, "aaaaaa",
 //					"张三", "管理员", null, null, null));
 //		StaffListPanel staffListPanel = new StaffListPanel(staffInfoVOs);
-		
+//		test.setContentPane(new changeAuthorityPanel());
 		
 //		test.setContentPane(staffListPanel);
 		test.setVisible(true);
