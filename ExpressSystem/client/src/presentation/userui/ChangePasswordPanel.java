@@ -14,6 +14,7 @@ import javax.swing.JPasswordField;
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.userbl.User;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
 import src.vo.UserVO;
 
 
@@ -121,15 +122,22 @@ public class ChangePasswordPanel extends JPanel{
 		        	}else if (e.getSource() == confirmButton) {
 		        		oldpass = String.valueOf(oldpassField.getPassword());
 		        		newpass = String.valueOf(newpassField.getPassword());
-		        		confirmpass = String.valueOf(confirmField.getPassword());;
-		        		if(oldpass.equals(userVO.getMyPassword())){
+		        		confirmpass = String.valueOf(confirmField.getPassword());
+		        		if(oldpass == null || newpass == null ||
+		        				confirmpass == null){
+		        			TipDialog tipDialog = new TipDialog(null, "", true, "请完整填写！", false);
+		        		}else if(oldpass.equals(userVO.getMyPassword())){
 		        			System.out.println("oldpass correct");
 		        			if(newpass.equals(confirmpass)){
 		        				System.out.println("same");
 		        				logIn.getCurrentUser().setMyPassword(confirmpass);
 		        				user.changeInfo(logIn.getCurrentUser());
-		        			}
-		        		}
+		        			}else {
+		        				TipDialog tipDialog = new TipDialog(null, "", true, "请再次确认密码！", false);
+							}
+		        		}else {
+		        			TipDialog tipDialog = new TipDialog(null, "", true, "原密码错误！", false);
+						}
 		        		UserPanel userPanel = new UserPanel(userVO);
 					}
 		        	container.repaint();

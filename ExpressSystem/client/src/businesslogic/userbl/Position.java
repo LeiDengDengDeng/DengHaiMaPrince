@@ -25,6 +25,8 @@ public class Position implements PositionBLService{
 			authority.add(12);
 			authority.add(13);
 			authority.add(14);
+			authority.add(19);
+			authority.add(20);
 			break;
 		case "管理员":
 			authority.add(1);
@@ -32,9 +34,11 @@ public class Position implements PositionBLService{
 			break;
 		case "财务人员":
 			authority.add(11);
+			authority.add(14);
 			authority.add(15);
 			authority.add(16);
 			authority.add(17);
+			authority.add(19);
 			break;
 		case "中转中心仓库管理员":
 			authority.add(9);

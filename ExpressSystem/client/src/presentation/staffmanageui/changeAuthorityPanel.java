@@ -31,13 +31,6 @@ public class changeAuthorityPanel extends JPanel{
 	     initial();
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		changeAuthorityPanel changeAuthority = new changeAuthorityPanel();
-		changeAuthority.run();
-
-	}
-	
 	public void run(){
        
 	}

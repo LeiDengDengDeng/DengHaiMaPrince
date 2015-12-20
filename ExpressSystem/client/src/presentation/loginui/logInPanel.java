@@ -16,6 +16,7 @@ import src.businesslogic.userbl.ResultMessage;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.MainFrame;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
 
 public class LogInPanel extends JPanel {
 
@@ -76,19 +77,19 @@ public class LogInPanel extends JPanel {
     }
 
 
-    public boolean login() {
-    	account = Long.parseLong(accountField.getText());
-        password = String.valueOf(passwordField.getPassword());
-//        System.out.println(logIn.logIn(account, password));
-        if (logInController.logIn(account, password) == ResultMessage.CORRECT){
-        	System.out.println("true");
-        	return true;
-        }
-        else
-            return false;
-
-
-    }
+//    public boolean login() {
+//    	account = Long.parseLong(accountField.getText());
+//        password = String.valueOf(passwordField.getPassword());
+////        System.out.println(logIn.logIn(account, password));
+//        if (logInController.logIn(account, password) == ResultMessage.CORRECT){
+//        	System.out.println("true");
+//        	return true;
+//        }
+//        else
+//            return false;
+//
+//
+//    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -110,21 +111,34 @@ public class LogInPanel extends JPanel {
 
             } else if (e.getSource() == loginButton) {
             	System.out.println("login");
-                if (login()) {
-                	ArrayList<Integer> test1 = new ArrayList<>();
-                    test1.add(7);
-                    test1.add(8);
-                    ArrayList<Integer> test2 = new ArrayList<>();
-                    test2.add(12);
-                    test2.add(15);
-                    test2.add(16);
-                    MainFrame m = new MainFrame(test2);
-                    father.dispose();
-                }
+                if(accountField.getText() == null){
+                	TipDialog tipDialog = new TipDialog(null, "", true, "«Î ‰»Î’ ∫≈£°", false);
+                }else if(passwordField.getPassword() == null){
+                	TipDialog tipDialog = new TipDialog(null, "", true, "«Î ‰»Î√‹¬Î£°", false);
+				}else{
+					account = Long.parseLong(accountField.getText());
+					password = String.valueOf(passwordField.getPassword());
+//                System.out.println(logIn.logIn(account, password));
+					if (logInController.logIn(account, password) == ResultMessage.CORRECT){
+                		ArrayList<Integer> test1 = new ArrayList<>();
+                    	test1.add(7);
+                    	test1.add(8);
+                    	ArrayList<Integer> test2 = new ArrayList<>();
+                    	test2.add(12);
+                    	test2.add(15);
+                    	test2.add(16);
+                    	MainFrame m = new MainFrame(test2);
+                    	father.dispose();
+                	}else if(logInController.logIn(account, password) == ResultMessage.NOT_EXIT){
+                		TipDialog tipDialog = new TipDialog(null, "", true, "’ ∫≈≤ª¥Ê‘⁄£°", false);
+                	}else if(logInController.logIn(account, password) == ResultMessage.WRONG){
+                		TipDialog tipDialog = new TipDialog(null, "", true, "√‹¬Î¥ÌŒÛ£°", false);
+                	}
+				}
+                
             }
-
-        }
 //    }
+        }
 
 
     }
