@@ -30,7 +30,6 @@ public class MainFrame extends JFrame {
 
     ArrayList<Integer> authority; // 权限
     LeftButtonGroup leftButtonGroup;
-    PanelController controller;
 
     JButton closeButton = new JButton();
     JButton hideButton = new JButton();
@@ -93,8 +92,9 @@ public class MainFrame extends JFrame {
         mainPanel.setLayout(null);
         mainPanel.setOpaque(false);
 
-        controller = new PanelController(this);
-        this.setPresentPanel(100);
+        // 需要删除
+        PanelController.frame = this;
+        this.setPresentPanel(7);
 //        for (MyButton e : leftButtonGroup.getLeftButtons())
 //            this.add(e);
         this.setResizable(false);
@@ -139,13 +139,13 @@ public class MainFrame extends JFrame {
     }
 
     public void setPresentPanel(int i) {
-        controller.setPresentPanel(i);
+        PanelController.setPresentPanel(i);
     }
 
     public void setAuthority(ArrayList<Integer> authority) {
         this.authority = authority;
         leftButtonGroup = new LeftButtonGroup(this, authority);
-        controller = new PanelController(this);
+        PanelController.frame = this;
     }
 
     public ArrayList<Integer> getAuthority() {

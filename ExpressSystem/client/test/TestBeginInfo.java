@@ -46,7 +46,7 @@ public class TestBeginInfo {
 		ArrayList<StorageInitVO> beginStorage=new ArrayList<StorageInitVO>();
 //		beginStorage.add(new StorageInitVO(0.9, 1000, 2000, 300, 2000));
 		ArrayList<ConstantVO> beginConstant=new ArrayList<ConstantVO>();
-		beginConstant.add(new ConstantVO(79, 3, "南京-北京"));
+//		beginConstant.add(new ConstantVO(79, 3, "南京-北京"));
 		ArrayList<InitUserVO>  beginUser=new ArrayList<InitUserVO>();
 		beginUser.add(new InitUserVO(000001L, "总经理", 10000, "小王子"));
 		BeginInfoVO vo=new BeginInfoVO(beginDriver, beginTruck, beginAccount, beginConstant, beginStorage, beginUser);

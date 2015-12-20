@@ -17,4 +17,8 @@ public interface SheetPO extends Serializable {
 
 	public SheetState getSheetState();
 
+	public String getBuilder();
+
+	public String getTime();
+
 }

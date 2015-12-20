@@ -60,6 +60,7 @@ public abstract class Sheet implements SheetBLService {
     public boolean modify(long ID, SheetVO vo) {
         SheetPO po = generatePO(vo);
         po.setID(ID);
+        po.setSheetState(vo.getState());
         try {
             sheetData.update(po);
         } catch (RemoteException e) {
@@ -102,7 +103,6 @@ public abstract class Sheet implements SheetBLService {
                     }
                     break;
             }
-
             return sheetVOs;
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -113,6 +113,8 @@ public abstract class Sheet implements SheetBLService {
     @Override
     final public boolean examineSheet(long ID, SheetState state) {
         try {
+            System.out.println(ID);
+            System.out.println(getType());
             SheetPO po = sheetData.find(ID, getType());
             po.setSheetState(state);
             sheetData.update(po);

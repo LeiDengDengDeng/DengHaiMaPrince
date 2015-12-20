@@ -21,8 +21,10 @@ import src.presentation.sheetui.*;
  * 业务逻辑层与界面层的连接在此实现
  */
 public class PanelController {
-    MainFrame frame;
-    JPanel presentPanel = null;
+    public static MainFrame frame;
+    public static JPanel presentPanel = null;  // 当前Panel
+
+    public static int presentPanelNumber;  // 当前Panel号码
 
     private final static int PANEL_WIDTH = 665;
     private final static int PANEL_HEIGHT = 601;
@@ -33,7 +35,10 @@ public class PanelController {
         this.frame = frame;
     }
 
-    public void setPresentPanel(int i) {
+
+    // 通过权限数字更改Panel
+    public static void setPresentPanel(int i) {
+        presentPanelNumber = i;
         if (presentPanel != null)
             frame.getContentPane().remove(presentPanel);
         switch (i) {
@@ -55,10 +60,30 @@ public class PanelController {
             case 100:
                 presentPanel = new InstitutionTruckSheetPanel();
                 break;
+            case 200:
+                presentPanel = new ExamineSheetPanel();
+                break;
         }
         presentPanel.setBounds(PANEL_MARGIN_LEFT, PANEL_MARGIN_TOP, PANEL_WIDTH, PANEL_HEIGHT);
         frame.getContentPane().add(presentPanel);
         frame.repaint();
+    }
+
+    // 通过直接传递Panel更换
+    public static void setPresentPanel(JPanel panel) {
+        if (presentPanel != null) {
+            frame.getContentPane().remove(presentPanel);
+            presentPanel = null;
+        }
+        presentPanel = panel;
+        presentPanel.setBounds(PANEL_MARGIN_LEFT, PANEL_MARGIN_TOP, PANEL_WIDTH, PANEL_HEIGHT);
+        frame.getContentPane().add(presentPanel);
+        frame.repaint();
+    }
+
+    // 刷新当前Panel
+    public static void refreshPresentPanel() {
+        setPresentPanel(presentPanelNumber);
     }
 
 }
