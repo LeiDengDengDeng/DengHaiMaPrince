@@ -65,7 +65,7 @@ public class StockTakingPanel extends JPanel{
                 ("images/nextPageClicked.png"), 402, 508);
         pageComboBox = new JComboBox();
         imageLabel = new JLabel();
-        bkgImg = new ImageIcon("images/log.png");
+        bkgImg = new ImageIcon("images/stocktaking_bg.png");
         
         storageLabels = new ExpressInfoLabelGroup(storages, NUM_OF_LINES, 48, 115);
         PageButtonActionListener listener = new PageButtonActionListener(this);

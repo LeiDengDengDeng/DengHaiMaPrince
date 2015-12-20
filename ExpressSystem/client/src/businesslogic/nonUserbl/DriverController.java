@@ -17,7 +17,7 @@ public class DriverController implements DriverBLService{
 	}
 
 	@Override
-	public DriverInfoVO getDriverInfo(long driverId) {
+	public DriverInfoVO getDriverInfo(String driverId) {
 		// TODO Auto-generated method stub
 		return driverimpl.getDriverInfo(driverId);
 	}
@@ -35,13 +35,13 @@ public class DriverController implements DriverBLService{
 	}
 
 	@Override
-	public void deleteDriverInfo(long driverId) {
+	public void deleteDriverInfo(String driverId) {
 		// TODO Auto-generated method stub
 		driverimpl.deleteDriverInfo(driverId);
 	}
 
 	@Override
-	public void changeDriverInfo(long driverId, DriverInfoVO dvo) {
+	public void changeDriverInfo(String driverId, DriverInfoVO dvo) {
 		// TODO Auto-generated method stub
 		driverimpl.changeDriverInfo(driverId, dvo);
 	}

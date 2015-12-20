@@ -58,13 +58,13 @@ public class DividePanel extends JPanel{
     	commodityBL = new Commodity(log);
     	storages = new ArrayList<ExpressInfoVO>();
     	for (int i = 0; i < 28; i++) {
-            ExpressInfoVO temp = new ExpressInfoVO("Ñªºð", 0000000000000006,
-            		20151205, "°Â¸ñÈðÂê", GoodsType.TRANSPORT,006,007,114,false);
+            ExpressInfoVO temp = new ExpressInfoVO("Ñªºð", "0000000000000006",
+            		"2015-12-05", "°Â¸ñÈðÂê", GoodsType.TRANSPORT,106,107,114,false);
             storages.add(temp);
         }
     	for (int i = 0; i < 28; i++) {
-            ExpressInfoVO temp = new ExpressInfoVO("»Ò½ýÊ¹Õß", 0000000000000006,
-            		20151205, "°Â¸ñÈðÂê", GoodsType.TRANSPORT,006,007,114,false);
+            ExpressInfoVO temp = new ExpressInfoVO("»Ò½ýÊ¹Õß", "0000000000000006",
+            		"2015-12-05", "°Â¸ñÈðÂê", GoodsType.TRANSPORT,106,107,114,false);
             storages.add(temp);
         }
     	previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
@@ -73,7 +73,7 @@ public class DividePanel extends JPanel{
                 ("images/nextPageClicked.png"), 402, 508);
         pageComboBox = new JComboBox();
         imageLabel = new JLabel();
-        bkgImg = new ImageIcon("images/log.png");
+        bkgImg = new ImageIcon("images/divide_bg.png");
         
         storageLabels = new DivideInfoLabelGroup(storages, NUM_OF_LINES, 48, 115);
         storageCheckBoxs = new DivideInfoCheckBoxGroup(storages, NUM_OF_LINES, 48, 115);

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.nonUserdataservice.TruckDataService;
+import src.po.BussinessHallPO;
 import src.po.TruckPO;
 
 public class TruckData extends UnicastRemoteObject implements TruckDataService{
@@ -23,11 +24,12 @@ public class TruckData extends UnicastRemoteObject implements TruckDataService{
 		// TODO Auto-generated constructor stub
 	}
 
+	BusinessHallData businessHallData = new BusinessHallData();
 	public static final String TruckFILE_PATH = "truck.ser";
 	File file = new File(TruckFILE_PATH);
 
 	@Override
-	public TruckPO findTruckPO(long id) throws RemoteException {
+	public TruckPO findTruckPO(String id) throws RemoteException {
 		TruckPO tpo = null;
 		ObjectInputStream os = null;
 		
@@ -36,7 +38,7 @@ public class TruckData extends UnicastRemoteObject implements TruckDataService{
 
 			for (;;) {
 				TruckPO po = (TruckPO) os.readObject();
-				if (po.getNumber() == id){
+				if (po.getNumber().equals(id)){
 					tpo = po;
 					break;
 				}
@@ -57,6 +59,12 @@ public class TruckData extends UnicastRemoteObject implements TruckDataService{
 		
 		
 		return tpo;
+	}
+	
+	@Override
+	public ArrayList<TruckPO> findsTruckPO(String id) throws RemoteException {
+		ArrayList<TruckPO> tpos = businessHallData.findBussinessHallPO(id.substring(0, 6)).getTrucks();
+		return tpos;
 	}
 
 	@Override
@@ -115,23 +123,31 @@ public class TruckData extends UnicastRemoteObject implements TruckDataService{
 				System.out.println("IO EXCEPTION");
 			}
 			
-		
+		BussinessHallPO bpo = businessHallData.findBussinessHallPO(tpo.getNumber()
+				.substring(0, 6));
+		ArrayList<TruckPO> tpos = new ArrayList<TruckPO>();
+		if(bpo.getTrucks() != null){
+			tpos = bpo.getTrucks();
+		}
+		tpos.add(tpo);
+		bpo.setTrucks(tpos);
+		businessHallData.update(tpo.getNumber().substring(0, 6), bpo);
 	}
 
 	@Override
-	public void update(long id,TruckPO tpo) throws RemoteException {
+	public void update(String id,TruckPO tpo) throws RemoteException {
 		deleteTruckPO(id);
 		insert(tpo);
 	}
 
 	@Override
-	public void deleteTruckPO(long id) throws RemoteException {
+	public void deleteTruckPO(String id) throws RemoteException {
 		File file = new File(TruckFILE_PATH);
 		ArrayList<TruckPO> tpos = new ArrayList<TruckPO>();
 		tpos = findsTruckPO();
 		
 		for(int i = 0;i < tpos.size();i++){
-			if(tpos.get(i).getNumber() == id){
+			if(tpos.get(i).getNumber().equals(id)){
 				tpos.remove(i);
 				break;
 			}
@@ -152,7 +168,21 @@ public class TruckData extends UnicastRemoteObject implements TruckDataService{
 			System.out.println("FILE NOT FOUND ");
 		} catch (IOException e) {
 			System.out.println("IO EXCEPTION");
-		}		
+		}
+		
+		BussinessHallPO bpo = businessHallData.findBussinessHallPO(id.substring(0, 6));
+		ArrayList<TruckPO> tpos2 = new ArrayList<TruckPO>();
+		if(bpo != null){
+			for(int i = 0;i < bpo.getTrucks().size();i++){
+				if( bpo.getTrucks().get(i).getNumber().equals(id)){
+					tpos2 = bpo.getTrucks();
+					tpos2.remove(i);
+					bpo.setTrucks(tpos2);
+				}
+			}
+			businessHallData.update(id.substring(0, 6), bpo);
+		}
+		
 	}
 
 	@Override
@@ -160,5 +190,6 @@ public class TruckData extends UnicastRemoteObject implements TruckDataService{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

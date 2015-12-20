@@ -49,8 +49,8 @@ public class ExpressInfoLabelGroup {
         // 获得当前页数的日志内容
         for (int i = start; i < num * page && i < storages.size(); i++) {
             JLabel goodsName = new JLabel(storages.get(i).getGoodsName());
-            JLabel expressNumber = new JLabel(storages.get(i).getExpressNumber() + "");
-            JLabel inTime = new JLabel(storages.get(i).getInTime() + "");
+            JLabel expressNumber = new JLabel(storages.get(i).getExpressNumber());
+            JLabel inTime = new JLabel(storages.get(i).getInTime());
             JLabel destination = new JLabel(storages.get(i).getDestination());
             JLabel areaNumber = null;
             if(storages.get(i).getAreaNumber() == GoodsType.SHIPPING){
@@ -70,13 +70,13 @@ public class ExpressInfoLabelGroup {
             JLabel seatNumber = new JLabel(storages.get(i).getSeatNumber() + "");
 
             goodsName.setBounds(x, y + (i - start) * height, 60, height);
-            expressNumber.setBounds(x + 70, y + (i - start) * height, 60, height);
-            inTime.setBounds(x + 140, y + (i - start) * height, 60, height);
-            destination.setBounds(x + 210, y + (i - start) * height, 60, height);
-            areaNumber.setBounds(x + 280, y + (i - start) * height, 60, height);
-            rowNumber.setBounds(x + 350, y + (i - start) * height, 60, height);
-            shelfNumber.setBounds(x + 420, y + (i - start) * height, 60, height);
-            seatNumber.setBounds(x + 490, y + (i - start) * height, 60, height);
+            expressNumber.setBounds(x + 75, y + (i - start) * height, 130, height);
+            inTime.setBounds(x + 220, y + (i - start) * height, 80, height);
+            destination.setBounds(x + 315, y + (i - start) * height, 60, height);
+            areaNumber.setBounds(x + 365, y + (i - start) * height, 60, height);
+            rowNumber.setBounds(x + 430, y + (i - start) * height, 60, height);
+            shelfNumber.setBounds(x + 470, y + (i - start) * height, 60, height);
+            seatNumber.setBounds(x + 510, y + (i - start) * height, 60, height);
 
             presentStorages[i - start][0] = goodsName;
             presentStorages[i - start][1] = expressNumber;

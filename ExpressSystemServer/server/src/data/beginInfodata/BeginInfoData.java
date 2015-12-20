@@ -8,11 +8,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 import src.dataservice.beginInfodataservice.BeginInfoDataService;
 import src.po.BeginInfoPO;
 
-public class BeginInfoData implements BeginInfoDataService {
+public class BeginInfoData  extends UnicastRemoteObject implements BeginInfoDataService{
+	public BeginInfoData()throws RemoteException{
+		super();
+	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6862085597944376483L;
 	private static final String FILE_PATH = "beginInfo.ser";
 	File file = new File(FILE_PATH);
 	ObjectOutputStream oos = null;

@@ -2,7 +2,6 @@ package src.presentation.beginInfoui;
 
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.TextField;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -11,9 +10,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import src.businesslogic.beginInfobl.BeginInfoBLService_Stub;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
+import src.presentation.util.TipDialog;
 import src.vo.AccountVO;
+import src.vo.BeginInfoVO;
+import src.vo.DriverInfoVO;
+import src.vo.InitUserVO;
+import src.vo.StorageInitVO;
+import src.vo.TruckInfoVO;
 
 public class BeginInfoPanel extends JPanel {
 
@@ -57,6 +63,7 @@ public class BeginInfoPanel extends JPanel {
 	Log log;
 
 	public BeginInfoPanel(Log log) {
+		beginInfoBL=new BeginInfoBLService_Stub(log);
 		this.setLayout(null);
 		this.log = log;
 		this.setBounds(x, y, IMG_BG.getIconWidth(), IMG_BG.getIconHeight());
@@ -94,7 +101,6 @@ public class BeginInfoPanel extends JPanel {
 					}
 
 				}
-
 				@Override
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
@@ -163,23 +169,38 @@ public class BeginInfoPanel extends JPanel {
 	}
 
 	public void save() {
-		ArrayList<ArrayList<TextField>> accountList = this.panelList[0].getArrayList();
-		for (int i = 0; i < accountList.get(0).size(); i++) {
-			if (accountList.get(0).get(i).getText() != null && accountList.get(1).get(i).getText() != null
-					&& accountList.get(2).get(i).getText() != null) {
-				String name = accountList.get(0).get(i).getText();
-				long num = Long.parseLong(accountList.get(1).get(i).getText());
-				double amount = Double.parseDouble(accountList.get(2).get(i).getText());
-				AccountVO beginInfo = new AccountVO(name, num, amount);
-			}
-			
-			
+		//account
+		ArrayList<AccountVO> beginAccount=new ArrayList<AccountVO>();
+		ArrayList<StorageInitVO> beginStorage=new ArrayList<StorageInitVO>();
+		ArrayList<DriverInfoVO> beginDriver=new ArrayList<DriverInfoVO>();
+		ArrayList<TruckInfoVO> beginTruck=new ArrayList<TruckInfoVO>();
+		ArrayList<InitUserVO> beginUser=new ArrayList<InitUserVO>();
+		for (int i = 0; i < this.panelList[0].getVO().size(); i++) {
+			AccountVO vo= (AccountVO)this.panelList[0].getVO().get(i);
+			beginAccount.add(vo);
 		}
-		// DriverInfoVO beginDriver=new DriverInfoVO(number, name, year, month,
-		// day, iD, mobNum, sex, yearOfExpiring)
-		// BeginInfoVO vo=new BeginInfoVO(beginDriver, beginTruck, beginAccount,
-		// beginConstant, beginStorage, beginUser)
-		// beginInfoBL.fillInfo(vo);
+		for (int i = 0; i < this.panelList[1].getVO().size(); i++) {
+			StorageInitVO vo= (StorageInitVO)this.panelList[1].getVO().get(i);
+			beginStorage.add(vo);
+		}
+		for (int i = 0; i < this.panelList[2].getVO().size(); i++) {
+			DriverInfoVO vo= (DriverInfoVO)this.panelList[2].getVO().get(i);
+			beginDriver.add(vo);
+		}
+		for (int i = 0; i < this.panelList[3].getVO().size(); i++) {
+			TruckInfoVO vo= (TruckInfoVO)this.panelList[3].getVO().get(i);
+			beginTruck.add(vo);
+		}
+		for (int i = 0; i < this.panelList[4].getVO().size(); i++) {
+			InitUserVO vo= (InitUserVO)this.panelList[4].getVO().get(i);
+			beginUser.add(vo);
+		}
+		BeginInfoVO vo=new BeginInfoVO(beginDriver, beginTruck, beginAccount, beginStorage, beginUser);
+		beginInfoBL.fillInfo(vo);
+		
+		
+			
+		
 	}
 
 	public void paintComponent(Graphics g) {
@@ -187,5 +208,9 @@ public class BeginInfoPanel extends JPanel {
 
 		g.drawImage(IMG_BG.getImage(), 0, 0, null);
 
+	}
+	
+	public void drawDialog(String text,boolean isSuccess){
+		TipDialog d=new TipDialog(null, "", true, text, isSuccess);
 	}
 }

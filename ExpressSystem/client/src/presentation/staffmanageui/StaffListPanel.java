@@ -25,8 +25,8 @@ import src.vo.UserVO;
 public class StaffListPanel extends JPanel{
 	
 
-	static final int coordinate_X = 150;
-	static final int coordinate_Y = 90;
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 100;
 	
 //	private static final ImageIcon SEARCH = new ImageIcon("images/search.png");
 //	private static final ImageIcon SEARCHENTER = new ImageIcon("images/searchClicked.png");
@@ -46,7 +46,8 @@ public class StaffListPanel extends JPanel{
 
 	MyButton previousPageButton;
     MyButton nextPageButton;
-    
+    MyButton confirmButton;
+    MyButton addButton;
     
     
     
@@ -69,12 +70,14 @@ public class StaffListPanel extends JPanel{
     }
 	
 	public void initial(){		
-		
-		
-		
 		imageLabel = new JLabel();
 		pageComboBox = new JComboBox();
 		bkgImg = new ImageIcon("images/staff_ListBG.png");
+		addButton = new MyButton(new ImageIcon("images/addButton.png"),
+				new ImageIcon("images/addButton_Enter.png"), coordinate_X + 400, coordinate_Y + 450, false);
+		confirmButton = new MyButton(new ImageIcon("images/user_InfoConfirm.png"),
+				new ImageIcon("images/user_InfoConfirmEnter.png"), coordinate_X + 470, coordinate_Y + 450, false);
+		
 		
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
@@ -126,6 +129,8 @@ public class StaffListPanel extends JPanel{
         this.add(nextPageButton);
         this.add(previousPageButton);
         this.add(imageLabel);
+        this.add(confirmButton);
+        this.add(addButton);
         this.setLayout(null);
         this.setOpaque(false);
         
@@ -201,17 +206,17 @@ public class StaffListPanel extends JPanel{
 	            container.repaint();
 	        }
 	    }
-   public static void main(String[] args) {
-
-			ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
-			
-			for(int i = 0;i < 40; i++)
-				staffInfoVOs.add(new StaffInfoVO(100000, 100000, "aaaaaa",
-						"张三", "管理员", null, null, null));
-			StaffListPanel staffListPanel = new StaffListPanel(staffInfoVOs);
-			
-	
-   }
+//   public static void main(String[] args) {
+//
+//			ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
+//			
+//			for(int i = 0;i < 40; i++)
+//				staffInfoVOs.add(new StaffInfoVO(100000, 100000, "aaaaaa",
+//						"张三", "管理员", null, null, null));
+//			StaffListPanel staffListPanel = new StaffListPanel(staffInfoVOs);
+//			
+//	
+//   }
   
   
 }

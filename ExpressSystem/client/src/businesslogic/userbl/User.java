@@ -12,8 +12,10 @@ import src.businesslogic.logbl.Log;
 import src.businesslogicservice.userblservice.UserBLService;
 import src.dataservice.logdataservice.LogDataService;
 import src.dataservice.userdataservice.UserDataService;
+import src.po.SalaryPO;
 import src.po.UserPO;
 import src.vo.InitUserVO;
+import src.vo.SalaryVO;
 import src.vo.UserVO;
 
 public class User implements UserBLService{
@@ -47,9 +49,17 @@ public class User implements UserBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		SalaryVO salaryVO = null;
+
+		if(userPO.getSalary() != null){
+			salaryVO = new SalaryVO(userPO.getSalary().getBasic());
+			salaryVO.setCommission(userPO.getSalary().getCommission());
+			salaryVO.setEachPay(userPO.getSalary().getEachPay());
+			salaryVO.setTime(userPO.getSalary().getTime());
+		}
 		UserVO userVO = new UserVO(userPO.getPersonalID(), userPO.getPersonalAccount(),
 				userPO.getMyPassword(), userPO.getPersonalName(),
-				userPO.getMyPosition(), userPO.getAuthority(), userPO.getSalary(),
+				userPO.getMyPosition(), userPO.getAuthority(), salaryVO,
 				userPO.getCity(),userPO.getBusinessHall());
 		
 		return userVO;
@@ -84,27 +94,6 @@ public class User implements UserBLService{
 		
 	}
 
-//	@Override
-//	public String getCity(long UserId) {
-//		// TODO Auto-generated method stub
-//		UserPO userPO = null;
-//		try {
-//			userPO = userData.find(UserId);
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		String posiion = userPO.getMyPosition();
-//		String city = null;
-//		switch (map.get(posiion)) {
-//		case 0: city = "南京";break;
-//		case 1: city = "北京";break;
-//		case 2: city = "上海";break;
-//		case 3: city = "广州";break;
-//		default:break;
-//		}
-//		return city;
-//	}
 
 	@Override
 	public boolean changeInfo(UserVO userVO) {
@@ -112,7 +101,11 @@ public class User implements UserBLService{
 		UserPO userPO = new UserPO(userVO.getpersonalID(), userVO.getpersonalAccount(),
 				userVO.getMyPassword(),	userVO.getpersonalName(),
 				userVO.getMyPosition(), userVO.getAuthority());
-		userPO.setSalary(userVO.getSalary());
+		SalaryPO salaryPO = new SalaryPO(userVO.getSalary().getBasic());
+		salaryPO.setCommission(userVO.getSalary().getCommission());
+		salaryPO.setEachPay(userVO.getSalary().getEachPay());
+		salaryPO.setTime(userVO.getSalary().getTime());
+		userPO.setSalary(salaryPO);
 		userPO.setCity(userVO.getCity());
 		userPO.setBusinessHall(userVO.getBusinessHall());
 		try {
@@ -154,6 +147,12 @@ public class User implements UserBLService{
 		}
 		return true;
 	}
+	
+//	public static void main(String[] args) {
+//		User user = new User(null);
+//		System.out.println(user.getPersonalInfo(100000).getAuthority().size());
+//		user.changeInfo(new UserVO(100000, 100000, "123456", "五阿哥", "快递员",null,new SalaryVO(0),null,null));
+//	}
 
 
 }

@@ -13,13 +13,13 @@ public class NonUserData_Stub implements NonUserDataService{
 
 	public TruckPO findTruckPO(long id) throws RemoteException {
 		System.out.println("≥…π¶’“µΩTruckPO!");
-		TruckPO tpo = new TruckPO(025000000, 10, "À’A 00000");
+		TruckPO tpo = new TruckPO("025000000", 10, "À’A 00000");
 		return tpo;
 	}
 
 	public DriverPO findDriverPO(long id) throws RemoteException {
 		System.out.println("≥…π¶’“µΩDriverPO!");
-		DriverPO dpo = new DriverPO(025000000, "“∂¡º≥Ω", 2015, 10, 26, "321002201510268888", "1318889999", Sex.MALE, 2015);
+		DriverPO dpo = new DriverPO("025000000", "“∂¡º≥Ω", 2015, 10, 26, "321002201510268888", "1318889999", Sex.MALE, 2015);
 		return dpo;
 	}
 

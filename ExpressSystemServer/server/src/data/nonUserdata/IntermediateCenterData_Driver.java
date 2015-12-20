@@ -6,17 +6,21 @@ import src.po.IntermediateCenterPO;
 public class IntermediateCenterData_Driver {
 	public static void main(String[] args) throws RemoteException {
 		IntermediateCenterData intermediateCenterData = new IntermediateCenterData();
-		IntermediateCenterPO ipo1 = new IntermediateCenterPO("南京", null, null);
-		IntermediateCenterPO ipo2 = new IntermediateCenterPO("上海", null, null);
+		IntermediateCenterPO ipo1 = new IntermediateCenterPO("南京", "0250",null, null);
+		IntermediateCenterPO ipo2 = new IntermediateCenterPO("上海", "0210",null, null);
 //		intermediateCenterData.insert(ipo1);
 //		intermediateCenterData.insert(ipo2);
 //		intermediateCenterData.deleteIntermediateCenterPO("上海");
-//		System.out.println(intermediateCenterData.findsIntermediateCenterPO().size());
+		System.out.println(intermediateCenterData.findsIntermediateCenterPO().size());
 //		System.out.println(intermediateCenterData.findsIntermediateCenterPO()
 //				.get(0).getCity() + " " + intermediateCenterData.findsIntermediateCenterPO()
 //				.get(1).getCity());
 //		System.out.println(intermediateCenterData.findsIntermediateCenterPO()
 //				.get(0).getCity());
+//		System.out.println(intermediateCenterData.findIntermediateCenterPO("南京")
+//				.getBpos().size());
+		System.out.println(intermediateCenterData.findIntermediateCenterPO("南京")
+				.getBpos().get(1).getTrucks().size());
 	}
 
 }

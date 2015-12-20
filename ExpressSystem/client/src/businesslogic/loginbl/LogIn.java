@@ -18,11 +18,11 @@ public class LogIn implements LogInBLService{
 	public ResultMessage logIn(long UserId, String password) {
 		// TODO Auto-generated method stub
 		ResultMessage resultMessage = null;
-		
+
 		if(userBL.getPersonalInfo(UserId) == null)
 			resultMessage = ResultMessage.NOT_EXIT;
 		else{
-			if(userBL.getPersonalInfo(UserId).getMyPassword() == password){
+			if(userBL.getPersonalInfo(UserId).getMyPassword().equals(password)){
 				resultMessage = ResultMessage.CORRECT;
 				currentUser = userBL.getPersonalInfo(UserId);
 			}

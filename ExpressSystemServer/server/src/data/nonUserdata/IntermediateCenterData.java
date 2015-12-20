@@ -119,6 +119,14 @@ public class IntermediateCenterData extends UnicastRemoteObject implements Inter
 			
 		
 	}
+	
+	@Override
+	public void update(String id, IntermediateCenterPO ipo)
+			throws RemoteException {
+		deleteIntermediateCenterPO(id);
+		insert(ipo);
+		
+	}
 
 	@Override
 	public void deleteIntermediateCenterPO(String id) throws RemoteException {
@@ -156,5 +164,6 @@ public class IntermediateCenterData extends UnicastRemoteObject implements Inter
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

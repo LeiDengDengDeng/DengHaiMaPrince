@@ -13,7 +13,15 @@ public interface DriverDataService extends Remote{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public DriverPO findDriverPO(long id) throws RemoteException;
+	public DriverPO findDriverPO(String id) throws RemoteException;
+	
+	/**
+	 * 根据营业厅编号返回其所属司机
+	 * @param id
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ArrayList<DriverPO> findsDriverPO(String id) throws RemoteException;
 	
 	/**
 	 * 返回所有DriverPO
@@ -35,14 +43,14 @@ public interface DriverDataService extends Remote{
 	 * @param dpo
 	 * @throws RemoteException
 	 */
-	public void update(long id,DriverPO dpo) throws RemoteException;
+	public void update(String id,DriverPO dpo) throws RemoteException;
 	
 	/**
 	 * 删除一个DriverPO
 	 * @param id
 	 * @throws RemoteException
 	 */
-	public void deleteDriverPO(long id) throws RemoteException;
+	public void deleteDriverPO(String id) throws RemoteException;
 	
 	/**
 	 * 结束持久化数据库的使用

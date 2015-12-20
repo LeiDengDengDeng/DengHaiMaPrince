@@ -36,7 +36,8 @@ public class BussinessHall implements BussinessHallBLService{
 			e.printStackTrace();
 		}
 		
-		BussinessHallVO bVo = new BussinessHallVO(bPo.getHallName(),bPo.getHallId());
+		BussinessHallVO bVo = new BussinessHallVO(bPo.getHallName(),bPo.getHallId(),
+				bPo.getDrivers(),bPo.getTrucks());
 		return bVo;
 	}
 
@@ -54,7 +55,8 @@ public class BussinessHall implements BussinessHallBLService{
 		
 		for(int i =0;i < bpos.size();i++){
 			bvos.add(new BussinessHallVO(bpos.get(i).getHallName(), 
-					bpos.get(i).getHallId()));
+					bpos.get(i).getHallId(),bpos.get(i).getDrivers(),
+					bpos.get(i).getTrucks()));
 		}
 		return bvos;
 	}
@@ -62,7 +64,7 @@ public class BussinessHall implements BussinessHallBLService{
 	@Override
 	public void addBussinessHallInfo(BussinessHallVO bussinessHall) {
 		BussinessHallPO bPo = new BussinessHallPO(bussinessHall.getHallName(),
-				bussinessHall.getHallId());
+				bussinessHall.getHallId(),null,null);
 		
 		try {
 			businessHallDataService.insert(bPo);

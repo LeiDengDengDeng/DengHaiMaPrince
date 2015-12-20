@@ -13,7 +13,7 @@ public class LogInController {
 	}
 	
 	public ResultMessage logIn(long UserId,String password){
-		
+
 		ResultMessage resultMessage = loginBL.logIn(UserId, password);
 		
 		return resultMessage;

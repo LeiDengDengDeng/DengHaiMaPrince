@@ -55,16 +55,16 @@ public class DivideInfoLabelGroup {
             JLabel rowNumber = new JLabel(storages.get(i).getRowNumber() + "");
             JLabel shelfNumber = new JLabel(storages.get(i).getShelfNumber() + "");
             JLabel seatNumber = new JLabel(storages.get(i).getSeatNumber() + "");
-            JLabel isFlxible = new JLabel("转入机动区");
+            JLabel isFlxible = new JLabel("转入");
 
             goodsName.setBounds(x, y + (i - start) * height, 60, height);
-            expressNumber.setBounds(x + 70, y + (i - start) * height, 60, height);
-            inTime.setBounds(x + 120, y + (i - start) * height, 80, height);
-            destination.setBounds(x + 210, y + (i - start) * height, 60, height);
-            rowNumber.setBounds(x + 300, y + (i - start) * height, 60, height);
-            shelfNumber.setBounds(x + 350, y + (i - start) * height, 60, height);
-            seatNumber.setBounds(x + 400, y + (i - start) * height, 60, height);
-            isFlxible.setBounds(x + 470, y + (i - start) * height, 80, height);
+            expressNumber.setBounds(x + 65, y + (i - start) * height, 130, height);
+            inTime.setBounds(x + 210, y + (i - start) * height, 80, height);
+            destination.setBounds(x + 305, y + (i - start) * height, 60, height);
+            rowNumber.setBounds(x + 375, y + (i - start) * height, 60, height);
+            shelfNumber.setBounds(x + 410, y + (i - start) * height, 60, height);
+            seatNumber.setBounds(x + 445, y + (i - start) * height, 60, height);
+            isFlxible.setBounds(x + 505, y + (i - start) * height, 80, height);
 
             presentStorages[i - start][0] = goodsName;
             presentStorages[i - start][1] = expressNumber;

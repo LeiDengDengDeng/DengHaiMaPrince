@@ -3,7 +3,7 @@ package src.vo;
 import src.enums.Sex;
 
 public class DriverInfoVO {
-	private long number; // 司机编号
+	private String number; // 司机编号
 	private String name; // 司机姓名
 	private int year; // 出生年份
 	private int month; // 出生月份
@@ -13,7 +13,7 @@ public class DriverInfoVO {
 	private Sex sex; // 性别
 	private int yearOfExpiring; // 行驶证到期年份
 	
-	public DriverInfoVO(long number, String name, int year, int month, int day,
+	public DriverInfoVO(String number, String name, int year, int month, int day,
 			String iD, String mobNum, Sex sex, int yearOfExpiring) {
 		super();
 		this.number = number;
@@ -43,7 +43,7 @@ public class DriverInfoVO {
 		this.yearOfExpiring = yearOfExpiring;
 	}
 
-	public long getNumber() {
+	public String getNumber() {
 		return number;
 	}
 

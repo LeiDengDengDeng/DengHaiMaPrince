@@ -22,7 +22,7 @@ public class TruckController implements TruckBLService{
 	}
 
 	@Override
-	public TruckInfoVO getTruckInfo(long truckId) {
+	public TruckInfoVO getTruckInfo(String truckId) {
 		return truckimpl.getTruckInfo(truckId);
 	}
 
@@ -37,12 +37,12 @@ public class TruckController implements TruckBLService{
 	}
 
 	@Override
-	public void deleteTruckInfo(long truckId) {
+	public void deleteTruckInfo(String truckId) {
 		truckimpl.deleteTruckInfo(truckId);
 	}
 
 	@Override
-	public void changeTruckInfo(long truckId, TruckInfoVO tvo) {
+	public void changeTruckInfo(String truckId, TruckInfoVO tvo) {
 		truckimpl.changeTruckInfo(truckId, tvo);
 	}
 

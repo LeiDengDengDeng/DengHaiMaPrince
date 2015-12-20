@@ -1,9 +1,18 @@
 package src.businesslogic.userbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.userblservice.UserBLService;
+import src.dataservice.userdataservice.UserDataService;
+import src.po.SalaryPO;
+import src.po.UserPO;
 import src.vo.InitUserVO;
+import src.vo.SalaryVO;
 import src.vo.UserVO;
 
 public class UserBLService_Stub implements UserBLService{
@@ -31,18 +40,42 @@ public class UserBLService_Stub implements UserBLService{
 //	public ResultMessage logIn(long UserId,String password){
 //		return true;
 //	}
+	Log log;
+	public UserBLService_Stub(Log log){
+		this.log = log;
+//		try {
+//			this.stub = (UserDataService) Naming.lookup("rmi://127.0.0.1:6600/userData");
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NotBoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	}
 
 	@Override
 	public UserVO getPersonalInfo(long UserId) {
 		// TODO Auto-generated method stub
-		System.out.println("get!");
-		return new UserVO(000000, 000000, "aaaaaaaa", "Echo", "Administrator", null, null,null,null);
+		System.out.println("get!!");
+		return null;
 	}
+	
 
 	@Override
 	public boolean changePassword(String password,long UserId) {
 		// TODO Auto-generated method stub
-		System.out.println("Password has been changed!");
+		System.out.println("change!!");
+		return true;
+	}
+
+
+	@Override
+	public boolean changeInfo(UserVO userVO) {
+		// TODO Auto-generated method stub
 		
 		return true;
 	}
@@ -50,34 +83,14 @@ public class UserBLService_Stub implements UserBLService{
 	@Override
 	public boolean endManagement() {
 		// TODO Auto-generated method stub
-		System.out.println("End the management!");
-		
 		return true;
-	}
-
-//	@Override
-//	public String getCity(long UserId) {
-//		// TODO Auto-generated method stub
-//		System.out.println("Get the city!");
-//		return "南京中转中心仓库管理员";
-//	}
-
-	@Override
-	public boolean changeInfo(UserVO userVO) {
-		// TODO Auto-generated method stub
-		System.out.println("change information successfully!");
-		return true;
-		
 	}
 
 	@Override
 	public boolean initial(ArrayList<InitUserVO> User) {
 		// TODO Auto-generated method stub
-		System.out.println("initialize successfully!");
 		return true;
-		
 	}
 
-	
 
 }

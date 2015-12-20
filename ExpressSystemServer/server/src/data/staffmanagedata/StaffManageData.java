@@ -1,5 +1,6 @@
 package src.data.staffmanagedata;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +12,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
+import javafx.scene.chart.PieChart.Data;
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.po.LogPO;
@@ -52,9 +56,15 @@ public class StaffManageData extends UnicastRemoteObject implements StaffManageD
 		} catch (FileNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			System.out.println("File not found");
+		} catch (EOFException e) {
+			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+			System.out.println("End of file");
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			System.out.println("IOException");
 		} catch (ClassNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -78,16 +88,23 @@ public class StaffManageData extends UnicastRemoteObject implements StaffManageD
 				UserPO po = (UserPO) os.readObject();
 				if (po == null)
 					break;
-				userPOs.add(po);
+				else
+					userPOs.add(po);
 			}
 
 			os.close();
 		} catch (FileNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			System.out.println("File not found");
+		} catch (EOFException e) {
+			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+			System.out.println("End of file");
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
+			System.out.println("IOException");
 		} catch (ClassNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -105,24 +122,29 @@ public class StaffManageData extends UnicastRemoteObject implements StaffManageD
 			MyObjectOutputStream moos = null;
 			
 			try {
-				oos = new ObjectOutputStream(new FileOutputStream(file));
-				moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 				if (file.length() == 0) {
+					oos = new ObjectOutputStream(new FileOutputStream(file));
 					oos.writeObject(po);
 					oos.flush();
 					oos.close();
 				} else {
+					moos = new MyObjectOutputStream(new FileOutputStream(file, true));
 					moos.writeObject(po);
 					moos.flush();
 					moos.close();
 				}
 			} catch (FileNotFoundException e) {
 				// TODO 自动生成的 catch 块
-				System.out.println("UserFile not found");
+				System.out.println("File not found");
 				e.printStackTrace();
+			} catch (EOFException e) {
+				// TODO 自动生成的 catch 块
+//				e.printStackTrace();
+				System.out.println("End of file");
 			} catch (IOException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
+				System.out.println("IOException");
 			}
 			
 		}
@@ -134,41 +156,63 @@ public class StaffManageData extends UnicastRemoteObject implements StaffManageD
 	@Override
 	public void update(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		delete(find(po.getPersonalID()));
-		insert(po);
+		UserPO userPO = find(po.getPersonalID());
+//		System.out.println(userPO.getPersonalName());
+		if(userPO != null){
+			delete(userPO);
+			insert(po);
+		}
+		else System.out.println("Not exist!!");
 		
 	}
 
 	@Override
 	public void delete(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
-		userPOs = finds();
+		ArrayList<UserPO> userPOs =	finds();
+//		for(int i = 0;i < userPOs.size();i++)
+//			System.out.println(userPOs.get(i).getPersonalID());
+		boolean exist = true;
 		
 		for(int i = 0;i < userPOs.size();i++){
-			if(userPOs.get(i) == po){
+			if(userPOs.get(i).getPersonalID() == po.getPersonalID()){
 				userPOs.remove(i);
 				break;
+			}else{
+				if(i == userPOs.size() - 1){
+					System.out.println("Not found!!!");
+					exist = false;
+				}
 			}
+			
 		}
 		
 		ObjectOutputStream os = null;
-		
-		try {
-			os = new ObjectOutputStream(new FileOutputStream(file,false));
+
+		if(exist){
+			try {
+				os = new ObjectOutputStream(new FileOutputStream(file,false));
 			
-			for(int j = 0;j < userPOs.size();j++){
-				os.writeObject(userPOs.get(j));
-				os.flush();
+				for(int j = 0;j < userPOs.size();j++){
+					os.writeObject(userPOs.get(j));
+					os.flush();
+				}
+				os.close();
+				
+			} catch (FileNotFoundException e) {
+				// TODO 自动生成的 catch 块
+				System.out.println("File not found");
+				e.printStackTrace();
+			} catch (EOFException e) {
+				// TODO 自动生成的 catch 块
+//				e.printStackTrace();
+				System.out.println("End of file");
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+				System.out.println("IOException");
 			}
-			os.close();
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("delete!!");
 		}
 		
 	}
@@ -178,6 +222,24 @@ public class StaffManageData extends UnicastRemoteObject implements StaffManageD
 		// TODO Auto-generated method stub
 		
 	}
+	
+//	public static void main(String[] args) {
+//		try {
+//			StaffManageData staffManageData = new StaffManageData();
+////			UserPO userPO = new UserPO(100000, 100000, "123456", "五阿哥", "快递员",null);
+////			staffManageData.insert(userPO);
+////			staffManageData.delete(userPO);
+//			ArrayList<UserPO> userPOs = staffManageData.finds();
+//			System.out.println(userPOs.size());
+////			staffManageData.update(userPO);
+////			System.out.println(staffManageData.find(100000).getSalary().getBasic());
+////			System.out.println(staffManageData.find(200000).getPersonalName());
+//		} catch (RemoteException e) {
+////			 TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//	}
 	
 
 }

@@ -9,26 +9,19 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import src.vo.AccountVO;
+
 public class PanelAccount extends SubPanel {
 
 	ImageIcon img;
-	ArrayList<TextField> name;
-	ArrayList<TextField> num;
-	ArrayList<TextField> amount;
-	ArrayList<ArrayList<TextField>> a;
+
+	ArrayList<TextField[]> a;
 
 	protected PanelAccount(ImageIcon img) {
 		super(img);
 		this.setLayout(null);
 		this.img = img;
-
-		name = new ArrayList<TextField>();
-		num = new ArrayList<TextField>();
-		amount = new ArrayList<TextField>();
-		a = new ArrayList<ArrayList<TextField>>();
-		this.a.add(name);
-		this.a.add(num);
-		this.a.add(amount);
+		a = new ArrayList<TextField[]>();
 		this.drawCom(0);
 		this.addButton();
 		// TODO Auto-generated constructor stub
@@ -63,7 +56,8 @@ public class PanelAccount extends SubPanel {
 		JLabel yuan = new JLabel("Ԫ");
 		yuan.setFont(myFont);
 		yuan.setForeground(Color.white);
-		yuan.setBounds(Name_x + Name_w + distance_x + Num_w + distance_x+Amount_w+5, Name_y + distance_y * i, 16, 16);
+		yuan.setBounds(Name_x + Name_w + distance_x + Num_w + distance_x + Amount_w + 5, Name_y + distance_y * i, 16,
+				16);
 		if (i != 0) {
 			this.add(yuan);
 		}
@@ -71,9 +65,8 @@ public class PanelAccount extends SubPanel {
 		this.add(textNum);
 		this.add(textAmount);
 		// TODO Auto-generated method stub
-		getArrayList().get(0).add(textName);
-		getArrayList().get(1).add(textNum);
-		getArrayList().get(2).add(textAmount);
+		TextField[] t = { textName, textNum, textAmount };
+		this.getArrayList().add(t);
 		textName.setFont(myFont);
 		textNum.setFont(myFont);
 		textAmount.setFont(myFont);
@@ -86,8 +79,24 @@ public class PanelAccount extends SubPanel {
 	}
 
 	@Override
-	public ArrayList<ArrayList<TextField>> getArrayList() {
 
+	public ArrayList<Object> getVO() {
+		// TODO Auto-generated method stub
+		ArrayList<Object> a = new ArrayList<Object>();
+		for (int i = 0; i < getArrayList().size(); i++) {
+			String name = getArrayList().get(i)[0].getText();
+			long num = Long.parseLong(getArrayList().get(i)[1].getText());
+			double amount = Double.parseDouble(getArrayList().get(i)[2].getText());
+			AccountVO account = new AccountVO(name, num, amount);
+			a.add(account);
+		}
+
+		return a;
+	}
+
+	@Override
+	public ArrayList<TextField[]> getArrayList() {
+		// TODO Auto-generated method stub
 		return a;
 	}
 
@@ -96,5 +105,4 @@ public class PanelAccount extends SubPanel {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

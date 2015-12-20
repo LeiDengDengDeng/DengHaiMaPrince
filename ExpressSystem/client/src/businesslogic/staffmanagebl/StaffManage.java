@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import src.businesslogic.logbl.Log;
 import src.businesslogic.userbl.Position;
+import src.businesslogic.userbl.User;
 import src.businesslogicservice.staffmanageblservice.StaffManageBLService;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.po.UserPO;
@@ -15,14 +16,14 @@ import src.vo.StaffInfoVO;
 
 public class StaffManage implements StaffManageBLService{
 
-	StaffManageDataService StaffManageData;
+	StaffManageDataService staffManageData;
 	Position position;
 	Log log;
 	public StaffManage(Log log,Position position){
 		this.log = log;
 		this.position = position;
 		try {
-			this.StaffManageData = (StaffManageDataService) Naming.lookup("rmi://127.0.0.1:6600/staffManageData");
+			this.staffManageData = (StaffManageDataService) Naming.lookup("rmi://127.0.0.1:6600/staffManageData");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,7 +43,7 @@ public class StaffManage implements StaffManageBLService{
 		UserPO userPO = null;
 		StaffInfoVO staffInfoVO = null;
 		try {
-			userPO = StaffManageData.find(StaffId);
+			userPO = staffManageData.find(StaffId);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,21 +64,24 @@ public class StaffManage implements StaffManageBLService{
 		ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
 		ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
 		try {
-			userPOs = StaffManageData.finds();
+			userPOs = staffManageData.finds();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		for(int i = 0;i < userPOs.size();i++){
-			staffInfoVOs.add(new StaffInfoVO(userPOs.get(i).getPersonalID(), 
-					userPOs.get(i).getPersonalAccount(), userPOs.get(i).getMyPassword(),
-					userPOs.get(i).getPersonalName(), userPOs.get(i).getMyPosition(),
-					userPOs.get(i).getAuthority(),userPOs.get(i).getCity(),
-					userPOs.get(i).getBusinessHall()));
+		if(userPOs != null){
+			for(int i = 0;i < userPOs.size();i++){
+				staffInfoVOs.add(new StaffInfoVO(userPOs.get(i).getPersonalID(), 
+						userPOs.get(i).getPersonalAccount(), userPOs.get(i).getMyPassword(),
+						userPOs.get(i).getPersonalName(), userPOs.get(i).getMyPosition(),
+						userPOs.get(i).getAuthority(),userPOs.get(i).getCity(),
+						userPOs.get(i).getBusinessHall()));
+			}
+			return staffInfoVOs;
+		}else{
+			System.out.println("None!!");
+			return null;
 		}
-		
-		return staffInfoVOs;
 	}
 
 	@Override
@@ -89,17 +93,17 @@ public class StaffManage implements StaffManageBLService{
 			
 			ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
 			try {
-				userPOs = StaffManageData.finds();
+				userPOs = staffManageData.finds();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
 			for(int i = 0;i < userPOs.size();i++){
-				if(userPOs.get(i).getMyPosition().equalsIgnoreCase(position)){
+				if(userPOs.get(i).getMyPosition().equals(position)){
 					userPOs.get(i).setAuthority(authority);
 					try {
-						StaffManageData.update(userPOs.get(i));
+						staffManageData.update(userPOs.get(i));
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -114,17 +118,18 @@ public class StaffManage implements StaffManageBLService{
 	@Override
 	public boolean addStaffInfo(StaffInfoVO StaffInfo) {
 		// TODO Auto-generated method stub
+		System.out.println("add");
 		if(StaffInfo == null)
 			return false;
 		
 		else{
 			StaffInfo.setAuthority(position.initialAuthority(StaffInfo));
-		
+			System.out.println(StaffInfo.getAuthority().size());
 			UserPO userPO = new UserPO(StaffInfo.getID(), StaffInfo.getAccount(),
 					StaffInfo.getPassword(), StaffInfo.getStaffName(),
 					StaffInfo.getPosition(), StaffInfo.getAuthority());
 			try {
-				StaffManageData.insert(userPO);
+				staffManageData.insert(userPO);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -138,7 +143,7 @@ public class StaffManage implements StaffManageBLService{
 		// TODO Auto-generated method stub
 		UserPO userPO = null;
 		try {
-			userPO = StaffManageData.find(StaffId);
+			userPO = staffManageData.find(StaffId);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -146,7 +151,7 @@ public class StaffManage implements StaffManageBLService{
 		
 		if(userPO != null){
 			try {
-				StaffManageData.delete(userPO);
+				staffManageData.delete(userPO);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -163,7 +168,7 @@ public class StaffManage implements StaffManageBLService{
 	public boolean endManagement() {
 		// TODO Auto-generated method stub
 		try {
-			StaffManageData.finish();
+			staffManageData.finish();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -172,6 +177,15 @@ public class StaffManage implements StaffManageBLService{
 		
 	}
 
-
+	public static void main(String[] args) {
+		StaffManage staffManage = new StaffManage(null, new Position(new User(null)));
+//		staffManage.addStaffInfo(new StaffInfoVO(200000, 200000, "123456", "小燕子", "快递员", null, null, null));
+//		staffManage.deleteStaff(200000);
+		System.out.println(staffManage.getStaffInfo(200000).getPosition());
+		if(staffManage.getStaffInfo(200000).getAuthority() == null)
+			System.out.println("null");
+		else
+			System.out.println(staffManage.getStaffInfo(200000).getAuthority().size());
+	}
 
 }

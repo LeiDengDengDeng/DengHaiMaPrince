@@ -1,5 +1,6 @@
 package src.presentation.userui;
 
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ import javax.swing.JPasswordField;
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.userbl.User;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
 import src.vo.UserVO;
 
 
@@ -25,12 +27,12 @@ public class ChangePasswordPanel extends JPanel{
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
 	static final int x = 120;
-	static final int y = 61;
+	static final int y = 63;
 	static final int w = 200;
 	static final int h = 16;
-	static final int linesp = 61;
-	static final int coordinate_X = 150;
-	static final int coordinate_Y = 90;
+	static final int linesp = 49;
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 100;
 	
 	
 	private static final ImageIcon CANCEL_ICON= new ImageIcon("images/cancel.png");
@@ -38,7 +40,6 @@ public class ChangePasswordPanel extends JPanel{
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
 	
-//	JFrame frame;
 	private JPasswordField oldpassField;
 	private JPasswordField newpassField;
 	private JPasswordField confirmField;
@@ -75,14 +76,13 @@ public class ChangePasswordPanel extends JPanel{
 //	}
 	
 	public void componentsInstantiation(){
-//		frame = new JFrame();
 		bkgImg = new ImageIcon("images/password_BG.png");
 		imageLabel = new JLabel();
 		oldpassField = new JPasswordField();
 		newpassField = new JPasswordField();
 		confirmField = new JPasswordField();
-		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
-		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 450, coordinate_Y + 480,false);
+		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 350, coordinate_Y + 280,false);
+		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 450, coordinate_Y + 280,false);
 		
 	}
 
@@ -93,8 +93,8 @@ public class ChangePasswordPanel extends JPanel{
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 		
 		oldpassField.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
-		newpassField.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
-		confirmField.setBounds(coordinate_X + x + 10, coordinate_Y + y + linesp * 4, w, h);
+		newpassField.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
+		confirmField.setBounds(coordinate_X + x + 10, coordinate_Y + y + linesp * 2, w, h);
 		
 		
 		this.add(oldpassField);
@@ -108,19 +108,6 @@ public class ChangePasswordPanel extends JPanel{
 		
 	}
 	
-//	public void getPass(){
-//		oldpass = oldpassField.getText();
-//		newpass = newpassField.getText();
-//		confirmpass = confirmField.getText();
-//		if(oldpass.equals(logIn.getCurrentUser().getMyPassword())){
-//			if(newpass.equals(confirmpass)){
-//				logIn.getCurrentUser().setMyPassword(confirmpass);
-//				user.changeInfo(logIn.getCurrentUser());
-//			}
-//		}
-//		
-//		
-//	}
 	class buttonActionListener implements ActionListener {
 	       ChangePasswordPanel container;
 		       
@@ -133,18 +120,27 @@ public class ChangePasswordPanel extends JPanel{
 		        	if(e.getSource() == cancelButton){
 		        		
 		        	}else if (e.getSource() == confirmButton) {
-		        		oldpass = oldpassField.getText();
-		        		newpass = newpassField.getText();
-		        		confirmpass = confirmField.getText();
-		        		if(oldpass.equalsIgnoreCase(userVO.getMyPassword())){
-		        			if(newpass.equalsIgnoreCase(confirmpass)){
+		        		oldpass = String.valueOf(oldpassField.getPassword());
+		        		newpass = String.valueOf(newpassField.getPassword());
+		        		confirmpass = String.valueOf(confirmField.getPassword());
+		        		if(oldpass == null || newpass == null ||
+		        				confirmpass == null){
+		        			TipDialog tipDialog = new TipDialog(null, "", true, "请完整填写！", false);
+		        		}else if(oldpass.equals(userVO.getMyPassword())){
+		        			System.out.println("oldpass correct");
+		        			if(newpass.equals(confirmpass)){
+		        				System.out.println("same");
 		        				logIn.getCurrentUser().setMyPassword(confirmpass);
 		        				user.changeInfo(logIn.getCurrentUser());
-		        			}
-		        		}
+		        			}else {
+		        				TipDialog tipDialog = new TipDialog(null, "", true, "请再次确认密码！", false);
+							}
+		        		}else {
+		        			TipDialog tipDialog = new TipDialog(null, "", true, "原密码错误！", false);
+						}
 		        		UserPanel userPanel = new UserPanel(userVO);
 					}
-		        	
+		        	container.repaint();
 		        }
 	}
 	

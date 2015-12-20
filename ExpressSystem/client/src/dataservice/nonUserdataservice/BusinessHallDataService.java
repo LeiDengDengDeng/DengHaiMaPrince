@@ -16,6 +16,14 @@ public interface BusinessHallDataService extends Remote{
 	public BussinessHallPO findBussinessHallPO(String id) throws RemoteException;
 	
 	/**
+	 * 返回一个城市的所有营业厅
+	 * @param city
+	 * @return
+	 * @throws RemoteException
+	 */
+	public ArrayList<BussinessHallPO> findBussinessHallPOByCity(String city) throws RemoteException;
+	
+	/**
 	 * 返回所有BussinessHallPO
 	 * @return
 	 * @throws RemoteException
@@ -28,6 +36,14 @@ public interface BusinessHallDataService extends Remote{
 	 * @throws RemoteException
 	 */
 	public void insert(BussinessHallPO bpo) throws RemoteException;
+	
+	/**
+	 * 更新一个BussinessHallPO
+	 * @param id
+	 * @param bpo
+	 * @throws RemoteException
+	 */
+	public void update(String id,BussinessHallPO bpo) throws RemoteException;
 	
 	/**
 	 * 删除一个BussinessHallPO

@@ -24,10 +24,11 @@ public abstract class SubPanel extends JPanel {
 		this.IMG=IMG;
 		this.setBounds(0, 0, IMG.getIconWidth(), IMG.getIconHeight());
 	}
-	public abstract ArrayList<ArrayList<TextField>> getArrayList();
+	public abstract ArrayList<TextField[]> getArrayList();
 	public abstract ArrayList<JComboBox<String>> getJComBox();
 	public abstract ImageIcon getImageIcon();
 	public abstract void drawCom(int i);
+	public abstract ArrayList<Object> getVO();
 	public JButton addButton(){
 		JButton button = new JButton(buttonIcon);
 		button.setBounds(500, 70+30 , buttonIcon.getIconWidth(), buttonIcon.getIconHeight());

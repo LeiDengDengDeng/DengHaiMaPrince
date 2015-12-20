@@ -28,7 +28,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService{
 	File file = new File(GoodsFILE_PATH);
 
 	@Override
-	public GoodsPO findGoodsPO(long id) throws RemoteException {
+	public GoodsPO findGoodsPO(String id) throws RemoteException {
 		GoodsPO gpo = null;
 		ObjectInputStream os = null;
 		
@@ -36,7 +36,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService{
 			os = new ObjectInputStream(new FileInputStream(file));
 
 			while ((gpo = (GoodsPO) os.readObject()) != null) {
-				if (gpo.getExpressNumber() == id)
+				if (gpo.getExpressNumber().equals(id))
 					break;
 			}
 
@@ -154,13 +154,13 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService{
 	}
 
 	@Override
-	public void delete(long id) throws RemoteException {
+	public void delete(String id) throws RemoteException {
 		File file = new File(GoodsFILE_PATH);
 		ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
 		gpos = finds();
 		
 		for(int i = 0;i < gpos.size();i++){
-			if(gpos.get(i).getExpressNumber() == id){
+			if(gpos.get(i).getExpressNumber().equals(id)){
 				gpos.remove(i);
 				break;
 			}

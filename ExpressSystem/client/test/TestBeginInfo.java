@@ -49,7 +49,7 @@ public class TestBeginInfo {
 //		beginConstant.add(new ConstantVO(79, 3, "南京-北京"));
 		ArrayList<InitUserVO>  beginUser=new ArrayList<InitUserVO>();
 		beginUser.add(new InitUserVO(000001L, "总经理", 10000, "小王子"));
-		BeginInfoVO vo=new BeginInfoVO(beginDriver, beginTruck, beginAccount, beginConstant, beginStorage, beginUser);
+		BeginInfoVO vo=new BeginInfoVO(beginDriver, beginTruck, beginAccount, beginStorage, beginUser);
 //		beginInfo.fillInfo(vo);
 		
 	}

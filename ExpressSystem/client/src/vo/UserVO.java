@@ -11,12 +11,12 @@ public class UserVO {
 	private String personalName;    //姓名
 	private String myPosition;//职位
 	private ArrayList<Integer> authority;  //权限
-	private SalaryPO salary;     //薪水
+	private SalaryVO salary;     //薪水
 	private String city;			//城市
 	private String businessHall;	//营业厅
 	
 	public UserVO(long personalID,long personalAccount,String myPassword
-			,String personalName,String myPosition,ArrayList<Integer> authority,SalaryPO salary,
+			,String personalName,String myPosition,ArrayList<Integer> authority,SalaryVO salary,
 			String city,String businessHall){
 		this.personalID = personalID;
 		this.personalAccount = personalAccount;
@@ -68,12 +68,12 @@ public class UserVO {
 		
 	}
 	
-	public SalaryPO getSalary(){
+	public SalaryVO getSalary(){
 		return salary;
 		
 	}
 	
-	public void setSalary(SalaryPO salary){
+	public void setSalary(SalaryVO salary){
 		this.salary = salary;
 	}
 	

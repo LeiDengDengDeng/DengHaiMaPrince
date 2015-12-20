@@ -34,8 +34,8 @@ public class UserPanel extends JPanel{
 	static final int h = 30;
 	static final int linesp = 53;
 	static final int columnsp = 250;
-	static final int coordinate_X = 150;
-	static final int coordinate_Y = 90;
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 100;
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
@@ -45,7 +45,6 @@ public class UserPanel extends JPanel{
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
 
 	
-	JFrame frame;
 	UserVO userVO;
 	MyButton change;
 	MyButton confirm;
@@ -83,25 +82,6 @@ public class UserPanel extends JPanel{
 //	
 	
 	public void initial(){
-		// 设置标题
-		frame.setUndecorated(true);
-		frame.setSize(850, 646);
-		// 不允许用户改变窗口大小
-		frame.setResizable(false);
-		// 获得屏幕大小
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Dimension screen = toolkit.getScreenSize();
-		// 设置窗体位置
-		final int x = (screen.width - WIDTH) >> 1;
-		final int y = ((screen.height - HEIGHT) >> 1) - 32;
-
-		frame.setLocation(x, y);
-		
-		frame.setLayout(null);
-		// 设置默认panel
-		this.setLayout(null);
-//		this.setBounds(0, 0, IMG.getIconWidth(), IMG.getIconHeight());
-		
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 
@@ -116,17 +96,16 @@ public class UserPanel extends JPanel{
 		this.add(change);
 		this.add(confirm);
 		this.add(imageLabel);
+
+		this.setLayout(null);
 		this.setOpaque(false);
 		
-		frame.setContentPane(this);
-		frame.setVisible(true);
 		
 		
 		
 	}
 	
 	public void componentsInstantiation(){
-		frame = new JFrame();
 		imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/user_InfoBG.png");
 		change = new MyButton(CHANGE_ICON, CHANGEENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
@@ -172,11 +151,11 @@ public class UserPanel extends JPanel{
 			salary.setForeground(Color.WHITE);
 		}
 	
-	public static void main(String[] args) {
-		new UserPanel(new UserVO(100000, 100000, "aaaaaa", "张三", "快递员",
-				null, new SalaryPO(3000), "南京", "鼓楼营业厅"));
-		
-	}
+//	public static void main(String[] args) {
+//		new UserPanel(new UserVO(100000, 100000, "aaaaaa", "张三", "快递员",
+//				null, new SalaryPO(3000), "南京", "鼓楼营业厅"));
+//		
+//	}
 	
 	class buttonActionListener implements ActionListener {
 	       UserPanel container;
@@ -189,7 +168,7 @@ public class UserPanel extends JPanel{
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == change){
 		        		ChangePasswordPanel change = new ChangePasswordPanel(userVO);
-		        		container.frame.setContentPane(change);
+//		        		container.frame.setContentPane(change);
 		        		
 		        	}
 		        	else if (e.getSource() == confirm) {

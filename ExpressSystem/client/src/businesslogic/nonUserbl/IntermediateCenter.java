@@ -39,7 +39,7 @@ public class IntermediateCenter implements IntermediateCenterBLService{
 			e.printStackTrace();
 		}
 		
-		IntermediateCenterVO iVo= new IntermediateCenterVO(iPo.getCity(), 
+		IntermediateCenterVO iVo= new IntermediateCenterVO(iPo.getCity(), iPo.getId(),
 				iPo.getSpo(), iPo.getBpos());
 		return iVo;
 	}
@@ -57,7 +57,7 @@ public class IntermediateCenter implements IntermediateCenterBLService{
 		
 		
 		for(int i = 0;i < ipos.size();i++){
-			ivos.add(new IntermediateCenterVO(ipos.get(i).getCity(), 
+			ivos.add(new IntermediateCenterVO(ipos.get(i).getCity(), ipos.get(i).getId(),
 					ipos.get(i).getSpo(), ipos.get(i).getBpos()));
 		}
 		return ivos;
@@ -65,8 +65,9 @@ public class IntermediateCenter implements IntermediateCenterBLService{
 
 	@Override
 	public void addIntermediateCenter(IntermediateCenterVO intermediateCenter) {
-		IntermediateCenterPO iPo = new IntermediateCenterPO(intermediateCenter.getCity(), 
-				intermediateCenter.getSpo(), intermediateCenter.getBpos());
+		IntermediateCenterPO iPo = new IntermediateCenterPO(intermediateCenter.getCity(),
+				intermediateCenter.getId(),intermediateCenter.getSpo(), 
+				intermediateCenter.getBpos());
 		
 		try {
 			intermediateCenterDataService.insert(iPo);

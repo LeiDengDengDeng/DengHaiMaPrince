@@ -13,12 +13,12 @@ public class GoodsData_Driver {
 		logisticsState.add("南京到扬州");
 		GoodsPO goodsPO1 = new GoodsPO(logisticsState, 3, 3.0, 3.0, 3.0, 
 				3.0, 3.0, "血吼", GoodsType.ECONOMIC, GoodsType.PAPERPAKAGE,
-				0000000000000001, 20151215, "扬州", GoodsType.RAIL, 003, 003, 003, 
+				"0000000000000001", "20151215", "扬州", GoodsType.RAIL, 003, 003, 003, 
 				001, "0250201510250000000", 
 				"0250201510250000000");
 		GoodsPO goodsPO2 = new GoodsPO(logisticsState, 3, 3.0, 3.0, 3.0, 
 				3.0, 3.0, "灰烬使者", GoodsType.ECONOMIC, GoodsType.PAPERPAKAGE,
-				0000000000000000, 20151215, "扬州", GoodsType.RAIL, 003, 003, 003, 
+				"0000000000000000", "20151215", "扬州", GoodsType.RAIL, 003, 003, 003, 
 				001, "0250201510250000000",
 				"0250201510250000000");
 //		goodsData.insert(goodsPO1);

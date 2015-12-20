@@ -9,7 +9,7 @@ public interface TruckBLService {
 	 * 非用户信息查询界面得到某个车辆信息
 	 * @param truckId
 	 */
-	public TruckInfoVO getTruckInfo(long truckId);
+	public TruckInfoVO getTruckInfo(String truckId);
 	
 	/**
 	 * 非用户信息查询界面得到所有车辆信息
@@ -27,14 +27,14 @@ public interface TruckBLService {
 	 * 删除一个车辆
 	 * @param truckId
 	 */
-	public void deleteTruckInfo(long truckId);
+	public void deleteTruckInfo(String truckId);
 	
 	/**
 	 * 修改车辆信息
 	 * @param truckId
 	 * @param tvo
 	 */
-	public void changeTruckInfo(long truckId,TruckInfoVO tvo);
+	public void changeTruckInfo(String truckId,TruckInfoVO tvo);
 	
 	/**
 	 * 供接口，提供车辆信息初始化

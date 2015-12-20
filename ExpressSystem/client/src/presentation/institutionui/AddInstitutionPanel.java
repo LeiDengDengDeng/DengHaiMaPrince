@@ -8,13 +8,14 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import src.presentation.util.MyButton;
 import src.vo.InstitutionVO;
 
-public class AddInstitutionPanel {
+public class AddInstitutionPanel extends JPanel{
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
 	static final int x = 115;
@@ -22,17 +23,20 @@ public class AddInstitutionPanel {
 	static final int w = 180;
 	static final int h = 16;
 	static final int linesp = 48;
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 100;
 	
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
 	private final static ImageIcon CANCEL_ICON = new ImageIcon("images/cancel.png");
 	private final static ImageIcon CANCELENTER_ICON = new ImageIcon("images/cancel_Enter.png");
 	
-	JFrame frame;
-	MainPanel mainPanel;
 	
 	MyButton confirmButton;
 	MyButton deleteButton;
+	
+	JLabel imageLabel;
+    ImageIcon bkgImg;
 	
 	private JTextField institutionID;
 	private JTextField institutionName;
@@ -50,22 +54,8 @@ public class AddInstitutionPanel {
 	}
 	
 	public void initial(){
-		// 设置标题
-		frame.setUndecorated(true);
-		frame.setSize(WIDTH, HEIGHT);
-		// 不允许用户改变窗口大小
-		frame.setResizable(false);
-		// 获得屏幕大小
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Dimension screen = toolkit.getScreenSize();
-		// 设置窗体位置
-		final int coo_x = (screen.width - WIDTH) >> 1;
-		final int coo_y = ((screen.height - HEIGHT) >> 1) - 32;
-
-		frame.setLocation(coo_x, coo_y);
-		// 设置默认panel
-		mainPanel.setLayout(null);
-		mainPanel.setBounds(0, 0, WIDTH, HEIGHT);
+		this.setLayout(null);
+		this.setBounds(0, 0, WIDTH, HEIGHT);
 		
 		institutionID.setBounds(x, y, w, h);
 		institutionName.setBounds(x, y + linesp, w, h);
@@ -73,20 +63,17 @@ public class AddInstitutionPanel {
 		
 		
 		
-		mainPanel.add(institutionID);
-		mainPanel.add(institutionName);
-		mainPanel.add(institutionfunction);
-		mainPanel.add(confirmButton);
-		mainPanel.add(deleteButton);
+		this.add(institutionID);
+		this.add(institutionName);
+		this.add(institutionfunction);
+		this.add(confirmButton);
+		this.add(deleteButton);
 		
-		frame.setContentPane(mainPanel);
-		frame.setVisible(true);
 		
 	}
 	
 	public void componentsInstantiation(){
-		frame = new JFrame();
-		mainPanel = new MainPanel();
+		bkgImg = new ImageIcon("images/institution_salary.png");
 		institutionID = new JTextField();
 		institutionName = new JTextField();
 		institutionfunction = new JTextArea(3, 1);
