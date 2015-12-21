@@ -1,7 +1,9 @@
 package src.presentation.loginui;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -12,8 +14,8 @@ import javax.swing.JTextField;
 
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.loginbl.LogInController;
-import src.businesslogic.userbl.ResultMessage;
 import src.businesslogic.userbl.User;
+import src.enums.ResultMessage;
 import src.presentation.mainui.MainFrame;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;

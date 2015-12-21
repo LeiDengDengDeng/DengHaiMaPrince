@@ -7,7 +7,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import src.businesslogic.logbl.Log;
-import src.businesslogic.userbl.Position;
 import src.businesslogic.userbl.User;
 import src.businesslogicservice.staffmanageblservice.StaffManageBLService;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;

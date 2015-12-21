@@ -1,4 +1,4 @@
-package src.businesslogicservice.userblservice;
+package src.businesslogicservice.staffmanageblservice;
 
 import src.vo.SalaryVO;
 

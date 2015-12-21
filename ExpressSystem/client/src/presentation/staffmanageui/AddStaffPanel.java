@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -25,7 +26,7 @@ public class AddStaffPanel extends JPanel{
 	static final int HEIGHT = 601;
 	static final int x = 95;
 	static final int y = 64;
-	static final int w = 170;
+	static final int w = 130;
 	static final int h = 16;
 	static final int linesp = 49;
 	static final int columnsp = 250;
@@ -64,6 +65,11 @@ public class AddStaffPanel extends JPanel{
 	
 	public AddStaffPanel(){
 		componentsInstantiation();
+		
+		MyButtonActionListener listener = new MyButtonActionListener(this);
+        confirmButton.addActionListener(listener);
+        cancelButton.addActionListener(listener);
+        
 		initial();
 	}
 	
@@ -82,10 +88,11 @@ public class AddStaffPanel extends JPanel{
 		ID.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
 		account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
 		password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
-		city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3, 30, h);
+		city.setBounds(coordinate_X + x + 10, coordinate_Y + y + linesp * 3 - 3, 60, h + 8);
 		businessHall.setBounds(coordinate_X + x + columnsp + 13, coordinate_Y + y + linesp * 3, w, h);
 		
-		ArrayList<String> citys = intermediateCenter.getcity();
+
+		city.setModel(new DefaultComboBoxModel<String>(getCitys()));
 		
 		this.add(confirmButton);
 		this.add(cancelButton);
@@ -120,6 +127,20 @@ public class AddStaffPanel extends JPanel{
 		intermediateCenter = new IntermediateCenter(null);
 	}
 	
+	
+	//获得城市列表
+	public String[] getCitys(){
+		ArrayList<String> citys = intermediateCenter.getcity();
+		String[] cityList = new String[citys.size() + 1];
+		cityList[0] = "无";
+		for(int i = 0;i < citys.size();i++)
+			cityList[i + 1] = citys.get(i);
+		return cityList;
+		
+	}
+	
+	
+	//获得填写的信息
 	public void getInfo(){
 		staffID = Long.parseLong(ID.getText());
 		staffAccount = Long.parseLong(account.getText());
@@ -132,24 +153,26 @@ public class AddStaffPanel extends JPanel{
 	}
 	
 	
-	  class StaffInfoActionListener implements ActionListener {
+	  class MyButtonActionListener implements ActionListener {
 	       AddStaffPanel container;
 		       
-	        public StaffInfoActionListener(AddStaffPanel container) {
+	        public MyButtonActionListener(AddStaffPanel container) {
 	            this.container = container;
 	        }
 
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		           if(e.getSource() == confirmButton){
-		        	   getInfo();
 		        	   if(ID.getText().length() == 0 || account.getText().length() == 0
 		        			   || password.getText().length() == 0 || name.getText().length() == 0
 		        			   || position.getText().length() == 0){
 		        		   TipDialog tipDialog = new TipDialog(null, "", true, "请完整填写！", false);
 		           		}else{
+		           			getInfo();
 		           			if(businessHall.getText().length() == 0)
 		           				staffbusinessHall = null;
+		           			if(city.getSelectedItem().equals("无"))
+		           				staffCity = null;
 		           			controller.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
 		           					staffName, staffPosition, null, staffCity, staffbusinessHall));
 		           		}

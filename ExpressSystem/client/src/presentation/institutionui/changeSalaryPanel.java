@@ -6,14 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import src.businesslogic.loginbl.LogIn;
-import src.businesslogic.userbl.Salary;
+import src.businesslogic.staffmanagebl.Salary;
 import src.businesslogic.userbl.User;
-import src.presentation.userui.ChangePasswordPanel;
-import src.presentation.userui.UserPanel;
 import src.presentation.util.MyButton;
 import src.vo.SalaryVO;
 import src.vo.UserVO;

@@ -1,6 +1,6 @@
 package src.businesslogicservice.loginblservice;
 
-import src.businesslogic.userbl.ResultMessage;
+import src.enums.ResultMessage;
 import src.vo.UserVO;
 
 /**

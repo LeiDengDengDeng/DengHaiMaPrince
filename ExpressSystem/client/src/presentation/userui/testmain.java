@@ -13,6 +13,7 @@ import org.junit.internal.runners.TestMethod;
 import src.presentation.institutionui.Institution_InfoPanel;
 import src.presentation.institutionui.changeSalaryPanel;
 import src.presentation.mainui.MainFrame;
+import src.presentation.staffmanageui.AddStaffPanel;
 import src.presentation.staffmanageui.StaffListPanel;
 import src.presentation.staffmanageui.Staff_InfoPanel;
 import src.presentation.staffmanageui.changeAuthorityPanel;
@@ -59,10 +60,11 @@ public class testmain extends JFrame{
 //						"张三", "管理员", null, null, null)));
 //		test.setContentPane(new UserPanel(new UserVO(100000, 100000, "aaaaaa"
 //				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
-		test.setContentPane(new ChangePasswordPanel(new UserVO(100000, 100000, "aaaaaa"
-				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
+//		test.setContentPane(new ChangePasswordPanel(new UserVO(100000, 100000, "aaaaaa"
+//				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
 //		test.setContentPane(new changeSalaryPanel(new UserVO(100000, 100000, "aaaaaa"
 //				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
+		test.setContentPane(new AddStaffPanel());
 //		ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
 //		for (int i = 0; i < 20; i++)
 //			userVOs.add(new UserVO(100000, 100000, "aaaaaa"

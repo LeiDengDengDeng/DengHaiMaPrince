@@ -1,8 +1,8 @@
-package src.businesslogic.userbl;
+package src.businesslogic.staffmanagebl;
 
 import java.util.ArrayList;
 
-import src.businesslogicservice.userblservice.PositionBLService;
+import src.businesslogicservice.staffmanageblservice.PositionBLService;
 import src.businesslogicservice.userblservice.UserBLService;
 import src.vo.StaffInfoVO;
 import src.vo.UserVO;
