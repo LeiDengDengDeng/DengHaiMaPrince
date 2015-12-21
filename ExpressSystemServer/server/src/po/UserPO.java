@@ -29,6 +29,7 @@ public class UserPO implements Serializable{
 		this.myPassword = myPassword;
 		this.personalName = personalName;
 		this.myPosition = myPosition;
+		this.authority = authority;
 		this.salary = new SalaryPO(0);
 		this.city = null;
 		this.businessHall = null;

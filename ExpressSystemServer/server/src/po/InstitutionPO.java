@@ -15,8 +15,8 @@ public class InstitutionPO implements Serializable{
 		// TODO Auto-generated constructor stub
 		this.InstitutionName = InstitutionName;
 		this.InstitutionID = InstitutionID;
-		this.staff = null;
 		this.function = function;
+		this.staff = null;
 		
 	}
 	

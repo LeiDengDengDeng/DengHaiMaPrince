@@ -64,7 +64,8 @@ public class testmain extends JFrame{
 //				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
 //		test.setContentPane(new changeSalaryPanel(new UserVO(100000, 100000, "aaaaaa"
 //				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
-		test.setContentPane(new AddStaffPanel());
+//		test.setContentPane(new AddStaffPanel());
+		
 //		ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
 //		for (int i = 0; i < 20; i++)
 //			userVOs.add(new UserVO(100000, 100000, "aaaaaa"
@@ -72,14 +73,14 @@ public class testmain extends JFrame{
 //		test.setContentPane(new Institution_InfoPanel(new InstitutionVO("营业厅",
 //				100000, userVOs, "负责中转与接收")));
 		
-//		ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
-//		for(int i = 0;i < 50; i++)
-//			staffInfoVOs.add(new StaffInfoVO(100000, 100000, "aaaaaa",
-//					"张三", "管理员", null, null, null));
-//		StaffListPanel staffListPanel = new StaffListPanel(staffInfoVOs);
+		ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
+		for(int i = 0;i < 50; i++)
+			staffInfoVOs.add(new StaffInfoVO(100000, 100000, "aaaaaa",
+					"张三", "管理员", null, null, null));
+		StaffListPanel staffListPanel = new StaffListPanel(staffInfoVOs);
+		test.setContentPane(staffListPanel);
 //		test.setContentPane(new changeAuthorityPanel());
 		
-//		test.setContentPane(staffListPanel);
 		test.setVisible(true);
 		
 	
