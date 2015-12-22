@@ -1,19 +1,15 @@
 package src.presentation.sheetui;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import src.businesslogic.util.CommonUtil;
 import src.businesslogicservice.sheetblservice.SheetBLService;
-import src.presentation.mainui.MainFrame;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyLabel;
@@ -54,6 +50,10 @@ public class PaymentSheetPanel extends SheetPanel {
         String[] detail = {"租金", "运费", "人员工资", "奖金"};
         detailComboBox = new JComboBox(detail);
         accountComboBox = new JComboBox(getAccount());
+        if(getAccount().length == 0){
+        	new TipDialog(null, "", true, "无可用银行账户", false);
+        	return ;
+        }
         name = new MyLabel(accountInfo[0][1]);
         accountMoney = new MyLabel(accountInfo[0][2]);
         priceField = new JTextField();
@@ -125,7 +125,7 @@ public class PaymentSheetPanel extends SheetPanel {
         if(paymentSheetBL.add(vo))
              new TipDialog(null, "", true, "单据提交成功", true);
         else
-            new TipDialog(null, "", true, "单据提交失败", false);
+            new TipDialog(null, "", true, "账户余额不足", false);
         PanelController.refreshPresentPanel();
         return true;
     }

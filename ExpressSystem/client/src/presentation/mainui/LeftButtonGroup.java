@@ -26,8 +26,7 @@ public class LeftButtonGroup {
 	// 权限10 车辆司机信息管理对应2个功能
 	String[] carAndDriverPaths = { "car", "driver" };
 
-	public LeftButtonGroup(MainFrame frame, ArrayList<Integer> authority) {
-		this.frame = frame;
+	public LeftButtonGroup(ArrayList<Integer> authority) {
 		this.authority = authority;
 		init();
 	}
@@ -97,7 +96,7 @@ public class LeftButtonGroup {
 			for (MyButton b : leftButtons)
 				b.unclicked();
 			((MyButton) e.getSource()).clicked();
-			frame.setPresentPanel(num);
+			PanelController.setPresentPanel(num);
 		}
 	}
 
