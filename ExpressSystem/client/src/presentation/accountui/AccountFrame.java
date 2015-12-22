@@ -37,7 +37,7 @@ public class AccountFrame {
 	// …Ë÷√ƒ¨»œpanel
 	panelbg.setLayout(null);
 	JLabel bg=new JLabel(IMG);
-	bg.setBounds(0, 0, WIDTH, HEIGHT);
+	bg.setBounds(0, 0, WIDTH, HEIGHT); 
 	
 	panelbg.add(panel);
 	AccountFrame.setContentPane(panelbg);

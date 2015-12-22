@@ -1,20 +1,20 @@
 package src.presentation.institutionui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.List;
-import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.presentation.staffmanageui.StaffGroup;
+import src.presentation.staffmanageui.StaffListPanel;
 import src.presentation.util.MyButton;
 import src.vo.InstitutionVO;
+import src.vo.UserVO;
 
 public class Institution_InfoPanel extends JPanel{
 	
@@ -27,6 +27,7 @@ public class Institution_InfoPanel extends JPanel{
 	static final int linesp = 48;
 	static final int coordinate_X = 230;
 	static final int coordinate_Y = 100;
+	private static final int Line_Num = 6;
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
@@ -41,14 +42,19 @@ public class Institution_InfoPanel extends JPanel{
 	JLabel imageLabel;
     ImageIcon bkgImg;
 	
-    StaffGroup staffGroup;
-	MyButton confirmButton;
+    UserGroup userGroup;
+
+    MyButton confirmButton;
 	MyButton deleteButton;
+	MyButton previousPageButton;
+    MyButton nextPageButton;
+    MyButton searchButton;
+    
+    JComboBox pageComboBox;
 	
 	private JLabel institutionID;
 	private JLabel institutionName;
 	private JLabel institutionfunction;
-	private JComboBox pageComboBox;
 	
 	
 	public Institution_InfoPanel(InstitutionVO institutionVO){
@@ -57,6 +63,18 @@ public class Institution_InfoPanel extends JPanel{
 		getInstitutionInfo(institutionVO);
 		initial();
 		
+		setUsers(institutionVO.getStaff());
+    	PageButtonActionListener listener = new PageButtonActionListener(this);
+        previousPageButton.addActionListener(listener);
+        previousPageButton.setVisible(false);
+        nextPageButton.addActionListener(listener);
+        pageComboBox.setBounds(coordinate_X + 474, coordinate_Y + 491, 40, 20);
+        setPageComboBox();
+        pageComboBox.addActionListener(listener);
+        
+        addUserLabel();
+        
+		
 	}
 	
 	public void initial(){
@@ -64,11 +82,18 @@ public class Institution_InfoPanel extends JPanel{
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 		
+        
+ 
+        
         this.add(institutionID);
         this.add(institutionName);
         this.add(institutionfunction);
         this.add(confirmButton);
         this.add(deleteButton);
+        this.add(pageComboBox);
+        this.add(nextPageButton);
+        this.add(previousPageButton);
+        this.add(searchButton);
         this.add(imageLabel);
         this.setLayout(null);
         this.setOpaque(false);
@@ -85,7 +110,12 @@ public class Institution_InfoPanel extends JPanel{
 		pageComboBox = new JComboBox();
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 480, coordinate_Y + 220,false);
 		deleteButton = new MyButton(DELETE_ICON, DELETEENTER_ICON, coordinate_X + 400, coordinate_Y + 220,false);
-		
+	    previousPageButton = new MyButton(new ImageIcon("images/previousPage_Red.png"), new ImageIcon
+	                ("images/previousPageClicked_Red.png"), coordinate_X + 250, coordinate_Y + 490);
+	    nextPageButton = new MyButton(new ImageIcon("images/nextPage_Red.png"), new ImageIcon
+	                ("images/nextPageClicked_Red.png"), coordinate_X + 320, coordinate_Y + 490);
+	    searchButton = new MyButton(new ImageIcon("images/search.png"), new ImageIcon
+                ("images/searchClicked.png"), coordinate_X + 350, coordinate_Y + 330);
 		
 	}
 	public void getInstitutionInfo(InstitutionVO institutionVO){
@@ -105,5 +135,71 @@ public class Institution_InfoPanel extends JPanel{
 		institutionfunction.setForeground(Color.WHITE);
 		
 	}
+	public void setUsers(ArrayList<UserVO> Staffs){
+		userGroup = new UserGroup(Staffs, Line_Num, coordinate_X + 50, coordinate_Y + 330);
+		
+	}
+	private void setPageComboBox() {
+	     for (int i = 1; i <= institutionVO.getStaff().size() / Line_Num + 1; i++)
+	          pageComboBox.addItem(i);
+	    }
+
+	private void removeUserLabel() {
+	   for (int m = 0; m < userGroup.getLabel().length; m++) {
+	        for (int n = 0; n < 3; n++) {
+	            this.remove(userGroup.getLabel()[m][n]);
+	        }
+	    }
+	    this.remove(imageLabel);
+	}
+   private void addUserLabel() {
+        for (int m = 0; m < userGroup.getLabel().length; m++) {
+            for (int n = 0; n < 3; n++) {
+                this.add(userGroup.getLabel()[m][n], new Integer(Integer.MAX_VALUE));
+            }
+        }
+        this.add(imageLabel);
+    }
+   
+
+   class PageButtonActionListener implements ActionListener {
+	   Institution_InfoPanel container;
+	       
+        public PageButtonActionListener(Institution_InfoPanel container) {
+            this.container = container;
+        }
+
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            int pageNum = (int) pageComboBox.getSelectedItem();
+
+	            // Button部分
+	            if (e.getSource() == previousPageButton) {
+	                pageComboBox.setSelectedItem(pageNum - 1);
+	            } else if (e.getSource() == nextPageButton) {
+	                pageComboBox.setSelectedItem(pageNum + 1);
+	            }
+	            pageNum = (int) pageComboBox.getSelectedItem();
+
+	            // Button与JComboBox公用的监听部分
+	            container.removeUserLabel();
+	            userGroup.setPage((int) pageComboBox.getSelectedItem());
+	            container.addUserLabel();
+
+	            // 最后一页和第一页需处理Button的可视情况
+	            if (pageNum == 1) {
+	                container.previousPageButton.setVisible(false);
+	                container.nextPageButton.setVisible(true);
+	            } else if (pageNum == container.institutionVO.getStaff().size() / Line_Num + 1) {
+	                container.nextPageButton.setVisible(false);
+//	                container.previousPageButton.setVisible(true);
+	            } else {
+	                container.previousPageButton.setVisible(true);
+	                container.nextPageButton.setVisible(true);
+	            }
+
+	            container.repaint();
+	        }
+	    }
 
 }

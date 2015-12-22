@@ -39,21 +39,21 @@ public class FormulateConstantPanel extends JPanel {
         String[] columnNames = {"城市", "距离\n(公里km)", "价格\n(元RMB/公里km)"};
 
 //        ArrayList<SheetVO> constantVOs = constantbl.findVOs(FindingType.ALL);
-        ArrayList<SheetVO> constantVOs = new ArrayList<>();
-        ConstantVO c1 = new ConstantVO(10,20,"南京-长沙");
-        ConstantVO c2 = new ConstantVO(20,10,"北京-长沙");
-        ConstantVO c3 = new ConstantVO(30,5,"南京-北京");
-        constantVOs.add(c1);
-        constantVOs.add(c2);
-        constantVOs.add(c3);
-        String[][] data = new String[constantVOs.size()][3];
-        for (int i = 0; i < constantVOs.size(); i++) {
-            data[i][0] = ((ConstantVO) (constantVOs.get(i))).getCity();
-            data[i][1] = ((ConstantVO) (constantVOs.get(i))).getDistant() + "";
-            data[i][2] = ((ConstantVO) (constantVOs.get(i))).getPrice() + "";
-        }
-
-        table = new JTable(data, columnNames);
+//        ArrayList<SheetVO> constantVOs = new ArrayList<>();
+//        ConstantVO c1 = new ConstantVO(10,20,"南京-长沙");
+//        ConstantVO c2 = new ConstantVO(20,10,"北京-长沙");
+//        ConstantVO c3 = new ConstantVO(30,5,"南京-北京");
+//        constantVOs.add(c1);
+//        constantVOs.add(c2);
+//        constantVOs.add(c3);
+//        String[][] data = new String[constantVOs.size()][3];
+//        for (int i = 0; i < constantVOs.size(); i++) {
+//            data[i][0] = ((ConstantVO) (constantVOs.get(i))).getCity();
+//            data[i][1] = ((ConstantVO) (constantVOs.get(i))).getDistant() + "";
+//            data[i][2] = ((ConstantVO) (constantVOs.get(i))).getPrice() + "";
+//        }
+//
+//        table = new JTable(data, columnNames);
         scrollPane = new JScrollPane(table);
         scrollPane.setBounds(0,0,641,400);
     }

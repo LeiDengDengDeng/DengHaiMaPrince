@@ -1,8 +1,8 @@
-package src.businesslogic.userbl;
+package src.businesslogic.staffmanagebl;
 
 import java.util.ArrayList;
 
-import src.businesslogicservice.userblservice.PositionBLService;
+import src.businesslogicservice.staffmanageblservice.PositionBLService;
 import src.businesslogicservice.userblservice.UserBLService;
 import src.vo.StaffInfoVO;
 import src.vo.UserVO;
@@ -20,43 +20,38 @@ public class Position implements PositionBLService{
 		// TODO Auto-generated method stub
 		ArrayList<Integer> authority = new ArrayList<Integer>();
 //		System.out.println(staff.getPosition());
-		switch (staff.getPosition()) {
-		case "总经理":
+		if(staff.getPosition().equals("总经理")){
 			authority.add(12);
 			authority.add(13);
 			authority.add(14);
-			break;
-		case "管理员":
+			authority.add(19);
+			authority.add(20);
+		}else if(staff.getPosition().equals("管理员")){
 			authority.add(1);
 			authority.add(18);
-			break;
-		case "财务人员":
+		}else if(staff.getPosition().equals("财务人员")){
 			authority.add(11);
+			authority.add(14);
 			authority.add(15);
 			authority.add(16);
 			authority.add(17);
-			break;
-		case "中转中心仓库管理员":
+			authority.add(19);
+		}else if(staff.getPosition().equals("中转中心仓库管理员")){
 			authority.add(9);
-			break;
-		case "中转中心业务员":
+		}else if(staff.getPosition().equals("中转中心业务员")){
 			authority.add(2);
 			authority.add(6);
-			break;
-		case "营业厅业务员":
+		}else if(staff.getPosition().equals("营业厅业务员")){
 			authority.add(3);
 			authority.add(4);
 			authority.add(5);
 			authority.add(10);
-			break;
-		case "快递员":
+		}else if(staff.getPosition().equals("快递员")){
 			authority.add(7);
 			authority.add(8);
-			break;
-		default:
-			break;
+		}else{
+
 		}
-		
 		return authority;
 	}
 	

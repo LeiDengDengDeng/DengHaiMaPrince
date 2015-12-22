@@ -21,7 +21,7 @@ public class CommodityData_Stub implements CommodityDataService{
 		local.add("在扬州");
 		GoodsPO gpo = new GoodsPO(local, 1, 1.0, 1.0, 1.0, 1.0, 1.0, 
 				"航空母舰", GoodsType.ECONOMIC, GoodsType.WOODPACKAGE, 
-				0000000000000000, 20151025, "南京", GoodsType.RAIL, 001, 
+				"0000000000000000", "20151025", "南京", GoodsType.RAIL, 001, 
 				001, 001, 001, "0250201510250000000", 
 				"0250201510250000000");
 		return gpo;

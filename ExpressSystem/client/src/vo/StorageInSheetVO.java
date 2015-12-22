@@ -3,10 +3,14 @@ package src.vo;
 import java.util.ArrayList;
 
 import src.enums.GoodsType;
+import src.enums.SheetState;
 import src.enums.SheetType;
 
 public class StorageInSheetVO implements SheetVO{
 	SheetType type = SheetType.STORAGE_IN_SHEET;
+	SheetState state;
+	String builder;
+	long ID;
 
 	ArrayList<String> goodsNameList;//内件品名
 	ArrayList<Long> expressNumberList;//快递编号
@@ -100,7 +104,31 @@ public class StorageInSheetVO implements SheetVO{
 		this.seatNumberList = seatNumberList;
 	}
 
+	public String getTime() {
+		return inTime+"";
+	}
+
+	public String getBuilder() {
+		return builder;
+	}
+
 	@Override
+	public void setID(long ID) {
+		this.ID = ID;
+	}
+
+	public long getID() {
+		return ID;
+	}
+
+	public void setState(SheetState state) {
+		this.state = state;
+	}
+
+	public SheetState getState() {
+		return state;
+	}
+
 	public SheetType getType() {
 		return type;
 	}

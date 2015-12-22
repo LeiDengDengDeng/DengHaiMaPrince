@@ -27,7 +27,7 @@ public class OrderSheet extends Sheet {
     }
 
     public SheetVO generateVO(SheetPO po) {
-        OrderSheetVO vo = new OrderSheetVO(
+        OrderSheetVO vo = new OrderSheetVO(po.getBuilder(), po.getTime(),
                 ((OrderSheetPO) po).getCourierNumber(),
                 ((OrderSheetPO) po).getSenderName(),
                 ((OrderSheetPO) po).getSenderAddress(),
@@ -40,12 +40,13 @@ public class OrderSheet extends Sheet {
                 ((OrderSheetPO) po).getReceiverTelNum(),
                 ((OrderSheetPO) po).getReceiverMobNum());
         vo.setReceivingInformation(((OrderSheetPO) po).getActualReceiverName(),
-                ((OrderSheetPO) po).getRecevingState(), ((OrderSheetPO) po).getTime());
+                ((OrderSheetPO) po).getRecevingState(), ((OrderSheetPO) po).getReceivingTime());
         return vo;
     }
 
     public SheetPO generatePO(SheetVO vo) {
         OrderSheetPO po = new OrderSheetPO(
+                vo.getBuilder(), vo.getTime(),
                 ((OrderSheetVO) vo).getCourierNumber(),
                 ((OrderSheetVO) vo).getSenderName(),
                 ((OrderSheetVO) vo).getSenderAddress(),
@@ -57,8 +58,9 @@ public class OrderSheet extends Sheet {
                 ((OrderSheetVO) vo).getReceiverOrganization(),
                 ((OrderSheetVO) vo).getReceiverTelNum(),
                 ((OrderSheetVO) vo).getReceiverMobNum());
+
         po.setReceivingInformation(((OrderSheetVO) vo).getActualReceiverName(),
-                ((OrderSheetVO) vo).getRecevingState(), ((OrderSheetVO) vo).getTime());
+                ((OrderSheetVO) vo).getRecevingState(), ((OrderSheetVO) vo).getReceivingTime());
 
         return po;
     }

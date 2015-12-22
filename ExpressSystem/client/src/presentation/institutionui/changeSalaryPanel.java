@@ -6,15 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import src.businesslogic.loginbl.LogIn;
-import src.businesslogic.userbl.Salary;
+import src.businesslogic.staffmanagebl.Salary;
 import src.businesslogic.userbl.User;
-import src.presentation.userui.ChangePasswordPanel;
-import src.presentation.userui.UserPanel;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
 import src.vo.SalaryVO;
 import src.vo.UserVO;
 
@@ -83,9 +81,9 @@ public class changeSalaryPanel extends JPanel{
 	public void componentsInstantiation(){
 		bkgImg = new ImageIcon("images/institution_salary.png");
 		imageLabel = new JLabel();
-		basicField = new JTextField();
-		eachPayField = new JTextField();
-		commissionField = new JTextField();
+		basicField = new JTextField(String.valueOf(userVO.getSalary().getBasic()));
+		eachPayField = new JTextField(String.valueOf(userVO.getSalary().getEachPay()));
+		commissionField = new JTextField(String.valueOf(userVO.getSalary().getCommission()));
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 350, coordinate_Y + 210,false);
 		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 450, coordinate_Y + 210,false);
 		
@@ -100,7 +98,7 @@ public class changeSalaryPanel extends JPanel{
 		basicField.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
 		eachPayField.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
 		commissionField.setBounds(coordinate_X + x + 20, coordinate_Y + y + linesp * 2, w - 20, h);
-		
+
 		
 		this.add(basicField);
 		this.add(eachPayField);
@@ -128,12 +126,16 @@ public class changeSalaryPanel extends JPanel{
 		        		basic = Integer.parseInt(basicField.getText());
 		        		eachPay = Integer.parseInt(eachPayField.getText());
 		        		commission = Integer.parseInt(commissionField.getText());
-		        		
-		        		SalaryVO salaryVO = new SalaryVO(basic);
-		        		salaryVO.setEachPay(eachPay);
-		        		salaryVO.setCommission(commission);
-		        		salary.changeSalary(userVO.getpersonalID(), salaryVO);
-
+//		        		System.out.println(basic + " " + eachPay + " " + commission);
+		        		if(commission < 0 || commission > 100){
+		        			TipDialog tipDialog = new TipDialog(null, "", true,
+									"Ìá³É·¶Î§Îª0¡ª¡ª100£¡", false);
+		        		}else{
+		        			SalaryVO salaryVO = new SalaryVO(basic);
+		        			salaryVO.setEachPay(eachPay);
+		        			salaryVO.setCommission(commission);
+		        			salary.changeSalary(userVO.getpersonalID(), salaryVO);
+		        		}
 		        	}
 		        	container.repaint();
 		        }

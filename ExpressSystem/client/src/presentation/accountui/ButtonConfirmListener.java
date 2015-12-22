@@ -4,6 +4,7 @@ import java.awt.TextField;
 import java.awt.event.MouseEvent;
 
 import src.businesslogic.util.CommonUtil;
+import src.presentation.mainui.PanelController;
 
 public class ButtonConfirmListener extends AccountMouseListener {
 	TextField textFieldName;
@@ -26,7 +27,9 @@ public class ButtonConfirmListener extends AccountMouseListener {
 		String num = textFieldNum.getText();
 		if ((name.length() != 0) && (CommonUtil.isValidNumberString(num, 19))
 				&& (textFieldAmount.getText().length() != 0)) {
-			double amount = Double.parseDouble(textFieldAmount.getText());
+			
+			double amount=Double.parseDouble(textFieldAmount.getText());
+			
 			if(panel.accountBL.addAccount(name, num, amount)){
 				//成功弹窗
 			}
@@ -37,16 +40,7 @@ public class ButtonConfirmListener extends AccountMouseListener {
 		else{
 			//信息错误弹窗
 		}
-		panel.remove(textFieldName);
-		panel.remove(textFieldNum);
-		panel.remove(textFieldAmount);
-		panel.remove(buttonConfirm);
-		panel.remove(buttonConfirm.listener.buttonCancel);
-		panel.remove(panel.formList.get(panel.formList.size() - 1));
-		panel.remove(buttonConfirm.buttonAdd);
-		panel.remove(buttonConfirm.textAdd);
-		panel.drawAccount();
-		panel.repaint();
+		PanelController.refreshPresentPanel();
 
 	}
 

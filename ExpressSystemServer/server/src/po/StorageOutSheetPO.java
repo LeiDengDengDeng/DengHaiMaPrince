@@ -18,7 +18,9 @@ public class StorageOutSheetPO implements SheetPO {
 	private ArrayList<Integer> transportFormList;//装运形式
 	private ArrayList<Long> transferNumberList;//中转单编号
 	private ArrayList<Long> transportNumberList;//汽运编号
-	
+
+	String builder;
+	String time;
 	private long ID;
 	private SheetType type = SheetType.STORAGE_OUT_SHEET;
 	private SheetState state = SheetState.NOT_EXAMINED;
@@ -110,6 +112,16 @@ public class StorageOutSheetPO implements SheetPO {
 	@Override
 	public SheetState getSheetState() {
 		return state;
+	}
+
+	@Override
+	public String getBuilder() {
+		return builder;
+	}
+
+	@Override
+	public String getTime() {
+		return time;
 	}
 
 }

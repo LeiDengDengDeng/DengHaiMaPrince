@@ -150,7 +150,7 @@ public class User implements UserBLService{
 	
 //	public static void main(String[] args) {
 //		User user = new User(null);
-//		System.out.println(user.getPersonalInfo(100000).getAuthority().size());
+//		System.out.println(user.getPersonalInfo(100000).getSalary().getBasic());
 //		user.changeInfo(new UserVO(100000, 100000, "123456", "Îå°¢¸ç", "¿ìµÝÔ±",null,new SalaryVO(0),null,null));
 //	}
 

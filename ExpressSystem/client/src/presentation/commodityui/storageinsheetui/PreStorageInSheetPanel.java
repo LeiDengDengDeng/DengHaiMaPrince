@@ -20,13 +20,17 @@ import javax.swing.table.TableColumn;
 
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.sheetbl.OrderSheet;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.businesslogicservice.logblservice.LogBLService;
+import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
 import src.presentation.accountui.AccountPanel;
+import src.presentation.beginInfoui.BeginInfoPanel;
 import src.presentation.logui.CheckLogPanel;
 import src.presentation.sheetui.DateChooserJButton;
+import src.presentation.sheetui.ReceivingSheetPanel;
 
 public class PreStorageInSheetPanel extends JPanel{
 
@@ -110,9 +114,11 @@ public class PreStorageInSheetPanel extends JPanel{
 		GoodsDataService goodsDataService = null;
 		StorageDataService storageDataService = null;
 		Log log = new Log();
-		CheckLogPanel sp = new CheckLogPanel(log);
-//		PreStorageInSheetPanel sp = new PreStorageInSheetPanel
-//				(goodsDataService, storageDataService);
+		SheetBLService orderSheetBL = new OrderSheet();
+//		CheckLogPanel sp = new CheckLogPanel(log);
+		PreStorageInSheetPanel sp = new PreStorageInSheetPanel
+				(goodsDataService, storageDataService);
+//		BeginInfoPanel sp = new BeginInfoPanel(log);
 		JFrame frame = new JFrame();
 		frame.setBounds(0, 0, w, h);
 		frame.setContentPane(sp);

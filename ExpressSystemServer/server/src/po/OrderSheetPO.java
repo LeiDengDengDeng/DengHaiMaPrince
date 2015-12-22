@@ -27,17 +27,21 @@ public class OrderSheetPO implements SheetPO {
 
     String actualReceiverName; // 实际收件人
     String recevingState; //收件状态
-    String time; // 收件时间
+    String receivingTime; // 收件时间
 
+    String time;
+    String builder;
     SheetState state = SheetState.NOT_EXAMINED;
     SheetType type = SheetType.ORDER_SHEET;
 
-    public OrderSheetPO(long courierNumber, String senderName,
+    public OrderSheetPO(String builder, String time, long courierNumber, String senderName,
                         String senderAddress, String senderOrganization,
                         String senderTelNum, String senderMobNum, String receiverName,
                         String receiverAddress, String receiverOrganization,
                         String receiverTelNum, String receiverMobNum) {
         super();
+        this.builder = builder;
+        this.time = time;
         this.courierNumber = courierNumber;
         this.senderName = senderName;
         this.senderAddress = senderAddress;
@@ -54,7 +58,7 @@ public class OrderSheetPO implements SheetPO {
     public void setReceivingInformation(String actualReceiverName, String recevingState, String time) {
         this.actualReceiverName = actualReceiverName;
         this.recevingState = recevingState;
-        this.time = time;
+        this.receivingTime = time;
     }
 
     public void setID(long ID) {
@@ -113,8 +117,8 @@ public class OrderSheetPO implements SheetPO {
         return recevingState;
     }
 
-    public String getTime() {
-        return time;
+    public String getReceivingTime() {
+        return receivingTime;
     }
 
     public SheetType getType() {
@@ -137,5 +141,15 @@ public class OrderSheetPO implements SheetPO {
     public SheetState getSheetState() {
         // TODO 自动生成的方法存根
         return state;
+    }
+
+    @Override
+    public String getBuilder() {
+        return builder;
+    }
+
+    @Override
+    public String getTime() {
+        return time;
     }
 }

@@ -1,9 +1,11 @@
 package src.po;
 
+import src.enums.GoodsType;
 import src.enums.SheetState;
 import src.enums.SheetType;
 
 import java.util.ArrayList;
+
 
 public class StorageInSheetPO implements SheetPO {
 	/**
@@ -13,18 +15,20 @@ public class StorageInSheetPO implements SheetPO {
 	private ArrayList<Long> expressNumberList;//快递编号
 	private ArrayList<Long> inTimeList;//入库日期
 	private ArrayList<String> destinationList;//目的地
-	private ArrayList<Integer> areaNumberList;//区号(枚举)
+	private ArrayList<GoodsType> areaNumberList;//区号
 	private ArrayList<Integer> rowNumberList;//排号
 	private ArrayList<Integer> shelfNumberList;//架号
 	private ArrayList<Integer> seatNumberList;//位号
-	
-	SheetState state = SheetState.NOT_EXAMINED;
+
+	String builder;
+	String time;
 	private long ID;
+	SheetState state = SheetState.NOT_EXAMINED;
 	private SheetType type = SheetType.STORAGE_IN_SHEET;
 	
 	public StorageInSheetPO(ArrayList<Long> expressNumberList,
 			ArrayList<Long> inTimeList, ArrayList<String> destinationList,
-			ArrayList<Integer> areaNumberList,
+			ArrayList<GoodsType> areaNumberList,
 			ArrayList<Integer> rowNumberList,
 			ArrayList<Integer> shelfNumberList,
 			ArrayList<Integer> seatNumberList,long ID) {
@@ -63,11 +67,11 @@ public class StorageInSheetPO implements SheetPO {
 		this.destinationList = destinationList;
 	}
 
-	public ArrayList<Integer> getAreaNumberList() {
+	public ArrayList<GoodsType> getAreaNumberList() {
 		return areaNumberList;
 	}
 
-	public void setAreaNumberList(ArrayList<Integer> areaNumberList) {
+	public void setAreaNumberList(ArrayList<GoodsType> areaNumberList) {
 		this.areaNumberList = areaNumberList;
 	}
 
@@ -121,6 +125,16 @@ public class StorageInSheetPO implements SheetPO {
 		// TODO 自动生成的方法存根
 		return state;
 	}
-	
+
+	@Override
+	public String getBuilder() {
+		return builder;
+	}
+
+	@Override
+	public String getTime() {
+		return time;
+	}
+
 
 }

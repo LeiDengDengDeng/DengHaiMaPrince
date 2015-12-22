@@ -35,7 +35,7 @@ public class AccountPanel extends JPanel {
 	protected static final int font = 14;
 	Font myFont = new Font("Œ¢»Ì—≈∫⁄", Font.LAYOUT_NO_LIMIT_CONTEXT, font);
 	protected static final int x = 195;// panel Œª÷√x
-	protected static final int y = 59;// panel Œª÷√y
+	protected static final int y = 90;// panel Œª÷√y
 	protected static final int w = 641;// paneløÌ
 	protected static final int h = 572;// panel∏ﬂ
 	protected static final int Word_x = 76;// word x

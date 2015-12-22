@@ -1,8 +1,8 @@
 package src.businesslogic.loginbl;
 
 import src.businesslogicservice.loginblservice.LogInBLService;
-import src.businesslogic.userbl.ResultMessage;
 import src.businesslogicservice.userblservice.UserBLService;
+import src.enums.ResultMessage;
 import src.vo.UserVO;
 
 public class LogIn implements LogInBLService{

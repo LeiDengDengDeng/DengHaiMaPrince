@@ -48,7 +48,7 @@ public class StaffListPanel extends JPanel{
     MyButton nextPageButton;
     MyButton confirmButton;
     MyButton addButton;
-    
+    MyButton searchButton;
     
     
     public StaffListPanel(ArrayList<StaffInfoVO> Staffs){
@@ -77,7 +77,8 @@ public class StaffListPanel extends JPanel{
 				new ImageIcon("images/addButton_Enter.png"), coordinate_X + 400, coordinate_Y + 450, false);
 		confirmButton = new MyButton(new ImageIcon("images/user_InfoConfirm.png"),
 				new ImageIcon("images/user_InfoConfirmEnter.png"), coordinate_X + 470, coordinate_Y + 450, false);
-		
+		searchButton = new MyButton(new ImageIcon("images/search_icon.png"),
+				new ImageIcon("images/search_icon.png"), coordinate_X + 490, coordinate_Y + 30, false);
 		
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
@@ -130,6 +131,7 @@ public class StaffListPanel extends JPanel{
         this.add(previousPageButton);
         this.add(imageLabel);
         this.add(confirmButton);
+        this.add(searchButton);
         this.add(addButton);
         this.setLayout(null);
         this.setOpaque(false);

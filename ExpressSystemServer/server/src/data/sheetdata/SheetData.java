@@ -137,11 +137,11 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
             // 读出除ID相同的所有PO
             sheets = new ArrayList<SheetPO>();
             for (; ; ) {
-                if (((SheetPO) (os.readObject())).getID() == po.getID()) {
+                SheetPO temp = (SheetPO) (os.readObject());
+                if (temp.getID() == po.getID()) {
                     sheets.add(po);
-                    continue;
-                }
-                sheets.add((SheetPO) (os.readObject()));
+                } else
+                    sheets.add(temp);
             }
 
         } catch (EOFException e) {
@@ -157,7 +157,7 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 
         try {
             oos = new ObjectOutputStream(new FileOutputStream(map.get(po.getType())));
-            if (sheets.size() == 0) // ArrayList为空
+            if (sheets.size() != 0) // ArrayList为空
                 for (SheetPO sheet : sheets)
                     oos.writeObject(sheet);
 

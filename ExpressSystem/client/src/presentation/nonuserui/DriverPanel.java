@@ -182,7 +182,7 @@ public class DriverPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == checkConfirmButton){
 				DriverInfoVO dvo = null;
-				long driverId = Long.parseLong(TextFieldCheckdriverNum.getText());
+				String driverId = TextFieldCheckdriverNum.getText();
 				System.out.println("checkdriverId: " + driverId);
 				dvo = driverBL.getDriverInfo(driverId);
 			}
@@ -195,7 +195,7 @@ public class DriverPanel extends JPanel{
 //				truckBL.addTruckInfo(tvo);
 			}
 			if(e.getSource() == deleteConfirmButton){
-				long driverId = Long.parseLong(textFieldDeletedriverNum.getText());
+				String driverId = textFieldDeletedriverNum.getText();
 				System.out.println("deletedriverId: " + driverId);
 				driverBL.deleteDriverInfo(driverId);
 			}

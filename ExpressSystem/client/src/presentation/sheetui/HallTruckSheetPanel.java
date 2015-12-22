@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  * Created by dell on 2015/12/11.
  * ”√Õæ:
  */
-public class InstitutionTruckSheetPanel extends SheetPanel {
+public class HallTruckSheetPanel extends SheetPanel {
     DateChooserJButton dateChooser;
     JComboBox city;
     JComboBox institution;
@@ -33,7 +33,7 @@ public class InstitutionTruckSheetPanel extends SheetPanel {
 
     private static final int COMPONENT_HEIGHT = 23;
 
-    public InstitutionTruckSheetPanel() {
+    public HallTruckSheetPanel() {
         init();
     }
 
