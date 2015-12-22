@@ -25,6 +25,7 @@ public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
+	private static final int SMALL_BUTTON_MARGIN_TOP = 12;
 	private static final int WIDTH = 850;
 	private static final int HEIGHT = 646;
 
@@ -33,18 +34,21 @@ public class MainFrame extends JFrame {
 
 	JButton closeButton = new JButton();
 	JButton hideButton = new JButton();
+	JButton mainButton = new JButton(new ImageIcon("images/smallButton_main.png"));
+	JButton refreshButton = new JButton(new ImageIcon("images/smallButton_refresh.png"));
+	JButton setButton = new JButton(new ImageIcon("images/smallButton_setting.png"));
 	JPanel mainPanel = new JPanel();
 
 	// 头像部分
 	JLabel headImageLabel;
 	ImageIcon headIcon;
-
+	
 	JLabel background = new JLabel(new ImageIcon("images/mainFrame.png"));
 	ImageIcon closeIcon = new ImageIcon("images/close.png");
 	ImageIcon closeClickedIcon = new ImageIcon("images/closeClicked.png");
 	ImageIcon hideIcon = new ImageIcon("images/hide.png");
 	ImageIcon hideClickedIcon = new ImageIcon("images/hideClicked.png");
-
+	
 	boolean isDraging = false;
 	int frameLocationX;
 	int frameLocationY;
@@ -63,7 +67,7 @@ public class MainFrame extends JFrame {
 				hideClickedIcon, hideIcon);
 
 		closeButton.setIcon(closeIcon);
-		closeButton.setBounds(825, 10, closeIcon.getIconWidth(),
+		closeButton.setBounds(825, SMALL_BUTTON_MARGIN_TOP, closeIcon.getIconWidth(),
 				closeIcon.getIconHeight());
 		// 实现窗口关闭
 		closeButton.addActionListener(new ActionListener() {
@@ -77,7 +81,7 @@ public class MainFrame extends JFrame {
 		closeButton.setBorderPainted(false);
 
 		hideButton.setIcon(hideIcon);
-		hideButton.setBounds(800, 10, hideIcon.getIconWidth(),
+		hideButton.setBounds(800, SMALL_BUTTON_MARGIN_TOP, hideIcon.getIconWidth(),
 				hideIcon.getIconHeight());
 		// 实现窗口隐藏
 		hideButton.addActionListener(new ActionListener() {
@@ -89,6 +93,21 @@ public class MainFrame extends JFrame {
 		hideButton.addMouseListener(hideMouseListener);
 		hideButton.setContentAreaFilled(false);
 		hideButton.setBorderPainted(false);
+		
+		mainButton.setBounds(200, SMALL_BUTTON_MARGIN_TOP, 25, 25);
+		mainButton.setContentAreaFilled(false);
+		mainButton.setBorderPainted(false);
+		refreshButton.setBounds(240, SMALL_BUTTON_MARGIN_TOP, 25, 25);
+		refreshButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelController.refreshPresentPanel();
+			}
+		});
+		refreshButton.setContentAreaFilled(false);
+		refreshButton.setBorderPainted(false);
+		setButton.setBounds(400, SMALL_BUTTON_MARGIN_TOP, 25, 25);
+		setButton.setContentAreaFilled(false);
+		setButton.setBorderPainted(false);
 
 		background.setBounds(0, 0, WIDTH, HEIGHT);
 
@@ -136,6 +155,9 @@ public class MainFrame extends JFrame {
 		for (MyButton e : leftButtonGroup.getLeftButtons())
 			this.add(e);
 		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
+		this.add(setButton);
+		this.add(mainButton);
+		this.add(refreshButton);
 		this.add(closeButton);
 		this.add(hideButton);
 		this.add(headImageLabel);
@@ -148,9 +170,9 @@ public class MainFrame extends JFrame {
 		return this;
 	}
 
-	public void setPresentPanel(int i) {
-		PanelController.setPresentPanel(i);
-	}
+//	public void setPresentPanel(int i) {
+//		PanelController.setPresentPanel(i);
+//	}
 
 	public void setAuthority(ArrayList<Integer> authority) {
 		System.out.println("----authority----");
@@ -158,12 +180,8 @@ public class MainFrame extends JFrame {
 			System.out.print(i + " ");
 		System.out.println("\n------over------");
 		this.authority = authority;
-		leftButtonGroup = new LeftButtonGroup(this, authority);
+		leftButtonGroup = new LeftButtonGroup(authority);
 		PanelController.frame = this;
-	}
-
-	public ArrayList<Integer> getAuthority() {
-		return authority;
 	}
 
 }
