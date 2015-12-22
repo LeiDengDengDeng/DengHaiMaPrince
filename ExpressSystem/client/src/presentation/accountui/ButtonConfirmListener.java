@@ -3,6 +3,8 @@ package src.presentation.accountui;
 import java.awt.TextField;
 import java.awt.event.MouseEvent;
 
+import src.presentation.mainui.PanelController;
+
 public class ButtonConfirmListener extends AccountMouseListener {
 	TextField textFieldName;
 	TextField textFieldNum;
@@ -24,16 +26,7 @@ public class ButtonConfirmListener extends AccountMouseListener {
 		double amount=Double.parseDouble(textFieldAmount.getText());
 
 		panel.accountBL.addAccount(name,num,amount);
-		panel.remove(textFieldName);
-		panel.remove(textFieldNum);
-		panel.remove(textFieldAmount);
-		panel.remove(buttonConfirm);
-		panel.remove(buttonConfirm.listener.buttonCancel);
-		panel.remove(panel.formList.get(panel.formList.size()-1));
-		panel.remove(buttonConfirm.buttonAdd);
-		panel.remove(buttonConfirm.textAdd);
-		panel.drawAccount();
-		panel.repaint();
+		PanelController.refreshPresentPanel();
 
 	}
 

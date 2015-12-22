@@ -20,7 +20,7 @@ public class LeftButtonGroup {
 			"---", "authority", "log", "constant", "beginInfo" };
 
 	// 权限9 库存对应5个功能
-	String[] commodityPaths = { "Alarm", "Check", "Divide", "In", "Out" };
+	String[] storagePaths = { "Alarm", "Check", "Divide", "In", "Out" };
 	// 权限2&3 接收和派件对应2个功能
 	String[] goodsPaths = { "goodsIn", "goodOut" };
 	// 权限10 车辆司机信息管理对应2个功能
@@ -41,12 +41,11 @@ public class LeftButtonGroup {
 				continue;
 
 			if (count == 9) {
-				for (int m = 0; m < commodityPaths.length; m++) {
+				for (int m = 0; m < storagePaths.length; m++) {
 					MyButton temp = new MyButton(new ImageIcon(
-							"images/left_commodity" + commodityPaths[m]
-									+ ".png"), new ImageIcon(
-							"images/left_commodity" + commodityPaths[m]
-									+ "Clicked.png"), 0,
+							"images/left_storage" + storagePaths[m] + ".png"),
+							new ImageIcon("images/left_storage"
+									+ storagePaths[m] + "Clicked.png"), 0,
 							200 + leftButtons.size() * 44, true);
 					leftButtons.add(temp);
 					temp.addActionListener(new LeftButtonListener(count));
@@ -95,10 +94,10 @@ public class LeftButtonGroup {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// for (MyButton b : leftButtons)
-			// b.unclicked();
-			// ((MyButton) e.getSource()).clicked();
-			// frame.setPresentPanel(num);
+			for (MyButton b : leftButtons)
+				b.unclicked();
+			((MyButton) e.getSource()).clicked();
+			frame.setPresentPanel(num);
 		}
 	}
 
