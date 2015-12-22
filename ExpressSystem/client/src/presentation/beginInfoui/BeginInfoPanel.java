@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import src.businesslogic.beginInfobl.BeginInfoBLService_Stub;
+import src.businesslogic.beginInfobl.BeginInfo;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
 import src.presentation.util.TipDialog;
@@ -63,7 +63,7 @@ public class BeginInfoPanel extends JPanel {
 	Log log;
 
 	public BeginInfoPanel(Log log) {
-		beginInfoBL=new BeginInfoBLService_Stub(log);
+		beginInfoBL=new BeginInfo(log);
 		this.setLayout(null);
 		this.log = log;
 		this.setBounds(x, y, IMG_BG.getIconWidth(), IMG_BG.getIconHeight());

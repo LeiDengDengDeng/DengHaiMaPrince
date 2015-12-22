@@ -18,12 +18,15 @@ public abstract class SubPanel extends JPanel {
 	protected Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, font);
 	final ImageIcon buttonIcon = new ImageIcon("images/account_add.png");
 	final ImageIcon buttonIconEnter = new ImageIcon("images/account_addEnter.png");
+	static final ImageIcon check = new ImageIcon("images/check_icon.png");
+	static final ImageIcon error = new ImageIcon("images/error_icon.png");
 	protected SubPanel(ImageIcon IMG) {
 		this.setLayout(null);
 		this.setOpaque(false);
 		this.IMG=IMG;
 		this.setBounds(0, 0, IMG.getIconWidth(), IMG.getIconHeight());
 	}
+	public abstract SubPanel getPanel();
 	public abstract ArrayList<TextField[]> getArrayList();
 	public abstract ArrayList<JComboBox<String>> getJComBox();
 	public abstract ImageIcon getImageIcon();
@@ -64,9 +67,12 @@ public abstract class SubPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
+				if(i<7){
 				i++;
 				drawCom(i);
 				((JButton)e.getSource()).setLocation(((JButton)e.getSource()).getLocation().x, ((JButton)e.getSource()).getLocation().y+30);
+				repaint();
+				}
 			}
 		});
 		return button;

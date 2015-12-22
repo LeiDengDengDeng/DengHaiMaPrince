@@ -18,15 +18,15 @@ public class AccountController {
 	
 	
 	
-	public boolean addAccount(String name,long num,double amount ){
+	public boolean addAccount(String name,String num,double amount ){
 
 		return 	account.addAccount(name, num, amount);
 		
 	}
-	public void delAccount (long num){
+	public void delAccount (String num){
 		account.delAccount(num);
 	}
-	public void modAccount(String name,long ID){
+	public void modAccount(String name,String ID){
 		account.modAccount( name, ID);
 	}
 	public ArrayList<AccountVO>  getAccountList(){

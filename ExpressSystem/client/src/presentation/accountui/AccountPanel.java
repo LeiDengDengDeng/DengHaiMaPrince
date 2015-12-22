@@ -86,7 +86,7 @@ public class AccountPanel extends JPanel {
 			accountName.setForeground(Color.WHITE);
 			this.nameList.add(accountName);
 			// Num
-			String accountNumber = Long.toString(accounts.get(i).getID());
+			String accountNumber = accounts.get(i).getID();
 			String accountNumberGood = "";
 			for (int j = 0; j < 4; j++)
 				accountNumberGood += accountNumber.substring(j * 4, (j + 1) * 4) + " ";

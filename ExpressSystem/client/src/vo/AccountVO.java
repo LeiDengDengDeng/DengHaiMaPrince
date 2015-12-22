@@ -3,9 +3,9 @@ package src.vo;
 public class AccountVO {
 
 	String name;
-	long ID;
+	String ID;
 	double amount;
-	public AccountVO(String name, long iD, double amount) {
+	public AccountVO(String name, String iD, double amount) {
 		this.name = name;
 		ID = iD;
 		this.amount = amount;
@@ -16,10 +16,10 @@ public class AccountVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public long getID() {
+	public String getID() {
 		return ID;
 	}
-	public void setID(long iD) {
+	public void setID(String iD) {
 		ID = iD;
 	}
 	public double getAmount() {

@@ -9,11 +9,12 @@ import src.po.AccountPO;
 public interface AccountDataService extends Remote {
 	public boolean insert(AccountPO po) throws RemoteException;
 
-	public boolean delete(long ID) throws RemoteException;
+	public boolean delete(String ID) throws RemoteException;
 
 	public ArrayList<AccountPO> getAll() throws RemoteException;
 
 	public boolean update(AccountPO po) throws RemoteException;
 
-	public AccountPO find(long id) throws RemoteException;
+	public AccountPO find(String id) throws RemoteException;
+
 }

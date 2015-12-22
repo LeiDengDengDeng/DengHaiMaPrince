@@ -39,7 +39,7 @@ public class Account implements AccountBLService {
 	/**
 	 * 增加一个银行账户
 	 */
-	public boolean addAccount(String name, long ID, double amount) {
+	public boolean addAccount(String name, String ID, double amount) {
 		AccountPO account = new AccountPO(name, ID, amount);
 		try {
 			accountData.insert(account);
@@ -57,7 +57,7 @@ public class Account implements AccountBLService {
 	/**
 	 * 修改银行账户信息
 	 */
-	public boolean modAccount(String name, long ID) {
+	public boolean modAccount(String name, String ID) {
 		// TODO Auto-generated method stub
 		try {
 			AccountPO account = accountData.find(ID);
@@ -99,7 +99,7 @@ public class Account implements AccountBLService {
 	}
 
 	@Override
-	public boolean delAccount(long ID) {
+	public boolean delAccount(String ID) {
 		try {
 			accountData.delete(ID);
 		} catch (RemoteException e) {
@@ -110,7 +110,7 @@ public class Account implements AccountBLService {
 		return true;
 	}
 
-	public boolean updateAmount(long ID, double difference) {
+	public boolean updateAmount(String ID, double difference) {
 		try {
 			AccountPO account = accountData.find(ID);
 			double amount=account.getAmount()-difference;

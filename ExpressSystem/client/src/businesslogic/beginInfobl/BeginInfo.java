@@ -34,17 +34,15 @@ public class BeginInfo implements BeginInfoBLService {
 	User user;
 	Nonuser nonuser;
 	Commodity commodity;
-	Sheet sheet;
 
-	public BeginInfo(Log log, Account account, User user, Nonuser nonuser, Commodity commodity, Sheet sheet) {
+	public BeginInfo(Log log) {
 		this.log = log;
-		this.account = account;
-		this.user = user;
-		this.nonuser = nonuser;
-		this.commodity = commodity;
-		this.sheet = sheet;
+		this.account = new Account(log);
+		this.user = new User(log);
+		this.nonuser = new Nonuser(log);
+		this.commodity = new Commodity(log);
 		try {
-			beginInfoData = (BeginInfoDataService) Naming.lookup("rmi://127.0.0.1:6600/accountData");
+			beginInfoData = (BeginInfoDataService) Naming.lookup("rmi://127.0.0.1:6600/beginInfoData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,12 +59,12 @@ public class BeginInfo implements BeginInfoBLService {
 		ArrayList<StorageInitVO> beginStorage = vo.getBeginStorage();
 		ArrayList<InitUserVO> beginUser = vo.getBeginUser();
 		// 初始化各个service
-		// account.initAmount(beginAccount);
-		// user.initial(beginUser);
-		// commodity.initStorageInfo(beginStorage);
-		//// sheet.formulateConstant(beginConstant);
-		// nonuser.initDriver(beginDriver);
-		// nonuser.initTruck(beginTruck);
+//		 account.initAmount(beginAccount);
+//		 user.initial(beginUser);
+//		 commodity.initStorageInfo(beginStorage);
+//		// sheet.formulateConstant(beginConstant);
+//		 nonuser.initDriver(beginDriver);
+//		 nonuser.initTruck(beginTruck);
 
 		// 写入文件
 		ArrayList<DriverPO> Driver = new ArrayList<DriverPO>();
@@ -153,7 +151,7 @@ public class BeginInfo implements BeginInfoBLService {
 		}
 		for (int i = 0; i < beginAccount.size(); i++) {
 			AccountPO accountvo = beginAccount.get(i);
-			AccountVO account = new AccountVO(accountvo.getName(), accountvo.getID(), accountvo.getAmount());
+			AccountVO account = new AccountVO(accountvo.getName(), accountvo.getCardID(), accountvo.getAmount());
 			Account.add(account);
 		}
 		for (int i = 0; i < beginStorage.size(); i++) {

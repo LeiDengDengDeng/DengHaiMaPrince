@@ -61,7 +61,7 @@ public class AccountData extends UnicastRemoteObject implements AccountDataServi
 	/**
 	 * 删除AccountPO
 	 */
-	public boolean delete(long ID) throws RemoteException {
+	public boolean delete(String ID) throws RemoteException {
 		ArrayList<AccountPO> accounts = new ArrayList<AccountPO>();
 		AccountPO po;
 		boolean findIt = false;
@@ -183,7 +183,7 @@ public class AccountData extends UnicastRemoteObject implements AccountDataServi
 	/**
 	 * 根据ID找到对应得po
 	 */
-	public AccountPO find(long id) throws RemoteException {
+	public AccountPO find(String id) throws RemoteException {
 		AccountPO po = null;
 		try {
 			ois = new ObjectInputStream(new FileInputStream(file));

@@ -1,11 +1,13 @@
 package src.presentation.beginInfoui;
 
+import java.awt.Color;
 import java.awt.TextField;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
 import src.enums.Sex;
 import src.vo.DriverInfoVO;
@@ -67,6 +69,16 @@ public class PanelDriver extends SubPanel {
 		textYear.setBounds(Num_x + Num_w + distance_x + Name_w + distance_x + sex_w + distance_x + Identity_w
 				+ distance_x + Tel_w + distance_x, Num_y + distance_y * i, Year_w, Num_h);
 		TextField[] t = { textNum, textName, textIdentity, textTel, textYear };
+		if (i != 0) {
+			JLabel yuan = new JLabel("Äê");
+			yuan.setFont(myFont);
+			yuan.setForeground(Color.white);
+			yuan.setBounds(Num_x + Num_w + distance_x + Name_w + distance_x + sex_w + distance_x + Identity_w
+					+ distance_x + Tel_w + distance_x+43,Num_y + distance_y * i+2,
+					16, 16);
+			this.add(yuan);
+		}
+		
 		this.getArrayList().add(t);
 		this.getJComBox().add(textsex);
 		for (int j = 0; j < t.length; j++) {
@@ -118,6 +130,12 @@ public class PanelDriver extends SubPanel {
 		}
 
 		return a;
+	}
+
+	@Override
+	public SubPanel getPanel() {
+		// TODO Auto-generated method stub
+		return this;
 	}
 
 }

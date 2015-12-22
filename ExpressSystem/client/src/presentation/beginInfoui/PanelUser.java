@@ -55,7 +55,7 @@ public class PanelUser extends SubPanel {
 		this.add(textAmount);
 		this.add(textMonth);
 		this.getJComBox().add(textNum);
-		TextField[] t={textName,textName,textName};
+		TextField[] t={textName,textAmount,textMonth};
 		this.getArrayList().add(t);
 		textName.setFont(myFont);
 		textNum.setFont(myFont);
@@ -92,5 +92,11 @@ public class PanelUser extends SubPanel {
 		a.add(vo);
 		}
 		return a;
+	}
+
+	@Override
+	public SubPanel getPanel() {
+		// TODO Auto-generated method stub
+		return this;
 	}
 }

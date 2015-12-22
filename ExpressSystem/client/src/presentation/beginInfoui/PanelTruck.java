@@ -1,11 +1,13 @@
 package src.presentation.beginInfoui;
 
+import java.awt.Color;
 import java.awt.TextField;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
 import src.vo.TruckInfoVO;
 
@@ -57,11 +59,30 @@ public class PanelTruck extends SubPanel {
 				+ Amount_w, Name_y + distance_y * i, Amount_w, Name_h);
 		TextField[] t = { textName, textNum, textAmount, textMonth, textDay };
 		this.getArrayList().add(t);
+		if (i != 0) {
+			JLabel nian = new JLabel("Äê");
+			nian.setFont(myFont);
+			nian.setForeground(Color.white);
+			nian.setBounds(Name_x + Name_w + distance_x + Num_w + distance_x + Amount_w + 4, Name_y + distance_y * i,
+					16, 16);
+			this.add(nian);
+			JLabel yue = new JLabel("ÔÂ");
+			yue.setFont(myFont);
+			yue.setForeground(Color.white);
+			yue.setBounds(Name_x + Name_w + distance_x + Num_w + distance_x + Amount_w + distance_x+distance_x-2, Name_y + distance_y * i,
+					16, 16);
+			this.add(yue);
+			JLabel ri = new JLabel("ÈÕ");
+			ri.setFont(myFont);
+			ri.setForeground(Color.white);
+			ri.setBounds(Name_x + Name_w + distance_x + Num_w + distance_x + Amount_w + distance_x+distance_x+20+distance_x, Name_y + distance_y * i,
+					16, 16);
+			this.add(ri);
+		}
 		for (int j = 0; j < t.length; j++) {
 			this.add(t[j]);
 			t[j].setFont(myFont);
 		}
-
 	}
 
 	public JButton addButton() {
@@ -96,6 +117,12 @@ public class PanelTruck extends SubPanel {
 			a.add(vo);
 		}
 		return a;
+	}
+
+	@Override
+	public SubPanel getPanel() {
+		// TODO Auto-generated method stub
+		return this;
 	}
 
 }
