@@ -22,7 +22,7 @@ public class LeftButtonGroup {
 	// 权限9 库存对应5个功能
 	String[] storagePaths = { "Alarm", "Check", "Divide", "In", "Out" };
 	// 权限2&3 接收和派件对应2个功能
-	String[] goodsPaths = { "goodsIn", "goodOut" };
+	String[] goodsPaths = { "goodsIn", "goodsOut" };
 	// 权限10 车辆司机信息管理对应2个功能
 	String[] carAndDriverPaths = { "car", "driver" };
 

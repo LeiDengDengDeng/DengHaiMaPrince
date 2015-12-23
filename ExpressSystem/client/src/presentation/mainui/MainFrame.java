@@ -1,5 +1,6 @@
 package src.presentation.mainui;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,28 +35,33 @@ public class MainFrame extends JFrame {
 
 	JButton closeButton = new JButton();
 	JButton hideButton = new JButton();
-	JButton mainButton = new JButton(new ImageIcon("images/smallButton_main.png"));
-	JButton refreshButton = new JButton(new ImageIcon("images/smallButton_refresh.png"));
-	JButton setButton = new JButton(new ImageIcon("images/smallButton_setting.png"));
+	JButton mainButton = new JButton(new ImageIcon(
+			"images/smallButton_main.png"));
+	JButton refreshButton = new JButton(new ImageIcon(
+			"images/smallButton_refresh.png"));
+	JButton setButton = new JButton(new ImageIcon(
+			"images/smallButton_setting.png"));
+	JLabel tipLabel = new JLabel();
+	
 	JPanel mainPanel = new JPanel();
 
 	// 头像部分
 	JLabel headImageLabel;
 	ImageIcon headIcon;
-	
+
 	JLabel background = new JLabel(new ImageIcon("images/mainFrame.png"));
 	ImageIcon closeIcon = new ImageIcon("images/close.png");
 	ImageIcon closeClickedIcon = new ImageIcon("images/closeClicked.png");
 	ImageIcon hideIcon = new ImageIcon("images/hide.png");
 	ImageIcon hideClickedIcon = new ImageIcon("images/hideClicked.png");
-	
+
 	boolean isDraging = false;
 	int frameLocationX;
 	int frameLocationY;
 
-//	public static void main(String[] args) {
-//		new MainFrame(null);
-//	}
+	// public static void main(String[] args) {
+	// new MainFrame(null);
+	// }
 
 	public MainFrame(ArrayList<Integer> authority) {
 		// 登陆后设置权限，初始化左侧按钮和Panel
@@ -65,10 +71,11 @@ public class MainFrame extends JFrame {
 				closeClickedIcon, closeIcon);
 		ButtonMouseListener hideMouseListener = new ButtonMouseListener(
 				hideClickedIcon, hideIcon);
+		SmallButtonMouseListener smallButtonMouseListener = new SmallButtonMouseListener();
 
 		closeButton.setIcon(closeIcon);
-		closeButton.setBounds(825, SMALL_BUTTON_MARGIN_TOP, closeIcon.getIconWidth(),
-				closeIcon.getIconHeight());
+		closeButton.setBounds(825, SMALL_BUTTON_MARGIN_TOP,
+				closeIcon.getIconWidth(), closeIcon.getIconHeight());
 		// 实现窗口关闭
 		closeButton.addActionListener(new ActionListener() {
 			@Override
@@ -81,8 +88,8 @@ public class MainFrame extends JFrame {
 		closeButton.setBorderPainted(false);
 
 		hideButton.setIcon(hideIcon);
-		hideButton.setBounds(800, SMALL_BUTTON_MARGIN_TOP, hideIcon.getIconWidth(),
-				hideIcon.getIconHeight());
+		hideButton.setBounds(790, SMALL_BUTTON_MARGIN_TOP,
+				hideIcon.getIconWidth(), hideIcon.getIconHeight());
 		// 实现窗口隐藏
 		hideButton.addActionListener(new ActionListener() {
 			@Override
@@ -93,10 +100,12 @@ public class MainFrame extends JFrame {
 		hideButton.addMouseListener(hideMouseListener);
 		hideButton.setContentAreaFilled(false);
 		hideButton.setBorderPainted(false);
-		
+
 		mainButton.setBounds(200, SMALL_BUTTON_MARGIN_TOP, 25, 25);
 		mainButton.setContentAreaFilled(false);
 		mainButton.setBorderPainted(false);
+		mainButton.addMouseListener(smallButtonMouseListener);
+		
 		refreshButton.setBounds(240, SMALL_BUTTON_MARGIN_TOP, 25, 25);
 		refreshButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -105,11 +114,11 @@ public class MainFrame extends JFrame {
 		});
 		refreshButton.setContentAreaFilled(false);
 		refreshButton.setBorderPainted(false);
+		refreshButton.addMouseListener(smallButtonMouseListener);
+		
 		setButton.setBounds(400, SMALL_BUTTON_MARGIN_TOP, 25, 25);
 		setButton.setContentAreaFilled(false);
 		setButton.setBorderPainted(false);
-
-		background.setBounds(0, 0, WIDTH, HEIGHT);
 
 		headIcon = new ImageIcon("images/head_1.png");
 		headIcon.setImage(headIcon.getImage().getScaledInstance(60, 60,
@@ -120,6 +129,12 @@ public class MainFrame extends JFrame {
 		mainPanel = (JPanel) this.getContentPane();
 		mainPanel.setLayout(null);
 		mainPanel.setOpaque(false);
+		
+		tipLabel.setOpaque(true);
+		tipLabel.setForeground(Color.WHITE);
+		tipLabel.setBackground(new Color(45,45,45));
+		
+		background.setBounds(0, 0, WIDTH, HEIGHT);
 
 		this.setSize(WIDTH, HEIGHT);
 		this.setResizable(false);
@@ -155,6 +170,7 @@ public class MainFrame extends JFrame {
 		for (MyButton e : leftButtonGroup.getLeftButtons())
 			this.add(e);
 		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
+		this.add(tipLabel);
 		this.add(setButton);
 		this.add(mainButton);
 		this.add(refreshButton);
@@ -170,10 +186,6 @@ public class MainFrame extends JFrame {
 		return this;
 	}
 
-//	public void setPresentPanel(int i) {
-//		PanelController.setPresentPanel(i);
-//	}
-
 	public void setAuthority(ArrayList<Integer> authority) {
 		System.out.println("----authority----");
 		for (int i : authority)
@@ -184,4 +196,24 @@ public class MainFrame extends JFrame {
 		PanelController.frame = this;
 	}
 
+	class SmallButtonMouseListener extends MouseAdapter {
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			super.mouseEntered(e);
+			if (e.getSource() == refreshButton) {
+				tipLabel.setText(" 刷新");
+				tipLabel.setBounds(250, SMALL_BUTTON_MARGIN_TOP + 20, 33, 25);
+			}else if(e.getSource() == mainButton) {
+				tipLabel.setText(" 返回主界面");
+				tipLabel.setBounds(210, SMALL_BUTTON_MARGIN_TOP + 20, 70, 25);
+			}
+			tipLabel.setVisible(true);
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			super.mouseExited(e);
+			tipLabel.setVisible(false);
+		}
+	}
 }

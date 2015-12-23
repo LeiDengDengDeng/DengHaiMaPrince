@@ -36,7 +36,7 @@ public class ExamineSheetPanel extends SheetPanel {
 
     protected static HashMap<SheetType, String> map;
 
-    public ExamineSheetPanel() {
+    static{
         map = new HashMap<SheetType, String>();
         map.put(SheetType.CONSTANT, "常量");
         map.put(SheetType.ORDER_SHEET, "寄件单");
@@ -44,6 +44,9 @@ public class ExamineSheetPanel extends SheetPanel {
         map.put(SheetType.STORAGE_IN_SHEET, "入库单");
         map.put(SheetType.STORAGE_OUT_SHEET, "出库单");
         map.put(SheetType.RECEIVING_MONEY_SHEET, "收款单");
+    }
+    
+    public ExamineSheetPanel() {
         init();
     }
 

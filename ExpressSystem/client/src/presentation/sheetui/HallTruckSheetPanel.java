@@ -38,6 +38,7 @@ public class HallTruckSheetPanel extends SheetPanel {
     }
 
     private void init() {
+    	courierNumberPanel = new CourierNumberPanel();
         dateChooser = new DateChooserJButton();
         city = new JComboBox(new String[]{"南京", "上海"});
         institution = new JComboBox(new String[]{"鼓楼营业厅", "仙林营业厅"});
@@ -46,9 +47,8 @@ public class HallTruckSheetPanel extends SheetPanel {
         availableTruck = new JComboBox(new String[]{"02501001", "02501002"});
         guardianName = new JTextField();
         followerName = new JTextField();
-        courierNumberPanel = new CourierNumberPanel();
         addButton = new MyButton(new ImageIcon("images/account_add.png"), new ImageIcon("images/account_addEnter.png"));
-        confirmButton = new ConfirmButton(525, 530);
+        confirmButton = new ConfirmButton(505, 530);
         imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/sheet_institutionTruck.png");
 

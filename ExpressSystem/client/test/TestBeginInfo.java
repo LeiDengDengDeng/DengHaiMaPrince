@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import src.businesslogic.accountbl.MockAccount;
 import src.businesslogic.logbl.MockLog;
 import src.businesslogic.nonUserbl.MockNonUser;
 import src.businesslogic.userbl.MockUser;
-import src.enums.Sex;
 import src.vo.AccountVO;
 import src.vo.BeginInfoVO;
 import src.vo.ConstantVO;
@@ -30,7 +28,7 @@ public class TestBeginInfo {
 		ArrayList<LogVO> logs = new ArrayList<>();
 		logs.add(new LogVO("2015/11/2","总经理"," 李莹 ","制定常量","无"));
 		MockLog log = new MockLog(logs);
-		MockAccount account = new MockAccount(log);
+//		MockAccount account = new MockAccount(log);
 		MockUser user=new MockUser(null);
 //		MockCommodity commodity=new MockCommodity(log);
 		MockNonUser nonuser=new MockNonUser(log);
@@ -42,7 +40,7 @@ public class TestBeginInfo {
 		ArrayList<TruckInfoVO> beginTruck=new ArrayList<TruckInfoVO>();
 //		beginTruck.add(	new TruckInfoVO(025001001L, 100, "苏A09R98"));
 		ArrayList<AccountVO> beginAccount=new ArrayList<AccountVO>();
-		beginAccount.add(new AccountVO("小王子",2303240520304205321L , 20000));
+//		beginAccount.add(new AccountVO("小王子",2303240520304205321L , 20000));
 		ArrayList<StorageInitVO> beginStorage=new ArrayList<StorageInitVO>();
 //		beginStorage.add(new StorageInitVO(0.9, 1000, 2000, 300, 2000));
 		ArrayList<ConstantVO> beginConstant=new ArrayList<ConstantVO>();
