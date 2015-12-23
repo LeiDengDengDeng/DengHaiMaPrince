@@ -1,7 +1,7 @@
 package src.presentation.nonuserui;
 
 import java.awt.Font;
-import java.awt.TextField;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,14 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import src.businesslogic.nonUserbl.Driver;
 import src.businesslogic.nonUserbl.DriverController;
-import src.businesslogic.nonUserbl.TruckController;
 import src.businesslogicservice.nonUserblservice.DriverBLService;
-import src.businesslogicservice.nonUserblservice.TruckBLService;
-import src.presentation.sheetui.DateChooserJButton;
+import src.enums.Sex;
 import src.vo.DriverInfoVO;
-import src.vo.TruckInfoVO;
 
 public class DriverPanel extends JPanel{
 
@@ -35,135 +31,171 @@ public class DriverPanel extends JPanel{
 	protected static final int h = 572;// panel¸ß
 	
 	protected static final ImageIcon IMG_CONFIRM = new ImageIcon("images/confirm.png");
+	protected static final ImageIcon IMG_BG = new ImageIcon("images/driver_bg.png");
 	
-	private JLabel checkRemind;
-	private JLabel deleteRemind;
-	private JLabel driverNum;
-	private JLabel driverTime;
-	private JLabel driverId;
-	private JLabel yearOfExpiring;
-	private JLabel driverName;
-	private JLabel mobNum;
-	private JLabel sex;
+	private ImageIcon addbkgImg;
+	private ImageIcon checkbkgImg;
+	private JLabel backLabel;
+	private JLabel addLabel;
+	private JLabel checkLabel;
+	private JLabel nameLabel;
+	private JLabel numLabel;
+	private JLabel sexLabel;
+	private JLabel mobNumLabel;
+	private JLabel idLabel;
+	private JLabel dateLabel;
+	private JLabel yearOfExpiringLabel;
+	private JTextField changeNameField;
+	private JTextField changeNumField;
+	private JTextField changeSexField;
+	private JTextField changeMobNumField;
+	private JTextField changeIdField;
+	private JTextField changeDateField;
 	private JTextField TextFieldCheckdriverNum;
-	private JTextField textFieldDriverNum;
-	private DateChooserJButton DriverTime;
 	private JTextField textFieldDriverId;
+	private JTextField TextFieldCity;
+	private JTextField TextFieldBusinessHall;
 	private JTextField textFieldYearOfExpiring;
+	private JTextField textFieldDriverNum;
 	private JTextField textFieldDriverName;
 	private JTextField textFieldMobNum;
-	private JTextField textFieldDeletedriverNum;
 	private JComboBox comboBoxSex;
 	private JButton checkConfirmButton;
 	private JButton addConfirmButton;
 	private JButton deleteConfirmButton;
+	private JButton cancelButton;
+	private JButton saveButton;
+	private JButton returnButton;
+	private JButton changeButton;
 	
 	private DriverBLService driverBL;
 	
 	public DriverPanel(){
 		driverBL = new DriverController();
-		checkRemind = new JLabel("ÇëÊäÈëË¾»ú±àºÅ£º");
-		checkRemind.setBounds(70, 70, 200, 30);
-		checkRemind.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		this.add(checkRemind);
 		
 		TextFieldCheckdriverNum = new JTextField();
-		TextFieldCheckdriverNum.setBounds(180, 70, 150, 30);
+		TextFieldCheckdriverNum.setBounds(140, 30, 200, 28);
 		this.add(TextFieldCheckdriverNum);
 		
-		driverNum = new JLabel("Ë¾»ú±àºÅ£º");
-		driverNum.setBounds(70, 180, 400, 30);
-		driverNum.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		this.add(driverNum);
-		
 		textFieldDriverNum = new JTextField();
-		textFieldDriverNum.setBounds(180, 180, 150, 30);
+		textFieldDriverNum.setBounds(385, 95, 100, 25);
+		textFieldDriverNum.setVisible(false);
 		this.add(textFieldDriverNum);
 		
-		driverTime = new JLabel("³öÉúÈÕÆÚ£º");
-		driverTime.setBounds(70, 220, 350, 50);
-		driverTime.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		this.add(driverTime);
-		
-		DriverTime = new DateChooserJButton();
-		DriverTime.setBounds(180, 230, 150, 30);
-		this.add(DriverTime);
-		
-		driverId = new JLabel("Éí·ÝÖ¤ºÅ£º");
-		driverId.setBounds(70, 270, 350, 50);
-		driverId.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		this.add(driverId);
-		
-		textFieldDriverId = new JTextField();
-		textFieldDriverId.setBounds(180, 280, 150, 30);
-		this.add(textFieldDriverId);
-		
-		yearOfExpiring = new JLabel("ÐÐÊ»Ö¤µ½ÆÚÄê·Ý£º");
-		yearOfExpiring.setBounds(70, 320, 350, 50);
-		yearOfExpiring.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		this.add(yearOfExpiring);
-		
-		textFieldYearOfExpiring = new JTextField();
-		textFieldYearOfExpiring.setBounds(180, 330, 150, 30);
-		this.add(textFieldYearOfExpiring);
-		
-		driverName = new JLabel("Ë¾»úÐÕÃû£º");
-		driverName.setBounds(360, 170, 350, 50);
-		driverName.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		this.add(driverName);
-		
 		textFieldDriverName = new JTextField();
-		textFieldDriverName.setBounds(450, 180, 150, 30);
+		textFieldDriverName.setBounds(125, 65, 80, 25);
+		textFieldDriverName.setVisible(false);
 		this.add(textFieldDriverName);
 		
-		mobNum = new JLabel("ÊÖ»úºÅ£º");
-		mobNum.setBounds(360, 220, 350, 50);
-		mobNum.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		this.add(mobNum);
+		textFieldDriverId = new JTextField();
+		textFieldDriverId.setBounds(385, 65, 100, 25);
+		textFieldDriverId.setVisible(false);
+		this.add(textFieldDriverId);
+		
+		TextFieldCity = new JTextField();
+		TextFieldCity.setBounds(105, 95, 70, 25);
+		TextFieldCity.setVisible(false);
+		this.add(TextFieldCity);
+		
+		TextFieldBusinessHall = new JTextField();
+		TextFieldBusinessHall.setBounds(225, 95, 70, 25);
+		TextFieldBusinessHall.setVisible(false);
+		this.add(TextFieldBusinessHall);
+		
+		textFieldYearOfExpiring = new JTextField();
+		textFieldYearOfExpiring.setBounds(340, 125, 80, 25);
+		textFieldYearOfExpiring.setVisible(false);
+		this.add(textFieldYearOfExpiring);
 		
 		textFieldMobNum = new JTextField();
-		textFieldMobNum.setBounds(450, 230, 150, 30);
+		textFieldMobNum.setBounds(115, 125, 80, 25);
+		textFieldMobNum.setVisible(false);
 		this.add(textFieldMobNum);
-		
-		sex = new JLabel("ÐÔ±ð£º");
-		sex.setBounds(360, 270, 350, 50);
-		sex.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		this.add(sex);
 		
 		String[] sexString = {"ÄÐ","Å®"};
 		comboBoxSex = new JComboBox(sexString);
-		comboBoxSex.setBounds(450, 280, 150, 30);
+		comboBoxSex.setBounds(245, 65, 70, 25);
+		comboBoxSex.setVisible(false);
 		this.add(comboBoxSex);
 		
-		deleteRemind = new JLabel("ÇëÊäÈëË¾»ú±àºÅ£º");
-		deleteRemind.setBounds(70, 400, 350, 50);
-		deleteRemind.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
-		this.add(deleteRemind);
-		
-		textFieldDeletedriverNum = new JTextField();
-		textFieldDeletedriverNum.setBounds(180, 410, 150, 30);
-		this.add(textFieldDeletedriverNum);
-		
-		checkConfirmButton = new JButton(IMG_CONFIRM);
+		cancelButton = new JButton();
 		ConfirmButtonListener listener = new ConfirmButtonListener(this);
+		cancelButton.addActionListener(listener);
+		cancelButton.setBounds(428, 125, 70, 28);
+		cancelButton.setContentAreaFilled(false);
+		cancelButton.setBorder(null);
+		cancelButton.setVisible(false);
+		this.add(cancelButton);
+		
+		saveButton = new JButton();
+		saveButton.addActionListener(listener);
+		saveButton.setBounds(507, 125, 70, 28);
+		saveButton.setContentAreaFilled(false);
+		saveButton.setBorder(null);
+		saveButton.setVisible(false);
+		this.add(saveButton);
+		
+		returnButton = new JButton();
+		returnButton.addActionListener(listener);
+		returnButton.setBounds(40, 59, 60, 25);
+		returnButton.setContentAreaFilled(false);
+		returnButton.setBorder(null);
+		returnButton.setVisible(false);
+		this.add(returnButton);
+		
+		addLabel = new JLabel();
+		addbkgImg = new ImageIcon("images/driveradd_bg.png");
+		addLabel.setIcon(addbkgImg);
+		addLabel.setBounds(40, 55, addbkgImg.getIconWidth(), addbkgImg.getIconHeight());
+		addLabel.setVisible(false);
+		this.add(addLabel);
+		
+		deleteConfirmButton = new JButton();
+		deleteConfirmButton.addActionListener(listener);
+		deleteConfirmButton.setBounds(500, 340, 70,
+				28);
+		deleteConfirmButton.setContentAreaFilled(false);
+		deleteConfirmButton.setBorder(null);
+		deleteConfirmButton.setVisible(false);
+		this.add(deleteConfirmButton);
+		
+		changeButton = new JButton();
+		changeButton.addActionListener(listener);
+		changeButton.setBounds(415, 340, 72, 28);
+		changeButton.setContentAreaFilled(false);
+//		changeButton.setBorder(null);
+		changeButton.setVisible(false);
+		this.add(changeButton);
+		
+		checkLabel = new JLabel();
+		checkbkgImg = new ImageIcon("images/drivercheck2_bg.png");
+		checkLabel.setIcon(checkbkgImg);
+		checkLabel.setBounds(40, 59, checkbkgImg.getIconWidth(), checkbkgImg.getIconHeight());
+		checkLabel.setVisible(false);
+		this.add(checkLabel);
+		
+		checkConfirmButton = new JButton();
 		checkConfirmButton.addActionListener(listener);
-		checkConfirmButton.setBounds(500, 120, IMG_CONFIRM.getIconWidth(), 
-				IMG_CONFIRM.getIconHeight());
+		checkConfirmButton.setBounds(400, 30, 65, 
+				28);
+		checkConfirmButton.setContentAreaFilled (false);
+		checkConfirmButton.setBorder(null);
 		this.add(checkConfirmButton);
 		
-		addConfirmButton = new JButton(IMG_CONFIRM);
-		ConfirmButtonListener listener2 = new ConfirmButtonListener(this);
-		addConfirmButton.addActionListener(listener2);
-		addConfirmButton.setBounds(500, 340, IMG_CONFIRM.getIconWidth(), 
-				IMG_CONFIRM.getIconHeight());
+		addConfirmButton = new JButton();
+		addConfirmButton.addActionListener(listener);
+//		System.out.println(IMG_CONFIRM.getIconWidth()+" "+IMG_CONFIRM.getIconHeight());
+		addConfirmButton.setBounds(480, 30, 100, 
+				28);
+		addConfirmButton.setContentAreaFilled (false);
+		addConfirmButton.setBorder(null);
 		this.add(addConfirmButton);
 		
-		deleteConfirmButton = new JButton(IMG_CONFIRM);
-		ConfirmButtonListener listener3 = new ConfirmButtonListener(this);
-		deleteConfirmButton.addActionListener(listener3);
-		deleteConfirmButton.setBounds(500, 450, IMG_CONFIRM.getIconWidth(), 
-				IMG_CONFIRM.getIconHeight());
-		this.add(deleteConfirmButton);
+		
+		backLabel = new JLabel();
+		backLabel.setIcon(IMG_BG);
+		backLabel.setBounds(40, 30, IMG_BG.getIconWidth(), IMG_BG.getIconHeight());
+		this.add(backLabel);
 		
 		this.setLayout(null);
 		this.setBounds(x, y, w, h);
@@ -181,10 +213,58 @@ public class DriverPanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == checkConfirmButton){
+				backLabel.setVisible(false);
+				TextFieldCheckdriverNum.setVisible(false);
+				changeButton.setVisible(true);
+				deleteConfirmButton.setVisible(true);
+				checkLabel.setVisible(true);
+				returnButton.setVisible(true);
 				DriverInfoVO dvo = null;
 				String driverId = TextFieldCheckdriverNum.getText();
 				System.out.println("checkdriverId: " + driverId);
 				dvo = driverBL.getDriverInfo(driverId);
+				System.out.println(dvo.getName());
+				
+				nameLabel = new JLabel(dvo.getName());
+				nameLabel.setBounds(115, 195, 200, 30);
+				nameLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+				dPanel.add(nameLabel, 1);
+				
+				numLabel = new JLabel(dvo.getNumber());
+				numLabel.setBounds(115, 222, 200, 30);
+				numLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+				dPanel.add(numLabel,1);
+				
+				if(dvo.getSex() == Sex.MALE){
+					sexLabel = new JLabel("ÄÐ");
+				}
+				else{
+					sexLabel = new JLabel("Å®");
+				}
+				sexLabel.setBounds(270, 108, 200, 30);
+				sexLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+				dPanel.add(sexLabel,1);
+				
+				mobNumLabel = new JLabel(dvo.getMobNum());
+				mobNumLabel.setBounds(280, 153, 200, 30);
+				mobNumLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+				dPanel.add(mobNumLabel,1);
+				
+				idLabel = new JLabel(dvo.getID());
+				idLabel.setBounds(295, 193, 200, 30);
+				idLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+				dPanel.add(idLabel,1);
+				
+				dateLabel = new JLabel(dvo.getYear() + "-" + dvo.getMonth() + "-" + dvo.getDay());
+				dateLabel.setBounds(295, 234, 200, 30);
+				dateLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+				dPanel.add(dateLabel,1);
+				
+				yearOfExpiringLabel = new JLabel(dvo.getYearOfExpiring() + "");
+				yearOfExpiringLabel.setBounds(335, 275, 200, 30);
+				yearOfExpiringLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
+				dPanel.add(yearOfExpiringLabel,1);
+				
 			}
 			if(e.getSource() == addConfirmButton){
 //				DriverInfoVO dvo = null;
@@ -193,15 +273,97 @@ public class DriverPanel extends JPanel{
 //				String driverId = textFieldDriverId.getText();
 //				tvo = new TruckInfoVO(number, activeTime, driverId);
 //				truckBL.addTruckInfo(tvo);
+				backLabel.setVisible(false);
+				TextFieldCheckdriverNum.setVisible(false);
+				textFieldDriverNum.setVisible(true);
+				textFieldDriverName.setVisible(true);
+				textFieldDriverId.setVisible(true);
+				TextFieldCity.setVisible(true);
+				TextFieldBusinessHall.setVisible(true);
+				textFieldYearOfExpiring.setVisible(true);
+				textFieldMobNum.setVisible(true);
+				comboBoxSex.setVisible(true);
+				cancelButton.setVisible(true);
+				saveButton.setVisible(true);
+				addLabel.setVisible(true);
+//				System.out.println("sb");
 			}
 			if(e.getSource() == deleteConfirmButton){
-				String driverId = textFieldDeletedriverNum.getText();
+				String driverId = TextFieldCheckdriverNum.getText();
 				System.out.println("deletedriverId: " + driverId);
-				driverBL.deleteDriverInfo(driverId);
+//				driverBL.deleteDriverInfo(driverId);
+			}
+			if(e.getSource() == cancelButton){
+				backLabel.setVisible(true);
+				TextFieldCheckdriverNum.setVisible(true);
+				textFieldDriverNum.setVisible(false);
+				textFieldDriverName.setVisible(false);
+				textFieldDriverId.setVisible(false);
+				TextFieldCity.setVisible(false);
+				TextFieldBusinessHall.setVisible(false);
+				textFieldYearOfExpiring.setVisible(false);
+				textFieldMobNum.setVisible(false);
+				comboBoxSex.setVisible(false);
+				cancelButton.setVisible(false);
+				saveButton.setVisible(false);
+				addLabel.setVisible(false);
+//				System.out.println("sb");
+			}
+			if(e.getSource() == saveButton){
+				System.out.println("sb");
+				String name = textFieldDriverName.getText();
+				String sexString = (String) comboBoxSex.getSelectedItem();
+				Sex sex = null;
+				if(sexString.equals("ÄÐ")){
+					sex = Sex.MALE;
+				}
+				else{
+					sex = sex.FEMALE;
+				}
+				String id = textFieldDriverId.getText();
+				String city = TextFieldCity.getText();
+				String businessHall = TextFieldBusinessHall.getText();
+				String num = textFieldDriverNum.getText();
+				String mobNum = textFieldMobNum.getText();
+				String yearOfExpiring = textFieldYearOfExpiring.getText();
+				DriverInfoVO dvo = new DriverInfoVO(num, name, Integer.parseInt(id.substring(6, 10)), 
+						Integer.parseInt(id.substring(10, 12)), Integer.parseInt(id.substring(12, 14)),
+						id, mobNum, sex, Integer.parseInt(yearOfExpiring));
+//				System.out.println(dvo.getName() + " " + dvo.getSex());
+//				System.out.println(dvo.getYear() + " " + dvo.getMonth() + " " + dvo.getDay());
+//				driverBL.addDriverInfo(dvo);
+			}
+			if(e.getSource() == returnButton){
+				backLabel.setVisible(true);
+				TextFieldCheckdriverNum.setVisible(true);
+				deleteConfirmButton.setVisible(false);
+				changeButton.setVisible(false);
+				returnButton.setVisible(false);
+				checkLabel.setVisible(false);
+				nameLabel.setVisible(false);
+				numLabel.setVisible(false);
+				sexLabel.setVisible(false);
+				mobNumLabel.setVisible(false);
+				idLabel.setVisible(false);
+				dateLabel.setVisible(false);
+				yearOfExpiringLabel.setVisible(false);
+			}
+			if(e.getSource() == changeButton){
+				
 			}
 		}
 		
 	}
+	
+//	public void paintComponent(Graphics g) 
+//	{ 
+//	super.paintComponent(g); 
+//
+//
+//	g.drawImage(IMG_BG.getImage(),40, 30,null);
+//
+//
+//	}
 	
 	public static void main(String[] args) {
 //		TruckDataService truckDataService = null;
