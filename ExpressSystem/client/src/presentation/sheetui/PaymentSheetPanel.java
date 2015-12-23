@@ -81,13 +81,11 @@ public class PaymentSheetPanel extends SheetPanel {
         detailComboBox.setBounds(MARGIN_LEFT, 217, 90, COMPONENT_HEIGHT);
         tip.setBounds(145, 265, 400, 70);
 
+        confirmButton.addActionListener(new ConfirmButtonListener(this));
+
         imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(40, 40, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 
-        confirmButton.addActionListener(new ConfirmButtonListener(this));
-
-        this.setLayout(null);
-        this.setOpaque(false);
         this.add(accountComboBox);
         this.add(name);
         this.add(accountMoney);

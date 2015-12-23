@@ -4,6 +4,11 @@ import javax.swing.JPanel;
 
 import src.businesslogic.logbl.Log;
 import src.presentation.accountui.AccountPanel;
+import src.presentation.commodityui.AlarmScaleChangingPanel;
+import src.presentation.commodityui.DividePanel;
+import src.presentation.commodityui.StockCheckPanel;
+import src.presentation.commodityui.storageinsheetui.StorageInSheetPanel;
+import src.presentation.commodityui.storageoutsheetui.StorageOutSheetPanel;
 import src.presentation.loginui.BLServiceFactory;
 import src.presentation.logui.CheckLogPanel;
 import src.presentation.sheetui.ExamineSheetPanel;
@@ -56,8 +61,22 @@ public class PanelController {
 			presentPanel = new AccountPanel(new Log());
 			break;
 		case 19:
-			System.out.println(factory.getLogBL() == null);
 			presentPanel = new CheckLogPanel(factory.getLogBL());
+			break;
+		case 100:
+			presentPanel = new AlarmScaleChangingPanel(new Log());
+			break;
+		case 101:
+			presentPanel = new StockCheckPanel(new Log());
+			break;
+		case 102:
+			presentPanel = new DividePanel(new Log());
+			break;
+		case 103:
+			presentPanel = new StorageInSheetPanel(new Log());
+			break;
+		case 104:
+			presentPanel = new StorageOutSheetPanel(new Log());
 			break;
 		}
 		

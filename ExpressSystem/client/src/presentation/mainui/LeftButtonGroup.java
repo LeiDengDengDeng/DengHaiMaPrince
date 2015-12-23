@@ -47,7 +47,7 @@ public class LeftButtonGroup {
 									+ storagePaths[m] + "Clicked.png"), 0,
 							200 + leftButtons.size() * 44, true);
 					leftButtons.add(temp);
-					temp.addActionListener(new LeftButtonListener(count));
+					temp.addActionListener(new LeftButtonListener(100+m));
 				}
 			} else if (count == 2 || count == 3) {
 				for (int m = 0; m < goodsPaths.length; m++) {
