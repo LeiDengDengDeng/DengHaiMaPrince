@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +24,8 @@ public class logisticsInfoPanel extends JPanel {
 	protected static final ImageIcon IMG_Circle= new ImageIcon("images/logistics_circle.png");
 	protected static final ImageIcon IMG_Line= new ImageIcon("images/logistics_line.png");
 	protected static final ImageIcon IMG_Connect= new ImageIcon("images/logistics_connect.png");
+	protected static final ImageIcon IMG_ButtonFind= new ImageIcon("images/search.png");
+	protected static final ImageIcon IMG_ButtonFindEnter= new ImageIcon("images/searchClicked.png");
 	
 	CommodityBLService commodityBL;
 	public logisticsInfoPanel() {
@@ -31,6 +34,8 @@ public class logisticsInfoPanel extends JPanel {
 		this.setOpaque(false);
 		drawNumTextField();
 //		commodityBL=new Commodity(null);
+		JButton buttonFind=new JButton("≤È’“", IMG_ButtonFind);
+		buttonFind.setLocation(300, 2);
 		
 	}
 	public void drawNumTextField(){

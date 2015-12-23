@@ -28,14 +28,14 @@ public class AccountPanel extends JPanel {
 	ArrayList<TextLabel> TextDelList;
 	protected static final ImageIcon IMG_BG = new ImageIcon("images/account_bg.png");
 	protected static final ImageIcon IMG_MOD = new ImageIcon("images/account_mod.png");
-	protected static final ImageIcon IMG_REC1 = new ImageIcon("images/account_rec1.png");
-	protected static final ImageIcon IMG_REC2 = new ImageIcon("images/account_rec2.png");
+	protected static final ImageIcon IMG_REC1 = new ImageIcon("images/account_rec2.png");
+	protected static final ImageIcon IMG_REC2 = new ImageIcon("images/account_rec1.png");
 	protected static final ImageIcon IMG_ADD = new ImageIcon("images/account_add.png");
 	
 	protected static final int font = 14;
 	Font myFont = new Font("Œ¢»Ì—≈∫⁄", Font.LAYOUT_NO_LIMIT_CONTEXT, font);
 	protected static final int x = 195;// panel Œª÷√x
-	protected static final int y = 90;// panel Œª÷√y
+	protected static final int y = 70;// panel Œª÷√y
 	protected static final int w = 641;// paneløÌ
 	protected static final int h = 572;// panel∏ﬂ
 	protected static final int Word_x = 76;// word x
@@ -70,9 +70,6 @@ public class AccountPanel extends JPanel {
 		this.setOpaque(false);
 		JLabel word = new JLabel(IMG_BG);
 		this.drawAccount();
-		// word.setBounds(Word_x - 33, Word_y - 35, IMG_BG.getIconWidth(),
-		// IMG_BG.getIconHeight());
-		// this.add(word);
 	}
 
 	public void drawAccount() {

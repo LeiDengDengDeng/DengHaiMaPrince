@@ -36,7 +36,7 @@ public class AccountItem {
 	 * @param ID 银行账户
 	 * @param difference 金额变更值
 	 */
-	public boolean updateAccount(long ID,double difference) {
+	public boolean updateAccount(String ID,double difference) {
 		return account.updateAmount(ID, difference);
 	}
 

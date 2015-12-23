@@ -4,62 +4,68 @@ import src.enums.SheetState;
 import src.enums.SheetType;
 
 public class ConstantVO implements SheetVO {
-    SheetType type = SheetType.CONSTANT;
-    SheetState state;
-    String builder;
-    String time;
-    long ID;
+	SheetType type = SheetType.CONSTANT;
+	SheetState state;
+	String builder;
+	String time;
+	long ID;
 
-    double distant;
-    double price;
-    String city;
+	double distant;
+	double price;
+	String cityOne;
+	String cityTwo;
 
-    public ConstantVO(String builder, String time, double distant, double price, String city) {
-        super();
-        this.builder = builder;
-        this.time = time;
-        this.distant = distant;
-        this.price = price;
-        this.city = city;
-    }
+	public ConstantVO(String builder, String time, double distant, double price, String cityOne, String cityTwo) {
+		super();
+		this.builder = builder;
+		this.time = time;
+		this.distant = distant;
+		this.price = price;
+		this.cityOne = cityOne;
+		this.cityTwo = cityTwo;
+	}
 
-    public double getDistant() {
-        return distant;
-    }
+	public double getDistant() {
+		return distant;
+	}
 
-    public double getPrice() {
-        return price;
-    }
+	public double getPrice() {
+		return price;
+	}
 
-    public String getCity() {
-        return city;
-    }
+	public String getCityOne() {
+		return cityOne;
+	}
 
-    public String getTime() {
-        return time;
-    }
+	public String getCityTwo() {
+		return cityTwo;
+	}
 
-    public String getBuilder() {
-        return builder;
-    }
+	public String getTime() {
+		return time;
+	}
 
-    public void setID(long ID) {
-        this.ID = ID;
-    }
+	public String getBuilder() {
+		return builder;
+	}
 
-    public long getID() {
-        return ID;
-    }
+	public void setID(long ID) {
+		this.ID = ID;
+	}
 
-    public void setState(SheetState state) {
-        this.state = state;
-    }
+	public long getID() {
+		return ID;
+	}
 
-    public SheetState getState() {
-        return state;
-    }
+	public void setState(SheetState state) {
+		this.state = state;
+	}
 
-    public SheetType getType() {
-        return type;
-    }
+	public SheetState getState() {
+		return state;
+	}
+
+	public SheetType getType() {
+		return type;
+	}
 }

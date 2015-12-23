@@ -42,13 +42,13 @@ public class Account implements AccountBLService {
 	public boolean addAccount(String name, String ID, double amount) {
 		AccountPO account = new AccountPO(name, ID, amount);
 		try {
-			accountData.insert(account);
+			return accountData.insert(account);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
-		return true;
+		
 		// TODO Auto-generated method stub
 
 	}

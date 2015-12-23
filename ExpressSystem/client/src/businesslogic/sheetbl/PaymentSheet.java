@@ -24,7 +24,7 @@ public class PaymentSheet extends Sheet {
 
     public boolean add(SheetVO vo) {
         super.add(vo);
-        if(!accountItem.updateAccount(Long.parseLong(((PaymentSheetVO) vo).getAccount()), ((PaymentSheetVO) vo).getMoney()))
+        if(!accountItem.updateAccount(((PaymentSheetVO) vo).getAccount(), ((PaymentSheetVO) vo).getMoney()))
         	return false;
         return true;
     }

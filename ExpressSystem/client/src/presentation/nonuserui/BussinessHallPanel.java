@@ -108,7 +108,7 @@ public class BussinessHallPanel extends JPanel{
 				BussinessHallVO  bvo = null;
 				long hallId = Long.parseLong(textFieldHallId.getText());
 				String hallName = textFieldHallName.getText();
-				bvo = new BussinessHallVO(hallName, hallId);
+//				bvo = new BussinessHallVO(hallName, hallId,null.null);
 				bussinessHallBL.addBussinessHallInfo(bvo);
 			}
 			if(e.getSource() == deleteConfirmButton){

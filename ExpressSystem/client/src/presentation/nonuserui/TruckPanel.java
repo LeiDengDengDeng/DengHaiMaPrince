@@ -144,7 +144,7 @@ public class TruckPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == checkConfirmButton){
 				TruckInfoVO tvo = null;
-				long truckId = Long.parseLong(TextFieldCheckTruckNum.getText());
+				String truckId = TextFieldCheckTruckNum.getText();
 				System.out.println("checktruckId: " + truckId);
 				tvo = truckBL.getTruckInfo(truckId);
 			}
@@ -153,11 +153,11 @@ public class TruckPanel extends JPanel{
 				long number = Long.parseLong(textFieldTruckNum.getText());
 				int activeTime = Integer.parseInt(textFieldTruckTime.getText());
 				String licensePlateNum = textFieldLicensePlateNum.getText();
-				tvo = new TruckInfoVO(number, activeTime, licensePlateNum);
+//				tvo = new TruckInfoVO(number, activeTime, licensePlateNum);
 				truckBL.addTruckInfo(tvo);
 			}
 			if(e.getSource() == deleteConfirmButton){
-				long truckId = Long.parseLong(textFieldDeleteTruckNum.getText());
+				String truckId = textFieldDeleteTruckNum.getText();
 				System.out.println("deletetruckId: " + truckId);
 				truckBL.deleteTruckInfo(truckId);
 			}
