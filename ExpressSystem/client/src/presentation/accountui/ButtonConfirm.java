@@ -1,15 +1,14 @@
 package src.presentation.accountui;
 
-import java.awt.TextField;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class ButtonConfirm extends AccountButton {
 
-	TextField textFieldName;
-	TextField textFieldNum;
-	TextField textFieldAmount;
+	JTextField textFieldName;
+	JTextField textFieldNum;
+	JTextField textFieldAmount;
 	ButtonAdd buttonAdd;
 	JLabel textAdd;
 	ButtonAddListener listener;
