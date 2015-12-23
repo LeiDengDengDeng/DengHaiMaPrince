@@ -5,16 +5,15 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.businesslogic.commoditybl.Commodity;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.presentation.sheetui.TextFieldGroup;
+import src.presentation.util.SearchButton;
 
-public class logisticsInfoPanel extends JPanel {
+public class LogisticsInfoPanel extends JPanel {
 	protected static final int x = 240;// panel 位置x
 	protected static final int y = 80;// panel 位置y
 	protected static final int searchToinfo = 45;// search到info的间距
@@ -26,16 +25,16 @@ public class logisticsInfoPanel extends JPanel {
 	protected static final ImageIcon IMG_Connect= new ImageIcon("images/logistics_connect.png");
 	protected static final ImageIcon IMG_ButtonFind= new ImageIcon("images/search.png");
 	protected static final ImageIcon IMG_ButtonFindEnter= new ImageIcon("images/searchClicked.png");
-	
+	private SearchButton buttonFind;
 	CommodityBLService commodityBL;
-	public logisticsInfoPanel() {
+	public LogisticsInfoPanel() {
 		this.setLayout(null);
 		this.setBounds(x, y, IMG_Info.getIconWidth(), IMG_Info.getIconHeight()+searchToinfo);
 		this.setOpaque(false);
 		drawNumTextField();
 //		commodityBL=new Commodity(null);
-		JButton buttonFind=new JButton("查找", IMG_ButtonFind);
-		buttonFind.setLocation(300, 2);
+		buttonFind=new SearchButton(410, 2);
+		this.add(buttonFind);
 		
 	}
 	public void drawNumTextField(){
@@ -65,7 +64,7 @@ public class logisticsInfoPanel extends JPanel {
 		ImageIcon IMG = new ImageIcon("images/mainFrame.png");
 
 		JFrame frame = new JFrame();
-		logisticsInfoPanel panel = new logisticsInfoPanel();
+		LogisticsInfoPanel panel = new LogisticsInfoPanel();
 		JPanel panelbg = new JPanel();
 		// 设置标题
 		frame.setUndecorated(true);
