@@ -51,16 +51,19 @@ public class InstitutionGroup {
         for (int i = start; i < num * page && i < institutionVOs.size(); i++) {
             JLabel ID = new JLabel(String.valueOf(institutionVOs.get(i).getInstitutionID()));
             JLabel name = new JLabel(institutionVOs.get(i).getInstitutionName());
+            JLabel staffNums = new JLabel(String.valueOf(institutionVOs.get(i).getStaff().size()));
 
             ID.setBounds(x, y + (i - start) * height, 80, height);
-            name.setBounds(x + 263, y + (i - start) * height, 80, height);
+            name.setBounds(x + 195, y + (i - start) * height, 80, height);
+            staffNums.setBounds(x + 385, y + (i - start) * height, 80, height);
 
             presentInstitutions[i - start][0] = ID;
             presentInstitutions[i - start][1] = name;
+            presentInstitutions[i - start][2] = staffNums;
         }
 
         for (int m = 0; m < presentInstitutions.length; m++) {
-            for (int n = 0; n < 2; n++) {
+            for (int n = 0; n < 3; n++) {
             	presentInstitutions[m][n].setForeground(Color.WHITE);
             	presentInstitutions[m][n].setFont(myFont);
             }

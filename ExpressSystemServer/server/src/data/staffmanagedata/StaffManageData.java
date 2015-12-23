@@ -12,9 +12,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
 
-import javafx.scene.chart.PieChart.Data;
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.po.LogPO;

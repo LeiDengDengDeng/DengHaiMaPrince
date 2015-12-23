@@ -7,7 +7,7 @@ import src.vo.UserVO;
 
 public class LogIn implements LogInBLService{
 	
-	UserVO currentUser;
+	static UserVO currentUser;
 	UserBLService userBL;
 	
 	public LogIn(UserBLService userBL){
