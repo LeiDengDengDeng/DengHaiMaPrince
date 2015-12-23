@@ -68,11 +68,14 @@ public class AddInstitutionPanel extends JPanel{
 		this.add(institutionfunction);
 		this.add(confirmButton);
 		this.add(deleteButton);
+		this.add(imageLabel);
+		
 		
 		
 	}
 	
 	public void componentsInstantiation(){
+		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/institution_salary.png");
 		institutionID = new JTextField();
 		institutionName = new JTextField();
@@ -90,7 +93,4 @@ public class AddInstitutionPanel extends JPanel{
 
 		
 	}
-	public static void main(String[] args) {
-		AddInstitutionPanel p = new AddInstitutionPanel();
-		}
 }

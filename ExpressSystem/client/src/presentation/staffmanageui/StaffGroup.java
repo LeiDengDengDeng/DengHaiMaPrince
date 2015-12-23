@@ -56,7 +56,7 @@ public class StaffGroup {
 
             ID.setBounds(x, y + (i - start) * height, 80, height);
             name.setBounds(x + 162, y + (i - start) * height, 80, height);
-            position.setBounds(x + 312, y + (i - start) * height, 80, height);
+            position.setBounds(x + 323, y + (i - start) * height, 80, height);
 
             presentStaffs[i - start][0] = ID;
             presentStaffs[i - start][1] = name;

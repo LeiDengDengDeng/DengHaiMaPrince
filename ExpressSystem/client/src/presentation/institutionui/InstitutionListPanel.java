@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import src.presentation.staffmanageui.StaffGroup;
 import src.presentation.staffmanageui.StaffListPanel;
@@ -17,55 +18,71 @@ import src.vo.InstitutionVO;
 import src.vo.StaffInfoVO;
 
 public class InstitutionListPanel extends JPanel{
-	static final int WIDTH = 850;
-	static final int HEIGHT = 646;
-//	private static final ImageIcon IMG = new ImageIcon("images/staffManage_BG.png");
-//	private static final ImageIcon REC1 = new ImageIcon("images/account_rec1.png");
-//	private static final ImageIcon REC2 = new ImageIcon("images/account_rec2.png");
-//	private static final ImageIcon ADD_ICON = new ImageIcon("images/account_add.png");
-//	private static final ImageIcon ADDENTER_ICON = new ImageIcon("images/account_addEnter.png");
-	private static final ImageIcon SEARCH = new ImageIcon("images/search.png");
-	private static final ImageIcon SEARCHENTER = new ImageIcon("images/searchClicked.png");
-	private static final ImageIcon IMAGE_LABEL_ICON = new ImageIcon("images/institution_head.png");
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 100;
 	
-	private static final int Line_Num = 16;
+	private static final int Line_Num = 13;
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
-
+	
+	long ID;
 	ArrayList<InstitutionVO> institutionVOs;
 	InstitutionGroup institutionGroup;
-//	private JLabel addLabel;
-//	private JLabel searchLabel;
+
 	JLabel imageLabel;
+	JLabel addLabel;
 	JComboBox pageComboBox;
+	JTextField searchField;
+	ImageIcon add;
+	ImageIcon bkgImg;
+	
     MyButton previousPageButton;
     MyButton nextPageButton;
+    MyButton confirmButton;
+    MyButton addButton;
+    MyButton searchButton;
     
-    public InstitutionListPanel(){
+    public InstitutionListPanel(ArrayList<InstitutionVO> institutionVOs){
+    	this.institutionVOs = institutionVOs;
+    	
 //    	componentsInstantiation();
     	initial();
-    	setUsers();
+    	setInstitutions(institutionVOs);
     	PageButtonActionListener listener = new PageButtonActionListener(this);
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
         nextPageButton.addActionListener(listener);
-        pageComboBox.setBounds(540, 504, 44, 23);
+        pageComboBox.setBounds(coordinate_X + 472, coordinate_Y + 440, 40, 20);
         setPageComboBox();
         pageComboBox.addActionListener(listener);
+        searchButton.addActionListener(listener);
+        addButton.addActionListener(listener);
         
-        addUserLabel();
+        addInstitutionLabel();
         
         
     }
 	
 	public void initial(){		
 		imageLabel = new JLabel();
+		addLabel = new JLabel();
 		pageComboBox = new JComboBox();
+		searchField = new JTextField();
+		bkgImg = new ImageIcon("images/institution_ListBG.png");
+		add = new ImageIcon("images/staff_addAccount.png");
+		addButton = new MyButton(new ImageIcon("images/account_add.png"),
+				new ImageIcon("images/account_addEnter.png"), coordinate_X + 10, coordinate_Y + 32, false);
+		confirmButton = new MyButton(new ImageIcon("images/user_InfoConfirm.png"),
+				new ImageIcon("images/user_InfoConfirmEnter.png"), coordinate_X + 470, coordinate_Y + 485, false);
+		searchButton = new MyButton(new ImageIcon("images/search_icon.png"),
+				new ImageIcon("images/search_iconClicked.png"), coordinate_X + 493, coordinate_Y + 25, false);
 		
-		imageLabel.setIcon(IMAGE_LABEL_ICON);
-        imageLabel.setBounds(40, 40, 
-        		IMAGE_LABEL_ICON.getIconWidth(), IMAGE_LABEL_ICON.getIconHeight());
-		
+		imageLabel.setIcon(bkgImg);
+        imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
+        addLabel.setIcon(add);
+        addLabel.setBounds(coordinate_X + 25, coordinate_Y + 24, add.getIconWidth(), add.getIconHeight());
+        
+        searchField.setBounds(coordinate_X + 403, coordinate_Y + 34, 85, 18);
 		
 		
 //		addLabel.setIcon(ADD_ICON);
@@ -105,9 +122,9 @@ public class InstitutionListPanel extends JPanel{
 //			}
 //		});
 		previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
-	                ("images/previousPageClicked.png"), 330, 504);
-	    nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
-	                ("images/nextPageClicked.png"), 410, 504);
+                ("images/previousPageClicked.png"), coordinate_X + 250, coordinate_Y + 440);
+		nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
+                ("images/nextPageClicked.png"), coordinate_X + 320, coordinate_Y + 440);
 		
 		
 		
@@ -116,6 +133,9 @@ public class InstitutionListPanel extends JPanel{
         this.add(nextPageButton);
         this.add(previousPageButton);
         this.add(imageLabel);
+        this.add(addLabel);
+        this.add(searchButton);
+        this.add(searchField);
         this.setLayout(null);
         this.setOpaque(false);
 		
@@ -123,12 +143,8 @@ public class InstitutionListPanel extends JPanel{
 //		frame.setVisible(true);
 	}
 	
-	public void setUsers(){
-		institutionVOs = new ArrayList<InstitutionVO>();
-		for(int i = 0; i < 40;i++)
-			institutionVOs.add(new InstitutionVO("鼓楼营业厅", 100000, null, "负责快递的接收、分拣与派送"));
-		
-		institutionGroup = new InstitutionGroup(institutionVOs, Line_Num, 143, 110);
+	public void setInstitutions(ArrayList<InstitutionVO> institutionVOs){
+		institutionGroup = new InstitutionGroup(institutionVOs, Line_Num, coordinate_X + 33,coordinate_Y + 90);
 		
 	}
 	private void setPageComboBox() {
@@ -136,17 +152,17 @@ public class InstitutionListPanel extends JPanel{
 	          pageComboBox.addItem(i);
 	    }
 
-	private void removeUserLabel() {
+	private void removeInstitutionLabel() {
 	   for (int m = 0; m < institutionGroup.getLabel().length; m++) {
-	        for (int n = 0; n < 2; n++) {
+	        for (int n = 0; n < 3; n++) {
 	            this.remove(institutionGroup.getLabel()[m][n]);
 	        }
 	    }
 	    this.remove(imageLabel);
 	}
-   private void addUserLabel() {
+   private void addInstitutionLabel() {
         for (int m = 0; m < institutionGroup.getLabel().length; m++) {
-            for (int n = 0; n < 2; n++) {
+            for (int n = 0; n < 3; n++) {
                 this.add(institutionGroup.getLabel()[m][n], new Integer(Integer.MAX_VALUE));
             }
         }
@@ -173,9 +189,9 @@ public class InstitutionListPanel extends JPanel{
 	            pageNum = (int) pageComboBox.getSelectedItem();
 
 	            // Button与JComboBox公用的监听部分
-	            container.removeUserLabel();
+	            container.removeInstitutionLabel();
 	            institutionGroup.setPage((int) pageComboBox.getSelectedItem());
-	            container.addUserLabel();
+	            container.addInstitutionLabel();
 
 	            // 最后一页和第一页需处理Button的可视情况
 	            if (pageNum == 1) {

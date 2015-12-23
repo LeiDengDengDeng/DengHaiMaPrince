@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.businesslogic.institutionbl.Institution;
 import src.presentation.staffmanageui.StaffListPanel;
 import src.presentation.util.MyButton;
 import src.vo.InstitutionVO;
@@ -37,6 +38,7 @@ public class Institution_InfoPanel extends JPanel{
 	private static final ImageIcon DELETEENTER_ICON = new ImageIcon("images/delete_Enter.png");
 	
 	InstitutionVO institutionVO;
+	Institution institution;
 	
 	
 	JLabel imageLabel;
@@ -71,6 +73,8 @@ public class Institution_InfoPanel extends JPanel{
         pageComboBox.setBounds(coordinate_X + 474, coordinate_Y + 491, 40, 20);
         setPageComboBox();
         pageComboBox.addActionListener(listener);
+        confirmButton.addActionListener(listener);
+        deleteButton.addActionListener(listener);
         
         addUserLabel();
         
@@ -82,8 +86,6 @@ public class Institution_InfoPanel extends JPanel{
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 		
-        
- 
         
         this.add(institutionID);
         this.add(institutionName);
@@ -102,6 +104,7 @@ public class Institution_InfoPanel extends JPanel{
 	}
 	
 	public void componentsInstantiation(){
+		institution = new Institution(null);
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/institution_InfoBG.png");
 		institutionID = new JLabel();
@@ -114,8 +117,8 @@ public class Institution_InfoPanel extends JPanel{
 	                ("images/previousPageClicked_Red.png"), coordinate_X + 250, coordinate_Y + 490);
 	    nextPageButton = new MyButton(new ImageIcon("images/nextPage_Red.png"), new ImageIcon
 	                ("images/nextPageClicked_Red.png"), coordinate_X + 320, coordinate_Y + 490);
-	    searchButton = new MyButton(new ImageIcon("images/search.png"), new ImageIcon
-                ("images/searchClicked.png"), coordinate_X + 350, coordinate_Y + 330);
+	    searchButton = new MyButton(new ImageIcon("images/search_icon.png"), new ImageIcon
+                ("images/search_iconClicked_Red.png"), coordinate_X + 10, coordinate_Y + 485);
 		
 	}
 	public void getInstitutionInfo(InstitutionVO institutionVO){
@@ -178,6 +181,10 @@ public class Institution_InfoPanel extends JPanel{
 	                pageComboBox.setSelectedItem(pageNum - 1);
 	            } else if (e.getSource() == nextPageButton) {
 	                pageComboBox.setSelectedItem(pageNum + 1);
+	            } else if (e.getSource() == confirmButton) {
+	            	
+	            } else if (e.getSource() == deleteButton) {
+	            	institution.deleteInstitution(institutionVO.getInstitutionID());
 	            }
 	            pageNum = (int) pageComboBox.getSelectedItem();
 

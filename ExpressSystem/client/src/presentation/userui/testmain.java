@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 
 import org.junit.internal.runners.TestMethod;
 
+import src.presentation.institutionui.AddInstitutionPanel;
+import src.presentation.institutionui.InstitutionListPanel;
 import src.presentation.institutionui.Institution_InfoPanel;
 import src.presentation.institutionui.changeSalaryPanel;
 import src.presentation.mainui.MainFrame;
@@ -66,20 +68,26 @@ public class testmain extends JFrame{
 //				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
 //		test.setContentPane(new AddStaffPanel());
 		
-//		ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
-//		for (int i = 0; i < 20; i++)
-//			userVOs.add(new UserVO(100000, 100000, "aaaaaa"
-//					, "张三", "快递员", null, new SalaryVO(3000), null, null));
+		ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
+		for (int i = 0; i < 20; i++)
+			userVOs.add(new UserVO(100000, 100000, "aaaaaa"
+					, "张三", "快递员", null, new SalaryVO(3000), null, null));
 //		test.setContentPane(new Institution_InfoPanel(new InstitutionVO("营业厅",
 //				100000, userVOs, "负责中转与接收")));
 		
-		ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
-		for(int i = 0;i < 50; i++)
-			staffInfoVOs.add(new StaffInfoVO(100000, 100000, "aaaaaa",
-					"张三", "管理员", null, null, null));
-		StaffListPanel staffListPanel = new StaffListPanel(staffInfoVOs);
-		test.setContentPane(staffListPanel);
+		ArrayList<InstitutionVO> institutionVOs = new ArrayList<InstitutionVO>();
+		for (int i = 0; i < 20; i++)
+			institutionVOs.add(new InstitutionVO("营业厅", 100000, userVOs, "负责中转与接收"));
+		test.setContentPane(new InstitutionListPanel(institutionVOs));
+		
+//		ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
+//		for(int i = 0;i < 50; i++)
+//			staffInfoVOs.add(new StaffInfoVO(100000, 100000, "aaaaaa",
+//					"张三", "管理员", null, null, null));
+//		StaffListPanel staffListPanel = new StaffListPanel(staffInfoVOs);
+//		test.setContentPane(staffListPanel);
 //		test.setContentPane(new changeAuthorityPanel());
+//		test.setContentPane(new AddInstitutionPanel());
 		
 		test.setVisible(true);
 		
