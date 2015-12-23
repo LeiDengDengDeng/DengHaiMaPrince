@@ -1,10 +1,12 @@
 package src.businesslogic.sheetbl;
 
 import src.enums.SheetType;
+import src.po.ConstantPO;
 import src.po.SheetPO;
+import src.vo.ConstantVO;
 import src.vo.SheetVO;
 
-public class Constant extends Sheet{
+public class Constant extends Sheet {
 
 	SheetType type = SheetType.CONSTANT;
 
@@ -15,24 +17,23 @@ public class Constant extends Sheet{
 	}
 
 	@Override
-	public boolean modify(long ID, SheetVO vo) {
-		// TODO 自动生成的方法存根
-		return false;
-	}
-
-	@Override
 	public SheetType getType() {
 		return this.type;
 	}
 
 	@Override
 	public SheetVO generateVO(SheetPO po) {
-		return null;
+		ConstantPO p = (ConstantPO) po;
+		ConstantVO vo = new ConstantVO(p.getBuilder(), p.getTime(),
+				p.getDistant(), p.getPrice(), p.getCityOne(), p.getCityTwo());
+		return vo;
 	}
 
 	@Override
 	public SheetPO generatePO(SheetVO vo) {
-		return null;
+		ConstantVO v = (ConstantVO) vo;
+		ConstantPO po=new ConstantPO(v.getBuilder(), v.getTime(), v.getDistant(), v.getPrice(), v.getCityOne(), v.getCityTwo(), v.getID());
+		return po;
 	}
 
 }
