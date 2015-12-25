@@ -59,9 +59,9 @@ public class MainFrame extends JFrame {
 	int frameLocationX;
 	int frameLocationY;
 
-	// public static void main(String[] args) {
-	// new MainFrame(null);
-	// }
+//	 public static void main(String[] args) {
+//	 new MainFrame(null);
+//	 }
 
 	public MainFrame(ArrayList<Integer> authority) {
 		// 登陆后设置权限，初始化左侧按钮和Panel
@@ -165,6 +165,8 @@ public class MainFrame extends JFrame {
 				}
 			}
 		});
+
+//		PanelController.setPresentPanel(231);
 
 		// 添加组件至frame上
 		for (MyButton e : leftButtonGroup.getLeftButtons())

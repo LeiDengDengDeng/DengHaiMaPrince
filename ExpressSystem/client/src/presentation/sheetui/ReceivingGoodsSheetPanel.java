@@ -1,27 +1,12 @@
 package src.presentation.sheetui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-
 import src.businesslogicservice.sheetblservice.SheetBLService;
 
-public class ReceivingGoodsSheetPanel extends SheetPanel {
-	 ArrayList<JTextField> courierNumber;
-	 ArrayList<JComboBox> depature;
-	 ArrayList<JComboBox> destination;
-	 ArrayList<JComboBox> start;
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
+public class ReceivingGoodsSheetPanel extends SheetPanel {
 	SubPanel subPanel;
 	
 	JLabel imageLabel;
@@ -36,7 +21,7 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/sheet_receivingGoods.png");
 
-		subPanel.setBounds(104, 141, 435, 300);
+		subPanel.setBounds(105, 141, 420, 320);
 		
 		imageLabel.setIcon(bkgImg);
 		imageLabel.setBounds(40, 40, bkgImg.getIconWidth(), bkgImg.getIconHeight());
@@ -55,39 +40,11 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 		return false;
 	}
 
-	public static void main(String[] args) {
-		int WIDTH = 850;
-		int HEIGHT = 646;
-		ImageIcon IMG = new ImageIcon("images/mainFrame.png");
-
-		JFrame frame = new JFrame();
-		ReceivingGoodsSheetPanel panel = new ReceivingGoodsSheetPanel(null);
-		JPanel panelbg = new JPanel();
-		// 设置标题
-		frame.setUndecorated(true);
-		frame.setSize(850, 646);
-		// 不允许用户改变窗口大小
-		frame.setResizable(false);
-		// 获得屏幕大小
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Dimension screen = toolkit.getScreenSize();
-		// 设置窗体位置
-		int x = (screen.width - WIDTH) >> 1;
-		int y = ((screen.height - HEIGHT) >> 1) - 32;
-
-		frame.setLocation(x, y);
-		// 设置默认panel
-		panelbg.setLayout(null);
-		JLabel bg = new JLabel(IMG);
-		bg.setBounds(0, 0, WIDTH, HEIGHT);
-
-		panelbg.add(panel);
-		frame.setContentPane(panelbg);
-		frame.getContentPane().add(bg);
-		frame.setVisible(true);
-	}
-
 	class SubPanel extends JScrollPane {
+		ArrayList<JTextField> courierNumbers;
+		ArrayList<JComboBox> starts;
+		ArrayList<JComboBox> destinations;
+		ArrayList<JComboBox> states;
 
 		JPanel panel;
 		GridLayout layout;
@@ -97,21 +54,35 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 		}
 
 		private void init() {
-			layout = new GridLayout(0, 4, 2, 2);
+			layout = new GridLayout(0, 4, 5, 5);
 			panel = new JPanel();
 			panel.setBackground(Color.BLACK);
 
-//			panel.setLayout(layout);
-//			// 初始化显示五行
-//			for (int i = 0; i < 5; i++)
-//				addLine();
+			panel.setLayout(layout);
+			for (int i = 0; i < 10; i++)
+				addLine();
 
 			this.setViewportView(panel);
 			this.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
 		}
 
 		public void addLine() {
-		
+			JTextField courierNumber = new JTextField();
+			JComboBox start = new JComboBox();
+			JComboBox destination =  new JComboBox();
+			JComboBox state = new JComboBox(new String[]{"完整","损坏","丢失"});
+
+			courierNumbers.add(courierNumber);
+			starts.add(start);
+			destinations.add(destination);
+			starts.add(start);
+
+			panel.add(courierNumber);
+			panel.add(start);
+			panel.add(destination);
+			panel.add(state);
+
+			repaint();
 		}
 		
 	}
