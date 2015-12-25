@@ -1,5 +1,6 @@
 package src.businesslogic.sheetbl;
 
+import src.businesslogic.logbl.Log;
 import src.dataservice.sheetdataservice.SheetDataService;
 import src.enums.SheetType;
 import src.po.OrderSheetPO;
@@ -14,6 +15,10 @@ public class OrderSheet extends Sheet {
 
     SheetType type = SheetType.ORDER_SHEET;
     SheetDataService sheetData;
+
+    public OrderSheet(Log logBL) {
+        super(logBL);
+    }
 
     @Override
     public String[][] getExistedInfo() {
