@@ -25,8 +25,9 @@ public class GoodsData_Driver {
 //		goodsData.insert(goodsPO2);
 //		goodsData.delete(0000000000000001);
 //		goodsData.update(goodsPO2);
-//		System.out.println(goodsData.finds(GoodsType.RAIL).get(0).getGoodsName()
-//				+ " " + goodsData.finds(GoodsType.RAIL).get(1).getGoodsName());
+		System.out.println(goodsData.finds().size());
+		System.out.println(goodsData.finds(GoodsType.RAIL).get(0).getGoodsName()
+				+ " " + goodsData.finds(GoodsType.RAIL).get(1).getGoodsName());
 		
 	}
 }

@@ -243,6 +243,7 @@ public class DriverPanel extends JPanel{
 			driver.addMouseListener(new DriverListener());
 			driverList.add(driver);
 			JLabel num = new JLabel(drivers.get(i).getNumber());
+//			num.setBounds(i, i, width, i);
 			numList.add(num);
 			JLabel name = new JLabel(drivers.get(i).getName());
 			nameList.add(name);
