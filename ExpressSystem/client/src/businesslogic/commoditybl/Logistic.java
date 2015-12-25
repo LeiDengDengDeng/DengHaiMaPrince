@@ -35,7 +35,10 @@ public class Logistic implements LogisticBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ArrayList<String> logistics = gpo.getLogisticsState();
+		ArrayList<String> logistics = new ArrayList<String>();
+		if(gpo.getLogisticsState() != null){
+			logistics = gpo.getLogisticsState();
+		}
 		logistics.add(logisticsState);
 		gpo.setLogisticsState(logistics);
 		try {
