@@ -19,7 +19,7 @@ import src.vo.StaffInfoVO;
 
 public class InstitutionListPanel extends JPanel{
 	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_Y = 85;
 	
 	private static final int Line_Num = 13;
 	
@@ -69,7 +69,7 @@ public class InstitutionListPanel extends JPanel{
 		pageComboBox = new JComboBox();
 		searchField = new JTextField();
 		bkgImg = new ImageIcon("images/institution_ListBG.png");
-		add = new ImageIcon("images/staff_addAccount.png");
+		add = new ImageIcon("images/institution_addAccount.png");
 		addButton = new MyButton(new ImageIcon("images/account_add.png"),
 				new ImageIcon("images/account_addEnter.png"), coordinate_X + 10, coordinate_Y + 32, false);
 		confirmButton = new MyButton(new ImageIcon("images/user_InfoConfirm.png"),
@@ -132,9 +132,11 @@ public class InstitutionListPanel extends JPanel{
 		this.add(pageComboBox);
         this.add(nextPageButton);
         this.add(previousPageButton);
+        this.add(addButton);
+        this.add(confirmButton);
+        this.add(searchButton);
         this.add(imageLabel);
         this.add(addLabel);
-        this.add(searchButton);
         this.add(searchField);
         this.setLayout(null);
         this.setOpaque(false);
@@ -197,9 +199,13 @@ public class InstitutionListPanel extends JPanel{
 	            if (pageNum == 1) {
 	                container.previousPageButton.setVisible(false);
 	                container.nextPageButton.setVisible(true);
-	            } else if (pageNum == container.institutionVOs.size() / Line_Num + 1) {
-	                container.nextPageButton.setVisible(false);
-//	                container.previousPageButton.setVisible(true);
+	            } else if(container.institutionVOs.size() % Line_Num == 0 &&
+	            		pageNum == container.institutionVOs.size() / Line_Num) {
+	            	container.nextPageButton.setVisible(false);
+	            	container.previousPageButton.setVisible(true);
+				} else if (pageNum == container.institutionVOs.size() / Line_Num + 1) {
+	            		container.nextPageButton.setVisible(false);
+	                	container.previousPageButton.setVisible(true);
 	            } else {
 	                container.previousPageButton.setVisible(true);
 	                container.nextPageButton.setVisible(true);

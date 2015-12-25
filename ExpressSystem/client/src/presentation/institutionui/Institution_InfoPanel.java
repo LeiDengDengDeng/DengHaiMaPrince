@@ -27,7 +27,7 @@ public class Institution_InfoPanel extends JPanel{
 	static final int h = 30;
 	static final int linesp = 48;
 	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_Y = 85;
 	private static final int Line_Num = 6;
 	
 	Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
@@ -197,9 +197,13 @@ public class Institution_InfoPanel extends JPanel{
 	            if (pageNum == 1) {
 	                container.previousPageButton.setVisible(false);
 	                container.nextPageButton.setVisible(true);
-	            } else if (pageNum == container.institutionVO.getStaff().size() / Line_Num + 1) {
-	                container.nextPageButton.setVisible(false);
-//	                container.previousPageButton.setVisible(true);
+	            } else if(container.institutionVO.getStaff().size() % Line_Num == 0 &&
+	            		pageNum == container.institutionVO.getStaff().size() / Line_Num) {
+	            	container.nextPageButton.setVisible(false);
+	            	container.previousPageButton.setVisible(true);
+				} else if (pageNum == container.institutionVO.getStaff().size() / Line_Num + 1) {
+	            		container.nextPageButton.setVisible(false);
+	                	container.previousPageButton.setVisible(true);
 	            } else {
 	                container.previousPageButton.setVisible(true);
 	                container.nextPageButton.setVisible(true);

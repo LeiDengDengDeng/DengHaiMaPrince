@@ -15,7 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import src.businesslogic.nonUserbl.IntermediateCenter;
+import src.businesslogic.staffmanagebl.Position;
+import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.staffmanagebl.StaffManageController;
+import src.businesslogic.userbl.User;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
 import src.vo.StaffInfoVO;
@@ -60,7 +63,7 @@ public class AddStaffPanel extends JPanel{
 	MyButton cancelButton;
 	MyButton confirmButton;
 	StaffListPanel staffManagePanel;
-	StaffManageController controller;
+	StaffManage staffManage;
 	IntermediateCenter intermediateCenter;
 	
 	public AddStaffPanel(){
@@ -123,7 +126,7 @@ public class AddStaffPanel extends JPanel{
 		position = new JTextField();
 		city = new JComboBox<String>();
 		businessHall = new JTextField();
-		controller = new StaffManageController(null);
+		staffManage = new StaffManage(null, new Position(new User(null)));
 		intermediateCenter = new IntermediateCenter(null);
 	}
 	
@@ -173,7 +176,7 @@ public class AddStaffPanel extends JPanel{
 		           				staffbusinessHall = null;
 		           			if(city.getSelectedItem().equals("нч"))
 		           				staffCity = null;
-		           			controller.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
+		           			staffManage.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
 		           					staffName, staffPosition, null, staffCity, staffbusinessHall));
 		           		}
 		           }else if(e.getSource() == cancelButton){

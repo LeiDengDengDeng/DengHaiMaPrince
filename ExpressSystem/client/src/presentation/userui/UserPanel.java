@@ -114,43 +114,90 @@ public class UserPanel extends JPanel{
 	}
 	
 	//获得个人信息
-		public void getInfo(UserVO userVO){
-			ID = new JLabel(String.valueOf(userVO.getpersonalID()));
-			account = new JLabel(String.valueOf(userVO.getpersonalAccount()));
-			password = new JLabel(userVO.getMyPassword());
-			name = new JLabel(userVO.getpersonalName());
-			position = new JLabel(userVO.getMyPosition());
-			salary = new JLabel(String.valueOf(userVO.getSalary().getTotal()));
-			city = new JLabel(userVO.getCity());
-			businessHall = new JLabel(userVO.getBusinessHall());
+	public void getInfo(UserVO userVO){
+		ID = new JLabel(String.valueOf(userVO.getpersonalID()));
+		account = new JLabel(String.valueOf(userVO.getpersonalAccount()));
+		password = new JLabel(userVO.getMyPassword());
+		name = new JLabel(userVO.getpersonalName());
+		position = new JLabel(userVO.getMyPosition());
+		salary = new JLabel(String.valueOf(userVO.getSalary().getTotal()));
+		
+		if(userVO.getCity() == null) city = new JLabel("无");
+		else city = new JLabel(userVO.getCity());
+		
+		if(userVO.getBusinessHall() == null) businessHall = new JLabel("无");
+		else businessHall = new JLabel(userVO.getBusinessHall());
 			
-			name.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
-			position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y, w, h);
-			ID.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
-			account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
-			password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
-			city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3 - 1, w, h);
-			salary.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 4, w, h);
-			businessHall.setBounds(coordinate_X + x + columnsp + 20, coordinate_Y + y + linesp * 3 - 1, w, h);
+		name.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
+		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y, w, h);
+		ID.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
+		account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
+		password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
+		city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3 - 1, w, h);
+		salary.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 4, w, h);
+		businessHall.setBounds(coordinate_X + x + columnsp + 20, coordinate_Y + y + linesp * 3 - 1, w, h);
 			
-			name.setFont(myFont);
-			name.setForeground(Color.WHITE);
-			position.setFont(myFont);
-			position.setForeground(Color.WHITE);
-			ID.setFont(myFont);
-			ID.setForeground(Color.WHITE);
-			account.setFont(myFont);
-			account.setForeground(Color.WHITE);
-			password.setFont(myFont);
-			password.setForeground(Color.WHITE);
-			city.setFont(myFont);
-			city.setForeground(Color.WHITE);
-			businessHall.setFont(myFont);
-			businessHall.setForeground(Color.WHITE);
-			salary.setFont(myFont);
-			salary.setForeground(Color.WHITE);
-		}
+		name.setFont(myFont);
+		name.setForeground(Color.WHITE);
+		position.setFont(myFont);
+		position.setForeground(Color.WHITE);
+		ID.setFont(myFont);
+		ID.setForeground(Color.WHITE);
+		account.setFont(myFont);
+		account.setForeground(Color.WHITE);
+		password.setFont(myFont);
+		password.setForeground(Color.WHITE);
+		city.setFont(myFont);
+		city.setForeground(Color.WHITE);
+		businessHall.setFont(myFont);
+		businessHall.setForeground(Color.WHITE);
+		salary.setFont(myFont);
+		salary.setForeground(Color.WHITE);
+		
+		setAuthority();
+	}
 	
+	
+	//权限
+	public void setAuthority(){
+		int sp = 30;
+		for(int i = 0; i < userVO.getAuthority().size();i++){
+			JLabel authority = null;
+//			this.add(authority);
+			switch (userVO.getAuthority().get(i)) {
+			case 1:authority = new JLabel("员工账号管理");break;
+			case 2:authority = new JLabel("中转中心接收与派件");break;
+			case 3:authority = new JLabel("营业厅接收与派件");break;
+			case 4:authority = new JLabel("收款单填写");break;
+			case 5:authority = new JLabel("车辆装车管理");break;
+			case 6:authority = new JLabel("飞机、火车、汽车装运管理");break;
+			case 7:authority = new JLabel("记录订单信息");break;	
+			case 8:authority = new JLabel("收货信息");break;
+			case 9:authority = new JLabel("仓库管理");break;
+			case 10:authority = new JLabel("车辆、司机信息管理");break;
+			case 11:authority = new JLabel("经营情况查询");break;
+			case 12:authority = new JLabel("人员机构管理");break;
+			case 13:authority = new JLabel("审批单据");break;
+			case 14:authority = new JLabel("付款单填写");break;
+			case 15:authority = new JLabel("账户管理");break;
+			case 16:authority = new JLabel("成本管理");break;
+			case 17:authority = new JLabel("结算管理");break;
+			case 18:authority = new JLabel("修改权限");break;
+			case 19:authority = new JLabel("查看日志");break;
+			case 20:authority = new JLabel("制定常量");break;
+			case 21:authority = new JLabel("期初建账");break;
+			default:
+				break;
+			}
+			authority.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 5 + i * sp, w, h);
+			authority.setFont(myFont);
+			authority.setForeground(Color.WHITE);
+			this.add(authority);
+		}
+			
+	}
+		
+		
 //	public static void main(String[] args) {
 //		new UserPanel(new UserVO(100000, 100000, "aaaaaa", "张三", "快递员",
 //				null, new SalaryPO(3000), "南京", "鼓楼营业厅"));

@@ -12,7 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.businesslogic.staffmanagebl.Position;
+import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.staffmanagebl.StaffManageController;
+import src.businesslogic.userbl.User;
 import src.presentation.userui.ChangePasswordPanel;
 import src.presentation.userui.UserPanel;
 import src.presentation.userui.testmain;
@@ -31,7 +34,7 @@ public class Staff_InfoPanel extends JPanel{
 	static final int linesp = 49;
 	static final int columnsp = 250;
 	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_Y = 85;
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
@@ -41,7 +44,7 @@ public class Staff_InfoPanel extends JPanel{
 	private static final ImageIcon DELETEENTER_ICON = new ImageIcon("images/delete_Enter.png");
 	
 	StaffInfoVO staffInfoVO;
-	StaffManageController controller;
+	StaffManage staffManage;
 	
 	MyButton confirmButton;
 	MyButton deleteButton;
@@ -61,7 +64,6 @@ public class Staff_InfoPanel extends JPanel{
 	
 	public Staff_InfoPanel(StaffInfoVO staffInfoVO){
 		this.staffInfoVO = staffInfoVO;
-		controller = new StaffManageController(null);
 		buttonActionListener listener = new buttonActionListener(this);
 		
         componentsInstantiation();
@@ -79,6 +81,7 @@ public class Staff_InfoPanel extends JPanel{
 
 	
 	public void componentsInstantiation(){
+		staffManage = new StaffManage(null, new Position(new User(null)));
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/staff_InfoBG.png");
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480,false);
@@ -112,8 +115,12 @@ public class Staff_InfoPanel extends JPanel{
 		password = new JLabel(staffInfoVO.getPassword());
 		name = new JLabel(staffInfoVO.getStaffName());
 		position = new JLabel(staffInfoVO.getPosition());
-		city = new JLabel(staffInfoVO.getCity());
-		businessHall = new JLabel(staffInfoVO.getBusinessHall());
+		
+		if(staffInfoVO.getCity() == null) city = new JLabel("无");
+		else city = new JLabel(staffInfoVO.getCity());
+		
+		if(staffInfoVO.getBusinessHall() == null) businessHall = new JLabel("无");
+		else businessHall = new JLabel(staffInfoVO.getBusinessHall());
 				
 		name.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
 		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y, w, h);
@@ -137,7 +144,48 @@ public class Staff_InfoPanel extends JPanel{
 		city.setForeground(Color.WHITE);
 		businessHall.setFont(myFont);
 		businessHall.setForeground(Color.WHITE);
+		
+		setAuthority();
 	}
+	
+	//权限
+	public void setAuthority(){
+		int sp = 30;
+		for(int i = 0; i < staffInfoVO.getAuthority().size();i++){
+			JLabel authority = null;
+//			this.add(authority);
+			switch (staffInfoVO.getAuthority().get(i)) {
+			case 1:authority = new JLabel("员工账号管理");break;
+			case 2:authority = new JLabel("中转中心接收与派件");break;
+			case 3:authority = new JLabel("营业厅接收与派件");break;
+			case 4:authority = new JLabel("收款单填写");break;
+			case 5:authority = new JLabel("车辆装车管理");break;
+			case 6:authority = new JLabel("飞机、火车、汽车装运管理");break;
+			case 7:authority = new JLabel("记录订单信息");break;	
+			case 8:authority = new JLabel("收货信息");break;
+			case 9:authority = new JLabel("仓库管理");break;
+			case 10:authority = new JLabel("车辆、司机信息管理");break;
+			case 11:authority = new JLabel("经营情况查询");break;
+			case 12:authority = new JLabel("人员机构管理");break;
+			case 13:authority = new JLabel("审批单据");break;
+			case 14:authority = new JLabel("付款单填写");break;
+			case 15:authority = new JLabel("账户管理");break;
+			case 16:authority = new JLabel("成本管理");break;
+			case 17:authority = new JLabel("结算管理");break;
+			case 18:authority = new JLabel("修改权限");break;
+			case 19:authority = new JLabel("查看日志");break;
+			case 20:authority = new JLabel("制定常量");break;
+			case 21:authority = new JLabel("期初建账");break;
+			default:
+				break;
+			}
+			authority.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 4 + i * sp, w, h);
+			authority.setFont(myFont);
+			authority.setForeground(Color.WHITE);
+			this.add(authority);
+		}				
+	}
+	
 	
 	class buttonActionListener implements ActionListener {
 		Staff_InfoPanel container;
@@ -149,10 +197,9 @@ public class Staff_InfoPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == confirmButton){
-		        		StaffListPanel listPanel = new StaffListPanel(controller.getAllStaff());
 		        	}
 		        	else if (e.getSource() == deleteButton) {
-						
+						staffManage.deleteStaff(staffInfoVO.getID());
 					}
 		        	
 		        	

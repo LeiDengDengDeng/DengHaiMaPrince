@@ -30,7 +30,7 @@ public class StaffListPanel extends JPanel{
 	
 
 	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_Y = 85;
 	
 //	private static final ImageIcon SEARCH = new ImageIcon("images/search.png");
 //	private static final ImageIcon SEARCHENTER = new ImageIcon("images/searchClicked.png");
@@ -229,9 +229,13 @@ public class StaffListPanel extends JPanel{
 	            if (pageNum == 1) {
 	                container.previousPageButton.setVisible(false);
 	                container.nextPageButton.setVisible(true);
-	            } else if (pageNum == container.Staffs.size() / Line_Num + 1) {
-	                container.nextPageButton.setVisible(false);
-//	                container.previousPageButton.setVisible(true);
+	            }else if(container.Staffs.size() % Line_Num == 0 &&
+	            		pageNum == container.Staffs.size() / Line_Num) {
+	            	container.nextPageButton.setVisible(false);
+	            	container.previousPageButton.setVisible(true);
+				} else if (pageNum == container.Staffs.size() / Line_Num + 1) {
+	            		container.nextPageButton.setVisible(false);
+	                	container.previousPageButton.setVisible(true);
 	            } else {
 	                container.previousPageButton.setVisible(true);
 	                container.nextPageButton.setVisible(true);

@@ -23,7 +23,6 @@ public class Position implements PositionBLService{
 		if(staff.getPosition().equals("总经理")){
 			authority.add(12);
 			authority.add(13);
-			authority.add(14);
 			authority.add(19);
 			authority.add(20);
 		}else if(staff.getPosition().equals("管理员")){
@@ -36,6 +35,7 @@ public class Position implements PositionBLService{
 			authority.add(16);
 			authority.add(17);
 			authority.add(19);
+			authority.add(21);
 		}else if(staff.getPosition().equals("中转中心仓库管理员")){
 			authority.add(9);
 		}else if(staff.getPosition().equals("中转中心业务员")){
