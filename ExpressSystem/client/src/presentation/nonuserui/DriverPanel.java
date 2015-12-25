@@ -87,6 +87,7 @@ public class DriverPanel extends JPanel{
 	private boolean isActive;
 	
 	public DriverPanel(){
+		System.out.println();
 		driverBL = new DriverController();
 		
 		TextFieldCheckdriverNum = new JTextField();
