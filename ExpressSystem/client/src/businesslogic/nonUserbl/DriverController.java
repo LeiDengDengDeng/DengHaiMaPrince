@@ -21,6 +21,12 @@ public class DriverController implements DriverBLService{
 		// TODO Auto-generated method stub
 		return driverimpl.getDriverInfo(driverId);
 	}
+	
+	@Override
+	public ArrayList<DriverInfoVO> getDriverByBusinesshall(String id) {
+		// TODO Auto-generated method stub
+		return driverimpl.getDriverByBusinesshall(id);
+	}
 
 	@Override
 	public ArrayList<DriverInfoVO> getAllDriverInfo() {
@@ -51,5 +57,6 @@ public class DriverController implements DriverBLService{
 		// TODO Auto-generated method stub
 		driverimpl.initDriver(dvolist);
 	}
+
 
 }

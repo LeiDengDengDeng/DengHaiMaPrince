@@ -80,6 +80,17 @@ public class Commodity implements CommodityBLService{
 	}
 
 	@Override
+	public double getAlarmScale(String storageId) {
+		StoragePO spo = null;
+		try {
+			spo = storageDataService.findStoragePO(storageId);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return spo.getAlarmScale();
+	}
+	
+	@Override
 	public void changeAlarmScale(double alarmScale,String storageId) {
 		StoragePO spo = null;
 //		ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
@@ -285,6 +296,7 @@ public class Commodity implements CommodityBLService{
 			}
 		}
 	}
+
 
 
 }

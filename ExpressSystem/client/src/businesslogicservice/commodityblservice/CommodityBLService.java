@@ -40,6 +40,13 @@ public interface CommodityBLService {
 	public void changeAlarmScale(double alarmScale,String storageId);
 	
 	/**
+	 * 获得当前警戒比例
+	 * @param storageId
+	 * @return
+	 */
+	public double getAlarmScale(String storageId);
+	
+	/**
 	 * 库存查看界面得到一段时间内的库存信息
 	 * @return 
 	 */

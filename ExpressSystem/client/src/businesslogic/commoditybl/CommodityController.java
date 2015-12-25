@@ -125,6 +125,12 @@ public class CommodityController implements CommodityBLService{
 		
 	}
 
+	@Override
+	public double getAlarmScale(String storageId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 	
 

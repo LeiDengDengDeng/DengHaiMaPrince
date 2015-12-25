@@ -44,6 +44,27 @@ public class Driver implements DriverBLService{
 				dPo.getMobNum(), dPo.getSex(), dPo.getYearOfExpiring());
 		return dVo;
 	}
+	
+	@Override
+	public ArrayList<DriverInfoVO> getDriverByBusinesshall(String id) {
+		ArrayList<DriverPO> dpos = new ArrayList<DriverPO>();
+		ArrayList<DriverInfoVO> dvos = new ArrayList<DriverInfoVO>();
+
+		try {
+			dpos = driverDataService.findsDriverPO(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		for(int i = 0;i < dpos.size();i++){
+			dvos.add(new DriverInfoVO(dpos.get(i).getNumber(), 
+					dpos.get(i).getName(), dpos.get(i).getYear(), 
+					dpos.get(i).getMonth(), dpos.get(i).getDay(), 
+					dpos.get(i).getID(), dpos.get(i).getMobNum(), 
+					dpos.get(i).getSex(), dpos.get(i).getYearOfExpiring()));
+		}
+		return dvos;
+	}
 
 	@Override
 	public ArrayList<DriverInfoVO> getAllDriverInfo() {
@@ -118,5 +139,6 @@ public class Driver implements DriverBLService{
 			}
 		}
 	}
+
 
 }

@@ -96,14 +96,14 @@ public class StockCheckPanel extends JPanel{
 		confirmButton.addActionListener(listener2);
 		startTime = new DateChooserJButton();
 		endTime = new DateChooserJButton();
-		remind.setBounds(50, 70, 250, 30);
+		remind.setBounds(70, 90, 250, 30);
 		remind.setFont(myFont);
 		confirmButton.setBounds(480, 250, IMG_CONFIRM.getIconWidth(),
 				IMG_CONFIRM.getIconHeight());
-		startTime.setBounds(120, 140, 100, 40);
-		endTime.setBounds(370, 140, 100, 40);
-		fromTo.setBounds(270, 140, 100, 30);
-		fromTo.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 30));
+		startTime.setBounds(120, 160, 100, 30);
+		endTime.setBounds(360, 160, 100, 30);
+		fromTo.setBounds(270, 160, 100, 30);
+		fromTo.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 20));
 		inNumLabel.setBounds(40, 5, 200, 40);
 		inNumLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
 		outNumLabel.setBounds(200, 5, 200, 40);
