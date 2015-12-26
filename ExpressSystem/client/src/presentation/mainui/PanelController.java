@@ -12,6 +12,8 @@ import src.presentation.commodityui.storageoutsheetui.StorageOutSheetPanel;
 import src.presentation.loginui.BLServiceFactory;
 import src.presentation.logui.CheckLogPanel;
 import src.presentation.sheetui.*;
+import src.presentation.staffmanageui.ManagerAuthorityPanel;
+import src.presentation.staffmanageui.StaffListPanel;
 
 /**
  * Created by dell on 2015/12/5. 用途:控制界面跳转 业务逻辑层与界面层的连接在此实现
@@ -38,6 +40,9 @@ public class PanelController {
         if (presentPanel != null)
             frame.getContentPane().remove(presentPanel);
         switch (i) {
+            case 1:
+                presentPanel = new StaffListPanel();
+                break;
             case 5:
                 presentPanel = new HallTruckSheetPanel();
                 break;
@@ -58,6 +63,9 @@ public class PanelController {
                 break;
             case 15:
                 presentPanel = new AccountPanel(new Log());
+                break;
+            case 18:
+                presentPanel = new ManagerAuthorityPanel();
                 break;
             case 19:
                 presentPanel = new CheckLogPanel(factory.getLogBL());
