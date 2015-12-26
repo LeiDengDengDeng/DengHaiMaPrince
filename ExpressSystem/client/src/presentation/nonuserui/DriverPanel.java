@@ -41,6 +41,9 @@ public class DriverPanel extends JPanel{
 	protected static final int buttonToButton = 27;//司机图标之间的横向间距
 	protected static final int height = 18;//司机图标之间的纵向间距
 	protected static final int buttonToTop = 55;//第一排司机图标到最顶层的间距
+	protected static final int numLabelHeight = 84;//按钮顶端到编号的距离
+	protected static final int nameLabelHeight = 105;//按钮顶端到姓名的距离
+	protected static final int labelWidth = 51;//按钮左边到姓名编号的距离
 	
 	private ImageIcon addbkgImg;
 	private ImageIcon checkbkgImg;
@@ -87,8 +90,15 @@ public class DriverPanel extends JPanel{
 	private boolean isActive;
 	
 	public DriverPanel(){
-		System.out.println();
 		driverBL = new DriverController();
+		
+		nameLabel = new JLabel();
+		numLabel = new JLabel();
+		sexLabel = new JLabel();
+		mobNumLabel = new JLabel();
+		idLabel = new JLabel();
+		dateLabel = new JLabel();
+		yearOfExpiringLabel = new JLabel();
 		
 		TextFieldCheckdriverNum = new JTextField();
 		TextFieldCheckdriverNum.setBounds(140, 30, 200, 28);
@@ -229,27 +239,7 @@ public class DriverPanel extends JPanel{
 		backLabel.setBounds(40, 30, IMG_BG.getIconWidth(), IMG_BG.getIconHeight());
 		this.add(backLabel);
 		
-		drivers = driverBL.getDriverByBusinesshall("025000000");
-//		driverList = new ArrayList<JButton>();
-		driverList = new ArrayList<JLabel>();
-		numList = new ArrayList<JLabel>();
-		nameList = new ArrayList<JLabel>();
-		for(int i = 0;i < drivers.size();i++){
-//			JButton driver  = new JButton(IMG_DRIVER);
-			JLabel driver  = new JLabel(IMG_DRIVER);
-			driver.setBounds(40 + (i%4)*(IMG_DRIVER.getIconWidth() + buttonToButton), 
-					30 + buttonToTop + (i/4)*(height + IMG_DRIVER.getIconHeight()), 
-					IMG_DRIVER.getIconWidth(), IMG_DRIVER.getIconHeight());
-//			driver.setBorder(null);
-			driver.addMouseListener(new DriverListener());
-			driverList.add(driver);
-			JLabel num = new JLabel(drivers.get(i).getNumber());
-//			num.setBounds(i, i, width, i);
-			numList.add(num);
-			JLabel name = new JLabel(drivers.get(i).getName());
-			nameList.add(name);
-			this.add(driverList.get(i));
-		}
+		drawDrivers();
 		
 		this.setLayout(null);
 		this.setBounds(x, y, w, h);
@@ -295,26 +285,20 @@ public class DriverPanel extends JPanel{
 //				System.out.println("sb");
 			}
 			if(e.getSource() == deleteConfirmButton){
-				String driverId = TextFieldCheckdriverNum.getText();
+				String driverId = numLabel.getText();
 				System.out.println("deletedriverId: " + driverId);
+				processReturn();
+				for(int i = 0;i < drivers.size();i++) {
+					dPanel.remove(driverList.get(i));
+					dPanel.remove(nameList.get(i));
+					dPanel.remove(numList.get(i));
+				}
 //				driverBL.deleteDriverInfo(driverId);
+				drawDrivers();
+				dPanel.repaint();
 			}
 			if(e.getSource() == cancelButton){
-				backLabel.setVisible(true);
-				TextFieldCheckdriverNum.setVisible(true);
-				textFieldDriverNum.setVisible(false);
-				textFieldDriverName.setVisible(false);
-				textFieldDriverId.setVisible(false);
-				TextFieldCity.setVisible(false);
-				TextFieldBusinessHall.setVisible(false);
-				textFieldYearOfExpiring.setVisible(false);
-				textFieldMobNum.setVisible(false);
-				comboBoxSex.setVisible(false);
-				cancelButton.setVisible(false);
-				saveButton.setVisible(false);
-				addLabel.setVisible(false);
-				isActive = false;
-//				System.out.println("sb");
+				processCancel();
 			}
 			if(e.getSource() == saveButton){
 				System.out.println("sb");
@@ -332,86 +316,34 @@ public class DriverPanel extends JPanel{
 				String businessHall = TextFieldBusinessHall.getText();
 				String num = textFieldDriverNum.getText();
 				String mobNum = textFieldMobNum.getText();
-				String yearOfExpiring = textFieldYearOfExpiring.getText();
+				String yearOfExpiring = textFieldYearOfExpiring.getText(); 
 				DriverInfoVO dvo = new DriverInfoVO(num, name, Integer.parseInt(id.substring(6, 10)), 
 						Integer.parseInt(id.substring(10, 12)), Integer.parseInt(id.substring(12, 14)),
 						id, mobNum, sex, Integer.parseInt(yearOfExpiring));
 //				System.out.println(dvo.getName() + " " + dvo.getSex());
 //				System.out.println(dvo.getYear() + " " + dvo.getMonth() + " " + dvo.getDay());
-//				driverBL.addDriverInfo(dvo);
+				driverBL.addDriverInfo(dvo);
+				
+				processCancel();
+				for(int i = 0;i < drivers.size();i++) {
+					dPanel.remove(driverList.get(i));
+					dPanel.remove(nameList.get(i));
+					dPanel.remove(numList.get(i));
+				}
+				drawDrivers();
+				dPanel.repaint();
 			}
 			if(e.getSource() == returnButton){
-				backLabel.setVisible(true);
-				TextFieldCheckdriverNum.setVisible(true);
-				for(int i = 0;i < dPanel.drivers.size();i++){
-					driverList.get(i).setVisible(true);
-				}
-				changeConfirmButton.setVisible(false);
-				deleteConfirmButton.setVisible(false);
-				changeButton.setVisible(false);
-				returnButton.setVisible(false);
-				checkLabel.setVisible(false);
-				nameLabel.setVisible(false);
-				numLabel.setVisible(false);
-				sexLabel.setVisible(false);
-				mobNumLabel.setVisible(false);
-				idLabel.setVisible(false);
-				dateLabel.setVisible(false);
-				yearOfExpiringLabel.setVisible(false);
-				changeNameField.setVisible(false);
-				changeNumField.setVisible(false);
-				changeSexBox.setVisible(false);
-				changeMobNumField.setVisible(false);
-				changeIdField.setVisible(false);
-				changeDateField.setVisible(false);
-				changeYearOfExpiringField.setVisible(false);
+				processReturn();
 			}
 			if(e.getSource() == changeButton){
-				nameLabel.setVisible(false);
-				numLabel.setVisible(false);
-				sexLabel.setVisible(false);
-				mobNumLabel.setVisible(false);
-				idLabel.setVisible(false);
-				dateLabel.setVisible(false);
-				yearOfExpiringLabel.setVisible(false);
-				changeConfirmButton.setVisible(true);
-				
-				DriverInfoVO dvo = null;
-				String driverId = TextFieldCheckdriverNum.getText();
-				System.out.println("checkdriverId: " + driverId);
-				dvo = driverBL.getDriverInfo(driverId);
-				changeNameField = new JTextField(dvo.getName());
-				changeNameField.setBounds(115, 195, 80, 25);
-				dPanel.add(changeNameField,1);
-				changeNumField = new JTextField(dvo.getNumber());
-				changeNumField.setBounds(115, 222, 80, 25);
-				dPanel.add(changeNumField,1);
-				String[] sexString = {"男","女"};
-				changeSexBox = new JComboBox(sexString);
-				if(dvo.getSex() == Sex.MALE){
-					changeSexBox.setSelectedItem("男");
-				}
-				else{
-					changeSexBox.setSelectedItem("女");
-				}
-				changeSexBox.setBounds(270, 108, 80, 25);
-				dPanel.add(changeSexBox,1);
-				changeMobNumField = new JTextField(dvo.getMobNum());
-				changeMobNumField.setBounds(280, 153, 100, 25);
-				dPanel.add(changeMobNumField,1);
-				changeIdField = new JTextField(dvo.getID());
-				changeIdField.setBounds(295, 193, 150, 25);
-				dPanel.add(changeIdField,1);
-				changeDateField = new JTextField(dvo.getYear() + "-" + dvo.getMonth() + "-" + dvo.getDay());
-				changeDateField.setBounds(295, 234, 80, 25);
-				dPanel.add(changeDateField,1);
-				System.out.println(dvo.getYearOfExpiring());
-				changeYearOfExpiringField = new JTextField(dvo.getYearOfExpiring() + "");
-				changeYearOfExpiringField.setBounds(335, 275, 80, 25);
-				dPanel.add(changeYearOfExpiringField,1);
+//				String driverId = TextFieldCheckdriverNum.getText();
+//				System.out.println("checkdriverId1: " + driverId);
+				processchange();
 			}
 			if(e.getSource() == changeConfirmButton){
 				changeConfirmButton.setVisible(false);
+				changeButton.setVisible(true);
 				
 				nameLabel.setText(changeNameField.getText());
 				changeNameField.setVisible(false);
@@ -517,9 +449,9 @@ public class DriverPanel extends JPanel{
 		returnButton.setVisible(true);
 		DriverInfoVO dvo = null;
 		
-		System.out.println("checkdriverId: " + driverId);
+		System.out.println("checkdriverId1: " + driverId);
 		dvo = driverBL.getDriverInfo(driverId);
-		System.out.println(dvo.getName());
+		System.out.println("name: " + dvo.getName());
 		
 		nameLabel = new JLabel(dvo.getName());
 		nameLabel.setBounds(115, 195, 200, 30);
@@ -560,5 +492,136 @@ public class DriverPanel extends JPanel{
 		yearOfExpiringLabel.setBounds(335, 275, 200, 30);
 		yearOfExpiringLabel.setFont(new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
 		this.add(yearOfExpiringLabel,1);
+	}
+	
+	public void processchange(){
+		changeButton.setVisible(false);
+		nameLabel.setVisible(false);
+		numLabel.setVisible(false);
+		sexLabel.setVisible(false);
+		mobNumLabel.setVisible(false);
+		idLabel.setVisible(false);
+		dateLabel.setVisible(false);
+		yearOfExpiringLabel.setVisible(false);
+		changeConfirmButton.setVisible(true);
+		
+//		DriverInfoVO dvo = null;
+//		dvo = driverBL.getDriverInfo(driverId);
+		changeNameField = new JTextField(nameLabel.getText());
+		changeNameField.setBounds(115, 195, 80, 25);
+		this.add(changeNameField,1);
+		changeNumField = new JTextField(numLabel.getText());
+		changeNumField.setBounds(115, 222, 80, 25);
+		this.add(changeNumField,1);
+		String[] sexString = {"男","女"};
+		changeSexBox = new JComboBox(sexString);
+		changeSexBox.setSelectedItem(sexLabel.getText());
+//		if(dvo.getSex() == Sex.MALE){
+//			changeSexBox.setSelectedItem("男");
+//		}
+//		else{
+//			changeSexBox.setSelectedItem("女");
+//		}
+		changeSexBox.setBounds(270, 108, 80, 25);
+		this.add(changeSexBox,1);
+		changeMobNumField = new JTextField(mobNumLabel.getText());
+		changeMobNumField.setBounds(280, 153, 100, 25);
+		this.add(changeMobNumField,1);
+		changeIdField = new JTextField(idLabel.getText());
+		changeIdField.setBounds(295, 193, 150, 25);
+		this.add(changeIdField,1);
+		changeDateField = new JTextField(dateLabel.getText());
+		changeDateField.setBounds(295, 234, 80, 25);
+		this.add(changeDateField,1);
+//		System.out.println(dvo.getYearOfExpiring());
+		changeYearOfExpiringField = new JTextField(yearOfExpiringLabel.getText());
+		changeYearOfExpiringField.setBounds(335, 275, 80, 25);
+		this.add(changeYearOfExpiringField,1);
+	}
+	
+	public void processReturn(){
+		backLabel.setVisible(true);
+		TextFieldCheckdriverNum.setVisible(true);
+		for(int i = 0;i < this.drivers.size();i++){
+			driverList.get(i).setVisible(true);
+		}
+		changeConfirmButton.setVisible(false);
+		deleteConfirmButton.setVisible(false);
+		changeButton.setVisible(false);
+		returnButton.setVisible(false);
+		checkLabel.setVisible(false);
+		nameLabel.setVisible(false);
+		numLabel.setVisible(false);
+		sexLabel.setVisible(false);
+		mobNumLabel.setVisible(false);
+		idLabel.setVisible(false);
+		dateLabel.setVisible(false);
+		yearOfExpiringLabel.setVisible(false);
+		changeNameField.setVisible(false);
+		changeNumField.setVisible(false);
+		changeSexBox.setVisible(false);
+		changeMobNumField.setVisible(false);
+		changeIdField.setVisible(false);
+		changeDateField.setVisible(false);
+		changeYearOfExpiringField.setVisible(false);
+	}
+	
+	public void drawDrivers(){
+		drivers = driverBL.getDriverByBusinesshall("025000000");
+//		driverList = new ArrayList<JButton>();
+		driverList = new ArrayList<JLabel>();
+		numList = new ArrayList<JLabel>();
+		nameList = new ArrayList<JLabel>();
+		System.out.println("size: " + drivers.size());
+		for(int i = 0;i < drivers.size();i++){
+//			JButton driver  = new JButton(IMG_DRIVER);
+			JLabel driver  = new JLabel(IMG_DRIVER);
+			driver.setBounds(40 + (i%4)*(IMG_DRIVER.getIconWidth() + buttonToButton), 
+					30 + buttonToTop + (i/4)*(height + IMG_DRIVER.getIconHeight()), 
+					IMG_DRIVER.getIconWidth(), IMG_DRIVER.getIconHeight());
+//			driver.setBorder(null);
+			driver.addMouseListener(new DriverListener());
+			driverList.add(driver);
+			JLabel num = new JLabel(drivers.get(i).getNumber());
+			num.setBounds(40 + (i%4)*(IMG_DRIVER.getIconWidth() + 
+					buttonToButton) + labelWidth, 30 + 
+					buttonToTop + (i/4)*(height + IMG_DRIVER.getIconHeight())
+					+ numLabelHeight, 200, 30);
+			numList.add(num);
+			JLabel name = new JLabel(drivers.get(i).getName());
+			name.setBounds(40 + (i%4)*(IMG_DRIVER.getIconWidth() + 
+					buttonToButton) + labelWidth, 30 + 
+					buttonToTop + (i/4)*(height + IMG_DRIVER.getIconHeight())
+					+ nameLabelHeight, 200, 30);
+			nameList.add(name);
+			this.add(numList.get(i));
+			this.add(nameList.get(i));
+			this.add(driverList.get(i));
+		}
+	}
+	
+	public void processCancel(){
+		backLabel.setVisible(true);
+		TextFieldCheckdriverNum.setVisible(true);
+		textFieldDriverNum.setVisible(false);
+		textFieldDriverNum.setText("");
+		textFieldDriverName.setVisible(false);
+		textFieldDriverName.setText("");
+		textFieldDriverId.setVisible(false);
+		textFieldDriverId.setText("");
+		TextFieldCity.setVisible(false);
+		TextFieldCity.setText("");
+		TextFieldBusinessHall.setVisible(false);
+		TextFieldBusinessHall.setText("");
+		textFieldYearOfExpiring.setVisible(false);
+		textFieldYearOfExpiring.setText("");
+		textFieldMobNum.setVisible(false);
+		textFieldMobNum.setText("");
+		comboBoxSex.setVisible(false);
+		cancelButton.setVisible(false);
+		saveButton.setVisible(false);
+		addLabel.setVisible(false);
+		isActive = false;
+//		System.out.println("sb");
 	}
 }
