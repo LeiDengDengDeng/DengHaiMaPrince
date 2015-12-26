@@ -10,12 +10,17 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import src.businesslogic.institutionbl.Institution;
-import src.presentation.staffmanageui.Staff_InfoPanel;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
 import src.vo.InstitutionVO;
 
 public class AddInstitutionPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7418095218741130636L;
+	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
 	static final int x = 115;
@@ -117,8 +122,10 @@ public class AddInstitutionPanel extends JPanel{
 		        			InstitutionVO institutionVO = new InstitutionVO(name, ID, null, function);
 		        			institution.addInstitution(institutionVO);
 		        		}
+		        		PanelController.setPresentPanel(new InstitutionListPanel());
 		        	}
 		        	else if (e.getSource() == cancelButton) {
+		        		PanelController.setPresentPanel(new InstitutionListPanel());
 						
 					}
 		        	

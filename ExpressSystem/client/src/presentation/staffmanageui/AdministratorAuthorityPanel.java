@@ -10,9 +10,7 @@ import javax.swing.JPanel;
 
 import src.presentation.util.MyButton;
 
-public class ManagerAuthorityPanel extends JPanel{
-//	private final static int x = 80;
-//	private final static int y = 40;
+public class AdministratorAuthorityPanel extends JPanel{
 	static final int linesp = 36;
 	static final int coordinate_X = 230;
 	static final int coordinate_Y = 100;
@@ -28,13 +26,13 @@ public class ManagerAuthorityPanel extends JPanel{
     MyButton cancelButton;
 	MyButton confirmButton;
 	MyButton accountantButton;
-	MyButton administratorButton;
+	MyButton managerButton;
 	MyButton interButton;
 	MyButton keeperButton;
 	MyButton businessButton;
 	MyButton courierButton;
 	
-	public ManagerAuthorityPanel(){
+	public AdministratorAuthorityPanel(){
 		componentsInstantiation();
 		setCheckboxes();
 		
@@ -52,7 +50,7 @@ public class ManagerAuthorityPanel extends JPanel{
 		
         this.add(confirmButton);
         this.add(cancelButton);
-        this.add(administratorButton);
+        this.add(managerButton);
         this.add(accountantButton);
         this.add(keeperButton);
         this.add(interButton);
@@ -65,12 +63,12 @@ public class ManagerAuthorityPanel extends JPanel{
 	}
 
 	public void componentsInstantiation(){
-		bkgImg = new ImageIcon("images/authority_manager.png");
+		bkgImg = new ImageIcon("images/authority_administrator.png");
 		imageLabel = new JLabel();
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480, false);
 		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 350, coordinate_Y + 480, false);
-		administratorButton = new MyButton(new ImageIcon("images/authority_administratorButton.png"),
-				new ImageIcon("images/authority_administratorButtonEnter.png"), coordinate_X , coordinate_Y + 92, false);
+		managerButton = new MyButton(new ImageIcon("images/authority_managerButton.png"),
+				new ImageIcon("images/authority_managerButtonEnter.png"), coordinate_X , coordinate_Y + 55, false);
 		accountantButton = new MyButton(new ImageIcon("images/authority_accountantButton.png"),
 				new ImageIcon("images/authority_accountantButtonEnter.png"), coordinate_X , coordinate_Y + 128, false);
 		keeperButton = new MyButton(new ImageIcon("images/authority_keeperButton.png"),
@@ -117,9 +115,9 @@ public class ManagerAuthorityPanel extends JPanel{
 		
 	}
 	class MyButtonActionListener implements ActionListener {
-	       ManagerAuthorityPanel container;
+	      AdministratorAuthorityPanel container;
 		       
-	        public MyButtonActionListener(ManagerAuthorityPanel container) {
+	        public MyButtonActionListener(AdministratorAuthorityPanel container) {
 	            this.container = container;
 	        }
 
@@ -129,7 +127,7 @@ public class ManagerAuthorityPanel extends JPanel{
 		        	   
 		           }else if(e.getSource() == cancelButton){
 		        	   
-		           }else if(e.getSource() == administratorButton){
+		           }else if(e.getSource() == managerButton){
 		        	   
 		           }else if(e.getSource() == accountantButton){
 		        	   
@@ -147,5 +145,5 @@ public class ManagerAuthorityPanel extends JPanel{
 //		            container.repaint();
 		        }
 		    }
-	
+
 }

@@ -2,8 +2,6 @@ package src.vo;
 
 import java.util.ArrayList;
 
-import src.po.UserPO;
-
 public class InstitutionVO {
 	private String InstitutionName;
 	private long InstitutionID;

@@ -12,12 +12,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.businesslogic.institutionbl.Institution;
-import src.presentation.staffmanageui.StaffListPanel;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.vo.InstitutionVO;
 import src.vo.UserVO;
 
 public class Institution_InfoPanel extends JPanel{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8044953760184249635L;
 	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
@@ -182,9 +187,11 @@ public class Institution_InfoPanel extends JPanel{
 	            } else if (e.getSource() == nextPageButton) {
 	                pageComboBox.setSelectedItem(pageNum + 1);
 	            } else if (e.getSource() == confirmButton) {
+	            	PanelController.setPresentPanel(new InstitutionListPanel());
 	            	
 	            } else if (e.getSource() == deleteButton) {
 	            	institution.deleteInstitution(institutionVO.getInstitutionID());
+	            	PanelController.setPresentPanel(new InstitutionListPanel());
 	            }
 	            pageNum = (int) pageComboBox.getSelectedItem();
 

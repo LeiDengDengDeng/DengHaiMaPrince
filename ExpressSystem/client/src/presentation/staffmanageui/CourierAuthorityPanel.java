@@ -8,11 +8,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.presentation.staffmanageui.InterAuthorityPanel.MyButtonActionListener;
 import src.presentation.util.MyButton;
 
-public class ManagerAuthorityPanel extends JPanel{
-//	private final static int x = 80;
-//	private final static int y = 40;
+public class CourierAuthorityPanel extends JPanel{
 	static final int linesp = 36;
 	static final int coordinate_X = 230;
 	static final int coordinate_Y = 100;
@@ -27,14 +26,14 @@ public class ManagerAuthorityPanel extends JPanel{
     
     MyButton cancelButton;
 	MyButton confirmButton;
-	MyButton accountantButton;
+	MyButton managerButton;
 	MyButton administratorButton;
-	MyButton interButton;
+	MyButton accountantButton;
 	MyButton keeperButton;
+	MyButton interButton;
 	MyButton businessButton;
-	MyButton courierButton;
 	
-	public ManagerAuthorityPanel(){
+	public CourierAuthorityPanel(){
 		componentsInstantiation();
 		setCheckboxes();
 		
@@ -52,12 +51,12 @@ public class ManagerAuthorityPanel extends JPanel{
 		
         this.add(confirmButton);
         this.add(cancelButton);
+        this.add(managerButton);
         this.add(administratorButton);
-        this.add(accountantButton);
         this.add(keeperButton);
-        this.add(interButton);
+        this.add(accountantButton);
         this.add(businessButton);
-        this.add(courierButton);
+        this.add(interButton);
         this.add(imageLabel);
         
         this.setLayout(null);
@@ -65,22 +64,22 @@ public class ManagerAuthorityPanel extends JPanel{
 	}
 
 	public void componentsInstantiation(){
-		bkgImg = new ImageIcon("images/authority_manager.png");
+		bkgImg = new ImageIcon("images/authority_courier.png");
 		imageLabel = new JLabel();
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480, false);
 		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 350, coordinate_Y + 480, false);
+		managerButton = new MyButton(new ImageIcon("images/authority_managerButton.png"),
+				new ImageIcon("images/authority_managerButtonEnter.png"), coordinate_X , coordinate_Y + 55, false);
 		administratorButton = new MyButton(new ImageIcon("images/authority_administratorButton.png"),
 				new ImageIcon("images/authority_administratorButtonEnter.png"), coordinate_X , coordinate_Y + 92, false);
 		accountantButton = new MyButton(new ImageIcon("images/authority_accountantButton.png"),
 				new ImageIcon("images/authority_accountantButtonEnter.png"), coordinate_X , coordinate_Y + 128, false);
 		keeperButton = new MyButton(new ImageIcon("images/authority_keeperButton.png"),
 				new ImageIcon("images/authority_keeperButtonEnter.png"), coordinate_X , coordinate_Y + 165, false);
-		interButton = new MyButton(new ImageIcon("images/authority_interButton.png"),
-				new ImageIcon("images/authority_interButtonEnter.png"), coordinate_X , coordinate_Y + 202, false);
 		businessButton = new MyButton(new ImageIcon("images/authority_businessButton.png"),
 				new ImageIcon("images/authority_businessButtonEnter.png"), coordinate_X , coordinate_Y + 239, false);
-		courierButton = new MyButton(new ImageIcon("images/authority_courierButton.png"),
-				new ImageIcon("images/authority_courierButtonEnter.png"), coordinate_X , coordinate_Y + 276, false);
+		interButton = new MyButton(new ImageIcon("images/authority_interButton.png"),
+				new ImageIcon("images/authority_interButtonEnter.png"), coordinate_X , coordinate_Y + 202, false);
 	}
 	
 	//≥ı ºªØcheckboxes
@@ -117,9 +116,9 @@ public class ManagerAuthorityPanel extends JPanel{
 		
 	}
 	class MyButtonActionListener implements ActionListener {
-	       ManagerAuthorityPanel container;
+	      CourierAuthorityPanel container;
 		       
-	        public MyButtonActionListener(ManagerAuthorityPanel container) {
+	        public MyButtonActionListener(CourierAuthorityPanel container) {
 	            this.container = container;
 	        }
 
@@ -129,17 +128,17 @@ public class ManagerAuthorityPanel extends JPanel{
 		        	   
 		           }else if(e.getSource() == cancelButton){
 		        	   
-		           }else if(e.getSource() == administratorButton){
+		           }else if(e.getSource() == managerButton){
 		        	   
-		           }else if(e.getSource() == accountantButton){
+		           }else if(e.getSource() == administratorButton){
 		        	   
 		           }else if(e.getSource() == keeperButton){
 		        	   
-		           }else if(e.getSource() == interButton){
+		           }else if(e.getSource() == accountantButton){
 		        	   
 		           }else if(e.getSource() == businessButton){
 		        	   
-		           }else if(e.getSource() == courierButton){
+		           }else if(e.getSource() == interButton){
 		        	   
 		           }
 		           
@@ -147,5 +146,4 @@ public class ManagerAuthorityPanel extends JPanel{
 //		            container.repaint();
 		        }
 		    }
-	
 }

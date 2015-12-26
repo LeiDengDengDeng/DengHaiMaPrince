@@ -14,7 +14,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.businesslogic.loginbl.LogIn;
+import src.businesslogic.userbl.User;
 import src.po.SalaryPO;
+import src.presentation.mainui.PanelController;
 import src.presentation.staffmanageui.StaffListPanel;
 import src.presentation.util.MyButton;
 import src.vo.UserVO;
@@ -46,6 +49,7 @@ public class UserPanel extends JPanel{
 
 	
 	UserVO userVO;
+	LogIn logIn;
 	MyButton change;
 	MyButton confirm;
 	
@@ -61,10 +65,10 @@ public class UserPanel extends JPanel{
 	private	JLabel city;
 	private	JLabel businessHall;
 	
-	public UserPanel(UserVO userVO){
-		this.userVO = userVO;
-		getInfo(userVO);
+	public UserPanel(){
 		componentsInstantiation();
+		this.userVO = logIn.getCurrentUser();
+		getInfo(userVO);
 		initial();
 		
 		buttonActionListener listener = new buttonActionListener(this);
@@ -106,6 +110,7 @@ public class UserPanel extends JPanel{
 	}
 	
 	public void componentsInstantiation(){
+		logIn = new LogIn(new User(null));
 		imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/user_InfoBG.png");
 		change = new MyButton(CHANGE_ICON, CHANGEENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
@@ -214,14 +219,11 @@ public class UserPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == change){
-		        		ChangePasswordPanel change = new ChangePasswordPanel(userVO);
-//		        		container.frame.setContentPane(change);
-		        		
+		        		PanelController.setPresentPanel(new ChangePasswordPanel(userVO));
 		        	}
 		        	else if (e.getSource() == confirm) {
 						
 					}
-		        	container.repaint();
 		        	
 		        }
 	}

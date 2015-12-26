@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 
 public class InstitutionPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5264277353436565214L;
+	
 	private String InstitutionName;
 	private long InstitutionID;	//6λ
 	private ArrayList<UserPO> staff;
