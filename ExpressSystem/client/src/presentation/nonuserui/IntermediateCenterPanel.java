@@ -18,7 +18,7 @@ import src.businesslogic.nonUserbl.BussinessHallController;
 import src.businesslogicservice.nonUserblservice.BussinessHallBLService;
 import src.vo.BussinessHallVO;
 
-public class BussinessHallPanel extends JPanel{
+public class IntermediateCenterPanel extends JPanel{
 
 	/**
 	 * 
@@ -65,7 +65,7 @@ public class BussinessHallPanel extends JPanel{
 	private BussinessHallBLService businesshallBL;
 	private boolean isActive;
 	
-	public BussinessHallPanel(){
+	public IntermediateCenterPanel(){
 		System.out.println();
 		businesshallBL = new BussinessHallController();
 		
@@ -171,9 +171,9 @@ public class BussinessHallPanel extends JPanel{
 	
 	class ConfirmButtonListener implements ActionListener{
 
-		BussinessHallPanel dPanel;
+		IntermediateCenterPanel dPanel;
 		
-		public ConfirmButtonListener(BussinessHallPanel dPanel){
+		public ConfirmButtonListener(IntermediateCenterPanel dPanel){
 			this.dPanel = dPanel;
 		}
 		
@@ -266,7 +266,7 @@ public class BussinessHallPanel extends JPanel{
 	
 	public static void main(String[] args) {
 //		TruckDataService truckDataService = null;
-		BussinessHallPanel dp = new BussinessHallPanel();
+		IntermediateCenterPanel dp = new IntermediateCenterPanel();
 		dp.run();
 	}
 	
