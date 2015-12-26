@@ -87,14 +87,13 @@ public class testmain extends JFrame{
 //		ArrayList<InstitutionVO> institutionVOs = new ArrayList<InstitutionVO>();
 //		for (int i = 0; i < 17; i++)
 //			institutionVOs.add(new InstitutionVO("营业厅", 100000, userVOs, "负责中转与接收"));
-		test.setContentPane(new InstitutionListPanel());
+//		test.setContentPane(new InstitutionListPanel());
 		
 //		ArrayList<StaffInfoVO> staffInfoVOs = new ArrayList<StaffInfoVO>();
 //		for(int i = 0;i < 50; i++)
 //			staffInfoVOs.add(new StaffInfoVO(100000, 100000, "aaaaaa",
 //					"张三", "管理员", null, null, null));
-//		StaffListPanel staffListPanel = new StaffListPanel(staffInfoVOs);
-//		test.setContentPane(staffListPanel);
+		test.setContentPane(new StaffListPanel());
 //		test.setContentPane(new changeAuthorityPanel());
 //		test.setContentPane(new AddInstitutionPanel());
 //		test.setContentPane(new CourierAuthorityPanel());

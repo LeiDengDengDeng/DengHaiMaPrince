@@ -2,10 +2,14 @@ package src.presentation.staffmanageui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
+import src.businesslogic.staffmanagebl.StaffManage;
+import src.presentation.mainui.PanelController;
 import src.vo.StaffInfoVO;
 import src.vo.UserVO;
 
@@ -18,6 +22,11 @@ public class StaffGroup {
     private int y;
     private int height = 23;
     private JLabel[][] presentStaffs;
+    
+    StaffManage staffManage;
+    JLabel ID;
+    JLabel position;
+    JLabel name;
     
     Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 
@@ -50,13 +59,47 @@ public class StaffGroup {
 
         // 获得当前页数的员工信息
         for (int i = start; i < num * page && i < staffs.size(); i++) {
-            JLabel ID = new JLabel(String.valueOf(staffs.get(i).getID()));
-            JLabel position = new JLabel(staffs.get(i).getPosition());
-            JLabel name = new JLabel(staffs.get(i).getStaffName());
+            ID = new JLabel(String.valueOf(staffs.get(i).getID()));
+            position = new JLabel(staffs.get(i).getPosition());
+            name = new JLabel(staffs.get(i).getStaffName());
+            
+//            ID.addMouseListener(new MouseListener() {
+//				
+//				@Override
+//				public void mouseReleased(MouseEvent e) {
+//					// TODO Auto-generated method stub
+//					
+//				}
+//				
+//				@Override
+//				public void mousePressed(MouseEvent e) {
+//					// TODO Auto-generated method stub
+//					
+//				}
+//				
+//				@Override
+//				public void mouseExited(MouseEvent e) {
+//					// TODO Auto-generated method stub
+//					ID.setForeground(Color.WHITE);
+//				}
+//				
+//				@Override
+//				public void mouseEntered(MouseEvent e) {
+//					// TODO Auto-generated method stub
+//					ID.setForeground(Color.LIGHT_GRAY);
+//				}
+//				
+//				@Override
+//				public void mouseClicked(MouseEvent e) {
+//					// TODO Auto-generated method stub
+//					PanelController.setPresentPanel(new Staff_InfoPanel(
+//							staffManage.getStaffInfo(Long.parseLong(ID.getText()))));
+//				}
+//			});
 
-            ID.setBounds(x, y + (i - start) * height, 80, height);
-            name.setBounds(x + 162, y + (i - start) * height, 80, height);
-            position.setBounds(x + 323, y + (i - start) * height, 80, height);
+            ID.setBounds(x, y + (i - start) * height, 150, height);
+            name.setBounds(x + 162, y + (i - start) * height, 150, height);
+            position.setBounds(x + 323, y + (i - start) * height, 150, height);
 
             presentStaffs[i - start][0] = ID;
             presentStaffs[i - start][1] = name;

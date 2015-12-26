@@ -22,6 +22,7 @@ import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
 import src.po.SalaryPO;
 import src.presentation.logui.CheckLogPanel;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.vo.StaffInfoVO;
 import src.vo.UserVO;
@@ -60,11 +61,9 @@ public class StaffListPanel extends JPanel{
     MyButton searchButton;
     
     
-    public StaffListPanel(ArrayList<StaffInfoVO> Staffs){
-    	this.Staffs = Staffs;
+    public StaffListPanel(){
 //    	componentsInstantiation();
     	initial();
-    	setStaffs(Staffs);
     	PageButtonActionListener listener = new PageButtonActionListener(this);
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
@@ -143,8 +142,9 @@ public class StaffListPanel extends JPanel{
 	    nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
 	                ("images/nextPageClicked.png"), coordinate_X + 320, coordinate_Y + 440);
 		
-		
-		
+    	this.Staffs = staffManage.getAllStaff();
+    	setStaffs(Staffs);
+    	
 //		this.add(searchLabel);
 		this.add(pageComboBox);
         this.add(nextPageButton);
@@ -212,11 +212,11 @@ public class StaffListPanel extends JPanel{
 	            	
 	            	}else{
 	            		ID = Long.parseLong(searchField.getText());
-	            		Staff_InfoPanel staff_InfoPanel =
-	            				new Staff_InfoPanel(staffManage.getStaffInfo(ID));
+	            		PanelController.setPresentPanel(new 
+	            				Staff_InfoPanel(staffManage.getStaffInfo(ID)));
 	            	}
 	            }else if(e.getSource() == addButton){
-	            	AddStaffPanel addStaffPanel = new AddStaffPanel();
+	            	PanelController.setPresentPanel(new AddStaffPanel());;
 	            }
 	            pageNum = (int) pageComboBox.getSelectedItem();
 
