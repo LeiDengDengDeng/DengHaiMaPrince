@@ -54,9 +54,9 @@ public class UserGroup {
             JLabel position = new JLabel(staffs.get(i).getMyPosition());
             JLabel name = new JLabel(staffs.get(i).getpersonalName());
 
-            ID.setBounds(x, y + (i - start) * height, 80, height);
-            name.setBounds(x + 189, y + (i - start) * height, 80, height);
-            position.setBounds(x + 350, y + (i - start) * height, 80, height);
+            ID.setBounds(x, y + (i - start) * height, 150, height);
+            name.setBounds(x + 189, y + (i - start) * height, 150, height);
+            position.setBounds(x + 350, y + (i - start) * height, 150, height);
 
             presentStaffs[i - start][0] = ID;
             presentStaffs[i - start][1] = name;

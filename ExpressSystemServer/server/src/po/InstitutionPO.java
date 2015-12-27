@@ -42,7 +42,7 @@ public class InstitutionPO implements Serializable{
 		return InstitutionID;
 	}
 	
-	public void updateStaff(UserPO staff){
+	public void setStaff(UserPO staff){
 		this.staff.add(staff);
 	}
 	

@@ -1,24 +1,17 @@
 package src.presentation.userui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.userbl.User;
-import src.po.SalaryPO;
 import src.presentation.mainui.PanelController;
-import src.presentation.staffmanageui.StaffListPanel;
 import src.presentation.util.MyButton;
 import src.vo.UserVO;
 
@@ -37,8 +30,8 @@ public class UserPanel extends JPanel{
 	static final int h = 30;
 	static final int linesp = 53;
 	static final int columnsp = 250;
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 	
 	Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	

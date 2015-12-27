@@ -3,18 +3,27 @@ package src.presentation.staffmanageui;
 import java.awt.Checkbox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.presentation.staffmanageui.AccountantAuthorityPanel.MyButtonActionListener;
+import src.businesslogic.staffmanagebl.Position;
+import src.businesslogic.staffmanagebl.StaffManage;
+import src.businesslogic.userbl.User;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 
 public class InterAuthorityPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -22095168613192702L;
+	
 	static final int linesp = 36;
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
@@ -32,6 +41,10 @@ public class InterAuthorityPanel extends JPanel{
 	MyButton keeperButton;
 	MyButton businessButton;
 	MyButton courierButton;
+	
+	ArrayList<Checkbox> checkboxs;
+	StaffManage staffManage;
+	Position position;
 	
 	public InterAuthorityPanel(){
 		componentsInstantiation();
@@ -64,6 +77,8 @@ public class InterAuthorityPanel extends JPanel{
 	}
 
 	public void componentsInstantiation(){
+		position = new Position(new User(null));
+		staffManage = new StaffManage(null,position);
 		bkgImg = new ImageIcon("images/authority_inter.png");
 		imageLabel = new JLabel();
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480, false);
@@ -84,6 +99,7 @@ public class InterAuthorityPanel extends JPanel{
 	
 	//初始化checkboxes
 	public void setCheckboxes(){
+		checkboxs = new ArrayList<Checkbox>();
 		int location_x = 200;
 		int location_y = 46;
 		//第一列
@@ -92,6 +108,7 @@ public class InterAuthorityPanel extends JPanel{
 			checkbox.setBounds(coordinate_X + location_x, coordinate_Y + location_y,
 					12, 12);
 			this.add(checkbox);
+			checkboxs.add(checkbox);
 			location_y += linesp;
 		}
 		location_x += 190;
@@ -103,14 +120,16 @@ public class InterAuthorityPanel extends JPanel{
 			checkbox.setBounds(coordinate_X + location_x, coordinate_Y + location_y,
 					12, 12);
 			this.add(checkbox);
+			checkboxs.add(checkbox);
 			location_y += linesp;
 		}
 		location_y += linesp;
-		for(int i = 0;i < 4;i++){
+		for(int i = 0;i < 5;i++){
 			Checkbox checkbox = new Checkbox();
 			checkbox.setBounds(coordinate_X + location_x, coordinate_Y + location_y,
 					12, 12);
 			this.add(checkbox);
+			checkboxs.add(checkbox);
 			location_y += linesp;
 		}
 		
@@ -124,22 +143,29 @@ public class InterAuthorityPanel extends JPanel{
 
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
-		           if(e.getSource() == confirmButton){
-		        	   
-		           }else if(e.getSource() == cancelButton){
-		        	   
+		        	if(e.getSource() == confirmButton){
+		        		ArrayList<Integer> authority = new ArrayList<Integer>();
+		        		for(int i = 0;i < 21;i++){
+			        		  if(checkboxs.get(i).getState())
+			        			authority.add(i);
+			        	  }
+			        	  staffManage.changeAuthority(authority, "中转中心业务员");
+			        	  position.interArrayList = authority;
+			        	  position.ischanged = true;
+			       }else if(e.getSource() == cancelButton){
+			    	   PanelController.setPresentPanel(new ManagerAuthorityPanel());
 		           }else if(e.getSource() == managerButton){
-		        	   
+		        	   PanelController.setPresentPanel(new ManagerAuthorityPanel());
 		           }else if(e.getSource() == administratorButton){
-		        	   
-		           }else if(e.getSource() == keeperButton){
-		        	   
+		        	   PanelController.setPresentPanel(new AdministratorAuthorityPanel());
 		           }else if(e.getSource() == accountantButton){
-		        	   
+		        	   PanelController.setPresentPanel(new AccountantAuthorityPanel());
+		           }else if(e.getSource() == keeperButton){
+		        	   PanelController.setPresentPanel(new KeeperAuthorityPanel());
 		           }else if(e.getSource() == businessButton){
-		        	   
+		        	   PanelController.setPresentPanel(new BusinessAuthorityPanel());
 		           }else if(e.getSource() == courierButton){
-		        	   
+		        	   PanelController.setPresentPanel(new CourierAuthorityPanel());
 		           }
 		           
 		        	   

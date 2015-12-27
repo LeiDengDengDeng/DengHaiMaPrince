@@ -15,11 +15,11 @@ import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
 import src.vo.InstitutionVO;
 
-public class AddInstitutionPanel extends JPanel{
+public class changeInstitution_InfoPanel extends JPanel{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7418095218741130636L;
+	private static final long serialVersionUID = 8858517780398714712L;
 	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
@@ -51,10 +51,11 @@ public class AddInstitutionPanel extends JPanel{
 	long ID;
 	String name;
 	String function;
+	InstitutionVO institutionVO;
 	
-	
-	public AddInstitutionPanel(){
-		componentsInstantiation();
+	public changeInstitution_InfoPanel(InstitutionVO institutionVO){
+		this.institutionVO = institutionVO;
+		componentsInstantiation(institutionVO);
 		initial();
 		buttonActionListener listener = new buttonActionListener(this);
 		confirmButton.addActionListener(listener);
@@ -83,13 +84,13 @@ public class AddInstitutionPanel extends JPanel{
 		
 	}
 	
-	public void componentsInstantiation(){
+	public void componentsInstantiation(InstitutionVO institutionVO){
 		institution = new Institution(null);
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/institution_addBG.png");
-		institutionID = new JTextField();
-		institutionName = new JTextField();
-		institutionfunction = new JTextArea(3, 1);
+		institutionID = new JTextField(String.valueOf(institutionVO.getInstitutionID()));
+		institutionName = new JTextField(institutionVO.getInstitutionName());
+		institutionfunction = new JTextArea(institutionVO.getFunction());
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON,coordinate_X + 480, coordinate_Y + 220,false);
 		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 400, coordinate_Y + 220,false);
 		
@@ -97,9 +98,9 @@ public class AddInstitutionPanel extends JPanel{
 	}
 	
 	class buttonActionListener implements ActionListener {
-		AddInstitutionPanel container;
+		changeInstitution_InfoPanel container;
 		       
-	        public buttonActionListener(AddInstitutionPanel container) {
+	        public buttonActionListener(changeInstitution_InfoPanel container) {
 	            this.container = container;
 	        }
 
@@ -119,8 +120,9 @@ public class AddInstitutionPanel extends JPanel{
 		        			ID = Long.parseLong(institutionID.getText());
 		        			name = institutionName.getText();
 		        			function = institutionfunction.getText();
-		        			InstitutionVO institutionVO = new InstitutionVO(name, ID, null, function);
-		        			institution.addInstitution(institutionVO);
+		        			InstitutionVO institutionVo= new InstitutionVO(name, ID, 
+		        					institutionVO.getStaff(), function);
+		        			institution.changeInstitutionInfo(institutionVo);
 		        		}
 		        		PanelController.setPresentPanel(new InstitutionListPanel());
 		        	}
@@ -133,4 +135,5 @@ public class AddInstitutionPanel extends JPanel{
 		        }
 	}
 	
+
 }

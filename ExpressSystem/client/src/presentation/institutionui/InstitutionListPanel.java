@@ -23,8 +23,8 @@ public class InstitutionListPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = -1834057444856091702L;
 	
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 85;
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 	
 	private static final int Line_Num = 13;
 	

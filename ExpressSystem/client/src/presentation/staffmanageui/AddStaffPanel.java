@@ -1,7 +1,5 @@
 package src.presentation.staffmanageui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,7 +7,6 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -17,14 +14,19 @@ import javax.swing.JTextField;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.staffmanagebl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
-import src.businesslogic.staffmanagebl.StaffManageController;
 import src.businesslogic.userbl.User;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
 import src.vo.StaffInfoVO;
 
 public class AddStaffPanel extends JPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6824862242471768878L;
+	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
 	static final int x = 95;
@@ -33,8 +35,8 @@ public class AddStaffPanel extends JPanel{
 	static final int h = 16;
 	static final int linesp = 49;
 	static final int columnsp = 250;
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 	
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
@@ -179,12 +181,10 @@ public class AddStaffPanel extends JPanel{
 		           			staffManage.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
 		           					staffName, staffPosition, null, staffCity, staffbusinessHall));
 		           		}
+		        	   PanelController.setPresentPanel(new StaffListPanel());
 		           }else if(e.getSource() == cancelButton){
-		        	   
+		        	   PanelController.setPresentPanel(new StaffListPanel());
 		           }
-		           
-		        	   
-
 //		            container.repaint();
 		        }
 		    }
