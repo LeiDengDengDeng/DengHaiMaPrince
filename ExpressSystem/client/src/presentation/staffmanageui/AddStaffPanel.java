@@ -181,12 +181,10 @@ public class AddStaffPanel extends JPanel{
 		           			staffManage.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
 		           					staffName, staffPosition, null, staffCity, staffbusinessHall));
 		           		}
+		        	   PanelController.setPresentPanel(new StaffListPanel());
 		           }else if(e.getSource() == cancelButton){
 		        	   PanelController.setPresentPanel(new StaffListPanel());
 		           }
-		           
-		        	   
-
 //		            container.repaint();
 		        }
 		    }

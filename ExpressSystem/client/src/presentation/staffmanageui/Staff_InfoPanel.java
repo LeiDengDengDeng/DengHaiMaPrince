@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import src.businesslogic.staffmanagebl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.vo.StaffInfoVO;
 
@@ -194,9 +195,11 @@ public class Staff_InfoPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == confirmButton){
+		        		PanelController.setPresentPanel(new StaffListPanel());
 		        	}
 		        	else if (e.getSource() == deleteButton) {
 						staffManage.deleteStaff(staffInfoVO.getID());
+						PanelController.setPresentPanel(new StaffListPanel());
 					}
 		        	
 		        	

@@ -52,6 +52,8 @@ public class testmain extends JFrame{
 	public static void main(String[] args) {
 		testmain test = new testmain();
 		User user = new User(null);
+		for(int i = 0;i < 2;i++)
+		System.out.println(user.getPersonalInfo(200000).getAuthority().get(i));
 //		StaffManage staffManage = new StaffManage(null, null);
 //		test.setContentPane(new Staff_InfoPanel(staffManage.getStaffInfo(100000)));
 //		System.out.println(user.getPersonalInfo(100000).getAuthority().size());
@@ -69,7 +71,7 @@ public class testmain extends JFrame{
 ////		test.setContentPane(new changeInstitution_InfoPanel(new InstitutionVO("营业厅", 100000, userVOs, "负责中转与接收")));
 //		test.setContentPane(new Institution_InfoPanel(new InstitutionVO("营业厅",
 //				100000, userVOs, "负责中转与接收")));
-//		
+////		
 //		ArrayList<InstitutionVO> institutionVOs = new ArrayList<InstitutionVO>();
 //		for (int i = 0; i < 17; i++)
 //			institutionVOs.add(new InstitutionVO("营业厅", 100000, userVOs, "负责中转与接收"));
@@ -84,9 +86,10 @@ public class testmain extends JFrame{
 //		test.setContentPane(new AddInstitutionPanel());
 //		test.setContentPane(new CourierAuthorityPanel());
 //		test.setContentPane(new InstitutionListPanel()));
-		test.setContentPane(new changeStaff_InfoPanel(user.getPersonalInfo(100000)));
+//		test.setContentPane(new changeStaff_InfoPanel(user.getPersonalInfo(100000),
+//				new InstitutionVO("营业厅", 100000, userVOs, "负责中转与接收")));
 		
-		test.setVisible(true);
+//		test.setVisible(true);
 		
 	
 	}

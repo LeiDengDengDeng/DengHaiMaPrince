@@ -9,7 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
+import src.vo.InstitutionVO;
 import src.vo.UserVO;
 
 public class StaffPanel extends JPanel{
@@ -37,7 +39,7 @@ public class StaffPanel extends JPanel{
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
 
-	
+	InstitutionVO institutionVO;
 	UserVO userVO;
 	MyButton change;
 	MyButton confirm;
@@ -54,7 +56,8 @@ public class StaffPanel extends JPanel{
 	private	JLabel city;
 	private	JLabel businessHall;
 	
-	public StaffPanel(UserVO userVO){
+	public StaffPanel(UserVO userVO,InstitutionVO institutionVO){
+		this.institutionVO = institutionVO;
 		this.userVO = userVO;
 		componentsInstantiation();
 		getInfo(userVO);
@@ -207,9 +210,10 @@ public class StaffPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == change){
+		        		PanelController.setPresentPanel(new changeStaff_InfoPanel(userVO,institutionVO));
 		        	}
 		        	else if (e.getSource() == confirm) {
-						
+						PanelController.setPresentPanel(new Institution_InfoPanel(institutionVO));
 					}
 		        	
 		        }

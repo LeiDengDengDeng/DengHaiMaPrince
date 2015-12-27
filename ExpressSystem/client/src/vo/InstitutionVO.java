@@ -35,7 +35,7 @@ public class InstitutionVO {
 		return InstitutionID;
 	}
 	
-	public void updateStaff(ArrayList<UserVO> staff){
+	public void setStaff(ArrayList<UserVO> staff){
 		this.staff = staff;
 	}
 	

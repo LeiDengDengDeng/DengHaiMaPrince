@@ -11,8 +11,10 @@ import javax.swing.JTextField;
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.staffmanagebl.Salary;
 import src.businesslogic.userbl.User;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
+import src.vo.InstitutionVO;
 import src.vo.SalaryVO;
 import src.vo.UserVO;
 
@@ -47,6 +49,7 @@ public class changeSalaryPanel extends JPanel{
 	JLabel imageLabel;
     ImageIcon bkgImg;
     
+    InstitutionVO institutionVO;
 	UserVO userVO;
 	User user;
 	LogIn logIn;
@@ -55,11 +58,12 @@ public class changeSalaryPanel extends JPanel{
 	int eachPay;
 	int commission;
 	
-	public changeSalaryPanel(UserVO userVO){
+	public changeSalaryPanel(UserVO userVO,InstitutionVO institutionVO){
 		user = new User(null);
 		logIn = new LogIn(user); 
 		salary = new Salary(user);
 		
+		this.institutionVO = institutionVO;
 		this.userVO = userVO;
 		componentsInstantiation();
 		initial();
@@ -121,6 +125,7 @@ public class changeSalaryPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == cancelButton){
+		        		PanelController.setPresentPanel(new StaffPanel(userVO,institutionVO));
 		        		
 		        	}else if (e.getSource() == confirmButton) {
 		        		basic = Integer.parseInt(basicField.getText());
@@ -136,8 +141,9 @@ public class changeSalaryPanel extends JPanel{
 		        			salaryVO.setCommission(commission);
 		        			salary.changeSalary(userVO.getpersonalID(), salaryVO);
 		        		}
+		        		PanelController.setPresentPanel(new 
+		        				StaffPanel(user.getPersonalInfo(userVO.getpersonalID()),institutionVO));
 		        	}
-		        	container.repaint();
 		        }
 	}
 }

@@ -110,7 +110,7 @@ public class Institution_InfoPanel extends JPanel{
         this.add(nextPageButton);
         this.add(previousPageButton);
         this.add(searchButton);
-//        this.add(modifyButton);
+        this.add(modifyButton);
         this.add(imageLabel);
         this.setLayout(null);
         this.setOpaque(false);
@@ -137,7 +137,7 @@ public class Institution_InfoPanel extends JPanel{
 	    searchButton = new MyButton(new ImageIcon("images/search_icon.png"), new ImageIcon
                 ("images/search_iconClicked_Red.png"), coordinate_X + 10, coordinate_Y + 485);
 	    modifyButton = new MyButton(new ImageIcon("images/modify_icon.png"), new ImageIcon
-                ("images/modify_icon.png"), coordinate_X + 480, coordinate_Y + 10);
+                ("images/modify_iconEnter.png"), coordinate_X + 515, coordinate_Y + 4);
 		
 	}
 	public void getInstitutionInfo(InstitutionVO institutionVO){
@@ -217,9 +217,11 @@ public class Institution_InfoPanel extends JPanel{
 									"IDÎª6Î»Êý£¡", false);
 	            		} else {
 	            			PanelController.setPresentPanel(new 
-	            					StaffPanel(user.getPersonalInfo(id)));
+	            					StaffPanel(user.getPersonalInfo(id),institutionVO));
 	            		}
 	            	}
+	            } else if(e.getSource() == modifyButton) {
+	            	PanelController.setPresentPanel(new changeInstitution_InfoPanel(institutionVO));
 	            }
 	            pageNum = (int) pageComboBox.getSelectedItem();
 

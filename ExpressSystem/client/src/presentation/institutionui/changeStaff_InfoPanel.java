@@ -13,12 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import src.businesslogic.institutionbl.Institution;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
-import src.vo.StaffInfoVO;
+import src.vo.InstitutionVO;
 import src.vo.UserVO;
 
 public class changeStaff_InfoPanel extends JPanel{
@@ -45,9 +46,11 @@ public class changeStaff_InfoPanel extends JPanel{
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
 
+	Institution institution;
 	User user;
 	IntermediateCenter intermediateCenter;
 	UserVO userVO;
+	InstitutionVO institutionVO;
 	MyButton cancelButton;
 	MyButton confirmbuButton;
 	MyButton modifyButton;
@@ -72,7 +75,8 @@ public class changeStaff_InfoPanel extends JPanel{
 	String staffCity;
 	String staffbusinessHall;
 	
-	public changeStaff_InfoPanel(UserVO userVO){
+	public changeStaff_InfoPanel(UserVO userVO,InstitutionVO institutionVO){
+		this.institutionVO = institutionVO;
 		this.userVO = userVO;
 		componentsInstantiation();
 		getPrimaryInfo(userVO);
@@ -119,13 +123,14 @@ public class changeStaff_InfoPanel extends JPanel{
 	
 	public void componentsInstantiation(){
 		user = new User(null);
+		institution = new Institution(null);
 		intermediateCenter = new IntermediateCenter(null);
 		imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/user_InfoBG.png");
 		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
 		confirmbuButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480,false);
 		modifyButton = new MyButton(new ImageIcon("images/modify_icon.png"), 
-				new ImageIcon("images/modify_iconEnter.png"), coordinate_X + x + w / 2, coordinate_Y + y + linesp * 4 + 3,false);
+				new ImageIcon("images/modify_iconEnter.png"), coordinate_X + x + w / 2, coordinate_Y + y + linesp * 4 + 5,false);
 	}
 	
 	//获得个人信息
@@ -150,7 +155,7 @@ public class changeStaff_InfoPanel extends JPanel{
 		account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
 		password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
 		city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3 + 2, 60, 24);
-		salary.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 4 + 3, w / 2, 20);
+		salary.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 4 + 5, w / 2, 20);
 		businessHall.setBounds(coordinate_X + x + columnsp + 13, coordinate_Y + y + linesp * 3 + 6, w - 20, 20);
 			
 		name.setFont(myFont);
@@ -242,7 +247,7 @@ public class changeStaff_InfoPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == cancelButton){
-		        		PanelController.setPresentPanel(new StaffPanel(userVO));
+		        		PanelController.setPresentPanel(new StaffPanel(userVO,institutionVO));
 		        	} else if (e.getSource() == confirmbuButton) {
 		        		if(ID.getText().length() == 0 || account.getText().length() == 0
 			        			   || password.getText().length() == 0 || name.getText().length() == 0
@@ -254,12 +259,26 @@ public class changeStaff_InfoPanel extends JPanel{
 			           				staffbusinessHall = null;
 			           			if(city.getSelectedItem().equals("无"))
 			           				staffCity = null;
+			           			//更新个人信息
 			           			user.changeInfo(new UserVO(staffID, staffAccount, staffPassword,
 			           					staffName, staffPosition, userVO.getAuthority(),
 			           					userVO.getSalary(), staffCity, staffbusinessHall));
+			           			//更新员工列表
+			           			ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
+			           			for(int i = 0;i < institutionVO.getStaff().size();i++){
+									if(institutionVO.getStaff().get(i).getpersonalID() == userVO.getpersonalID()){
+										userVOs.add(user.getPersonalInfo(userVO.getpersonalID()));
+									}
+									else userVOs.add(institutionVO.getStaff().get(i));
+								}
+			           			institutionVO.setStaff(userVOs);
+			           			//更新机构信息
+			           			institution.changeInstitutionInfo(institutionVO);
 			           		}
 		        		PanelController.setPresentPanel(new 
-		        				StaffPanel(user.getPersonalInfo(userVO.getpersonalID())));
+		        				StaffPanel(user.getPersonalInfo(userVO.getpersonalID()),institutionVO));
+					} else if(e.getSource() == modifyButton) {
+						PanelController.setPresentPanel(new changeSalaryPanel(userVO,institutionVO));
 					}
 		        	
 		        }
