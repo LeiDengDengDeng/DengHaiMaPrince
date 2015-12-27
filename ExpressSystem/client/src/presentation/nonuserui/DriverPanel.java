@@ -1,12 +1,10 @@
 package src.presentation.nonuserui;
 
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -64,7 +62,7 @@ public class DriverPanel extends JPanel{
 	private JTextField changeIdField;
 	private JTextField changeDateField;
 	private JTextField changeYearOfExpiringField;
-	private JTextField TextFieldCheckdriverNum;
+	private JTextField TextFieldCheckDriverNum;
 	private JTextField textFieldDriverId;
 	private JTextField TextFieldCity;
 	private JTextField TextFieldBusinessHall;
@@ -100,9 +98,9 @@ public class DriverPanel extends JPanel{
 		dateLabel = new JLabel();
 		yearOfExpiringLabel = new JLabel();
 		
-		TextFieldCheckdriverNum = new JTextField();
-		TextFieldCheckdriverNum.setBounds(140, 30, 200, 28);
-		this.add(TextFieldCheckdriverNum);
+		TextFieldCheckDriverNum = new JTextField();
+		TextFieldCheckDriverNum.setBounds(140, 30, 200, 28);
+		this.add(TextFieldCheckDriverNum);
 		
 		textFieldDriverNum = new JTextField();
 		textFieldDriverNum.setBounds(385, 95, 100, 25);
@@ -257,7 +255,7 @@ public class DriverPanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == checkConfirmButton){
-				String driverId = TextFieldCheckdriverNum.getText();
+				String driverId = TextFieldCheckDriverNum.getText();
 				processCheck(driverId);
 				
 			}
@@ -269,7 +267,7 @@ public class DriverPanel extends JPanel{
 //				tvo = new TruckInfoVO(number, activeTime, driverId);
 //				truckBL.addTruckInfo(tvo);
 				backLabel.setVisible(false);
-				TextFieldCheckdriverNum.setVisible(false);
+				TextFieldCheckDriverNum.setVisible(false);
 				textFieldDriverNum.setVisible(true);
 				textFieldDriverName.setVisible(true);
 				textFieldDriverId.setVisible(true);
@@ -293,7 +291,7 @@ public class DriverPanel extends JPanel{
 					dPanel.remove(nameList.get(i));
 					dPanel.remove(numList.get(i));
 				}
-//				driverBL.deleteDriverInfo(driverId);
+				driverBL.deleteDriverInfo(driverId);
 				drawDrivers();
 				dPanel.repaint();
 			}
@@ -337,7 +335,7 @@ public class DriverPanel extends JPanel{
 				processReturn();
 			}
 			if(e.getSource() == changeButton){
-//				String driverId = TextFieldCheckdriverNum.getText();
+//				String driverId = TextFieldCheckDriverNum.getText();
 //				System.out.println("checkdriverId1: " + driverId);
 				processchange();
 			}
@@ -390,7 +388,7 @@ public class DriverPanel extends JPanel{
 				DriverInfoVO dvo = new DriverInfoVO(num, name, Integer.parseInt(id.substring(6, 10)), 
 						Integer.parseInt(id.substring(10, 12)), Integer.parseInt(id.substring(12, 14)),
 						id, mobNum, sex, Integer.parseInt(yearOfExpiring));
-//				driverBL.changeDriverInfo(id, dvo);
+				driverBL.changeDriverInfo(num, dvo);
 			}
 		}
 		
@@ -439,9 +437,11 @@ public class DriverPanel extends JPanel{
 	
 	public void processCheck(String driverId) {
 		backLabel.setVisible(false);
-		TextFieldCheckdriverNum.setVisible(false);
+		TextFieldCheckDriverNum.setVisible(false);
 		for(int i = 0;i < this.drivers.size();i++){
 			driverList.get(i).setVisible(false);
+			nameList.get(i).setVisible(false);
+			numList.get(i).setVisible(false);
 		}
 		changeButton.setVisible(true);
 		deleteConfirmButton.setVisible(true);
@@ -541,9 +541,11 @@ public class DriverPanel extends JPanel{
 	
 	public void processReturn(){
 		backLabel.setVisible(true);
-		TextFieldCheckdriverNum.setVisible(true);
+		TextFieldCheckDriverNum.setVisible(true);
 		for(int i = 0;i < this.drivers.size();i++){
 			driverList.get(i).setVisible(true);
+			nameList.get(i).setVisible(true);
+			numList.get(i).setVisible(true);
 		}
 		changeConfirmButton.setVisible(false);
 		deleteConfirmButton.setVisible(false);
@@ -602,7 +604,7 @@ public class DriverPanel extends JPanel{
 	
 	public void processCancel(){
 		backLabel.setVisible(true);
-		TextFieldCheckdriverNum.setVisible(true);
+		TextFieldCheckDriverNum.setVisible(true);
 		textFieldDriverNum.setVisible(false);
 		textFieldDriverNum.setText("");
 		textFieldDriverName.setVisible(false);
