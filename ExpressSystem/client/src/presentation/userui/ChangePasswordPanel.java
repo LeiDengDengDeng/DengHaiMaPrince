@@ -17,6 +17,11 @@ import src.vo.UserVO;
 
 
 public class ChangePasswordPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5736215242532890168L;
+	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
 	static final int x = 120;
@@ -24,8 +29,8 @@ public class ChangePasswordPanel extends JPanel{
 	static final int w = 200;
 	static final int h = 16;
 	static final int linesp = 49;
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 	
 	
 	private static final ImageIcon CANCEL_ICON= new ImageIcon("images/cancel.png");

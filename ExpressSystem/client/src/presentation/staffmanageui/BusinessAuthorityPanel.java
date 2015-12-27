@@ -11,9 +11,14 @@ import javax.swing.JPanel;
 import src.presentation.util.MyButton;
 
 public class BusinessAuthorityPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7134145839601045482L;
+	
 	static final int linesp = 36;
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");

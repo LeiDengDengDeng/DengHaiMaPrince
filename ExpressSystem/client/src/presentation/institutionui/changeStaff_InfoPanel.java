@@ -1,32 +1,37 @@
-package src.presentation.userui;
+package src.presentation.institutionui;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import src.businesslogic.loginbl.LogIn;
+import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
+import src.vo.StaffInfoVO;
 import src.vo.UserVO;
 
-
-public class UserPanel extends JPanel{
+public class changeStaff_InfoPanel extends JPanel{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -7132007588856630656L;
 	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
 	static final int x = 80;
 	static final int y = 40;
-	static final int w = 200;
+	static final int w = 130;
 	static final int h = 30;
 	static final int linesp = 53;
 	static final int columnsp = 250;
@@ -35,16 +40,17 @@ public class UserPanel extends JPanel{
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
-	private static final ImageIcon CHANGE_ICON = new ImageIcon("images/user_InfoChange.png");
-	private static final ImageIcon CHANGEENTER_ICON = new ImageIcon("images/user_InfoChangeEnter.png");
+	private final static ImageIcon CANCEL_ICON = new ImageIcon("images/cancel.png");
+	private final static ImageIcon CANCELENTER_ICON = new ImageIcon("images/cancel_Enter.png");
 	private static final ImageIcon CONFIRM_ICON = new ImageIcon("images/user_InfoConfirm.png");
 	private static final ImageIcon CONFIRMENTER_ICON = new ImageIcon("images/user_InfoConfirmEnter.png");
 
-	
+	User user;
+	IntermediateCenter intermediateCenter;
 	UserVO userVO;
-	LogIn logIn;
-	MyButton change;
-	MyButton confirm;
+	MyButton cancelButton;
+	MyButton confirmbuButton;
+	MyButton modifyButton;
 	
 	JLabel imageLabel;
     ImageIcon bkgImg;
@@ -53,20 +59,28 @@ public class UserPanel extends JPanel{
 	private	JLabel account;
 	private	JLabel password;
 	private	JLabel name;
-	private	JLabel position;
+	private	JTextField position;
 	private	JLabel salary;
-	private	JLabel city;
-	private	JLabel businessHall;
+	private	JComboBox<String> city;
+	private	JTextField businessHall;
 	
-	public UserPanel(){
+	long staffID;
+	long staffAccount;
+	String staffPassword;
+	String staffName;
+	String staffPosition;
+	String staffCity;
+	String staffbusinessHall;
+	
+	public changeStaff_InfoPanel(UserVO userVO){
+		this.userVO = userVO;
 		componentsInstantiation();
-		this.userVO = logIn.getCurrentUser();
-		getInfo(userVO);
+		getPrimaryInfo(userVO);
 		initial();
 		
 		buttonActionListener listener = new buttonActionListener(this);
-        change.addActionListener(listener);
-        confirm.addActionListener(listener);
+        cancelButton.addActionListener(listener);
+        confirmbuButton.addActionListener(listener);
 	}
 	
 //	public void paintComponent(Graphics g){
@@ -81,7 +95,7 @@ public class UserPanel extends JPanel{
 	public void initial(){
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
-
+        
 		this.add(ID);
 		this.add(account);
 		this.add(password);
@@ -90,8 +104,9 @@ public class UserPanel extends JPanel{
 		this.add(city);
 		this.add(businessHall);
 		this.add(salary);
-		this.add(change);
-		this.add(confirm);
+		this.add(cancelButton);
+		this.add(confirmbuButton);
+		this.add(modifyButton);
 		this.add(imageLabel);
 
 		this.setLayout(null);
@@ -103,42 +118,44 @@ public class UserPanel extends JPanel{
 	}
 	
 	public void componentsInstantiation(){
-		logIn = new LogIn(new User(null));
+		user = new User(null);
+		intermediateCenter = new IntermediateCenter(null);
 		imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/user_InfoBG.png");
-		change = new MyButton(CHANGE_ICON, CHANGEENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
-		confirm = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480,false);
-
+		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
+		confirmbuButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480,false);
+		modifyButton = new MyButton(new ImageIcon("images/modify_icon.png"), 
+				new ImageIcon("images/modify_iconEnter.png"), coordinate_X + x + w / 2, coordinate_Y + y + linesp * 4 + 3,false);
 	}
 	
 	//获得个人信息
-	public void getInfo(UserVO userVO){
+	public void getPrimaryInfo(UserVO userVO){
 		ID = new JLabel(String.valueOf(userVO.getpersonalID()));
 		account = new JLabel(String.valueOf(userVO.getpersonalAccount()));
 		password = new JLabel(userVO.getMyPassword());
 		name = new JLabel(userVO.getpersonalName());
-		position = new JLabel(userVO.getMyPosition());
+		position = new JTextField(userVO.getMyPosition());
 		salary = new JLabel(String.valueOf(userVO.getSalary().getTotal()));
+		city = new JComboBox<String>();
+		city.setModel(new DefaultComboBoxModel<String>(getCitys()));
+		if(userVO.getCity() == null) city.setSelectedItem("无");
+		else city.setSelectedItem(userVO.getCity());
 		
-		if(userVO.getCity() == null) city = new JLabel("无");
-		else city = new JLabel(userVO.getCity());
-		
-		if(userVO.getBusinessHall() == null) businessHall = new JLabel("无");
-		else businessHall = new JLabel(userVO.getBusinessHall());
+		if(userVO.getBusinessHall() == null) businessHall = new JTextField("无");
+		else businessHall = new JTextField(userVO.getBusinessHall());
 			
 		name.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
-		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y, w, h);
+		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + 7, w + 20, 20);
 		ID.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
 		account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
 		password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
-		city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3 - 1, w, h);
-		salary.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 4, w, h);
-		businessHall.setBounds(coordinate_X + x + columnsp + 20, coordinate_Y + y + linesp * 3 - 1, w, h);
+		city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3 + 2, 60, 24);
+		salary.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 4 + 3, w / 2, 20);
+		businessHall.setBounds(coordinate_X + x + columnsp + 13, coordinate_Y + y + linesp * 3 + 6, w - 20, 20);
 			
 		name.setFont(myFont);
 		name.setForeground(Color.WHITE);
 		position.setFont(myFont);
-		position.setForeground(Color.WHITE);
 		ID.setFont(myFont);
 		ID.setForeground(Color.WHITE);
 		account.setFont(myFont);
@@ -146,15 +163,35 @@ public class UserPanel extends JPanel{
 		password.setFont(myFont);
 		password.setForeground(Color.WHITE);
 		city.setFont(myFont);
-		city.setForeground(Color.WHITE);
 		businessHall.setFont(myFont);
-		businessHall.setForeground(Color.WHITE);
 		salary.setFont(myFont);
 		salary.setForeground(Color.WHITE);
 		
 		setAuthority();
 	}
 	
+	//获得城市列表
+		public String[] getCitys(){
+			ArrayList<String> citys = intermediateCenter.getcity();
+			String[] cityList = new String[citys.size() + 1];
+			cityList[0] = "无";
+			for(int i = 0;i < citys.size();i++)
+				cityList[i + 1] = citys.get(i);
+			return cityList;
+			
+		}
+		
+	//获得填写的信息
+		public void getInfo(){
+			staffID = userVO.getpersonalID();
+			staffAccount = userVO.getpersonalID();
+			staffPassword = userVO.getMyPassword();
+			staffName = userVO.getpersonalName();
+			staffPosition = position.getText();
+			staffCity = (String) city.getSelectedItem();
+			staffbusinessHall = businessHall.getText();
+			
+		}
 	
 	//权限
 	public void setAuthority(){
@@ -195,27 +232,34 @@ public class UserPanel extends JPanel{
 			
 	}
 		
-		
-//	public static void main(String[] args) {
-//		new UserPanel(new UserVO(100000, 100000, "aaaaaa", "张三", "快递员",
-//				null, new SalaryPO(3000), "南京", "鼓楼营业厅"));
-//		
-//	}
-	
 	class buttonActionListener implements ActionListener {
-	       UserPanel container;
+	       changeStaff_InfoPanel container;
 		       
-	        public buttonActionListener(UserPanel container) {
+	        public buttonActionListener(changeStaff_InfoPanel container) {
 	            this.container = container;
 	        }
 
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
-		        	if(e.getSource() == change){
-		        		PanelController.setPresentPanel(new ChangePasswordPanel(userVO));
-		        	}
-		        	else if (e.getSource() == confirm) {
-						
+		        	if(e.getSource() == cancelButton){
+		        		PanelController.setPresentPanel(new StaffPanel(userVO));
+		        	} else if (e.getSource() == confirmbuButton) {
+		        		if(ID.getText().length() == 0 || account.getText().length() == 0
+			        			   || password.getText().length() == 0 || name.getText().length() == 0
+			        			   || position.getText().length() == 0){
+			        		   TipDialog tipDialog = new TipDialog(null, "", true, "请完整填写！", false);
+			           		}else{
+			           			getInfo();
+			           			if(businessHall.getText().length() == 0)
+			           				staffbusinessHall = null;
+			           			if(city.getSelectedItem().equals("无"))
+			           				staffCity = null;
+			           			user.changeInfo(new UserVO(staffID, staffAccount, staffPassword,
+			           					staffName, staffPosition, userVO.getAuthority(),
+			           					userVO.getSalary(), staffCity, staffbusinessHall));
+			           		}
+		        		PanelController.setPresentPanel(new 
+		        				StaffPanel(user.getPersonalInfo(userVO.getpersonalID())));
 					}
 		        	
 		        }

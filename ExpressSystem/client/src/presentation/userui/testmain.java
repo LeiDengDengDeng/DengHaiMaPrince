@@ -8,28 +8,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import org.junit.internal.runners.TestMethod;
-
-import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
-import src.presentation.institutionui.AddInstitutionPanel;
-import src.presentation.institutionui.InstitutionListPanel;
 import src.presentation.institutionui.Institution_InfoPanel;
-import src.presentation.institutionui.changeSalaryPanel;
-import src.presentation.mainui.MainFrame;
-import src.presentation.staffmanageui.AccountantAuthorityPanel;
-import src.presentation.staffmanageui.AddStaffPanel;
-import src.presentation.staffmanageui.AdministratorAuthorityPanel;
-import src.presentation.staffmanageui.BusinessAuthorityPanel;
-import src.presentation.staffmanageui.CourierAuthorityPanel;
-import src.presentation.staffmanageui.InterAuthorityPanel;
-import src.presentation.staffmanageui.KeeperAuthorityPanel;
-import src.presentation.staffmanageui.StaffListPanel;
-import src.presentation.staffmanageui.Staff_InfoPanel;
-import src.presentation.staffmanageui.ManagerAuthorityPanel;
+import src.presentation.institutionui.StaffPanel;
+import src.presentation.institutionui.changeInstitution_InfoPanel;
+import src.presentation.institutionui.changeStaff_InfoPanel;
 import src.vo.InstitutionVO;
 import src.vo.SalaryVO;
-import src.vo.StaffInfoVO;
 import src.vo.UserVO;
 
 public class testmain extends JFrame{
@@ -66,7 +51,7 @@ public class testmain extends JFrame{
 	
 	public static void main(String[] args) {
 		testmain test = new testmain();
-//		User user = new User(null);
+		User user = new User(null);
 //		StaffManage staffManage = new StaffManage(null, null);
 //		test.setContentPane(new Staff_InfoPanel(staffManage.getStaffInfo(100000)));
 //		System.out.println(user.getPersonalInfo(100000).getAuthority().size());
@@ -81,6 +66,7 @@ public class testmain extends JFrame{
 //		for (int i = 0; i < 20; i++)
 //			userVOs.add(new UserVO(100000, 100000, "aaaaaa"
 //					, "张三", "快递员", null, new SalaryVO(3000), null, null));
+////		test.setContentPane(new changeInstitution_InfoPanel(new InstitutionVO("营业厅", 100000, userVOs, "负责中转与接收")));
 //		test.setContentPane(new Institution_InfoPanel(new InstitutionVO("营业厅",
 //				100000, userVOs, "负责中转与接收")));
 //		
@@ -93,10 +79,12 @@ public class testmain extends JFrame{
 //		for(int i = 0;i < 50; i++)
 //			staffInfoVOs.add(new StaffInfoVO(100000, 100000, "aaaaaa",
 //					"张三", "管理员", null, null, null));
-		test.setContentPane(new StaffListPanel());
+//		test.setContentPane(new StaffListPanel());
 //		test.setContentPane(new changeAuthorityPanel());
 //		test.setContentPane(new AddInstitutionPanel());
 //		test.setContentPane(new CourierAuthorityPanel());
+//		test.setContentPane(new InstitutionListPanel()));
+		test.setContentPane(new changeStaff_InfoPanel(user.getPersonalInfo(100000)));
 		
 		test.setVisible(true);
 		

@@ -29,8 +29,8 @@ public class changeSalaryPanel extends JPanel{
 	static final int w = 100;
 	static final int h = 16;
 	static final int linesp = 49;
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 	
 	
 	private static final ImageIcon CANCEL_ICON= new ImageIcon("images/cancel.png");

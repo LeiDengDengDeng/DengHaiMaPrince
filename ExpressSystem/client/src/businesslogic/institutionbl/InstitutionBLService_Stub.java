@@ -73,5 +73,11 @@ public class InstitutionBLService_Stub implements InstitutionBLService{
 		
 	}
 
+	@Override
+	public boolean changeInstitutionInfo(InstitutionVO institutionVO) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
 
 }

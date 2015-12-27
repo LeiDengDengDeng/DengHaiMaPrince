@@ -1,18 +1,12 @@
 package src.presentation.staffmanageui;
 
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -20,22 +14,18 @@ import javax.swing.JTextField;
 import src.businesslogic.staffmanagebl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
-import src.po.SalaryPO;
-import src.presentation.logui.CheckLogPanel;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.vo.StaffInfoVO;
-import src.vo.UserVO;
 
 public class StaffListPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8185735733924565892L;
 	
-
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 85;
-	
-//	private static final ImageIcon SEARCH = new ImageIcon("images/search.png");
-//	private static final ImageIcon SEARCHENTER = new ImageIcon("images/searchClicked.png");
-//	private static final ImageIcon IMAGE_LABEL_ICON = new ImageIcon("images/staff_ListBG.png");
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 	
 	private static final int Line_Num = 13;
 	long ID;

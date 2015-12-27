@@ -2,16 +2,12 @@ package src.presentation.staffmanageui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
 import src.businesslogic.staffmanagebl.StaffManage;
-import src.presentation.mainui.PanelController;
 import src.vo.StaffInfoVO;
-import src.vo.UserVO;
 
 public class StaffGroup {
 	
