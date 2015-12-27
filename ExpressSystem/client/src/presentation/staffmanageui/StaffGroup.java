@@ -2,11 +2,17 @@ package src.presentation.staffmanageui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
 import src.businesslogic.staffmanagebl.StaffManage;
+import src.presentation.mainui.PanelController;
+import src.presentation.staffmanageui.StaffListPanel.PageButtonActionListener;
 import src.vo.StaffInfoVO;
 
 public class StaffGroup {
@@ -20,9 +26,8 @@ public class StaffGroup {
     private JLabel[][] presentStaffs;
     
     StaffManage staffManage;
-    JLabel ID;
-    JLabel position;
-    JLabel name;
+   
+
     
     Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 
@@ -32,7 +37,7 @@ public class StaffGroup {
         this.page = 1;
         this.x = x;
         this.y = y;
-
+        
         setTextLabel();
     }
 
@@ -55,10 +60,15 @@ public class StaffGroup {
 
         // 获得当前页数的员工信息
         for (int i = start; i < num * page && i < staffs.size(); i++) {
-            ID = new JLabel(String.valueOf(staffs.get(i).getID()));
-            position = new JLabel(staffs.get(i).getPosition());
-            name = new JLabel(staffs.get(i).getStaffName());
+        	JLabel ID = new JLabel(String.valueOf(staffs.get(i).getID()));
+        	JLabel position = new JLabel(staffs.get(i).getPosition());
+            JLabel name = new JLabel(staffs.get(i).getStaffName());
+            new StaffListener(ID);
             
+            ID.setBounds(x, y + (i - start) * height, 52, height);
+            name.setBounds(x + 162, y + (i - start) * height, 150, height);
+            position.setBounds(x + 323, y + (i - start) * height, 150, height);
+
 //            ID.addMouseListener(new MouseListener() {
 //				
 //				@Override
@@ -92,11 +102,7 @@ public class StaffGroup {
 //							staffManage.getStaffInfo(Long.parseLong(ID.getText()))));
 //				}
 //			});
-
-            ID.setBounds(x, y + (i - start) * height, 150, height);
-            name.setBounds(x + 162, y + (i - start) * height, 150, height);
-            position.setBounds(x + 323, y + (i - start) * height, 150, height);
-
+            
             presentStaffs[i - start][0] = ID;
             presentStaffs[i - start][1] = name;
             presentStaffs[i - start][2] = position;
@@ -110,6 +116,7 @@ public class StaffGroup {
         }
 
     }
+    
 
 }
 

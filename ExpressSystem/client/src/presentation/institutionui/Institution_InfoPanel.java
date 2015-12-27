@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 import src.businesslogic.institutionbl.Institution;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
-import src.presentation.userui.UserPanel;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
 import src.vo.InstitutionVO;
@@ -144,7 +143,6 @@ public class Institution_InfoPanel extends JPanel{
 		institutionID = new JLabel(String.valueOf(institutionVO.getInstitutionID()));
 		institutionName = new JLabel(institutionVO.getInstitutionName());
 		institutionfunction = new JLabel(institutionVO.getFunction());
-//		staffGroup = new StaffGroup(institutionVO.getStaff(), 5, coordinate_X + 90, coordinate_Y + 300);
 		
 		institutionID.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
 		institutionID.setFont(myFont);
@@ -158,7 +156,7 @@ public class Institution_InfoPanel extends JPanel{
 		
 	}
 	public void setUsers(ArrayList<UserVO> Staffs){
-		userGroup = new UserGroup(Staffs, Line_Num, coordinate_X + 50, coordinate_Y + 330);
+		userGroup = new UserGroup(Staffs, Line_Num, coordinate_X + 50, coordinate_Y + 330,institutionVO);
 		
 	}
 	private void setPageComboBox() {

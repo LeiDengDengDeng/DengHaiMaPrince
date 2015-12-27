@@ -34,6 +34,7 @@ public class StaffListPanel extends JPanel{
 
 	ArrayList<StaffInfoVO> Staffs;
 	StaffManage staffManage;
+	Position position;
 	StaffGroup staffGroup;
 //	private JLabel addLabel;
 //	private JLabel searchLabel;
@@ -70,7 +71,8 @@ public class StaffListPanel extends JPanel{
     }
 	
 	public void initial(){
-		staffManage = new StaffManage(null, new Position(new User(null)));
+		position = new Position(new User(null));
+		staffManage = new StaffManage(null, position);
 		imageLabel = new JLabel();
 		addLabel = new JLabel();
 		pageComboBox = new JComboBox();

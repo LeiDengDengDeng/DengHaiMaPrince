@@ -52,7 +52,9 @@ public class InstitutionGroup {
             JLabel name = new JLabel(institutionVOs.get(i).getInstitutionName());
             JLabel staffNums = new JLabel(String.valueOf(institutionVOs.get(i).getStaff().size()));
 
-            ID.setBounds(x, y + (i - start) * height, 150, height);
+            new InstitutionListener(ID);
+            
+            ID.setBounds(x, y + (i - start) * height, 52, height);
             name.setBounds(x + 195, y + (i - start) * height, 150, height);
             staffNums.setBounds(x + 385, y + (i - start) * height, 150, height);
 

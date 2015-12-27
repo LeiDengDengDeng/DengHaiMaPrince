@@ -10,13 +10,13 @@ import src.vo.UserVO;
 public class Position implements PositionBLService{
 	
 	UserBLService userBL;
-	public static ArrayList<Integer> managerArrayList;
-	public static ArrayList<Integer> administratorArrayList;
-	public static ArrayList<Integer> accountantArrayList;
-	public static ArrayList<Integer> keeperArrayList;
-	public static ArrayList<Integer> interArrayList;
-	public static ArrayList<Integer> businessArrayList;
-	public static ArrayList<Integer> courierArrayList;
+	public static ArrayList<Integer> managerArrayList = new ArrayList<Integer>();
+	public static ArrayList<Integer> administratorArrayList = new ArrayList<Integer>();
+	public static ArrayList<Integer> accountantArrayList = new ArrayList<Integer>();
+	public static ArrayList<Integer> keeperArrayList = new ArrayList<Integer>();
+	public static ArrayList<Integer> interArrayList = new ArrayList<Integer>();
+	public static ArrayList<Integer> businessArrayList = new ArrayList<Integer>();
+	public static ArrayList<Integer> courierArrayList = new ArrayList<Integer>();
 	public static boolean ischanged = false;
 	
 	public Position(UserBLService userBL){
