@@ -1,6 +1,6 @@
 package src.vo;
 
-public class AccountVO {
+public class AccountVO extends BeginVO{
 
 	String name;
 	String ID;

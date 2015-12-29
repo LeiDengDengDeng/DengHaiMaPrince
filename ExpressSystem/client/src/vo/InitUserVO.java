@@ -1,6 +1,6 @@
 package src.vo;
 
-public class InitUserVO {
+public class InitUserVO extends BeginVO {
 	private long personalID;   //工号
 	private String myPosition;//职位
 	private int salary;     //薪水

@@ -16,6 +16,7 @@ import java.util.HashMap;
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.sheetdataservice.SheetDataService;
 import src.enums.SheetType;
+import src.po.ConstantPO;
 import src.po.SheetPO;
 
 public class SheetData extends UnicastRemoteObject implements SheetDataService {
@@ -173,5 +174,10 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
         // TODO 自动生成的方法存根
 
     }
-
+public static void main(String[] args) throws RemoteException{
+	SheetData sheet=new SheetData();
+	ConstantPO po=new ConstantPO("xx", "2015-11-11", 33, 2, "北京", "深圳", 0);
+	sheet.insert(po);
+	
+}
 }

@@ -1,6 +1,6 @@
 package src.vo;
 
-public class StorageInitVO {
+public class StorageInitVO extends BeginVO {
 	String storageId;//²Ö¿âid
 	double alarmScale;//¾¯½ä±ÈÀı
 	int rowNum;//²Ö¿âÅÅÊı

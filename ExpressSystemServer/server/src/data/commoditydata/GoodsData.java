@@ -189,6 +189,14 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService{
 		// TODO Auto-generated method stub
 		
 	}
-
-
+public static void main(String[] args){
+	GoodsData goods;
+	try {
+		goods = new GoodsData();
+		System.out.println(goods.finds().size());
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 }

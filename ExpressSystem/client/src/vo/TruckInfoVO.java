@@ -1,6 +1,6 @@
 package src.vo;
 
-public class TruckInfoVO {
+public class TruckInfoVO extends BeginVO{
 	private String number; // 车辆代号
 	private int activeTime; // 服役时间
 	private String licensePlateNum; // 车牌号
