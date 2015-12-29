@@ -275,6 +275,16 @@ public class Commodity implements CommodityBLService{
 		if(svo.getType() == SheetType.STORAGE_IN_SHEET){
 			StorageInSheetVO sivo = (StorageInSheetVO)svo;
 			
+			StoragePO spo = null;
+			ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
+			try {
+				spo = storageDataService.findStoragePO(storageId);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			gpos = spo.getGpos();
+			
+			
 		}
 		
 	}
