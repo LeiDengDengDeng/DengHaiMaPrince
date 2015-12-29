@@ -1,18 +1,12 @@
 package src.presentation.staffmanageui;
 
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -20,21 +14,18 @@ import javax.swing.JTextField;
 import src.businesslogic.staffmanagebl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
-import src.po.SalaryPO;
-import src.presentation.logui.CheckLogPanel;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.vo.StaffInfoVO;
-import src.vo.UserVO;
 
 public class StaffListPanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8185735733924565892L;
 	
-
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 85;
-	
-//	private static final ImageIcon SEARCH = new ImageIcon("images/search.png");
-//	private static final ImageIcon SEARCHENTER = new ImageIcon("images/searchClicked.png");
-//	private static final ImageIcon IMAGE_LABEL_ICON = new ImageIcon("images/staff_ListBG.png");
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 	
 	private static final int Line_Num = 13;
 	long ID;
@@ -43,6 +34,7 @@ public class StaffListPanel extends JPanel{
 
 	ArrayList<StaffInfoVO> Staffs;
 	StaffManage staffManage;
+	Position position;
 	StaffGroup staffGroup;
 //	private JLabel addLabel;
 //	private JLabel searchLabel;
@@ -60,11 +52,9 @@ public class StaffListPanel extends JPanel{
     MyButton searchButton;
     
     
-    public StaffListPanel(ArrayList<StaffInfoVO> Staffs){
-    	this.Staffs = Staffs;
+    public StaffListPanel(){
 //    	componentsInstantiation();
     	initial();
-    	setStaffs(Staffs);
     	PageButtonActionListener listener = new PageButtonActionListener(this);
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
@@ -81,7 +71,8 @@ public class StaffListPanel extends JPanel{
     }
 	
 	public void initial(){
-		staffManage = new StaffManage(null, new Position(new User(null)));
+		position = new Position(new User(null));
+		staffManage = new StaffManage(null, position);
 		imageLabel = new JLabel();
 		addLabel = new JLabel();
 		pageComboBox = new JComboBox();
@@ -143,8 +134,9 @@ public class StaffListPanel extends JPanel{
 	    nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
 	                ("images/nextPageClicked.png"), coordinate_X + 320, coordinate_Y + 440);
 		
-		
-		
+    	this.Staffs = staffManage.getAllStaff();
+    	setStaffs(Staffs);
+    	
 //		this.add(searchLabel);
 		this.add(pageComboBox);
         this.add(nextPageButton);
@@ -212,11 +204,11 @@ public class StaffListPanel extends JPanel{
 	            	
 	            	}else{
 	            		ID = Long.parseLong(searchField.getText());
-	            		Staff_InfoPanel staff_InfoPanel =
-	            				new Staff_InfoPanel(staffManage.getStaffInfo(ID));
+	            		PanelController.setPresentPanel(new 
+	            				Staff_InfoPanel(staffManage.getStaffInfo(ID)));
 	            	}
 	            }else if(e.getSource() == addButton){
-	            	AddStaffPanel addStaffPanel = new AddStaffPanel();
+	            	PanelController.setPresentPanel(new AddStaffPanel());;
 	            }
 	            pageNum = (int) pageComboBox.getSelectedItem();
 

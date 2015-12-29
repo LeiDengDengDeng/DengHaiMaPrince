@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.*;
 
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogicservice.commodityblservice.LogisticBLService;

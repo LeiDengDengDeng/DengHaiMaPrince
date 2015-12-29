@@ -39,8 +39,8 @@ public class MainFrame extends JFrame {
 			"images/smallButton_main.png"));
 	JButton refreshButton = new JButton(new ImageIcon(
 			"images/smallButton_refresh.png"));
-	JButton setButton = new JButton(new ImageIcon(
-			"images/smallButton_setting.png"));
+//	JButton setButton = new JButton(new ImageIcon(
+//			"images/smallButton_setting.png"));
 	JLabel tipLabel = new JLabel();
 	
 	JPanel mainPanel = new JPanel();
@@ -59,9 +59,9 @@ public class MainFrame extends JFrame {
 	int frameLocationX;
 	int frameLocationY;
 
-	// public static void main(String[] args) {
-	// new MainFrame(null);
-	// }
+	 public static void main(String[] args) {
+	 new MainFrame(null);
+	 }
 
 	public MainFrame(ArrayList<Integer> authority) {
 		// 登陆后设置权限，初始化左侧按钮和Panel
@@ -116,9 +116,9 @@ public class MainFrame extends JFrame {
 		refreshButton.setBorderPainted(false);
 		refreshButton.addMouseListener(smallButtonMouseListener);
 		
-		setButton.setBounds(400, SMALL_BUTTON_MARGIN_TOP, 25, 25);
-		setButton.setContentAreaFilled(false);
-		setButton.setBorderPainted(false);
+//		setButton.setBounds(400, SMALL_BUTTON_MARGIN_TOP, 25, 25);
+//		setButton.setContentAreaFilled(false);
+//		setButton.setBorderPainted(false);
 
 		headIcon = new ImageIcon("images/head_1.png");
 		headIcon.setImage(headIcon.getImage().getScaledInstance(60, 60,
@@ -166,12 +166,14 @@ public class MainFrame extends JFrame {
 			}
 		});
 
+		PanelController.setPresentPanel(220);
+
 		// 添加组件至frame上
-		for (MyButton e : leftButtonGroup.getLeftButtons())
-			this.add(e);
+//		for (MyButton e : leftButtonGroup.getLeftButtons())
+//			this.add(e);
 		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
 		this.add(tipLabel);
-		this.add(setButton);
+//		this.add(setButton);
 		this.add(mainButton);
 		this.add(refreshButton);
 		this.add(closeButton);
@@ -187,12 +189,12 @@ public class MainFrame extends JFrame {
 	}
 
 	public void setAuthority(ArrayList<Integer> authority) {
-		System.out.println("----authority----");
-		for (int i : authority)
-			System.out.print(i + " ");
-		System.out.println("\n------over------");
-		this.authority = authority;
-		leftButtonGroup = new LeftButtonGroup(authority);
+//		System.out.println("----authority----");
+//		for (int i : authority)
+//			System.out.print(i + " ");
+//		System.out.println("\n------over------");
+//		this.authority = authority;
+//		leftButtonGroup = new LeftButtonGroup(authority);
 		PanelController.frame = this;
 	}
 

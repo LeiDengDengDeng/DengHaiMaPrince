@@ -1,21 +1,17 @@
 package src.presentation.userui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.po.SalaryPO;
-import src.presentation.staffmanageui.StaffListPanel;
+import src.businesslogic.loginbl.LogIn;
+import src.businesslogic.userbl.User;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.vo.UserVO;
 
@@ -34,8 +30,8 @@ public class UserPanel extends JPanel{
 	static final int h = 30;
 	static final int linesp = 53;
 	static final int columnsp = 250;
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 100;
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 	
 	Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
@@ -46,6 +42,7 @@ public class UserPanel extends JPanel{
 
 	
 	UserVO userVO;
+	LogIn logIn;
 	MyButton change;
 	MyButton confirm;
 	
@@ -61,10 +58,10 @@ public class UserPanel extends JPanel{
 	private	JLabel city;
 	private	JLabel businessHall;
 	
-	public UserPanel(UserVO userVO){
-		this.userVO = userVO;
-		getInfo(userVO);
+	public UserPanel(){
 		componentsInstantiation();
+		this.userVO = logIn.getCurrentUser();
+		getInfo(userVO);
 		initial();
 		
 		buttonActionListener listener = new buttonActionListener(this);
@@ -106,6 +103,7 @@ public class UserPanel extends JPanel{
 	}
 	
 	public void componentsInstantiation(){
+		logIn = new LogIn(new User(null));
 		imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/user_InfoBG.png");
 		change = new MyButton(CHANGE_ICON, CHANGEENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
@@ -214,14 +212,11 @@ public class UserPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == change){
-		        		ChangePasswordPanel change = new ChangePasswordPanel(userVO);
-//		        		container.frame.setContentPane(change);
-		        		
+		        		PanelController.setPresentPanel(new ChangePasswordPanel(userVO));
 		        	}
 		        	else if (e.getSource() == confirm) {
 						
 					}
-		        	container.repaint();
 		        	
 		        }
 	}

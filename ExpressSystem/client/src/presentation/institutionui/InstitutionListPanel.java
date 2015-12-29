@@ -11,15 +11,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import src.presentation.staffmanageui.StaffGroup;
-import src.presentation.staffmanageui.StaffListPanel;
+import src.businesslogic.institutionbl.Institution;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
 import src.vo.InstitutionVO;
-import src.vo.StaffInfoVO;
 
 public class InstitutionListPanel extends JPanel{
-	static final int coordinate_X = 230;
-	static final int coordinate_Y = 85;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1834057444856091702L;
+	
+	static final int coordinate_X = 40;
+	static final int coordinate_Y = 40;
 	
 	private static final int Line_Num = 13;
 	
@@ -28,6 +33,7 @@ public class InstitutionListPanel extends JPanel{
 	long ID;
 	ArrayList<InstitutionVO> institutionVOs;
 	InstitutionGroup institutionGroup;
+	Institution institution;
 
 	JLabel imageLabel;
 	JLabel addLabel;
@@ -38,13 +44,11 @@ public class InstitutionListPanel extends JPanel{
 	
     MyButton previousPageButton;
     MyButton nextPageButton;
-    MyButton confirmButton;
+//    MyButton confirmButton;
     MyButton addButton;
     MyButton searchButton;
     
-    public InstitutionListPanel(ArrayList<InstitutionVO> institutionVOs){
-    	this.institutionVOs = institutionVOs;
-    	
+    public InstitutionListPanel(){
 //    	componentsInstantiation();
     	initial();
     	setInstitutions(institutionVOs);
@@ -64,6 +68,7 @@ public class InstitutionListPanel extends JPanel{
     }
 	
 	public void initial(){		
+		institution = new Institution(null);
 		imageLabel = new JLabel();
 		addLabel = new JLabel();
 		pageComboBox = new JComboBox();
@@ -72,8 +77,8 @@ public class InstitutionListPanel extends JPanel{
 		add = new ImageIcon("images/institution_addAccount.png");
 		addButton = new MyButton(new ImageIcon("images/account_add.png"),
 				new ImageIcon("images/account_addEnter.png"), coordinate_X + 10, coordinate_Y + 32, false);
-		confirmButton = new MyButton(new ImageIcon("images/user_InfoConfirm.png"),
-				new ImageIcon("images/user_InfoConfirmEnter.png"), coordinate_X + 470, coordinate_Y + 485, false);
+//		confirmButton = new MyButton(new ImageIcon("images/user_InfoConfirm.png"),
+//				new ImageIcon("images/user_InfoConfirmEnter.png"), coordinate_X + 470, coordinate_Y + 485, false);
 		searchButton = new MyButton(new ImageIcon("images/search_icon.png"),
 				new ImageIcon("images/search_iconClicked.png"), coordinate_X + 493, coordinate_Y + 25, false);
 		
@@ -83,7 +88,6 @@ public class InstitutionListPanel extends JPanel{
         addLabel.setBounds(coordinate_X + 25, coordinate_Y + 24, add.getIconWidth(), add.getIconHeight());
         
         searchField.setBounds(coordinate_X + 403, coordinate_Y + 34, 85, 18);
-		
 		
 //		addLabel.setIcon(ADD_ICON);
 		
@@ -126,14 +130,14 @@ public class InstitutionListPanel extends JPanel{
 		nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
                 ("images/nextPageClicked.png"), coordinate_X + 320, coordinate_Y + 440);
 		
-		
+		this.institutionVOs = institution.getAllInstitution();
 		
 //		this.add(searchLabel);
 		this.add(pageComboBox);
         this.add(nextPageButton);
         this.add(previousPageButton);
         this.add(addButton);
-        this.add(confirmButton);
+//        this.add(confirmButton);
         this.add(searchButton);
         this.add(imageLabel);
         this.add(addLabel);
@@ -187,6 +191,22 @@ public class InstitutionListPanel extends JPanel{
 	                pageComboBox.setSelectedItem(pageNum - 1);
 	            } else if (e.getSource() == nextPageButton) {
 	                pageComboBox.setSelectedItem(pageNum + 1);
+	            } else if (e.getSource() == addButton) {
+	            	PanelController.setPresentPanel(new AddInstitutionPanel());
+	            } else if (e.getSource() == searchButton) {
+	            	if(searchField.getText().length() == 0) {
+	            		TipDialog tipDialog = new TipDialog(null, "", true,
+								"请输入机构ID！", false);
+	            	} else {
+	            		long id = Long.parseLong(searchField.getText());
+	            		if(id < 100000 || id > 999999){
+	            			TipDialog tipDialog = new TipDialog(null, "", true,
+									"ID为6位数！", false);
+	            		} else {
+	            			PanelController.setPresentPanel(new Institution_InfoPanel(
+	            					institution.getInstitutionInfo(id)));
+	            		}
+	            	}
 	            }
 	            pageNum = (int) pageComboBox.getSelectedItem();
 
