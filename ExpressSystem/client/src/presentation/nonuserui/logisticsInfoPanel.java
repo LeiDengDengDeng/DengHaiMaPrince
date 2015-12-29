@@ -3,16 +3,21 @@ package src.presentation.nonuserui;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.businesslogic.commoditybl.Commodity;
-import src.businesslogicservice.nonUserblservice.LogisticBLService;
+import src.businesslogic.commoditybl.Logistic;
+import src.businesslogicservice.commodityblservice.LogisticBLService;
 import src.presentation.sheetui.TextFieldGroup;
 import src.presentation.util.SearchButton;
+import src.presentation.util.TipDialog;
 
 public class LogisticsInfoPanel extends JPanel {
 	protected static final int x = 240;// panel 位置x
@@ -28,22 +33,25 @@ public class LogisticsInfoPanel extends JPanel {
 	protected static final ImageIcon IMG_ButtonFindEnter = new ImageIcon("images/searchClicked.png");
 	private SearchButton buttonFind;
 	LogisticBLService logisticBL;
+	TextFieldGroup group;
+	protected static Graphics graphic;
 
 	public LogisticsInfoPanel() {
 		this.setLayout(null);
 		this.setBounds(x, y, IMG_Info.getIconWidth(), IMG_Info.getIconHeight() + searchToinfo);
 		this.setOpaque(false);
 		drawNumTextField();
-		// logisticBL=new LogisticBL(null);
+		logisticBL = new Logistic(null);
 		buttonFind = new SearchButton(410, 2);
+		this.addListener(buttonFind);
 		this.add(buttonFind);
 
 	}
 
 	public void drawNumTextField() {
-		TextFieldGroup t = new TextFieldGroup(10, 130, 5, 18, 18);
+		group = new TextFieldGroup(10, 130, 5, 18, 18);
 		for (int i = 0; i < 10; i++) {
-			this.add(t.getTextField(i));
+			this.add(group.getTextField(i));
 		}
 	}
 
@@ -51,24 +59,39 @@ public class LogisticsInfoPanel extends JPanel {
 		super.paintComponent(g);
 		g.drawImage(IMG_Search.getImage(), 0, 0, null);
 		g.drawImage(IMG_Info.getImage(), 0, searchToinfo, null);
+		graphic = g;
 		// logisticBL.getLogisticsState(expressNumber)
-		int i = 0;// TODO 这里要拿数据写for循环
-		g.drawImage(IMG_Circle.getImage(), 30, IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i, null);
-		g.drawImage(IMG_Connect.getImage(), 30 + IMG_Circle.getIconWidth() / 2 - 2,
-				IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i + IMG_Circle.getIconHeight() + 4, null);
-		g.drawImage(IMG_Line.getImage(), 30 + IMG_Circle.getIconWidth() + 8, IMG_Search.getIconHeight() + searchToinfo
-				+ 16 + IMG_Connect.getIconHeight() + IMG_Circle.getIconHeight() + gap * i, null);
-		i = 1;
-		g.drawImage(IMG_Circle.getImage(), 30, IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i, null);
-		g.drawImage(IMG_Connect.getImage(), 30 + IMG_Circle.getIconWidth() / 2 - 2,
-				IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i + IMG_Circle.getIconHeight() + 4, null);
-		g.drawImage(IMG_Line.getImage(), 30 + IMG_Circle.getIconWidth() + 8, IMG_Search.getIconHeight() + searchToinfo
-				+ 16 + IMG_Connect.getIconHeight() + IMG_Circle.getIconHeight() + gap * i, null);
 
 	}
 
 	private void addListener(JButton button) {
+		button.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ArrayList<String> s = logisticBL.getLogisticsState(group.getNumberString());
+				if (s == null)
+					new TipDialog(null, "", true, "订单不存在", false);
+				else
+					this.paint(s, graphic);
+
+			}
+
+			protected void paint(ArrayList<String> s, Graphics g) {
+				for (int i = 0; i < s.size(); i++) {
+
+					g.drawImage(IMG_Circle.getImage(), 30, IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i,
+							null);
+					g.drawImage(IMG_Connect.getImage(), 30 + IMG_Circle.getIconWidth() / 2 - 2,
+							IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i + IMG_Circle.getIconHeight() + 4,
+							null);
+					g.drawImage(IMG_Line.getImage(), 30 + IMG_Circle.getIconWidth() + 8, IMG_Search.getIconHeight()
+							+ searchToinfo + 16 + IMG_Connect.getIconHeight() + IMG_Circle.getIconHeight() + gap * i,
+							null);
+				}
+			}
+		});
 	}
 
 	public static void main(String[] args) {
