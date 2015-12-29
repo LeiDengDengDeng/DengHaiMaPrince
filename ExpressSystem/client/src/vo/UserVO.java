@@ -2,8 +2,6 @@ package src.vo;
 
 import java.util.ArrayList;
 
-import src.po.SalaryPO;
-
 public class UserVO {
 	private long personalID;   //π§∫≈
 	private long personalAccount;   //’À∫≈

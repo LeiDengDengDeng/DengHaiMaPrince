@@ -45,7 +45,7 @@ public class InstitutionPO implements Serializable{
 		return InstitutionID;
 	}
 	
-	public void updateStaff(ArrayList<UserPO> staff){
+	public void setStaff(ArrayList<UserPO> staff){
 		this.staff = staff;
 	}
 	

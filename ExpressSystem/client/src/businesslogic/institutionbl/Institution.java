@@ -8,15 +8,12 @@ import java.util.ArrayList;
 
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.institutionblservice.InstitutionBLService;
-import src.businesslogicservice.userblservice.UserBLService;
 import src.dataservice.institutiondataservice.InstitutionDataService;
-import src.dataservice.userdataservice.UserDataService;
 import src.po.InstitutionPO;
 import src.po.SalaryPO;
 import src.po.UserPO;
 import src.vo.InstitutionVO;
 import src.vo.SalaryVO;
-import src.vo.StaffInfoVO;
 import src.vo.UserVO;
 
 public class Institution implements InstitutionBLService{
@@ -190,10 +187,48 @@ public class Institution implements InstitutionBLService{
 		
 	}
 	
-	public static void main(String[] args) {
-		Institution institution = new Institution(null);
-		System.out.println(institution.getInstitutionInfo(100000).getInstitutionName());
-//		institution.addInstitution(new InstitutionVO("营业厅", 100000, null, "中转与接收"));
+//	public static void main(String[] args) {
+//		Institution institution = new Institution(null);
+//		System.out.println(institution.getInstitutionInfo(100000).getInstitutionName());
+////		institution.addInstitution(new InstitutionVO("营业厅", 100000, null, "中转与接收"));
+//	}
+
+	@Override
+	public boolean changeInstitutionInfo(InstitutionVO institutionVO) {
+		// TODO Auto-generated method stub
+		if(institutionVO == null)
+			return false;
+		else{
+			InstitutionPO institutionPO = new InstitutionPO(institutionVO.getInstitutionName(),
+					institutionVO.getInstitutionID(), institutionVO.getFunction());
+			ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
+			for(int i = 0;i < institutionVO.getStaff().size();i++){
+				UserPO userPO = new UserPO(institutionVO.getStaff().get(i).getpersonalID(),
+						institutionVO.getStaff().get(i).getpersonalAccount(),
+						institutionVO.getStaff().get(i).getMyPassword(),
+						institutionVO.getStaff().get(i).getpersonalName(),
+						institutionVO.getStaff().get(i).getMyPosition(),
+						institutionVO.getStaff().get(i).getAuthority());
+				userPO.setCity(institutionVO.getStaff().get(i).getCity());
+				userPO.setBusinessHall(institutionVO.getStaff().get(i).getBusinessHall());
+			
+				SalaryPO salaryPO = new SalaryPO(institutionVO.getStaff().get(i).getSalary().getBasic());
+				salaryPO.setCommission(institutionVO.getStaff().get(i).getSalary().getCommission());
+				salaryPO.setEachPay(institutionVO.getStaff().get(i).getSalary().getEachPay());
+				salaryPO.setTime(institutionVO.getStaff().get(i).getSalary().getTime());
+			
+				userPO.setSalary(salaryPO);
+				userPOs.add(userPO);
+			}
+			institutionPO.setStaff(userPOs);
+			try {
+				institutionData.update(institutionPO);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return true;
+		}	
 	}
 
 }

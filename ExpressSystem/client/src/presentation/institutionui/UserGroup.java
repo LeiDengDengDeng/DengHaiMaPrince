@@ -6,11 +6,12 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
+import src.vo.InstitutionVO;
 import src.vo.UserVO;
 
 public class UserGroup {
 	
-	
+	private InstitutionVO institutionVO;
 	private ArrayList<UserVO> staffs;
     private int num; // textÐÐÊý
     private int page;  // Ò³Êý
@@ -21,13 +22,14 @@ public class UserGroup {
     
     Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 
-    public UserGroup(ArrayList<UserVO> staffs, int num, int x, int y) {
+    public UserGroup(ArrayList<UserVO> staffs, int num, int x, int y,InstitutionVO institutionVO) {
         this.staffs = staffs;
         this.num = num;
         this.page = 1;
         this.x = x;
         this.y = y;
-
+        this.institutionVO = institutionVO;
+        
         setTextLabel();
     }
 
@@ -53,10 +55,11 @@ public class UserGroup {
             JLabel ID = new JLabel(String.valueOf(staffs.get(i).getpersonalID()));
             JLabel position = new JLabel(staffs.get(i).getMyPosition());
             JLabel name = new JLabel(staffs.get(i).getpersonalName());
+            new Ins_StaffListener(ID, institutionVO);
 
-            ID.setBounds(x, y + (i - start) * height, 80, height);
-            name.setBounds(x + 189, y + (i - start) * height, 80, height);
-            position.setBounds(x + 350, y + (i - start) * height, 80, height);
+            ID.setBounds(x, y + (i - start) * height, 150, height);
+            name.setBounds(x + 189, y + (i - start) * height, 150, height);
+            position.setBounds(x + 350, y + (i - start) * height, 150, height);
 
             presentStaffs[i - start][0] = ID;
             presentStaffs[i - start][1] = name;
