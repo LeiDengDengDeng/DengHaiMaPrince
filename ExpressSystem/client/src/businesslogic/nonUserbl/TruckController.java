@@ -25,11 +25,6 @@ public class TruckController implements TruckBLService{
 	public TruckInfoVO getTruckInfo(String truckId) {
 		return truckimpl.getTruckInfo(truckId);
 	}
-	
-	@Override
-	public ArrayList<TruckInfoVO> getTruckByBusinesshall(String id) {
-		return truckimpl.getTruckByBusinesshall(id);
-	}
 
 	@Override
 	public ArrayList<TruckInfoVO> getAllTruckInfo() {
@@ -55,6 +50,5 @@ public class TruckController implements TruckBLService{
 	public void initTruck(ArrayList<TruckInfoVO> tvolist) {
 		truckimpl.initTruck(tvolist);
 	}
-
 	
 }

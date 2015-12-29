@@ -42,12 +42,12 @@ public interface InstitutionBLService {
 //	 */
 //	public void changeStaffPosition(String position,long StaffId);
 	
-	/**
-	 * 修改机构信息
-	 * @param institutionVO
-	 * 
-	 */
-	public boolean changeInstitutionInfo(InstitutionVO institutionVO);
+//	/**
+//	 * 人员工资调整
+//	 * @param StaffId,salary
+//	 * 
+//	 */
+//	public void changeSalary(long StaffId,SalaryVO salary);
 	
 	/**
 	 * 删除机构

@@ -6,7 +6,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import src.businesslogic.loginbl.LogIn;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.dataservice.logdataservice.LogDataService;
 import src.po.LogPO;
@@ -19,7 +18,7 @@ public class Log implements LogBLService {
 
     public Log() {
         try {
-            this.logData = (LogDataService) Naming.lookup("rmi://127.0.0.1:6600/logData");
+            this.logData =  (LogDataService) Naming.lookup("rmi://127.0.0.1:6600/logData");
         } catch (NotBoundException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -56,10 +55,11 @@ public class Log implements LogBLService {
     }
 
     @Override
-    public void generateLog(String operation, String statement) {
+    public void generateLog(String position, String name, String operation,
+                            String statement) {
         // TODO 自动生成的方法存根
-        LogPO log = new LogPO(LogIn.currentUser.getMyPosition(), LogIn.currentUser.getpersonalName(), operation,
-                statement, CommonUtil.getDate());
+        LogPO log = new LogPO(position, name, operation, statement,
+                CommonUtil.getDate());
 
         try {
             logData.insert(log);

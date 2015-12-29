@@ -3,11 +3,6 @@ package src.po;
 import java.io.Serializable;
 
 public class SalaryPO implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1473659362222388603L;
-	
 	private int basic;		//月底薪
 	private int time;		//按次计
 	private int commission; //提成(0-100)

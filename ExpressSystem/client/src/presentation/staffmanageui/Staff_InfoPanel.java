@@ -1,27 +1,29 @@
 package src.presentation.staffmanageui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.businesslogic.staffmanagebl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
+import src.businesslogic.staffmanagebl.StaffManageController;
 import src.businesslogic.userbl.User;
-import src.presentation.mainui.PanelController;
+import src.presentation.userui.ChangePasswordPanel;
+import src.presentation.userui.UserPanel;
+import src.presentation.userui.testmain;
 import src.presentation.util.MyButton;
 import src.vo.StaffInfoVO;
+import src.vo.UserVO;
 
 public class Staff_InfoPanel extends JPanel{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6708767785258883280L;
 	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
@@ -31,8 +33,8 @@ public class Staff_InfoPanel extends JPanel{
 	static final int h = 30;
 	static final int linesp = 49;
 	static final int columnsp = 250;
-	static final int coordinate_X = 40;
-	static final int coordinate_Y = 40;
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 85;
 	
 	Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
@@ -195,11 +197,9 @@ public class Staff_InfoPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == confirmButton){
-		        		PanelController.setPresentPanel(new StaffListPanel());
 		        	}
 		        	else if (e.getSource() == deleteButton) {
 						staffManage.deleteStaff(staffInfoVO.getID());
-						PanelController.setPresentPanel(new StaffListPanel());
 					}
 		        	
 		        	

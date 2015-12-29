@@ -114,7 +114,7 @@ public class PreStorageInSheetPanel extends JPanel{
 		GoodsDataService goodsDataService = null;
 		StorageDataService storageDataService = null;
 		Log log = new Log();
-		SheetBLService orderSheetBL = new OrderSheet(log);
+		SheetBLService orderSheetBL = new OrderSheet();
 //		CheckLogPanel sp = new CheckLogPanel(log);
 		PreStorageInSheetPanel sp = new PreStorageInSheetPanel
 				(goodsDataService, storageDataService);

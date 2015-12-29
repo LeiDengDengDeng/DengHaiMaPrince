@@ -1,5 +1,8 @@
 package src.presentation.userui;
 
+import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,7 +13,6 @@ import javax.swing.JPasswordField;
 
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.userbl.User;
-import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
 import src.vo.UserVO;
@@ -20,7 +22,7 @@ public class ChangePasswordPanel extends JPanel{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5736215242532890168L;
+	private static final long serialVersionUID = 1L;
 	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
@@ -29,8 +31,8 @@ public class ChangePasswordPanel extends JPanel{
 	static final int w = 200;
 	static final int h = 16;
 	static final int linesp = 49;
-	static final int coordinate_X = 40;
-	static final int coordinate_Y = 40;
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 100;
 	
 	
 	private static final ImageIcon CANCEL_ICON= new ImageIcon("images/cancel.png");
@@ -48,15 +50,13 @@ public class ChangePasswordPanel extends JPanel{
     ImageIcon bkgImg;
     
 	UserVO userVO;
-	User user;
-	LogIn logIn;
+	User user = new User(null);
+	LogIn logIn = new LogIn(user);
 	String oldpass;
 	String newpass;
 	String confirmpass;
 	
 	public ChangePasswordPanel(UserVO userVO){
-		user = new User(null);
-		logIn = new LogIn(user);
 		this.userVO = userVO;
 		componentsInstantiation();
 		initial();
@@ -118,7 +118,7 @@ public class ChangePasswordPanel extends JPanel{
 		        @Override
 		        public void actionPerformed(ActionEvent e) {
 		        	if(e.getSource() == cancelButton){
-		        		PanelController.setPresentPanel(new UserPanel());
+		        		
 		        	}else if (e.getSource() == confirmButton) {
 		        		oldpass = String.valueOf(oldpassField.getPassword());
 		        		newpass = String.valueOf(newpassField.getPassword());
@@ -141,8 +141,9 @@ public class ChangePasswordPanel extends JPanel{
 		        		}else {
 		        			TipDialog tipDialog = new TipDialog(null, "", true, "‘≠√‹¬Î¥ÌŒÛ£°", false);
 						}
-		        		PanelController.setPresentPanel(new UserPanel());
+		        		UserPanel userPanel = new UserPanel(userVO);
 					}
+		        	container.repaint();
 		        }
 	}
 	

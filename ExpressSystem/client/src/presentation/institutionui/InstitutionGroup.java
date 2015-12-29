@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 
 import src.vo.InstitutionVO;
+import src.vo.StaffInfoVO;
 
 public class InstitutionGroup {
 	private ArrayList<InstitutionVO> institutionVOs;
@@ -52,11 +53,9 @@ public class InstitutionGroup {
             JLabel name = new JLabel(institutionVOs.get(i).getInstitutionName());
             JLabel staffNums = new JLabel(String.valueOf(institutionVOs.get(i).getStaff().size()));
 
-            new InstitutionListener(ID);
-            
-            ID.setBounds(x, y + (i - start) * height, 52, height);
-            name.setBounds(x + 195, y + (i - start) * height, 150, height);
-            staffNums.setBounds(x + 385, y + (i - start) * height, 150, height);
+            ID.setBounds(x, y + (i - start) * height, 80, height);
+            name.setBounds(x + 195, y + (i - start) * height, 80, height);
+            staffNums.setBounds(x + 385, y + (i - start) * height, 80, height);
 
             presentInstitutions[i - start][0] = ID;
             presentInstitutions[i - start][1] = name;

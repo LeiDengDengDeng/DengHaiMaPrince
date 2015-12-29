@@ -10,22 +10,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import src.businesslogic.institutionbl.Institution;
-import src.businesslogic.userbl.User;
-import src.presentation.mainui.PanelController;
+import src.presentation.staffmanageui.StaffListPanel;
 import src.presentation.util.MyButton;
-import src.presentation.util.TipDialog;
 import src.vo.InstitutionVO;
 import src.vo.UserVO;
 
 public class Institution_InfoPanel extends JPanel{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8044953760184249635L;
 	
 	static final int WIDTH = 665;
 	static final int HEIGHT = 601;
@@ -34,9 +26,8 @@ public class Institution_InfoPanel extends JPanel{
 	static final int w = 200;
 	static final int h = 30;
 	static final int linesp = 48;
-	static final int coordinate_X = 40;
-	static final int coordinate_Y = 40;
-	
+	static final int coordinate_X = 230;
+	static final int coordinate_Y = 85;
 	private static final int Line_Num = 6;
 	
 	Font myFont = new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
@@ -48,7 +39,6 @@ public class Institution_InfoPanel extends JPanel{
 	
 	InstitutionVO institutionVO;
 	Institution institution;
-	User user;
 	
 	
 	JLabel imageLabel;
@@ -61,14 +51,13 @@ public class Institution_InfoPanel extends JPanel{
 	MyButton previousPageButton;
     MyButton nextPageButton;
     MyButton searchButton;
-    MyButton modifyButton;
     
     JComboBox pageComboBox;
 	
 	private JLabel institutionID;
 	private JLabel institutionName;
 	private JLabel institutionfunction;
-	private JTextField searchField;
+	
 	
 	public Institution_InfoPanel(InstitutionVO institutionVO){
 		this.institutionVO = institutionVO;
@@ -97,19 +86,16 @@ public class Institution_InfoPanel extends JPanel{
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 		
-        searchField.setBounds(coordinate_X + 45, coordinate_Y + 492, 100, 20);
         
         this.add(institutionID);
         this.add(institutionName);
         this.add(institutionfunction);
-        this.add(searchField);
         this.add(confirmButton);
         this.add(deleteButton);
         this.add(pageComboBox);
         this.add(nextPageButton);
         this.add(previousPageButton);
         this.add(searchButton);
-        this.add(modifyButton);
         this.add(imageLabel);
         this.setLayout(null);
         this.setOpaque(false);
@@ -119,13 +105,11 @@ public class Institution_InfoPanel extends JPanel{
 	
 	public void componentsInstantiation(){
 		institution = new Institution(null);
-		user = new User(null);
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/institution_InfoBG.png");
 		institutionID = new JLabel();
 		institutionName = new JLabel();
 		institutionfunction = new JLabel();
-		searchField = new JTextField();
 		pageComboBox = new JComboBox();
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 480, coordinate_Y + 220,false);
 		deleteButton = new MyButton(DELETE_ICON, DELETEENTER_ICON, coordinate_X + 400, coordinate_Y + 220,false);
@@ -135,14 +119,13 @@ public class Institution_InfoPanel extends JPanel{
 	                ("images/nextPageClicked_Red.png"), coordinate_X + 320, coordinate_Y + 490);
 	    searchButton = new MyButton(new ImageIcon("images/search_icon.png"), new ImageIcon
                 ("images/search_iconClicked_Red.png"), coordinate_X + 10, coordinate_Y + 485);
-	    modifyButton = new MyButton(new ImageIcon("images/modify_icon.png"), new ImageIcon
-                ("images/modify_iconEnter.png"), coordinate_X + 515, coordinate_Y + 4);
 		
 	}
 	public void getInstitutionInfo(InstitutionVO institutionVO){
 		institutionID = new JLabel(String.valueOf(institutionVO.getInstitutionID()));
 		institutionName = new JLabel(institutionVO.getInstitutionName());
 		institutionfunction = new JLabel(institutionVO.getFunction());
+//		staffGroup = new StaffGroup(institutionVO.getStaff(), 5, coordinate_X + 90, coordinate_Y + 300);
 		
 		institutionID.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
 		institutionID.setFont(myFont);
@@ -156,7 +139,7 @@ public class Institution_InfoPanel extends JPanel{
 		
 	}
 	public void setUsers(ArrayList<UserVO> Staffs){
-		userGroup = new UserGroup(Staffs, Line_Num, coordinate_X + 50, coordinate_Y + 330,institutionVO);
+		userGroup = new UserGroup(Staffs, Line_Num, coordinate_X + 50, coordinate_Y + 330);
 		
 	}
 	private void setPageComboBox() {
@@ -199,27 +182,9 @@ public class Institution_InfoPanel extends JPanel{
 	            } else if (e.getSource() == nextPageButton) {
 	                pageComboBox.setSelectedItem(pageNum + 1);
 	            } else if (e.getSource() == confirmButton) {
-	            	PanelController.setPresentPanel(new InstitutionListPanel());
 	            	
 	            } else if (e.getSource() == deleteButton) {
 	            	institution.deleteInstitution(institutionVO.getInstitutionID());
-	            	PanelController.setPresentPanel(new InstitutionListPanel());
-	            } else if (e.getSource() == searchButton) {
-	            	if(searchField.getText().length() == 0) {
-	            		TipDialog tipDialog = new TipDialog(null, "", true,
-								"请输入员工ID！", false);
-	            	} else {
-	            		long id = Long.parseLong(searchField.getText());
-	            		if(id < 100000 || id > 999999){
-	            			TipDialog tipDialog = new TipDialog(null, "", true,
-									"ID为6位数！", false);
-	            		} else {
-	            			PanelController.setPresentPanel(new 
-	            					StaffPanel(user.getPersonalInfo(id),institutionVO));
-	            		}
-	            	}
-	            } else if(e.getSource() == modifyButton) {
-	            	PanelController.setPresentPanel(new changeInstitution_InfoPanel(institutionVO));
 	            }
 	            pageNum = (int) pageComboBox.getSelectedItem();
 

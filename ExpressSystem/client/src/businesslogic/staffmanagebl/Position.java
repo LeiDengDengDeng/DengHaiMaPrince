@@ -10,64 +10,49 @@ import src.vo.UserVO;
 public class Position implements PositionBLService{
 	
 	UserBLService userBL;
-	public static ArrayList<Integer> managerArrayList = new ArrayList<Integer>();
-	public static ArrayList<Integer> administratorArrayList = new ArrayList<Integer>();
-	public static ArrayList<Integer> accountantArrayList = new ArrayList<Integer>();
-	public static ArrayList<Integer> keeperArrayList = new ArrayList<Integer>();
-	public static ArrayList<Integer> interArrayList = new ArrayList<Integer>();
-	public static ArrayList<Integer> businessArrayList = new ArrayList<Integer>();
-	public static ArrayList<Integer> courierArrayList = new ArrayList<Integer>();
-	public static boolean ischanged = false;
 	
 	public Position(UserBLService userBL){
 		this.userBL = userBL;
-		if(!ischanged){
-			managerArrayList.add(12);
-			managerArrayList.add(13);
-			managerArrayList.add(19);
-			managerArrayList.add(20);
-			administratorArrayList.add(1);
-			administratorArrayList.add(18);
-			accountantArrayList.add(11);
-			accountantArrayList.add(14);
-			accountantArrayList.add(15);
-			accountantArrayList.add(16);
-			accountantArrayList.add(17);
-			accountantArrayList.add(19);
-			accountantArrayList.add(21);
-			keeperArrayList.add(9);
-			interArrayList.add(2);
-			interArrayList.add(6);
-			businessArrayList.add(3);
-			businessArrayList.add(4);
-			businessArrayList.add(5);
-			businessArrayList.add(10);
-			courierArrayList.add(7);
-			courierArrayList.add(8);
-		}
 	}
 	
 	@Override
 	public ArrayList<Integer> initialAuthority(StaffInfoVO staff) {
 		// TODO Auto-generated method stub
+		ArrayList<Integer> authority = new ArrayList<Integer>();
+//		System.out.println(staff.getPosition());
 		if(staff.getPosition().equals("总经理")){
-			return managerArrayList;
+			authority.add(12);
+			authority.add(13);
+			authority.add(19);
+			authority.add(20);
 		}else if(staff.getPosition().equals("管理员")){
-			return administratorArrayList;
+			authority.add(1);
+			authority.add(18);
 		}else if(staff.getPosition().equals("财务人员")){
-			return accountantArrayList;
+			authority.add(11);
+			authority.add(14);
+			authority.add(15);
+			authority.add(16);
+			authority.add(17);
+			authority.add(19);
+			authority.add(21);
 		}else if(staff.getPosition().equals("中转中心仓库管理员")){
-			return keeperArrayList;
+			authority.add(9);
 		}else if(staff.getPosition().equals("中转中心业务员")){
-			return interArrayList;
+			authority.add(2);
+			authority.add(6);
 		}else if(staff.getPosition().equals("营业厅业务员")){
-			return businessArrayList;
+			authority.add(3);
+			authority.add(4);
+			authority.add(5);
+			authority.add(10);
 		}else if(staff.getPosition().equals("快递员")){
-			return courierArrayList;
+			authority.add(7);
+			authority.add(8);
 		}else{
-			System.out.println("invalid!!");
-			return null;
+
 		}
+		return authority;
 	}
 	
 	@Override

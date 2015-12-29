@@ -1,6 +1,5 @@
 package src.businesslogic.sheetbl;
 
-import src.businesslogic.logbl.Log;
 import src.enums.SheetType;
 import src.po.ReceivingMoneySheetPO;
 import src.po.SheetPO;
@@ -13,10 +12,6 @@ import src.vo.SheetVO;
  */
 public class ReceivingMoneySheet extends Sheet {
     SheetType type = SheetType.RECEIVING_MONEY_SHEET;
-
-    public ReceivingMoneySheet(Log logBL) {
-        super(logBL);
-    }
 
     @Override
     public String[][] getExistedInfo() {

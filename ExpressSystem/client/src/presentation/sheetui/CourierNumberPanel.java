@@ -50,7 +50,7 @@ public class CourierNumberPanel extends JScrollPane {
     public ArrayList<Long> getCourierNumber() {
         ArrayList<Long> res = new ArrayList<>();
         for (JTextField t : textFields) {
-            if (!t.getText().equals("")) {
+            if (t.getText() != null) {
                 if (CommonUtil.isValidNumberString(t.getText(), 10))
                     res.add(Long.parseLong(t.getText()));
                 else

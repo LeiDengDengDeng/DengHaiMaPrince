@@ -42,24 +42,6 @@ public class Truck implements TruckBLService{
 				tPo.getLicensePlateNum());
 		return tVo;
 	}
-	
-	@Override
-	public ArrayList<TruckInfoVO> getTruckByBusinesshall(String id) {
-		ArrayList<TruckPO> tpos = new ArrayList<TruckPO>();
-		ArrayList<TruckInfoVO> tvos = new ArrayList<TruckInfoVO>();
-		try {
-			tpos = truckDataService.findsTruckPO(id);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		
-		for(int i = 0;i < tpos.size();i++){
-			tvos.add(new TruckInfoVO(tpos.get(i).getNumber(), 
-					tpos.get(i).getActiveTime(), 
-					tpos.get(i).getLicensePlateNum()));
-		}
-		return tvos;
-	}
 
 	@Override
 	public ArrayList<TruckInfoVO> getAllTruckInfo() {
@@ -129,6 +111,5 @@ public class Truck implements TruckBLService{
 		}
 		
 	}
-
 
 }

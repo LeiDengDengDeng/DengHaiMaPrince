@@ -25,9 +25,9 @@ public abstract class Sheet implements SheetBLService {
 
     // 与其它bl包的交互
     Log logBL;
+    LogIn logInBL;
 
-    public Sheet(Log logBL) {
-        this.logBL = logBL;
+    public Sheet() {
         try {
             sheetData = (SheetDataService) Naming.lookup("rmi://127.0.0.1:6600/sheetData");
         } catch (NotBoundException e) {
@@ -52,6 +52,7 @@ public abstract class Sheet implements SheetBLService {
             e.printStackTrace();
             return false;
         }
+
         return true;
     }
 

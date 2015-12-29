@@ -2,6 +2,8 @@ package src.vo;
 
 import java.util.ArrayList;
 
+import src.po.UserPO;
+
 public class InstitutionVO {
 	private String InstitutionName;
 	private long InstitutionID;
@@ -35,7 +37,7 @@ public class InstitutionVO {
 		return InstitutionID;
 	}
 	
-	public void setStaff(ArrayList<UserVO> staff){
+	public void updateStaff(ArrayList<UserVO> staff){
 		this.staff = staff;
 	}
 	

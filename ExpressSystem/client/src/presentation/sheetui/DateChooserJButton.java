@@ -53,7 +53,7 @@ public class DateChooserJButton extends JButton {
 
     public DateChooserJButton(Date date) {
         this("", date);
-        this.setBackground(Color.WHITE);
+        this.setBackground(new Color(135, 209, 196));
     }
 
     public DateChooserJButton(String preLabel, Date date) {

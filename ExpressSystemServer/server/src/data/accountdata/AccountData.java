@@ -138,7 +138,7 @@ public class AccountData extends UnicastRemoteObject implements AccountDataServi
 		try {
 			ois = new ObjectInputStream(new FileInputStream(file));
 			while ((account = (AccountPO) ois.readObject()) != null) {
-				if (!account.getCardID().equals(po.getCardID()))
+				if (account.getCardID() != po.getCardID())
 					accounts.add(account);
 				else {
 					accounts.add(po);
@@ -173,7 +173,10 @@ public class AccountData extends UnicastRemoteObject implements AccountDataServi
 			System.out.println("IO EXCEPTION");
 			return false;
 		}
-		return findIt;
+		if (findIt) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override

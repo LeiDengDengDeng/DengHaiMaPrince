@@ -18,6 +18,6 @@ public class DriverData_Driver {
 	System.out.println("ÓªÒµÌü£º " + driverData.findsDriverPO("025000000").size());
 //	System.out.println(driverData.findsDriverPO().get(0).getName() + " "
 //			+ driverData.findsDriverPO().get(1).getName());
-	System.out.println(driverData.findsDriverPO().get(5).getNumber());
+	System.out.println(driverData.findsDriverPO().get(0).getName());
 }
 }

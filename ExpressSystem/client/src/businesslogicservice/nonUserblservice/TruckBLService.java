@@ -12,13 +12,6 @@ public interface TruckBLService {
 	public TruckInfoVO getTruckInfo(String truckId);
 	
 	/**
-	 * 非用户信息查询界面得到某营业厅所有车辆信息
-	 * @param id
-	 * @return
-	 */
-	public ArrayList<TruckInfoVO> getTruckByBusinesshall(String id);
-	
-	/**
 	 * 非用户信息查询界面得到所有车辆信息
 	 * @return
 	 */
