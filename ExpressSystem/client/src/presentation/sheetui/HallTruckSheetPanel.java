@@ -71,7 +71,7 @@ public class HallTruckSheetPanel extends SheetPanel {
         confirmButton.addActionListener(new ConfirmButtonListener(this));
 
         imageLabel.setIcon(bkgImg);
-        imageLabel.setBounds(50, 40, bkgImg.getIconWidth(), bkgImg.getIconHeight());
+        imageLabel.setBounds(58, 45, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 
         this.add(dateChooser);
         this.add(city);

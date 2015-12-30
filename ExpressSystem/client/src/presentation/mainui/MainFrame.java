@@ -166,11 +166,11 @@ public class MainFrame extends JFrame {
 			}
 		});
 
-		PanelController.setPresentPanel(220);
+//		PanelController.setPresentPanel(220);
 
 		// 添加组件至frame上
-//		for (MyButton e : leftButtonGroup.getLeftButtons())
-//			this.add(e);
+		for (MyButton e : leftButtonGroup.getLeftButtons())
+			this.add(e);
 		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
 		this.add(tipLabel);
 //		this.add(setButton);
@@ -193,8 +193,8 @@ public class MainFrame extends JFrame {
 //		for (int i : authority)
 //			System.out.print(i + " ");
 //		System.out.println("\n------over------");
-//		this.authority = authority;
-//		leftButtonGroup = new LeftButtonGroup(authority);
+		this.authority = authority;
+		leftButtonGroup = new LeftButtonGroup(authority);
 		PanelController.frame = this;
 	}
 

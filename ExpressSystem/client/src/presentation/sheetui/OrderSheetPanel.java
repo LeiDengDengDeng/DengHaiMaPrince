@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import src.businesslogic.util.CommonUtil;
 import src.businesslogicservice.sheetblservice.SheetBLService;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.TipDialog;
 import src.vo.OrderSheetVO;
@@ -147,9 +148,10 @@ public class OrderSheetPanel extends SheetPanel {
         OrderSheetVO vo = new OrderSheetVO("XXXX", CommonUtil.getDate(), Long.parseLong(idGroup.getNumberString()),
                 senName.getText(), senAdd.getText(), senOrg.getText(), senTel.getText(), senMob.getText(), recName
                 .getText(), recAdd.getText(), recOrg.getText(), recTel.getText(), recMob.getText());
-        if (orderSheetBL.add(vo))
+        if (orderSheetBL.add(vo)) {
             new TipDialog(null, "", true, "单据提交成功", true);
-        else
+            PanelController.refreshPresentPanel();
+        } else
             new TipDialog(null, "", true, "单据提交失败", false);
 
         return true;
