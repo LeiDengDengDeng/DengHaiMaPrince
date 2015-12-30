@@ -1,6 +1,7 @@
 package src.presentation.nonuserui;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -12,11 +13,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.*;
 
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogicservice.commodityblservice.LogisticBLService;
 import src.presentation.sheetui.TextFieldGroup;
+import src.presentation.util.MyLabel;
+import src.presentation.util.RButton;
 import src.presentation.util.SearchButton;
 import src.presentation.util.TipDialog;
 
@@ -35,7 +37,8 @@ public class LogisticsInfoPanel extends JPanel {
 	private SearchButton buttonFind;
 	LogisticBLService logisticBL;
 	TextFieldGroup group;
-	protected static Graphics graphic;
+	protected static final int font = 14;
+	protected Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, font);
 
 	public LogisticsInfoPanel() {
 		this.setLayout(null);
@@ -46,6 +49,9 @@ public class LogisticsInfoPanel extends JPanel {
 		buttonFind = new SearchButton(410, 2);
 		this.addListener(buttonFind);
 		this.add(buttonFind);
+//		RButton button=new RButton();
+//		button.setBounds(100, 200, 100, 40);
+//		this.add(button);
 
 	}
 
@@ -53,15 +59,8 @@ public class LogisticsInfoPanel extends JPanel {
 		group = new TextFieldGroup(10, 130, 5, 18, 18);
 		for (int i = 0; i < 10; i++) {
 			this.add(group.getTextField(i));
-		}
-	}
 
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(IMG_Search.getImage(), 0, 0, null);
-		g.drawImage(IMG_Info.getImage(), 0, searchToinfo, null);
-		graphic = g;
-		// logisticBL.getLogisticsState(expressNumber)
+		}
 
 	}
 
@@ -74,25 +73,48 @@ public class LogisticsInfoPanel extends JPanel {
 				ArrayList<String> s = logisticBL.getLogisticsState(group.getNumberString());
 				if (s == null)
 					new TipDialog(null, "", true, "¶©µ¥²»´æÔÚ", false);
-				else
-					this.paint(s, graphic);
-
+				else {
+					this.paint(s);
+				}
 			}
 
-			protected void paint(ArrayList<String> s, Graphics g) {
+			protected void paint(ArrayList<String> s) {
 				for (int i = 0; i < s.size(); i++) {
+					MyLabel text = new MyLabel(s.get(i));
 
-					g.drawImage(IMG_Circle.getImage(), 30, IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i,
-							null);
-					g.drawImage(IMG_Connect.getImage(), 30 + IMG_Circle.getIconWidth() / 2 - 2,
+					JLabel circle = new JLabel(IMG_Circle);
+					JLabel connect = new JLabel(IMG_Connect);
+					JLabel line = new JLabel(IMG_Line);
+					text.setBounds(80, IMG_Search.getIconHeight() + searchToinfo + 18 + gap * i, s.get(i).length() * 15,
+							15);
+					circle.setBounds(40, IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i,
+							IMG_Circle.getIconWidth(), IMG_Circle.getIconHeight());
+					connect.setBounds(30 + IMG_Circle.getIconWidth() / 2 - 2,
 							IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i + IMG_Circle.getIconHeight() + 4,
-							null);
-					g.drawImage(IMG_Line.getImage(), 30 + IMG_Circle.getIconWidth() + 8, IMG_Search.getIconHeight()
-							+ searchToinfo + 16 + IMG_Connect.getIconHeight() + IMG_Circle.getIconHeight() + gap * i,
-							null);
+							IMG_Connect.getIconHeight(), IMG_Connect.getIconHeight());
+					line.setBounds(30 + IMG_Circle.getIconWidth() + 8,
+							IMG_Search.getIconHeight() + searchToinfo + 16 + IMG_Connect.getIconHeight()
+									+ IMG_Circle.getIconHeight() + gap * i,
+							IMG_Line.getIconWidth(), IMG_Line.getIconHeight());
+					getPanel().add(text);
+					getPanel().add(circle);
+					getPanel().add(connect);
+					getPanel().add(line);
 				}
 			}
 		});
+	}
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(IMG_Search.getImage(), 0, 0, null);
+		g.drawImage(IMG_Info.getImage(), 0, searchToinfo, null);
+		// logisticBL.getLogisticsState(expressNumber)
+
+	}
+
+	LogisticsInfoPanel getPanel() {
+		return this;
 	}
 
 	public static void main(String[] args) {
