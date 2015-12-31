@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import src.businesslogic.institutionbl.Institution;
 import src.businesslogic.userbl.User;
 import src.presentation.institutionui.InstitutionListPanel;
 import src.presentation.institutionui.Institution_InfoPanel;
@@ -53,7 +54,7 @@ public class testmain extends JFrame{
 	
 	public static void main(String[] args) {
 		testmain test = new testmain();
-		
+		Institution institution = new Institution(null);
 		User user = new User(null);
 //		for(int i = 0;i < 2;i++)
 //		System.out.println(user.getPersonalInfo(200000).getAuthority().get(i));
@@ -88,11 +89,13 @@ public class testmain extends JFrame{
 //		test.setContentPane(new changeAuthorityPanel());
 //		test.setContentPane(new AddInstitutionPanel());
 //		test.setContentPane(new CourierAuthorityPanel());
-		test.setContentPane(new InstitutionListPanel());
+//		test.setContentPane(new InstitutionListPanel());
 //		test.setContentPane(new changeStaff_InfoPanel(user.getPersonalInfo(100000),
 //				new InstitutionVO("营业厅", 100000, userVOs, "负责中转与接收")));
+		institution.addInstitution(new InstitutionVO("鼓楼营业厅", 100000, null, "负责中转与接收"));
+		System.out.println(institution.getAllInstitution().size());
 		
-		test.setVisible(true);
+//		test.setVisible(true);
 		
 	
 	}

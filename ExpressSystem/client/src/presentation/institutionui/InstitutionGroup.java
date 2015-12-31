@@ -6,10 +6,12 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
+import src.businesslogic.institutionbl.Institution;
 import src.vo.InstitutionVO;
 
 public class InstitutionGroup {
 	private ArrayList<InstitutionVO> institutionVOs;
+	Institution institution;
     private int num; // textÐÐÊý
     private int page;  // Ò³Êý
     private int x;

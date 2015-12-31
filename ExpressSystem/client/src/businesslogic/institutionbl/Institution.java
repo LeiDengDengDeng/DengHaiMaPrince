@@ -121,6 +121,7 @@ public class Institution implements InstitutionBLService{
 			return false;
 		
 		else{
+			System.out.println("add institution");
 			InstitutionPO institutionPO = new InstitutionPO(Institution.getInstitutionName(),
 					Institution.getInstitutionID(), Institution.getFunction());
 			try {
