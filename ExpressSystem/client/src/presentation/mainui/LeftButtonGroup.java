@@ -60,13 +60,11 @@ public class LeftButtonGroup {
                 }
             } else if (count == 10) {
                 for (int m = 0; m < carAndDriverPaths.length; m++) {
-                    MyButton temp = new MyButton(new ImageIcon("images/left_"
-                            + carAndDriverPaths[m] + ".png"), new ImageIcon(
-                            "images/left_" + carAndDriverPaths[m]
-                                    + "Clicked.png"), 0,
-                            200 + leftButtons.size() * 44, true);
+                    MyButton temp = new MyButton(new ImageIcon("images/left_" + carAndDriverPaths[m] + ".png"), new
+                            ImageIcon("images/left_" + carAndDriverPaths[m] + "Clicked.png"), 0, 200 + leftButtons
+                            .size() * 44, true);
                     leftButtons.add(temp);
-                    temp.addActionListener(new LeftButtonListener(count));
+                    temp.addActionListener(new LeftButtonListener(300 + m));
                 }
             } else {
                 MyButton temp = new MyButton(new ImageIcon("images/left_"

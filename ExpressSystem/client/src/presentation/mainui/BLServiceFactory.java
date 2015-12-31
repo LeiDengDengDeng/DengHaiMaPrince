@@ -1,9 +1,10 @@
-package src.presentation.loginui;
+package src.presentation.mainui;
 
 import src.businesslogic.accountbl.Account;
 import src.businesslogic.logbl.Log;
 import src.businesslogic.sheetbl.OrderSheet;
 import src.businesslogic.sheetbl.PaymentSheet;
+import src.businesslogic.sheetbl.ReceivingMoneySheet;
 import src.businesslogicservice.accountblservice.AccountBLService;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.sheetblservice.SheetBLService;
@@ -24,7 +25,7 @@ public class BLServiceFactory {
 
     public SheetBLService getOrderSheetBL() {
         return (orderSheetBL != null) ? orderSheetBL
-                : (orderSheetBL = new OrderSheet((Log)getLogBL()));
+                : (orderSheetBL = new OrderSheet((Log) getLogBL()));
     }
 
     public SheetBLService getPaymentSheetBL() {
@@ -41,7 +42,8 @@ public class BLServiceFactory {
     }
 
     public SheetBLService getReceivingMoneySheetBL() {
-        return receivingMoneySheetBL;
+        return (receivingMoneySheetBL != null) ?
+                receivingMoneySheetBL : (receivingMoneySheetBL = new ReceivingMoneySheet((Log) getLogBL()));
     }
 
     public SheetBLService getConstantBL() {

@@ -57,9 +57,9 @@ public class ExamineSheetPanel extends SheetPanel {
     private void init() {
         // 创建对象
         previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
-                ("images/previousPageClicked.png"), 322, 508);
+                ("images/previousPageClicked.png"), 322, 498);
         nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
-                ("images/nextPageClicked.png"), 402, 508);
+                ("images/nextPageClicked.png"), 402, 498);
         sheetLabelGroup = new SheetLabelGroup(NUM_OF_LINES, 75, 100);
         pageComboBox = new JComboBox();
         confirmButton = new MyButton(new ImageIcon("images/confirm.png"), new ImageIcon("images/confirmClicked.png"));
@@ -72,7 +72,7 @@ public class ExamineSheetPanel extends SheetPanel {
         nextPageButton.addActionListener(listener);
         if (sheetVOs.size() <= NUM_OF_LINES)
             nextPageButton.setVisible(false);
-        pageComboBox.setBounds(530, 508, 44, 23);
+        pageComboBox.setBounds(515, 498, 44, 23);
         setPageComboBox();
         pageComboBox.addActionListener(listener);
 
@@ -127,9 +127,9 @@ public class ExamineSheetPanel extends SheetPanel {
 
     @Override
     public boolean confirm() {
-        Component[][] components = sheetLabelGroup.getComponents();
-        for (int i = 0; i < components.length; i++) {
-            if (((Checkbox) components[i][4]).getState()) {
+        Checkbox[] checkboxes = sheetLabelGroup.getCheckboxes();
+        for (int i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].getState()) {
                 if (sheetVOs.get(i).getType() == SheetType.PAYMENT_SHEET)
                     sheetBL[0].examineSheet(sheetVOs.get(i).getID(), SheetState.PASSED);
             }
@@ -203,6 +203,10 @@ public class ExamineSheetPanel extends SheetPanel {
 
         public Component[][] getComponents() {
             return components;
+        }
+
+        public Checkbox[] getCheckboxes() {
+            return checkboxes;
         }
     }
 

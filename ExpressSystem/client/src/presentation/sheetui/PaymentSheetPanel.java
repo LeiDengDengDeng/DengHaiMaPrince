@@ -74,8 +74,8 @@ public class PaymentSheetPanel extends SheetPanel {
                 accountMoney.setText(accountInfo[item][2]);
             }
         });
-        name.setBounds(MARGIN_LEFT + 290, 91, 50, COMPONENT_HEIGHT);
-        accountMoney.setBounds(MARGIN_LEFT + 290, 128, 100, COMPONENT_HEIGHT);
+        name.setBounds(MARGIN_LEFT + 290, 89, 50, COMPONENT_HEIGHT);
+        accountMoney.setBounds(MARGIN_LEFT + 290, 126, 100, COMPONENT_HEIGHT);
         priceField.setBounds(MARGIN_LEFT, 130, 80, COMPONENT_HEIGHT);
         dateChooser.setBounds(MARGIN_LEFT, 172, 80, COMPONENT_HEIGHT);
         detailComboBox.setBounds(MARGIN_LEFT, 217, 90, COMPONENT_HEIGHT);

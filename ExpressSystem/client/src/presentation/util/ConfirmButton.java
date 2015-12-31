@@ -33,12 +33,12 @@ public class ConfirmButton extends JButton {
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				
+				unclicked(e);	
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				
+				clicked(e);	
 			}
 			
 			@Override
