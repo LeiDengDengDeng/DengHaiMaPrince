@@ -1,5 +1,6 @@
 package src.presentation.commodityui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -98,6 +99,7 @@ public class StockCheckPanel extends JPanel{
 		endTime = new DateChooserJButton();
 		remind.setBounds(70, 90, 250, 30);
 		remind.setFont(myFont);
+		remind.setForeground(Color.WHITE);
 		confirmButton.setBounds(480, 250, IMG_CONFIRM.getIconWidth(),
 				IMG_CONFIRM.getIconHeight());
 		startTime.setBounds(120, 160, 100, 30);
@@ -180,13 +182,15 @@ public class StockCheckPanel extends JPanel{
 				nextPageButton.setVisible(true);
 				imageLabel.setVisible(true);
 				
-//				storages = commodityBL.checkStorageMessage("南京", 20151025, 20151026);
-				System.out.println(Long.parseLong(startTime.getText().replaceAll("-", "")));
-				for(int i = 0;i < 55;i++){
-					StorageInfoVO tempSvo = new StorageInfoVO("血吼",
-							GoodsType.TRANSPORT, 003, 005, 007);
-					storages.add(tempSvo);
-				}
+				storages = commodityBL.checkStorageMessage("南京", 
+						Long.parseLong(startTime.getText().replaceAll("-", "")), 
+						Long.parseLong(endTime.getText().replaceAll("-", "")));
+//				System.out.println(Long.parseLong(startTime.getText().replaceAll("-", "")));
+//				for(int i = 0;i < 55;i++){
+//					StorageInfoVO tempSvo = new StorageInfoVO("血吼",
+//							GoodsType.TRANSPORT, 003, 005, 007);
+//					storages.add(tempSvo);
+//				}
 				storageLabels = new StorageInfoLabelGroup(storages, NUM_OF_LINES, 48, 115);
 				PageButtonActionListener listener = new PageButtonActionListener(scp);
 		        previousPageButton.addActionListener(listener);
@@ -196,11 +200,14 @@ public class StockCheckPanel extends JPanel{
 		        setPageComboBox();
 		        pageComboBox.addActionListener(listener);
 		        
-		        inNum = 20;
+		        StorageNumVO svo = commodityBL.getStorageNum("南京", 
+		        		Long.parseLong(startTime.getText().replaceAll("-", "")), 
+		        		Long.parseLong(endTime.getText().replaceAll("-", "")));
+		        inNum = svo.getInNum();
 		        inNumLabel.setText("入库数量：" + inNum);
-		        outNum = 10;
+		        outNum = svo.getOutNUm();
 		        outNumLabel.setText("出库数量：" + outNum);
-		        totalNum = 200;
+		        totalNum = svo.getTotalNUm();
 		        totalNumLabel.setText("库存数量合计：" + totalNum);
 				addStorageLabel();
 			}
@@ -272,5 +279,6 @@ public class StockCheckPanel extends JPanel{
 		frame.setContentPane(this);
 		frame.setVisible(true);
 		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

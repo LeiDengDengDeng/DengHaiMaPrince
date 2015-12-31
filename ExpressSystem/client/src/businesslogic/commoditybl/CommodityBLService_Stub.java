@@ -148,7 +148,7 @@ public class CommodityBLService_Stub implements CommodityBLService{
 	}
 
 	@Override
-	public void exportExcel(String storageId) {
+	public void exportExcel(String realPath,ArrayList<ExpressInfoVO> users) {
 		// TODO 自动生成的方法存根
 		
 	}

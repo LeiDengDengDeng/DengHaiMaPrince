@@ -128,6 +128,7 @@ public class AlarmScaleChangingPanel extends JPanel{
 		frame.setContentPane(this);
 		frame.setVisible(true);
 		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }

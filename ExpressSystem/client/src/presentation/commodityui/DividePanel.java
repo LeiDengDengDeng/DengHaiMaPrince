@@ -1,6 +1,5 @@
 package src.presentation.commodityui;
 
-import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,11 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.businesslogic.commoditybl.Commodity;
-import src.businesslogic.commoditybl.CommodityBLService_Stub;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
-import src.dataservice.commoditydataservice.GoodsDataService;
-import src.dataservice.commoditydataservice.StorageDataService;
 import src.enums.GoodsType;
 import src.presentation.util.MyButton;
 import src.vo.ExpressInfoVO;
@@ -57,6 +53,7 @@ public class DividePanel extends JPanel{
     public DividePanel(Log log){
     	commodityBL = new Commodity(log);
     	storages = new ArrayList<ExpressInfoVO>();
+    	
     	for (int i = 0; i < 28; i++) {
             ExpressInfoVO temp = new ExpressInfoVO("Ñªºð", "0000000000000006",
             		"2015-12-05", "°Â¸ñÈðÂê", GoodsType.TRANSPORT,106,107,114,false);
@@ -235,5 +232,6 @@ public class DividePanel extends JPanel{
 		frame.setContentPane(this);
 		frame.setVisible(true);
 		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

@@ -15,7 +15,7 @@ public class StorageData_Driver {
 		ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
 		GoodsPO goodsPO1 = new GoodsPO(logisticsState, 3, 3.0, 3.0, 3.0, 
 				3.0, 3.0, "血吼", GoodsType.ECONOMIC, GoodsType.PAPERPAKAGE,
-				"0000000000000001", "2015-12-20", "扬州", GoodsType.RAIL, 103, 103, 103, 
+				"0000000000000002", "2015-12-30", "扬州", GoodsType.RAIL, 103, 103, 103, 
 				001, "0250201510250000000", 
 				"0250201510250000000");
 		GoodsPO goodsPO2 = new GoodsPO(logisticsState, 3, 3.0, 3.0, 3.0, 
@@ -32,7 +32,7 @@ public class StorageData_Driver {
 //		storageData.insert(spo1);
 //		storageData.insert(spo2);
 //		storageData.delete("上海");
-//		storageData.update("南京", spo2);
+		storageData.update("南京", spo1);
 		System.out.println(storageData.finds().size());
 //		System.out.println(storageData.finds().get(0).getCity() + " "
 //				+ storageData.finds().get(1).getCity());

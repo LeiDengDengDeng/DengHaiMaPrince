@@ -32,8 +32,8 @@ public class CommodityController implements CommodityBLService{
 		return cs.stockTaking();
 	}
 
-	public void exportExcel() {
-		cs.exportExcel();
+	public void exportExcel(String realPath,ArrayList<ExpressInfoVO> users) {
+		cs.exportExcel(realPath,users);
 	}
 
 	public void changeAlarmScale(double alarmScale) {
@@ -74,11 +74,7 @@ public class CommodityController implements CommodityBLService{
 		return null;
 	}
 
-	@Override
-	public void exportExcel(String storageId) {
-		// TODO 自动生成的方法存根
-		
-	}
+	
 
 	@Override
 	public void changeAlarmScale(double alarmScale, String storageId) {
