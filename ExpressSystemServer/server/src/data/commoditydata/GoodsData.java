@@ -193,7 +193,7 @@ public static void main(String[] args){
 	GoodsData goods;
 	try {
 		goods = new GoodsData();
-		System.out.println(goods.finds().size());
+		System.out.println(goods.finds().get(0).getExpressNumber());
 	} catch (RemoteException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

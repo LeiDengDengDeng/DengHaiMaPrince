@@ -31,7 +31,7 @@ public interface CommodityBLService {
 	/**
 	 * 向外部导出Excel
 	 */
-	public void exportExcel(String storageId);
+	public void exportExcel(String realPath,ArrayList<ExpressInfoVO> users);
 	
 	/**
 	 * 修改警戒比例

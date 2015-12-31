@@ -69,9 +69,9 @@ public class StorageInfoLabelGroup {
 
             goodsName.setBounds(x, y + (i - start) * height, 100, height);
             areaNumber.setBounds(x + 110, y + (i - start) * height, 100, height);
-            rowNumber.setBounds(x + 230, y + (i - start) * height, 100, height);
-            shelfNumber.setBounds(x + 350, y + (i - start) * height, 100, height);
-            seatNumber.setBounds(x + 460, y + (i - start) * height, 100, height);
+            rowNumber.setBounds(x + 225, y + (i - start) * height, 100, height);
+            shelfNumber.setBounds(x + 342, y + (i - start) * height, 100, height);
+            seatNumber.setBounds(x + 455, y + (i - start) * height, 100, height);
 
             presentStorages[i - start][0] = goodsName;
             presentStorages[i - start][1] = areaNumber;

@@ -13,8 +13,8 @@ public class StorageInSheetVO implements SheetVO{
 	long ID;
 
 	ArrayList<String> goodsNameList;//内件品名
-	ArrayList<Long> expressNumberList;//快递编号
-	long inTime;//入库日期
+	ArrayList<String> expressNumberList;//快递编号
+	String inTime;//入库日期
 	ArrayList<String> destinationList;//目的地
 	ArrayList<GoodsType> areaNumberList;//区号
 	ArrayList<Integer> rowNumberList;//排号
@@ -22,8 +22,8 @@ public class StorageInSheetVO implements SheetVO{
 	ArrayList<Integer> seatNumberList;//位号
 
 	public StorageInSheetVO(SheetType type, ArrayList<String> goodsNameList, 
-			ArrayList<Long> expressNumberList,
-			long inTime, ArrayList<String> destinationList,
+			ArrayList<String> expressNumberList,
+			String inTime, ArrayList<String> destinationList,
 			ArrayList<GoodsType> areaNumberList,
 			ArrayList<Integer> rowNumberList,
 			ArrayList<Integer> shelfNumberList,
@@ -48,19 +48,19 @@ public class StorageInSheetVO implements SheetVO{
 		this.goodsNameList = goodsNameList;
 	}
 
-	public ArrayList<Long> getExpressNumberList() {
+	public ArrayList<String> getExpressNumberList() {
 		return expressNumberList;
 	}
 
-	public void setExpressNumberList(ArrayList<Long> expressNumberList) {
+	public void setExpressNumberList(ArrayList<String> expressNumberList) {
 		this.expressNumberList = expressNumberList;
 	}
 
-	public long getInTime() {
+	public String getInTime() {
 		return inTime;
 	}
 
-	public void setInTime(long inTime) {
+	public void setInTime(String inTime) {
 		this.inTime = inTime;
 	}
 

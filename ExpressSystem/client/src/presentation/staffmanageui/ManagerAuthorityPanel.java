@@ -57,6 +57,12 @@ public class ManagerAuthorityPanel extends JPanel{
 		MyButtonActionListener listener = new MyButtonActionListener(this);
         confirmButton.addActionListener(listener);
         cancelButton.addActionListener(listener);
+    	administratorButton.addActionListener(listener);
+    	accountantButton.addActionListener(listener);
+    	interButton.addActionListener(listener);
+    	keeperButton.addActionListener(listener);
+    	businessButton.addActionListener(listener);
+    	courierButton.addActionListener(listener);
         
         initial();
 	}

@@ -53,6 +53,13 @@ public class InterAuthorityPanel extends JPanel{
 		MyButtonActionListener listener = new MyButtonActionListener(this);
         confirmButton.addActionListener(listener);
         cancelButton.addActionListener(listener);
+       	managerButton.addActionListener(listener);
+    	administratorButton.addActionListener(listener);
+    	accountantButton.addActionListener(listener);
+    	keeperButton.addActionListener(listener);
+    	businessButton.addActionListener(listener);
+    	courierButton.addActionListener(listener);
+        
         
         initial();
 	}

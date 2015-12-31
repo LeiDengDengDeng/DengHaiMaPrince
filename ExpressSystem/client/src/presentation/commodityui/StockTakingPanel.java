@@ -4,14 +4,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileSystemView;
 
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
@@ -138,12 +141,28 @@ public class StockTakingPanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == excelButton){
-				commodityBL.exportExcel("南京");
+				int result = 0;
+				File file = null;
+				String path = null;
+				JFileChooser fileChooser = new JFileChooser();
+				FileSystemView fsv = FileSystemView.getFileSystemView(); //注意了，这里重要的一句
+//				System.out.println(fsv.getHomeDirectory()); //得到桌面路径
+				fileChooser.setCurrentDirectory(fsv.getHomeDirectory());
+				fileChooser.setDialogTitle("请选择路径...");
+				fileChooser.setApproveButtonText("确定");
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				result = fileChooser.showOpenDialog(fileChooser);
+				if (JFileChooser.APPROVE_OPTION == result) {
+				 path=fileChooser.getSelectedFile().getPath();
+				 System.out.println("path: "+path);
+//				 outputExcel(path + ".xls",storages);
+//				outputExcel("C:/Users/Administrator/Desktop/test.xls",storages);
+				 commodityBL.exportExcel(path + ".xls",storages);
+				 }
+			}
 				System.out.println("库存快照已导出！");
 			}
 		}
-    	
-    }
     
     class PageButtonActionListener implements ActionListener {
         StockTakingPanel container;
@@ -198,5 +217,6 @@ public class StockTakingPanel extends JPanel{
 		frame.setContentPane(this);
 		frame.setVisible(true);
 		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

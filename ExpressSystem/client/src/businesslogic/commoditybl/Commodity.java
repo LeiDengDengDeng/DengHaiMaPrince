@@ -1,5 +1,9 @@
 package src.businesslogic.commoditybl;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -7,6 +11,12 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import src.enums.GoodsType;
 import src.enums.SheetType;
@@ -24,6 +34,7 @@ import src.vo.StorageInSheetVO;
 import src.vo.StorageInfoVO;
 import src.vo.StorageInitVO;
 import src.vo.StorageNumVO;
+import src.vo.StorageOutSheetVO;
 
 public class Commodity implements CommodityBLService{
 	
@@ -74,8 +85,64 @@ public class Commodity implements CommodityBLService{
 	}
 
 	@Override
-	public void exportExcel(String storageId) {
-		// TODO Auto-generated method stub
+	public void exportExcel(String realPath,ArrayList<ExpressInfoVO> users) {
+		FileOutputStream fos; 
+		try { File file=new File(realPath); 
+		fos = new FileOutputStream(file, true);
+		HSSFWorkbook wb = new HSSFWorkbook(); 
+		HSSFSheet s=wb.createSheet(); 
+//		wb.setSheetName(0, sheetname);
+		HSSFRow row = s.createRow((int)0);
+		//创建单元格，并设置值表头  设置表头居中
+        HSSFCellStyle style = wb.createCellStyle();
+        style.setAlignment(HSSFCellStyle.ALIGN_CENTER); //创建一个居中格式
+        
+        HSSFCell cell = row.createCell(0);
+        cell.setCellValue("内件品名"); cell.setCellStyle(style);
+        cell = row.createCell(1);
+        cell.setCellValue("快递编号"); cell.setCellStyle(style);
+        cell = row.createCell(2);
+        cell.setCellValue("入库日期"); cell.setCellStyle(style);
+        cell = row.createCell(3);
+        cell.setCellValue("目的地"); cell.setCellStyle(style);
+        cell = row.createCell(4);
+        cell.setCellValue("区号"); cell.setCellStyle(style);
+        cell = row.createCell(5);
+        cell.setCellValue("排号"); cell.setCellStyle(style);
+        cell = row.createCell(6);
+        cell.setCellValue("架号"); cell.setCellStyle(style);
+        cell = row.createCell(7);
+        cell.setCellValue("位号"); cell.setCellStyle(style);
+
+
+		for (int i=0; i<users.size();i++) { 
+			// 相当于excel表格中的总行数
+			 row = s.createRow((int)i+1);
+			 row.createCell(0).setCellValue(users.get(i).getGoodsName());
+			 row.createCell(1).setCellValue(users.get(i).getExpressNumber());
+			 row.createCell(2).setCellValue(users.get(i).getInTime());
+			 row.createCell(3).setCellValue(users.get(i).getDestination());
+			 if(users.get(i).getAreaNumber() == GoodsType.SHIPPING){
+				 row.createCell(4).setCellValue("航运区");
+			 }
+			 if(users.get(i).getAreaNumber() == GoodsType.RAIL){
+				 row.createCell(4).setCellValue("铁运区");
+			 }
+			 if(users.get(i).getAreaNumber() == GoodsType.TRANSPORT){
+				 row.createCell(4).setCellValue("汽运区");
+			 }
+			 if(users.get(i).getAreaNumber() == GoodsType.FLXIBLE){
+				 row.createCell(4).setCellValue("机动区");
+			 }
+			 row.createCell(5).setCellValue(users.get(i).getRowNumber());
+			 row.createCell(6).setCellValue(users.get(i).getShelfNumber());
+			 row.createCell(7).setCellValue(users.get(i).getSeatNumber());
+			} wb.write(fos); fos.close(); 
+			System.out.println("Export successfully");}
+		catch (FileNotFoundException e) { 
+			e.printStackTrace(); } 
+		catch (IOException e) { e.printStackTrace(); } 
+		catch (IllegalArgumentException e) { e.printStackTrace(); }
 		
 	}
 
@@ -284,7 +351,76 @@ public class Commodity implements CommodityBLService{
 			}
 			gpos = spo.getGpos();
 			
+			for(int i = 0;i < sivo.getGoodsNameList().size();i++){
+				GoodsPO gpo = new GoodsPO(null, 1, 0, 0, 0, 0, 0, 
+						sivo.getGoodsNameList().get(i), null, null, 
+						sivo.getExpressNumberList().get(i), 
+						sivo.getInTime(), sivo.getDestinationList().get(i), 
+						sivo.getAreaNumberList().get(i), 
+						sivo.getRowNumberList().get(i), 
+						sivo.getShelfNumberList().get(i), 
+						sivo.getSeatNumberList().get(i), 
+						0, "0", "0");
+				gpos.add(gpo);
+				if(sivo.getAreaNumberList().get(i) == GoodsType.SHIPPING){
+					spo.addShippingNUm();
+				}
+				else if(sivo.getAreaNumberList().get(i) == GoodsType.RAIL){
+					spo.addRailNUm();
+				}
+				else if(sivo.getAreaNumberList().get(i) == GoodsType.TRANSPORT){
+					spo.addTransportNUm();
+				}
+				else if(sivo.getAreaNumberList().get(i) == GoodsType.FLXIBLE){
+					spo.addFlxibleNUm();
+				}
+				spo.addStorageNUm();
+			}
+			AlarmMessage alarmMessage = this.alarm(storageId);
+			try {
+				storageDataService.update(storageId, spo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+		else if(svo.getType() == SheetType.STORAGE_OUT_SHEET){
+			StorageOutSheetVO sovo = (StorageOutSheetVO)svo;
 			
+			StoragePO spo = null;
+			ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
+			try {
+				spo = storageDataService.findStoragePO(storageId);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			gpos = spo.getGpos();
+			
+			for(int i = 0;i < sovo.getExpressNumberList().size();i++){
+				for(int j = 0;j < gpos.size();j++){
+					if(gpos.get(j).getExpressNumber().
+							equals(sovo.getExpressNumberList().get(i))){
+						gpos.remove(j);
+					}
+					if(gpos.get(j).getAreaNumber() == GoodsType.SHIPPING){
+						spo.minusShippingNUm();
+					}
+					else if(gpos.get(j).getAreaNumber() == GoodsType.RAIL){
+						spo.minusRailNUm();
+					}
+					else if(gpos.get(j).getAreaNumber() == GoodsType.TRANSPORT){
+						spo.minusTransportNUm();
+					}
+					else if(gpos.get(j).getAreaNumber() == GoodsType.FLXIBLE){
+						spo.minusFlxibleNUm();
+					}
+					spo.minusStorageNUm();
+				}
+			}
+			try {
+				storageDataService.update(storageId, spo);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 		
 	}
