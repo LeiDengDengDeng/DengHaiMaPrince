@@ -42,7 +42,7 @@ public class ConstantPanel extends JPanel {
 	SheetBLService sheet;
 
 	public ConstantPanel() {
-		sheet = new Constant();
+		sheet = new Constant(null);
 		this.setLayout(null);
 		this.setBounds(x, y, w, h);
 		this.setOpaque(false);
