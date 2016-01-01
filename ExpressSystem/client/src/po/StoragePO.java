@@ -271,6 +271,10 @@ public class StoragePO implements Serializable {
 		return gpos;
 	}
 
+	public void setGpos(ArrayList<GoodsPO> gpos) {
+		this.gpos = gpos;
+	}
+
 	public void addGpos(GoodsPO gpo) {
 		gpos.add(gpo);
 	}

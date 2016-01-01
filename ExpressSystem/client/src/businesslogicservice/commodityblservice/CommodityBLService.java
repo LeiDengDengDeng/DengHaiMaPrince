@@ -9,6 +9,7 @@ import src.po.StorageInSheetPO;
 import src.po.StorageOutSheetPO;
 import src.po.StoragePO;
 import src.vo.ExpressInfoVO;
+import src.vo.GoodsVO;
 import src.vo.SheetVO;
 import src.vo.StorageInSheetVO;
 import src.vo.StorageInfoVO;
@@ -82,6 +83,11 @@ public interface CommodityBLService {
 	 * 供接口，提供修改库存信息
 	 */
 	public void changeStorageInInfo(String storageId,SheetVO svo);
+	
+	/**
+	 * 供接口，提供修改商品信息
+	 */
+	public void changeGoodInfo(String storageId,GoodsVO gvo);
 	
 	/**
 	 * 供接口，提供库存信息初始化

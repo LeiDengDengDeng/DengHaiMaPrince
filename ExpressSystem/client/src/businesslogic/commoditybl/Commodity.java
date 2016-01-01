@@ -29,6 +29,7 @@ import src.dataservice.commoditydataservice.StorageDataService;
 import src.po.GoodsPO;
 import src.po.StoragePO;
 import src.vo.ExpressInfoVO;
+import src.vo.GoodsVO;
 import src.vo.SheetVO;
 import src.vo.StorageInSheetVO;
 import src.vo.StorageInfoVO;
@@ -422,7 +423,37 @@ public class Commodity implements CommodityBLService{
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	@Override
+	public void changeGoodInfo(String storageId, GoodsVO gvo) {
+		StoragePO spo = null;
+		ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
+		try {
+			spo = storageDataService.findStoragePO(storageId);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		gpos = spo.getGpos();
 		
+		for(int i = 0;i < gpos.size();i++){
+			if(gpos.get(i).getExpressNumber().equals(gvo.getExpressNumber())){
+				gpos.get(i).setGoodsNumber(gvo.getGoodsNumber());
+				gpos.get(i).setLength(gvo.getLength());
+				gpos.get(i).setWidth(gvo.getWidth());
+				gpos.get(i).setHeight(gvo.getHeight());
+				gpos.get(i).setFactWeight(gvo.getFactWeight());
+				gpos.get(i).setSize(gvo.getSize());
+				gpos.get(i).setExpressForm(gvo.getExpressForm());
+				gpos.get(i).setPackagingForm(gvo.getPackagingForm());
+			}
+		}
+		spo.setGpos(gpos);
+		try {
+			storageDataService.update(storageId, spo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -442,6 +473,7 @@ public class Commodity implements CommodityBLService{
 			}
 		}
 	}
+
 
 
 
