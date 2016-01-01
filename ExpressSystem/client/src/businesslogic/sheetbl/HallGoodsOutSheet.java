@@ -2,50 +2,43 @@ package src.businesslogic.sheetbl;
 
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
-import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.enums.SheetType;
 import src.po.SheetPO;
 import src.vo.SheetVO;
 
-/**
- * Created by dell on 2015/12/27. 用途:
- */
-public class ReceivingGoodsSheet extends Sheet {
-	IntermediateCenter centerBL;
+public class HallGoodsOutSheet extends Sheet {
 
-	public ReceivingGoodsSheet(Log logBL, Logistic logisticBL,
-			IntermediateCenter centerBL) {
+	public HallGoodsOutSheet(Log logBL, Logistic logisticBL) {
 		super(logBL, logisticBL);
-		this.centerBL = centerBL;
 	}
 
 	@Override
 	public String[][] getExistedInfo() {
-		String[][] res = new String[centerBL.getcity().size()][1];
-		for (int i = 0; i < res.length; i++) {
-			res[i][0] = centerBL.getcity().get(i);
-		}
-
-		return res;
+		// TODO 自动生成的方法存根
+		return null;
 	}
 
 	@Override
 	public SheetType getType() {
+		// TODO 自动生成的方法存根
 		return null;
 	}
 
 	@Override
 	public SheetVO generateVO(SheetPO po) {
+		// TODO 自动生成的方法存根
 		return null;
 	}
 
 	@Override
 	public SheetPO generatePO(SheetVO vo) {
+		// TODO 自动生成的方法存根
 		return null;
 	}
 
 	@Override
 	public void endingAct(String operation, String statement) {
-		logBL.generateLog(operation + "收货单", statement);
+		logBL.generateLog(operation + "中转中心发货单", statement);
 	}
+
 }

@@ -15,12 +15,13 @@ import java.awt.GridLayout;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Frame;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
 //import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -212,7 +213,8 @@ public class DateChooserJButton extends JButton {
             monthLabel.setForeground(controlTextColor);
             result.add(monthLabel);
 
-            JButton confirm = new JButton("Ok");
+            JButton confirm = new JButton();
+            confirm.setIcon(new ImageIcon("images/confirm.png"));
             confirm.setPreferredSize(new Dimension(45, 20));
             confirm.setForeground(controlTextColor);
             confirm.addActionListener(new ActionListener() {

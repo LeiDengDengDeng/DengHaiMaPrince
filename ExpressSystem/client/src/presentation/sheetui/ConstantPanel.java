@@ -44,7 +44,7 @@ public class ConstantPanel extends JPanel {
 	SheetBLService sheet;
 
 	public ConstantPanel(Log logBL) {
-		sheet = new Constant(logBL);
+		sheet = new Constant(logBL, null);
 		this.setLayout(null);
 		this.setBounds(x, y, w, h);
 		this.setOpaque(false);

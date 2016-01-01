@@ -101,10 +101,10 @@ public class PanelController {
                 presentPanel = new StorageOutSheetPanel((Log) factory.getLogBL());
                 break;
             case 220:
-                presentPanel = new ReceivingGoodsSheetPanel(null);
+                presentPanel = new ReceivingGoodsSheetPanel(factory.getReceivingGoodsSheetBL());
                 break;
             case 230:
-                presentPanel = new ReceivingGoodsSheetPanel(null);
+                presentPanel = new ReceivingGoodsSheetPanel(factory.getReceivingGoodsSheetBL());
                 break;
             case 231:
                 presentPanel = new HallGoodsOutSheetPanel(null);

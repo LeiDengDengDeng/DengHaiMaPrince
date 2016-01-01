@@ -3,6 +3,7 @@ package src.businesslogic.sheetbl;
 import java.rmi.RemoteException;
 
 import src.businesslogic.accountbl.Account;
+import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
 import src.enums.SheetType;
 import src.po.PaymentSheetPO;
@@ -15,8 +16,8 @@ public class PaymentSheet extends Sheet {
     SheetType type = SheetType.PAYMENT_SHEET;
     AccountItem accountItem;
 
-    public PaymentSheet(Log logBL,Account account) {
-        super(logBL);
+    public PaymentSheet(Log logBL, Logistic logisticBL,Account account) {
+        super(logBL, logisticBL);
         accountItem = new AccountItem(account);
     }
 
@@ -75,4 +76,10 @@ public class PaymentSheet extends Sheet {
         return po;
     }
 
+	@Override
+	public void endingAct(String operation, String statement) {
+		logBL.generateLog(operation + "¸¶¿îµ¥", statement);
+		
+	}
+    
 }

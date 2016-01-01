@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.util.CommonUtil;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.presentation.util.ConfirmButton;
@@ -29,7 +30,10 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 	JLabel imageLabel;
 	ImageIcon bkgImg;
 
+	SheetBLService receivingGoodsBL;
+
 	public ReceivingGoodsSheetPanel(SheetBLService receivingGoodsBL) {
+		this.receivingGoodsBL = receivingGoodsBL;
 		init();
 	}
 
@@ -85,6 +89,7 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 		ArrayList<JComboBox> starts;
 		ArrayList<JComboBox> destinations;
 		ArrayList<JComboBox> states;
+		String[] cities;
 
 		JPanel panel;
 		GridLayout layout;
@@ -98,6 +103,12 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 		}
 
 		private void init() {
+			String[][] cityList = receivingGoodsBL.getExistedInfo();
+			cities = new String[cityList.length];
+			for (int i = 0; i < cityList.length; i++) {
+				cities[i] = cityList[i][0];
+			}
+
 			layout = new GridLayout(0, 4, 5, 5);
 			panel = new JPanel();
 			panel.setBackground(Color.BLACK);
@@ -108,12 +119,13 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 
 			this.setViewportView(panel);
 			this.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
+
 		}
 
 		public void addLine() {
 			JTextField courierNumber = new JTextField();
-			JComboBox start = new JComboBox();
-			JComboBox destination = new JComboBox();
+			JComboBox start = new JComboBox(new String[] {LogIn.currentUser.getCity()});
+			JComboBox destination = new JComboBox(cities);
 			JComboBox state = new JComboBox(new String[] { "ÍêÕû", "Ëð»µ", "¶ªÊ§" });
 
 			courierNumbers.add(courierNumber);
@@ -129,7 +141,6 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 			layout.setRows(layout.getRows() + 1);
 
 			repaint();
-			System.out.println("AddLine Over");
 		}
 
 		public ArrayList<String[]> getContents() {

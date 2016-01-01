@@ -1,5 +1,6 @@
 package src.businesslogic.sheetbl;
 
+import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
 import src.enums.SheetType;
 import src.po.ReceivingMoneySheetPO;
@@ -13,8 +14,8 @@ import src.vo.SheetVO;
 public class ReceivingMoneySheet extends Sheet {
 	SheetType type = SheetType.RECEIVING_MONEY_SHEET;
 
-	public ReceivingMoneySheet(Log logBL) {
-		super(logBL);
+	public ReceivingMoneySheet(Log logBL, Logistic logisticBL) {
+		super(logBL, logisticBL);
 	}
 
 	@Override
@@ -48,5 +49,10 @@ public class ReceivingMoneySheet extends Sheet {
 				((ReceivingMoneySheetVO) vo).getItems());
 		po.setID(vo.getID());
 		return po;
+	}
+
+	@Override
+	public void endingAct(String operation, String statement) {
+		logBL.generateLog(operation + "�տ", statement);
 	}
 }

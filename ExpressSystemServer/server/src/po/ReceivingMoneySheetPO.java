@@ -16,14 +16,20 @@ public class ReceivingMoneySheetPO implements SheetPO {
     SheetState state = SheetState.NOT_EXAMINED;
     long ID;
 
+    String businessHall;
     ArrayList<String[]> items;
 
-    public ReceivingMoneySheetPO(String builder, String time, ArrayList<String[]> items) {
+    public ReceivingMoneySheetPO(String builder, String time, String businessHall,ArrayList<String[]> items) {
         this.builder = builder;
         this.time = time;
+        this.businessHall = businessHall;
         this.items = items;
     }
 
+	public String getBusinessHall() {
+		return businessHall;
+	}
+    
     public ArrayList<String[]> getItems() {
         return items;
     }

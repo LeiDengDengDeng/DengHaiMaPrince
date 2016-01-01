@@ -1,5 +1,6 @@
 package src.businesslogic.sheetbl;
 
+import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
 import src.enums.SheetType;
 import src.po.ConstantPO;
@@ -11,8 +12,8 @@ public class Constant extends Sheet {
 
 	SheetType type = SheetType.CONSTANT;
 
-	public Constant(Log logBL) {
-		super(logBL);
+	public Constant(Log logBL, Logistic logisticBL) {
+		super(logBL, logisticBL);
 	}
 
 	@Override
@@ -37,8 +38,15 @@ public class Constant extends Sheet {
 	@Override
 	public SheetPO generatePO(SheetVO vo) {
 		ConstantVO v = (ConstantVO) vo;
-		ConstantPO po=new ConstantPO(v.getBuilder(), v.getTime(), v.getDistant(), v.getPrice(), v.getCityOne(), v.getCityTwo(), v.getID());
+		ConstantPO po = new ConstantPO(v.getBuilder(), v.getTime(),
+				v.getDistant(), v.getPrice(), v.getCityOne(), v.getCityTwo(),
+				v.getID());
 		return po;
+	}
+
+	@Override
+	public void endingAct(String operation, String statement) {
+		logBL.generateLog(operation + "³£Á¿", "ÎÞ");
 	}
 
 }
