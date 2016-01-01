@@ -10,6 +10,7 @@ import src.po.StorageInSheetPO;
 import src.po.StorageOutSheetPO;
 import src.po.StoragePO;
 import src.vo.ExpressInfoVO;
+import src.vo.GoodsVO;
 import src.vo.SheetVO;
 import src.vo.StorageInSheetVO;
 import src.vo.StorageInfoVO;
@@ -125,6 +126,12 @@ public class CommodityController implements CommodityBLService{
 	public double getAlarmScale(String storageId) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void changeGoodInfo(String storageId, GoodsVO gvo) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
