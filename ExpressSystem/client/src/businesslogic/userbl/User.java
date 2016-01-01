@@ -140,7 +140,7 @@ public class User implements UserBLService{
 					null));
 		}
 		try {
-			userData.insert(userPOs);
+			userData.InitialInsert(userPOs);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

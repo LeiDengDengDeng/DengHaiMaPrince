@@ -152,12 +152,16 @@ public class AccountantAuthorityPanel extends JPanel{
 		        	if(e.getSource() == confirmButton){
 		        		ArrayList<Integer> authority = new ArrayList<Integer>();
 		        		for(int i = 0;i < 21;i++){
-			        		  if(checkboxs.get(i).getState())
-			        			authority.add(i);
+			        		  if(checkboxs.get(i).getState()){
+			        			  System.out.println(i + 1);
+			        			  authority.add(i + 1);
+			        		  }
 			        	  }
+		        		System.out.println("change authority");
 			        	  staffManage.changeAuthority(authority, "财务人员");
 			        	  position.accountantArrayList = authority;
 			        	  position.ischanged = true;
+			        	  PanelController.setPresentPanel(new AccountantAuthorityPanel());
 			       }else if(e.getSource() == cancelButton){
 			    	   PanelController.setPresentPanel(new ManagerAuthorityPanel());
 		           }else if(e.getSource() == managerButton){
