@@ -4,7 +4,9 @@ import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
 import src.enums.SheetType;
 import src.po.SheetPO;
+import src.po.StorageInSheetPO;
 import src.vo.SheetVO;
+import src.vo.StorageInSheetVO;
 
 public class StorageInSheet extends Sheet {
 
@@ -27,13 +29,18 @@ public class StorageInSheet extends Sheet {
 
 	@Override
 	public void endingAct(String operation, String statement) {
-		// TODO 自动生成的方法存根
 
 	}
 
 	@Override
 	public SheetVO generateVO(SheetPO po) {
 		// TODO 自动生成的方法存根
+		StorageInSheetPO npo = (StorageInSheetPO) po;
+//		StorageInSheetVO vo = new StorageInSheetVO(po.getType(), null,
+//				npo.getExpressNumberList(), npo.getTime(),
+//				npo.getDestinationList(), npo.getAreaNumberList(),
+//				npo.getRowNumberList(), npo.getShelfNumberList(),
+//				npo.getSeatNumberList());
 		return null;
 	}
 
