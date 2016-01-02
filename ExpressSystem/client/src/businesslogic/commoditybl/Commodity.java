@@ -426,34 +426,37 @@ public class Commodity implements CommodityBLService{
 	}
 	
 	@Override
-	public void changeGoodInfo(String storageId, GoodsVO gvo) {
-		StoragePO spo = null;
+	public void changeGoodInfo(GoodsVO gvo) {
+		ArrayList<StoragePO> spos = new ArrayList<StoragePO>();
 		ArrayList<GoodsPO> gpos = new ArrayList<GoodsPO>();
 		try {
-			spo = storageDataService.findStoragePO(storageId);
+			spos = storageDataService.finds();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		gpos = spo.getGpos();
-		
-		for(int i = 0;i < gpos.size();i++){
-			if(gpos.get(i).getExpressNumber().equals(gvo.getExpressNumber())){
-				gpos.get(i).setGoodsNumber(gvo.getGoodsNumber());
-				gpos.get(i).setLength(gvo.getLength());
-				gpos.get(i).setWidth(gvo.getWidth());
-				gpos.get(i).setHeight(gvo.getHeight());
-				gpos.get(i).setFactWeight(gvo.getFactWeight());
-				gpos.get(i).setSize(gvo.getSize());
-				gpos.get(i).setExpressForm(gvo.getExpressForm());
-				gpos.get(i).setPackagingForm(gvo.getPackagingForm());
+		for(int j = 0;j < spos.size();j++){
+			gpos = spos.get(j).getGpos();
+			for(int i = 0;i < gpos.size();i++){
+				if(gpos.get(i).getExpressNumber().equals(gvo.getExpressNumber())){
+					gpos.get(i).setGoodsNumber(gvo.getGoodsNumber());
+					gpos.get(i).setLength(gvo.getLength());
+					gpos.get(i).setWidth(gvo.getWidth());
+					gpos.get(i).setHeight(gvo.getHeight());
+					gpos.get(i).setFactWeight(gvo.getFactWeight());
+					gpos.get(i).setSize(gvo.getSize());
+					gpos.get(i).setExpressForm(gvo.getExpressForm());
+					gpos.get(i).setPackagingForm(gvo.getPackagingForm());
+				}
 			}
+			spos.get(j).setGpos(gpos);
+			try {
+				storageDataService.update(spos.get(j).getCity(), spos.get(j));
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			
 		}
-		spo.setGpos(gpos);
-		try {
-			storageDataService.update(storageId, spo);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	@Override
