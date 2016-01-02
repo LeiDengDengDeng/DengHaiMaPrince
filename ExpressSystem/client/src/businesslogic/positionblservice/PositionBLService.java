@@ -1,7 +1,8 @@
-package src.businesslogicservice.staffmanageblservice;
+package src.businesslogic.positionblservice;
 
 import java.util.ArrayList;
 
+import src.vo.AuthorityVO;
 import src.vo.StaffInfoVO;
 
 /**
@@ -14,11 +15,18 @@ import src.vo.StaffInfoVO;
 public interface PositionBLService {
 	
 	/**
-	 * 默认权限
+	 * 初始化权限
 	 * @param staff
 	 * 
 	 */
 	public ArrayList<Integer> initialAuthority(StaffInfoVO staff);
+	
+	/**
+	 * 更改某个职位的权限
+	 * @param position, StaffId
+	 * @return
+	 */
+	public boolean changeAuthority(AuthorityVO authorityVO);
 	
 	/**
 	 * 更改某个人员的职位

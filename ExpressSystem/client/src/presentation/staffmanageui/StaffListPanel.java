@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import src.businesslogic.logbl.Log;
-import src.businesslogic.staffmanagebl.Position;
+import src.businesslogic.positionbl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;

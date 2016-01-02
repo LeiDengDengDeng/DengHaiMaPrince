@@ -10,11 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.businesslogic.logbl.Log;
-import src.businesslogic.staffmanagebl.Position;
+import src.businesslogic.positionbl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
+import src.vo.AuthorityVO;
 
 public class ManagerAuthorityPanel extends JPanel{
 /**
@@ -158,9 +159,10 @@ public class ManagerAuthorityPanel extends JPanel{
 		        		   if(checkboxs.get(i).getState())
 		        			   authority.add(i + 1);
 		        	   }
+		        	   AuthorityVO authorityVO = new AuthorityVO("总经理");
+		        	   authorityVO.setAuthority(authority);
+		        	   position.changeAuthority(authorityVO);
 		        	   staffManage.changeAuthority(authority, "总经理");
-		        	   Position.managerArrayList = authority;
-		        	   Position.ischanged = true;
 		        	   PanelController.setPresentPanel(new ManagerAuthorityPanel());
 		           }else if(e.getSource() == cancelButton){
 		        	   PanelController.setPresentPanel(new ManagerAuthorityPanel());

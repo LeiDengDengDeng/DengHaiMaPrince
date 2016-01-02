@@ -15,6 +15,8 @@ import src.data.nonUserdata.BusinessHallData;
 import src.data.nonUserdata.DriverData;
 import src.data.nonUserdata.IntermediateCenterData;
 import src.data.nonUserdata.TruckData;
+import src.data.positiondata.PositionData;
+import src.data.positiondataservice.PositionDataservice;
 import src.data.sheetdata.SheetData;
 import src.data.staffmanagedata.StaffManageData;
 import src.data.userdata.UserData;
@@ -44,6 +46,7 @@ public class ServerMain {
 			UserDataService userData = new UserData();
 			StaffManageDataService staffManageData = new StaffManageData();
 			InstitutionDataService institutionData = new InstitutionData();
+			PositionDataservice positionData = new PositionData();
 			StorageDataService storageData = new StorageData();
 			GoodsDataService goodsData = new GoodsData();
 			BusinessHallDataService businessHallData = new BusinessHallData();
@@ -57,6 +60,7 @@ public class ServerMain {
 			Naming.rebind("rmi://127.0.0.1:6600/userData", userData);
 			Naming.rebind("rmi://127.0.0.1:6600/staffManageData", staffManageData);
 			Naming.rebind("rmi://127.0.0.1:6600/institutionData", institutionData);
+			Naming.rebind("rmi://127.0.0.1:6600/positionData",positionData);
 			Naming.rebind("rmi://127.0.0.1:6600/storageData", storageData);
 			Naming.rebind("rmi://127.0.0.1:6600/goodsData", goodsData);
 			Naming.rebind("rmi://127.0.0.1:6600/businessHallData", businessHallData);

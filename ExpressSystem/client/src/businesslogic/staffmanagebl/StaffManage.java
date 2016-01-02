@@ -6,8 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import src.businesslogic.logbl.Log;
-import src.businesslogic.userbl.User;
+import src.businesslogic.positionbl.Position;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.staffmanageblservice.StaffManageBLService;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
@@ -40,7 +39,6 @@ public class StaffManage implements StaffManageBLService{
 	@Override
 	public StaffInfoVO getStaffInfo(long StaffId) {
 		// TODO Auto-generated method stub
-		System.out.println(position.ischanged);
 		UserPO userPO = null;
 		StaffInfoVO staffInfoVO = null;
 		try {
@@ -180,6 +178,7 @@ public class StaffManage implements StaffManageBLService{
 		return true;
 		
 	}
+
 
 //	public static void main(String[] args) {
 //		StaffManage staffManage = new StaffManage(null, new Position(new User(null)));

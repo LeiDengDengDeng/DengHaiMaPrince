@@ -2,26 +2,14 @@ package src.presentation.userui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import src.businesslogic.institutionbl.Institution;
-import src.businesslogic.staffmanagebl.Position;
+import src.businesslogic.positionbl.Position;
 import src.businesslogic.userbl.User;
-import src.businesslogicservice.userblservice.UserBLService;
-import src.presentation.institutionui.InstitutionListPanel;
-import src.presentation.institutionui.Institution_InfoPanel;
-import src.presentation.institutionui.StaffPanel;
-import src.presentation.institutionui.changeInstitution_InfoPanel;
-import src.presentation.institutionui.changeStaff_InfoPanel;
-import src.presentation.staffmanageui.AddStaffPanel;
-import src.presentation.staffmanageui.StaffListPanel;
-import src.vo.InstitutionVO;
-import src.vo.SalaryVO;
-import src.vo.UserVO;
 
 public class testmain extends JFrame{
 

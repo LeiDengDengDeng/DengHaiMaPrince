@@ -13,8 +13,12 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 
+
+
+
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
+import src.po.AuthorityPO;
 import src.po.LogPO;
 import src.po.UserPO;
 
@@ -155,7 +159,6 @@ public class StaffManageData extends UnicastRemoteObject implements StaffManageD
 	public void update(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		UserPO userPO = find(po.getPersonalID());
-//		System.out.println(userPO.getPersonalName());
 		if(userPO != null){
 			delete(userPO);
 			insert(po);
@@ -168,8 +171,6 @@ public class StaffManageData extends UnicastRemoteObject implements StaffManageD
 	public void delete(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<UserPO> userPOs =	finds();
-//		for(int i = 0;i < userPOs.size();i++)
-//			System.out.println(userPOs.get(i).getPersonalID());
 		boolean exist = true;
 		
 		for(int i = 0;i < userPOs.size();i++){
@@ -220,24 +221,9 @@ public class StaffManageData extends UnicastRemoteObject implements StaffManageD
 		// TODO Auto-generated method stub
 		
 	}
-	
-//	public static void main(String[] args) {
-//		try {
-//			StaffManageData staffManageData = new StaffManageData();
-////			UserPO userPO = new UserPO(100000, 100000, "123456", "Îå°¢¸ç", "¿ìµÝÔ±",null);
-////			staffManageData.insert(userPO);
-////			staffManageData.delete(userPO);
-//			ArrayList<UserPO> userPOs = staffManageData.finds();
-//			System.out.println(userPOs.size());
-////			staffManageData.update(userPO);
-////			System.out.println(staffManageData.find(100000).getSalary().getBasic());
-////			System.out.println(staffManageData.find(200000).getPersonalName());
-//		} catch (RemoteException e) {
-////			 TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
+
+
+
 	
 
 }
