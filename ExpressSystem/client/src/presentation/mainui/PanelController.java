@@ -17,6 +17,7 @@ import src.presentation.logui.CheckLogPanel;
 import src.presentation.nonuserui.DriverPanel;
 import src.presentation.nonuserui.TruckPanel;
 import src.presentation.sheetui.CenterGoodsOutSheetPanel;
+import src.presentation.sheetui.CenterTruckSheetPanel;
 import src.presentation.sheetui.ConstantPanel;
 import src.presentation.sheetui.EarningsPanel;
 import src.presentation.sheetui.ExamineSheetPanel;
@@ -65,9 +66,9 @@ public class PanelController {
 		case 5:
 			presentPanel = new HallTruckSheetPanel();
 			break;
-//		case 6:
-//			presentPanel = new HallTruckSheetPanel();
-//			break;
+		case 6:
+			presentPanel = new CenterTruckSheetPanel();
+			break;
 		case 7:
 			presentPanel = new OrderSheetPanel(factory.getOrderSheetBL());
 			break;

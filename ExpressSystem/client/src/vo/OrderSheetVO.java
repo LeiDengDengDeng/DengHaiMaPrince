@@ -24,6 +24,7 @@ public class OrderSheetVO implements SheetVO {
     String actualReceiverName; // 实际收件人
     String recevingState; //收件状态
     String receivingTime;
+    GoodsVO goodsVO;
 
     public OrderSheetVO(String builder, String time, long courierNumber, String senderName,
                         String senderAddress, String senderOrganization,
@@ -134,5 +135,13 @@ public class OrderSheetVO implements SheetVO {
 
     public String getTime() {
         return time;
+    }
+    
+    public void setGoodsVO(GoodsVO goodsVO){
+    	this.goodsVO = goodsVO;
+    }
+    
+    public GoodsVO getGoodsVO(){
+    	return goodsVO;
     }
 }

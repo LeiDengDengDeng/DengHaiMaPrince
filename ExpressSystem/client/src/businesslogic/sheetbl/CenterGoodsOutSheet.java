@@ -2,14 +2,20 @@ package src.businesslogic.sheetbl;
 
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.nonUserbl.BussinessHall;
+import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.enums.SheetType;
 import src.po.SheetPO;
 import src.vo.SheetVO;
 
-public class HallGoodsOutSheet extends Sheet {
+public class CenterGoodsOutSheet extends Sheet {
 
-	public HallGoodsOutSheet(Log logBL, Logistic logisticBL) {
+	IntermediateCenter intermediateCenterBL;
+
+	public CenterGoodsOutSheet(Log logBL, Logistic logisticBL,
+			IntermediateCenter intermediateCenterBL) {
 		super(logBL, logisticBL);
+		this.intermediateCenterBL = intermediateCenterBL;
 	}
 
 	@Override
@@ -38,7 +44,16 @@ public class HallGoodsOutSheet extends Sheet {
 
 	@Override
 	public void endingAct(String operation, String statement) {
-		logBL.generateLog(operation + "营业厅发货单", statement);
+		logBL.generateLog(operation + "中转中心派件单", statement);
+	}
+
+	public String[] getCities() {
+		String[] cities = new String[intermediateCenterBL.getcity().size()];
+		for (int i = 0; i < intermediateCenterBL.getcity().size(); i++) {
+			cities[i] = intermediateCenterBL.getcity().get(i);
+		}
+
+		return cities;
 	}
 
 }
