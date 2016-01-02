@@ -87,7 +87,7 @@ public interface CommodityBLService {
 	/**
 	 * 供接口，提供修改商品信息
 	 */
-	public void changeGoodInfo(String storageId,GoodsVO gvo);
+	public void changeGoodInfo(GoodsVO gvo);
 	
 	/**
 	 * 供接口，提供库存信息初始化
