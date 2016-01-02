@@ -42,6 +42,26 @@ public class BussinessHall implements BussinessHallBLService{
 	}
 
 	@Override
+	public ArrayList<BussinessHallVO> getBussinessHallInfoByCity(String city) {
+		ArrayList<BussinessHallPO> bpos = new ArrayList<BussinessHallPO>();
+		ArrayList<BussinessHallVO> bvos = new ArrayList<BussinessHallVO>();
+		
+		try {
+			bpos = businessHallDataService.findBussinessHallPOByCity(city);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		
+		for(int i =0;i < bpos.size();i++){
+			bvos.add(new BussinessHallVO(bpos.get(i).getHallName(), 
+					bpos.get(i).getHallId(),bpos.get(i).getDrivers(),
+					bpos.get(i).getTrucks()));
+		}
+		return bvos;
+	}
+	
+	@Override
 	public ArrayList<BussinessHallVO> getAllBussinessHallInfo() {
 		ArrayList<BussinessHallPO> bpos = new ArrayList<BussinessHallPO>();
 		ArrayList<BussinessHallVO> bvos = new ArrayList<BussinessHallVO>();
@@ -81,5 +101,6 @@ public class BussinessHall implements BussinessHallBLService{
 			e.printStackTrace();
 		}
 	}
+
 
 }

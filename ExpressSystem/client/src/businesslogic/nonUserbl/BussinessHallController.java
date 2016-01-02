@@ -22,6 +22,12 @@ public class BussinessHallController implements BussinessHallBLService{
 		// TODO Auto-generated method stub
 		return bussinessHallimpl.getBussinessHallInfo(bussinessHallId);
 	}
+	
+	@Override
+	public ArrayList<BussinessHallVO> getBussinessHallInfoByCity(String city) {
+		// TODO Auto-generated method stub
+		return bussinessHallimpl.getBussinessHallInfoByCity(city);
+	}
 
 	@Override
 	public ArrayList<BussinessHallVO> getAllBussinessHallInfo() {
@@ -40,5 +46,6 @@ public class BussinessHallController implements BussinessHallBLService{
 		// TODO Auto-generated method stub
 		bussinessHallimpl.deleteBussinessHallInfo(bussinessHallId);
 	}
+
 
 }

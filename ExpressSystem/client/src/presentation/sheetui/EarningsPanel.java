@@ -11,9 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -81,23 +78,22 @@ public class EarningsPanel extends JPanel {
 
 		// 收款单VO
 		receiveList = receiveingsheet.findVOs(FindingType.ALL);
+		
 		// 付款单Panel
-		payPanel = new PaymentSubPanel(paymentList);
+		payPanel = new PaymentSubPanel(paymentList,this);
 		payPanel.setVisible(true);
 		// 收款单panel
-		receivePanel = new PaymentSubPanel(receiveList);
+		receivePanel = new PaymentSubPanel(receiveList,this);
 		receivePanel.setVisible(false);
 		// 计算钱
 		this.calculateMoney();
-
+		EarningActionListener l=new EarningActionListener();
 		// 付款单按钮
-		buttonpay = new MyButton(IMG_ButtonP, IMG_ButtonPE);
-		buttonpay.addActionListener(new EarningActionListener());
-		buttonpay.setBounds(27, 225, IMG_ButtonP.getIconWidth(), IMG_ButtonP.getIconHeight());
+		buttonpay = new MyButton(IMG_ButtonP, IMG_ButtonPE,27,225,true);
+		buttonpay.addActionListener(l);
 		// 收款单按钮
-		buttonrec = new MyButton(IMG_ButtonR, IMG_ButtonRE);
-		buttonrec.setBounds(buttonpay.getX(), buttonpay.getY() + IMG_ButtonP.getIconHeight(),
-				IMG_ButtonP.getIconWidth(), IMG_ButtonP.getIconHeight());
+		buttonrec = new MyButton(IMG_ButtonR, IMG_ButtonRE,buttonpay.getX(),buttonpay.getY() + IMG_ButtonP.getIconHeight(),true);
+		buttonrec.addActionListener(l);
 		
 		// 日期选择按钮
 		datechoose = new DateChooserJButton();
@@ -108,8 +104,8 @@ public class EarningsPanel extends JPanel {
 			public void focusLost(FocusEvent e) {
 				// TODO Auto-generated method stub
 				if(oncegained){
-					payPanel.update(((DateChooserJButton)e.getSource()).getText());
 					receivePanel.update(((DateChooserJButton)e.getSource()).getText());
+					payPanel.update(((DateChooserJButton)e.getSource()).getText());
 				}
 			}
 			
@@ -119,8 +115,11 @@ public class EarningsPanel extends JPanel {
 				oncegained=true;
 			}
 		});;
+		receivePanel.setVisible(false);
+		
 		this.add(datechoose);
 		this.add(payPanel);
+		this.add(receivePanel);
 		this.add(buttonpay);
 		this.add(buttonrec);
 	}
@@ -234,16 +233,16 @@ public class EarningsPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if (e.getSource() == buttonpay) {
+			if (e.getSource() .equals( buttonpay)) {
 				buttonpay.setIcon(IMG_ButtonPE);
 				buttonrec.setIcon(IMG_ButtonR);
 				payPanel.setVisible(true);
 				receivePanel.setVisible(false);
 				repaint();
 			}
-			if (e.getSource() == buttonrec) {
-				buttonpay.setIcon(IMG_ButtonP);
+			if (e.getSource() .equals(buttonrec)) {
 				buttonrec.setIcon(IMG_ButtonRE);
+				buttonpay.setIcon(IMG_ButtonP);
 				payPanel.setVisible(false);
 				receivePanel.setVisible(true);
 				repaint();

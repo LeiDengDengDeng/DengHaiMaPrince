@@ -13,6 +13,13 @@ public interface BussinessHallBLService {
 	public BussinessHallVO getBussinessHallInfo(String bussinessHallId);
 	
 	/**
+	 * 非用户信息查询界面得到城市所属营业厅信息
+	 * @param city
+	 * @return
+	 */
+	public ArrayList<BussinessHallVO> getBussinessHallInfoByCity(String city);
+	
+	/**
 	 * 非用户信息查询界面得到所有营业厅信息
 	 * @return
 	 */
