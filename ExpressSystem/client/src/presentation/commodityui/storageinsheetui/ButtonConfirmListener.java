@@ -32,7 +32,7 @@ public class ButtonConfirmListener extends CommodityMouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		String name = textFieldName.getText();
-		long num=Long.parseLong(textFieldNum.getText());
+		String num=textFieldNum.getText();
 		int rowNumber = Integer.parseInt(textFieldRowNumber.getText());
 		int shelfNumber = Integer.parseInt(textFieldShelfNumber.getText());
 		int seatNumber = Integer.parseInt(textFieldSeatNumber.getText());

@@ -36,18 +36,25 @@ public class StorageInSheet extends Sheet {
 	public SheetVO generateVO(SheetPO po) {
 		// TODO 自动生成的方法存根
 		StorageInSheetPO npo = (StorageInSheetPO) po;
-//		StorageInSheetVO vo = new StorageInSheetVO(po.getType(), null,
-//				npo.getExpressNumberList(), npo.getTime(),
-//				npo.getDestinationList(), npo.getAreaNumberList(),
-//				npo.getRowNumberList(), npo.getShelfNumberList(),
-//				npo.getSeatNumberList());
-		return null;
+		StorageInSheetVO vo = new StorageInSheetVO(po.getType(), 
+				npo.getGoodsNameList(),
+				npo.getExpressNumberList(), npo.getTime(),
+				npo.getDestinationList(), npo.getAreaNumberList(),
+				npo.getRowNumberList(), npo.getShelfNumberList(),
+				npo.getSeatNumberList());
+		vo.setID(npo.getID());
+		return vo;
 	}
 
 	@Override
 	public SheetPO generatePO(SheetVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
+		StorageInSheetVO svo = (StorageInSheetVO)vo;
+		StorageInSheetPO po = new StorageInSheetPO(svo.getGoodsNameList(), 
+				svo.getExpressNumberList(), svo.getInTime(), 
+				svo.getDestinationList(), svo.getAreaNumberList(), 
+				svo.getRowNumberList(), svo.getShelfNumberList(), 
+				svo.getSeatNumberList(), svo.getID());
+		return po;
 	}
 
 }

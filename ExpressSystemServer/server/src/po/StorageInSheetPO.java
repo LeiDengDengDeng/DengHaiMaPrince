@@ -1,19 +1,22 @@
 package src.po;
 
+import java.util.ArrayList;
+
+
+
 import src.enums.GoodsType;
 import src.enums.SheetState;
 import src.enums.SheetType;
 
-import java.util.ArrayList;
 
-
-public class StorageInSheetPO implements SheetPO {
+public class StorageInSheetPO implements SheetPO{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6862182018727425740L;
-	private ArrayList<Long> expressNumberList;//快递编号
-	private ArrayList<Long> inTimeList;//入库日期
+	private ArrayList<String> goodsNameList;//内件品名
+	private ArrayList<String> expressNumberList;//快递编号
+	private String inTime;//入库日期
 	private ArrayList<String> destinationList;//目的地
 	private ArrayList<GoodsType> areaNumberList;//区号
 	private ArrayList<Integer> rowNumberList;//排号
@@ -26,15 +29,16 @@ public class StorageInSheetPO implements SheetPO {
 	SheetState state = SheetState.NOT_EXAMINED;
 	private SheetType type = SheetType.STORAGE_IN_SHEET;
 	
-	public StorageInSheetPO(ArrayList<Long> expressNumberList,
-			ArrayList<Long> inTimeList, ArrayList<String> destinationList,
+	public StorageInSheetPO(ArrayList<String> goodsNameList,ArrayList<String> expressNumberList,
+			String inTime, ArrayList<String> destinationList,
 			ArrayList<GoodsType> areaNumberList,
 			ArrayList<Integer> rowNumberList,
 			ArrayList<Integer> shelfNumberList,
 			ArrayList<Integer> seatNumberList,long ID) {
 		super();
+		this.goodsNameList = goodsNameList;
 		this.expressNumberList = expressNumberList;
-		this.inTimeList = inTimeList;
+		this.inTime = inTime;
 		this.destinationList = destinationList;
 		this.areaNumberList = areaNumberList;
 		this.rowNumberList = rowNumberList;
@@ -43,20 +47,28 @@ public class StorageInSheetPO implements SheetPO {
 		this.ID = ID;
 	}
 
-	public ArrayList<Long> getExpressNumberList() {
+	public ArrayList<String> getGoodsNameList() {
+		return goodsNameList;
+	}
+
+	public void setGoodsNameList(ArrayList<String> goodsNameList) {
+		this.goodsNameList = goodsNameList;
+	}
+
+	public ArrayList<String> getExpressNumberList() {
 		return expressNumberList;
 	}
 
-	public void setExpressNumberList(ArrayList<Long> expressNumberList) {
+	public void setExpressNumberList(ArrayList<String> expressNumberList) {
 		this.expressNumberList = expressNumberList;
 	}
 
-	public ArrayList<Long> getInTimeList() {
-		return inTimeList;
+	public String getInTime() {
+		return inTime;
 	}
 
-	public void setInTimeList(ArrayList<Long> inTimeList) {
-		this.inTimeList = inTimeList;
+	public void setInTime(String inTime) {
+		this.inTime = inTime;
 	}
 
 	public ArrayList<String> getDestinationList() {

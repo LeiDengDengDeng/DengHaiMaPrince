@@ -28,10 +28,10 @@ public class ButtonConfirmListener extends CommodityMouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		String name = textFieldName.getText();
-		long num = Long.parseLong(textFieldNum.getText());
+		String num = textFieldNum.getText();
 		String destinationString = comboBoxDestination.getSelectedItem().toString();
 		String transportForm = comboBoxTransportForm.getSelectedItem().toString();
-		long transNumber = Long.parseLong(textFieldTransNumber.getText());
+		String transNumber = textFieldTransNumber.getText();
 		panel.goodsNames.add(name);
 		panel.expressNumbers.add(num);
 		panel.transNumbers.add(transNumber);

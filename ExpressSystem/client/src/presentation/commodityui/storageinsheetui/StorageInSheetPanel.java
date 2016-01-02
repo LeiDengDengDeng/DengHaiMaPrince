@@ -24,8 +24,8 @@ import src.presentation.sheetui.DateChooserJButton;
 
 public class StorageInSheetPanel extends JPanel{
 	ArrayList<String> goodsNames;//内件品名
-	ArrayList<Long> expressNumbers;//快递编号
-	long inTime;//入库日期
+	ArrayList<String> expressNumbers;//快递编号
+	String inTime;//入库日期
 	ArrayList<String> destinations;//目的地
 	ArrayList<GoodsType> areaNumbers;//区号
 	ArrayList<Integer> rowNumbers;//排号
@@ -86,8 +86,8 @@ public class StorageInSheetPanel extends JPanel{
 	public StorageInSheetPanel(Log log) {
 		commodityBL = new Commodity(log);
 		goodsNames = new ArrayList<String>();
-		expressNumbers = new ArrayList<Long>();
-		inTime = 0;
+		expressNumbers = new ArrayList<String>();
+		inTime = null;
 		destinations = new ArrayList<String>();
 		areaNumbers = new ArrayList<GoodsType>();
 		rowNumbers = new ArrayList<Integer>();
@@ -142,7 +142,7 @@ public class StorageInSheetPanel extends JPanel{
 			goodsName.setForeground(Color.WHITE);
 			this.nameList.add(goodsName);
 			// Num
-			String expressNumber = Long.toString(expressNumbers.get(i));
+			String expressNumber = expressNumbers.get(i);
 			String expressNumberGood = "";
 			for (int j = 0; j < 4; j++)
 				expressNumberGood += expressNumber.substring(j * 4, (j + 1) * 4) + " ";
