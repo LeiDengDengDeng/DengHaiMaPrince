@@ -12,6 +12,7 @@ public class CommodityItem {
 	}
 	
 	public void updateGoods(GoodsVO goods){
+		commodity.changeGoodInfo(goods);
 	}
 	
 	public void updateCommodity(SheetVO sheet){

@@ -121,14 +121,14 @@ public class PanelController {
 			break;
 		case 220:
 			presentPanel = new ReceivingGoodsSheetPanel(
-					factory.getReceivingGoodsSheetBL());
+					factory.getCenterReceivingGoodsSheetBL());
 			break;
 		case 221:
 			presentPanel = new CenterGoodsOutSheetPanel();
 			break;
 		case 230:
 			presentPanel = new ReceivingGoodsSheetPanel(
-					factory.getReceivingGoodsSheetBL());
+					factory.getHallReceivingGoodsSheetBL());
 			break;
 		case 231:
 			presentPanel = new HallGoodsOutSheetPanel(null);
