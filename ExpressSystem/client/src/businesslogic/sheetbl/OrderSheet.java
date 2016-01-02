@@ -1,7 +1,9 @@
 package src.businesslogic.sheetbl;
 
+import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.dataservice.sheetdataservice.SheetDataService;
 import src.enums.SheetType;
 import src.po.OrderSheetPO;
@@ -17,15 +19,22 @@ public class OrderSheet extends Sheet {
 
 	SheetType type = SheetType.ORDER_SHEET;
 	SheetDataService sheetData;
+	IntermediateCenter centerBL;
 
-	public OrderSheet(Log logBL, Logistic logisticBL) {
+	public OrderSheet(Log logBL, Logistic logisticBL,
+			IntermediateCenter centerBL) {
 		super(logBL, logisticBL);
+		this.centerBL = centerBL;
 	}
 
 	@Override
 	public String[][] getExistedInfo() {
-		// TODO 自动生成的方法存根
-		return null;
+		String[][] res = new String[centerBL.getcity().size()][1];
+		for (int i = 0; i < res.length; i++) {
+			res[i][0] = centerBL.getcity().get(i);
+		}
+
+		return res;
 	}
 
 	@Override
@@ -76,6 +85,6 @@ public class OrderSheet extends Sheet {
 	@Override
 	public void endingAct(String operation, String statement) {
 		logBL.generateLog(operation + "寄件单", statement);
-		
+
 	}
 }

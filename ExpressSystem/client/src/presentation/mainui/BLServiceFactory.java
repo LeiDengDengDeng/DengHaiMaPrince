@@ -30,7 +30,8 @@ public class BLServiceFactory {
 	public SheetBLService getOrderSheetBL() {
 		return (orderSheetBL != null) ? orderSheetBL
 				: (orderSheetBL = new OrderSheet((Log) getLogBL(),
-						new Logistic((Log) getLogBL())));
+						new Logistic((Log) getLogBL()), new IntermediateCenter(
+								(Log) getLogBL())));
 	}
 
 	public SheetBLService getPaymentSheetBL() {

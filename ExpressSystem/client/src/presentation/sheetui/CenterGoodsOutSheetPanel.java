@@ -1,5 +1,6 @@
 package src.presentation.sheetui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,36 +10,51 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import src.businesslogic.commoditybl.Logistic;
+import src.businesslogic.logbl.Log;
+import src.businesslogic.nonUserbl.IntermediateCenter;
+import src.businesslogic.sheetbl.CenterGoodsOutSheet;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyButton;
+import src.presentation.util.MyLabel;
 import src.presentation.util.TipDialog;
 
 public class CenterGoodsOutSheetPanel extends SheetPanel {
 	DateChooserJButton dateChooser;
 	JComboBox city;
-	JComboBox institution;
 	JComboBox destination;
 	JTextField name;
 	CourierNumberPanel courierNumberPanel;
 	MyButton addButton;
 	ConfirmButton confirmButton;
+	MyLabel number;
+	JTextField numberField;
+	MyLabel numberOfTransport;
+	JTextField numberOfTransportField;
 
 	JLabel imageLabel;
 	ImageIcon bkgImg;
 
+	CenterGoodsOutSheet bl;
+
 	private static final int COMPONENT_HEIGHT = 23;
 
 	public CenterGoodsOutSheetPanel() {
+		bl = new CenterGoodsOutSheet(new Log(), new Logistic(new Log()),
+				new IntermediateCenter(new Log()));
 		init();
 	}
 
 	private void init() {
 		courierNumberPanel = new CourierNumberPanel();
 		dateChooser = new DateChooserJButton();
-		city = new JComboBox(new String[] { "南京", "上海" });
-		destination = new JComboBox(new String[] { "南京", "上海" });
-		institution = new JComboBox(new String[] { "鼓楼营业厅", "仙林营业厅" });
+		city = new JComboBox(bl.getCities());
+		destination = new JComboBox(bl.getCities());
 		name = new JTextField();
+		number = new MyLabel("本中转中心航运编号");
+		numberField = new JTextField();
+		numberOfTransport = new MyLabel("航运号");
+		numberOfTransportField = new JTextField();
 		addButton = new MyButton(new ImageIcon("images/account_add.png"),
 				new ImageIcon("images/account_addEnter.png"));
 		confirmButton = new ConfirmButton(505, 558);
@@ -48,9 +64,16 @@ public class CenterGoodsOutSheetPanel extends SheetPanel {
 		dateChooser.setBounds(170, 79, 80, COMPONENT_HEIGHT);
 		city.setBounds(170, 112, 60, COMPONENT_HEIGHT);
 		destination.setBounds(400, 111, 60, COMPONENT_HEIGHT);
-		institution.setBounds(490, 112, 100, COMPONENT_HEIGHT);
 		name.setBounds(190, 146, 80, COMPONENT_HEIGHT);
 		courierNumberPanel.setBounds(108, 415, 468, 124);
+
+		number.setFontColor(Color.BLACK);
+		numberOfTransport.setFontColor(Color.BLACK);
+		number.setBounds(110, 280, 150, 25);
+		numberField.setBounds(280, 280, 80, 25);
+		numberOfTransport.setBounds(380, 280, 60, 25);
+		numberOfTransportField.setBounds(460, 280, 80, 25);
+
 		addButton.setBounds(500, 475, 20, 20);
 		addButton.addActionListener(new ActionListener() {
 			@Override
@@ -69,16 +92,20 @@ public class CenterGoodsOutSheetPanel extends SheetPanel {
 			temp.setIcon(new ImageIcon("images/sheet_centerGoodsOut" + i
 					+ ".png"));
 			temp.setBounds(180 + (i - 1) * 80, 235, 81, 30);
+			temp.addActionListener(new WayButtonListener(i));
 			this.add(temp);
 		}
 
 		this.setBounds(180, 20, 665, 601);
 		this.add(dateChooser);
 		this.add(city);
-		this.add(institution);
 		this.add(destination);
 		this.add(name);
 		this.add(courierNumberPanel);
+		this.add(number);
+		this.add(numberField);
+		this.add(numberOfTransport);
+		this.add(numberOfTransportField);
 		this.add(addButton);
 		this.add(confirmButton);
 		this.add(imageLabel);
@@ -93,13 +120,27 @@ public class CenterGoodsOutSheetPanel extends SheetPanel {
 
 		return false;
 	}
-	
-	class WayButtonListener implements ActionListener{
+
+	class WayButtonListener implements ActionListener {
+		int id;
+
+		WayButtonListener(int id) {
+			this.id = id;
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			if (id == 1) {
+				number.setText("本中转中心航运编号");
+				numberOfTransport.setText("航班号");
+			} else if (id == 2) {
+				number.setText("本中转中心货运编号");
+				numberOfTransport.setText("车次号");
+			} else if (id == 3) {
+				number.setText("本中转中心汽运编号");
+				numberOfTransport.setText("车次号");
+			}
+
 		}
-		
 	}
 }

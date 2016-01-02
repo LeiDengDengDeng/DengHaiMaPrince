@@ -1,23 +1,19 @@
 package src.businesslogic.sheetbl;
 
-import java.util.ArrayList;
-
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
 import src.businesslogic.nonUserbl.BussinessHall;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.enums.SheetType;
 import src.po.SheetPO;
-import src.vo.BussinessHallVO;
-import src.vo.IntermediateCenterVO;
 import src.vo.SheetVO;
 
-public class HallTruckSheet extends Sheet {
+public class CenterTruckSheet extends Sheet {
 
 	BussinessHall businessHallBL;
 	IntermediateCenter intermediateCenterBL;
 
-	public HallTruckSheet(Log logBL, Logistic logisticBL,
+	public CenterTruckSheet(Log logBL, Logistic logisticBL,
 			BussinessHall businessHall, IntermediateCenter intermediateCenterBL) {
 		super(logBL, logisticBL);
 		this.businessHallBL = businessHall;
@@ -50,7 +46,7 @@ public class HallTruckSheet extends Sheet {
 
 	@Override
 	public void endingAct(String operation, String statement) {
-		logBL.generateLog(operation + "营业厅装车单", statement);
+		logBL.generateLog(operation + "中转中心装车单", statement);
 	}
 
 	public String[] getCities() {

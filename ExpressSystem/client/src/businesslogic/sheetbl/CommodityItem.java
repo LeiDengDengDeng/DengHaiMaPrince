@@ -1,6 +1,7 @@
 package src.businesslogic.sheetbl;
 
 import src.businesslogic.commoditybl.Commodity;
+import src.vo.GoodsVO;
 import src.vo.SheetVO;
 
 public class CommodityItem {
@@ -10,8 +11,10 @@ public class CommodityItem {
 		this.commodity = commodity;
 	}
 	
+	public void updateGoods(GoodsVO goods){
+	}
+	
 	public void updateCommodity(SheetVO sheet){
-//		commodity.changeStorageInInfo(svolist);
 	}
 
 }
