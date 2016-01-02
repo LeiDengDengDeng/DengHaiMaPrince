@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import src.businesslogic.institutionbl.Institution;
+import src.businesslogic.logbl.Log;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
@@ -49,7 +50,7 @@ public class Institution_InfoPanel extends JPanel{
 	InstitutionVO institutionVO;
 	Institution institution;
 	User user;
-	
+	Log log;
 	
 	JLabel imageLabel;
     ImageIcon bkgImg;
@@ -86,6 +87,7 @@ public class Institution_InfoPanel extends JPanel{
         pageComboBox.addActionListener(listener);
         confirmButton.addActionListener(listener);
         deleteButton.addActionListener(listener);
+        modifyButton.addActionListener(listener);
         
         addUserLabel();
         
@@ -118,8 +120,9 @@ public class Institution_InfoPanel extends JPanel{
 	}
 	
 	public void componentsInstantiation(){
-		institution = new Institution(null);
-		user = new User(null);
+		log = new Log();
+		institution = new Institution(log);
+		user = new User(log);
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/institution_InfoBG.png");
 		institutionID = new JLabel();
@@ -156,27 +159,34 @@ public class Institution_InfoPanel extends JPanel{
 		
 	}
 	public void setUsers(ArrayList<UserVO> Staffs){
-		userGroup = new UserGroup(Staffs, Line_Num, coordinate_X + 50, coordinate_Y + 330,institutionVO);
-		
+		if(Staffs != null){
+			userGroup = new UserGroup(Staffs, Line_Num, coordinate_X + 50, coordinate_Y + 330,institutionVO);
+		}
 	}
 	private void setPageComboBox() {
-	     for (int i = 1; i <= institutionVO.getStaff().size() / Line_Num + 1; i++)
-	          pageComboBox.addItem(i);
+		if(institutionVO.getStaff() != null){
+			for (int i = 1; i <= institutionVO.getStaff().size() / Line_Num + 1; i++)
+				pageComboBox.addItem(i);
 	    }
+	}
 
 	private void removeUserLabel() {
-	   for (int m = 0; m < userGroup.getLabel().length; m++) {
-	        for (int n = 0; n < 3; n++) {
-	            this.remove(userGroup.getLabel()[m][n]);
-	        }
-	    }
+		if(institutionVO.getStaff() != null){
+			for (int m = 0; m < userGroup.getLabel().length; m++) {
+				for (int n = 0; n < 3; n++) {
+					this.remove(userGroup.getLabel()[m][n]);
+				}
+			}
+		}
 	    this.remove(imageLabel);
 	}
    private void addUserLabel() {
-        for (int m = 0; m < userGroup.getLabel().length; m++) {
-            for (int n = 0; n < 3; n++) {
-                this.add(userGroup.getLabel()[m][n], new Integer(Integer.MAX_VALUE));
-            }
+	   if(institutionVO.getStaff() != null){
+		   for (int m = 0; m < userGroup.getLabel().length; m++) {
+			   for (int n = 0; n < 3; n++) {
+				   this.add(userGroup.getLabel()[m][n], new Integer(Integer.MAX_VALUE));
+			   }
+		   }
         }
         this.add(imageLabel);
     }
@@ -200,7 +210,6 @@ public class Institution_InfoPanel extends JPanel{
 	                pageComboBox.setSelectedItem(pageNum + 1);
 	            } else if (e.getSource() == confirmButton) {
 	            	PanelController.setPresentPanel(new InstitutionListPanel());
-	            	
 	            } else if (e.getSource() == deleteButton) {
 	            	institution.deleteInstitution(institutionVO.getInstitutionID());
 	            	PanelController.setPresentPanel(new InstitutionListPanel());

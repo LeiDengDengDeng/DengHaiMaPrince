@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import src.businesslogic.logbl.Log;
+import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.userblservice.UserBLService;
 import src.dataservice.logdataservice.LogDataService;
 import src.dataservice.userdataservice.UserDataService;
@@ -21,9 +22,9 @@ import src.vo.UserVO;
 public class User implements UserBLService{
 	
 	UserDataService userData;
-	Log log;
-//	Map<String, Integer> map = new HashMap<>();
-	public User(Log log){
+	LogBLService log;
+	
+	public User(LogBLService log){
 		this.log = log;
 		try {
 			this.userData = (UserDataService) Naming.lookup("rmi://127.0.0.1:6600/userData");
@@ -85,6 +86,7 @@ public class User implements UserBLService{
 //					password, password);
 			try {
 				userData.update(userPO);
+				log.generateLog("–ﬁ∏ƒ√‹¬Î", String.valueOf(userPO.getPersonalID()));
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -141,6 +143,7 @@ public class User implements UserBLService{
 		}
 		try {
 			userData.InitialInsert(userPOs);
+			log.generateLog("≥ı ºªØ’À∫≈", String.valueOf(userPOs.size()));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

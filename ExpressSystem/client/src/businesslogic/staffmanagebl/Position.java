@@ -2,6 +2,7 @@ package src.businesslogic.staffmanagebl;
 
 import java.util.ArrayList;
 
+import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.staffmanageblservice.PositionBLService;
 import src.businesslogicservice.userblservice.UserBLService;
 import src.vo.StaffInfoVO;
@@ -10,6 +11,7 @@ import src.vo.UserVO;
 public class Position implements PositionBLService{
 	
 	UserBLService userBL;
+	LogBLService log;
 	public static ArrayList<Integer> managerArrayList = new ArrayList<Integer>();
 	public static ArrayList<Integer> administratorArrayList = new ArrayList<Integer>();
 	public static ArrayList<Integer> accountantArrayList = new ArrayList<Integer>();
@@ -19,9 +21,11 @@ public class Position implements PositionBLService{
 	public static ArrayList<Integer> courierArrayList = new ArrayList<Integer>();
 	public static boolean ischanged = false;
 	
-	public Position(UserBLService userBL){
+	public Position(UserBLService userBL,LogBLService log){
 		this.userBL = userBL;
+		this.log = log;
 		if(!ischanged){
+			managerArrayList.add(11);
 			managerArrayList.add(12);
 			managerArrayList.add(13);
 			managerArrayList.add(19);
@@ -51,19 +55,19 @@ public class Position implements PositionBLService{
 	public ArrayList<Integer> initialAuthority(StaffInfoVO staff) {
 		// TODO Auto-generated method stub
 		if(staff.getPosition().equals("总经理")){
-			return managerArrayList;
+			return this.managerArrayList;
 		}else if(staff.getPosition().equals("管理员")){
-			return administratorArrayList;
+			return this.administratorArrayList;
 		}else if(staff.getPosition().equals("财务人员")){
-			return accountantArrayList;
+			return this.accountantArrayList;
 		}else if(staff.getPosition().equals("中转中心仓库管理员")){
-			return keeperArrayList;
+			return this.keeperArrayList;
 		}else if(staff.getPosition().equals("中转中心业务员")){
-			return interArrayList;
+			return this.interArrayList;
 		}else if(staff.getPosition().equals("营业厅业务员")){
-			return businessArrayList;
+			return this.businessArrayList;
 		}else if(staff.getPosition().equals("快递员")){
-			return courierArrayList;
+			return this.courierArrayList;
 		}else{
 			System.out.println("invalid!!");
 			return null;
@@ -76,7 +80,7 @@ public class Position implements PositionBLService{
 		UserVO userVO = userBL.getPersonalInfo(StaffId);
 		userVO.setMyPosition(position);
 		userBL.changeInfo(userVO);		
-		
+		log.generateLog("修改员工职位", String.valueOf(StaffId));
 		return true;
 	}
 	
@@ -91,6 +95,7 @@ public class Position implements PositionBLService{
 //				userVO.getMyPosition(), userVO.getAuthority());
 		userVO.setCity(city);
 		userBL.changeInfo(userVO);
+		log.generateLog("设置员工所在城市", String.valueOf(StaffId));
 		
 		return true;
 		
@@ -102,7 +107,7 @@ public class Position implements PositionBLService{
 		UserVO userVO = userBL.getPersonalInfo(StaffId);
 		userVO.setBusinessHall(businessHall);
 		userBL.changeInfo(userVO);
-		
+		log.generateLog("设置员工所属营业厅", String.valueOf(StaffId));
 		return true;
 	}
 	

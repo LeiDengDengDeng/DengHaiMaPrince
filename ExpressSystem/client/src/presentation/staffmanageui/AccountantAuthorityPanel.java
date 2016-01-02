@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogic.staffmanagebl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
@@ -45,6 +46,7 @@ public class AccountantAuthorityPanel extends JPanel{
 	ArrayList<Checkbox> checkboxs;
 	StaffManage staffManage;
 	Position position;
+	Log log;
 	
 	public AccountantAuthorityPanel(){
 		componentsInstantiation();
@@ -83,8 +85,9 @@ public class AccountantAuthorityPanel extends JPanel{
 	}
 
 	public void componentsInstantiation(){
-		position = new Position(new User(null));
-		staffManage = new StaffManage(null,position);
+		log = new Log();
+		position = new Position(new User(log),log);
+		staffManage = new StaffManage(log,position);
 		bkgImg = new ImageIcon("images/authority_accountant.png");
 		imageLabel = new JLabel();
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480, false);
@@ -157,10 +160,10 @@ public class AccountantAuthorityPanel extends JPanel{
 			        			  authority.add(i + 1);
 			        		  }
 			        	  }
-		        		System.out.println("change authority");
+//		        		  System.out.println("change authority");
 			        	  staffManage.changeAuthority(authority, "财务人员");
-			        	  position.accountantArrayList = authority;
-			        	  position.ischanged = true;
+			        	  Position.accountantArrayList = authority;
+			        	  Position.ischanged = true;
 			        	  PanelController.setPresentPanel(new AccountantAuthorityPanel());
 			       }else if(e.getSource() == cancelButton){
 			    	   PanelController.setPresentPanel(new ManagerAuthorityPanel());

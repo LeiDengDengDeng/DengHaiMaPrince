@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogic.staffmanagebl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
@@ -46,6 +47,7 @@ public class CourierAuthorityPanel extends JPanel{
 	ArrayList<Checkbox> checkboxs;
 	StaffManage staffManage;
 	Position position;
+	Log log;
 	
 	
 	public CourierAuthorityPanel(){
@@ -85,8 +87,9 @@ public class CourierAuthorityPanel extends JPanel{
 	}
 
 	public void componentsInstantiation(){
-		position = new Position(new User(null));
-		staffManage = new StaffManage(null,position);
+		log = new Log();
+		position = new Position(new User(log),log);
+		staffManage = new StaffManage(log,position);
 		bkgImg = new ImageIcon("images/authority_courier.png");
 		imageLabel = new JLabel();
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480, false);
@@ -156,11 +159,12 @@ public class CourierAuthorityPanel extends JPanel{
 		        		ArrayList<Integer> authority = new ArrayList<Integer>();
 		        		for(int i = 0;i < 21;i++){
 			        		  if(checkboxs.get(i).getState())
-			        			authority.add(i);
+			        			  authority.add(i + 1);
 			        	  }
 			        	  staffManage.changeAuthority(authority, "¿ìµÝÔ±");
-			        	  position.courierArrayList = authority;
-			        	  position.ischanged = true;
+			        	  Position.courierArrayList = authority;
+			        	  Position.ischanged = true;
+			        	  PanelController.setPresentPanel(new CourierAuthorityPanel());
 			       }else if(e.getSource() == cancelButton){
 			    	   PanelController.setPresentPanel(new ManagerAuthorityPanel());
 		           }else if(e.getSource() == managerButton){

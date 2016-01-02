@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import src.businesslogic.logbl.Log;
 import src.businesslogic.userbl.User;
+import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.staffmanageblservice.StaffManageBLService;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.po.UserPO;
@@ -17,8 +18,8 @@ public class StaffManage implements StaffManageBLService{
 
 	StaffManageDataService staffManageData;
 	Position position;
-	Log log;
-	public StaffManage(Log log,Position position){
+	LogBLService log;
+	public StaffManage(LogBLService log,Position position){
 		this.log = log;
 		this.position = position;
 		try {
@@ -39,6 +40,7 @@ public class StaffManage implements StaffManageBLService{
 	@Override
 	public StaffInfoVO getStaffInfo(long StaffId) {
 		// TODO Auto-generated method stub
+		System.out.println(position.ischanged);
 		UserPO userPO = null;
 		StaffInfoVO staffInfoVO = null;
 		try {
@@ -89,7 +91,6 @@ public class StaffManage implements StaffManageBLService{
 		if(position == null) 
 			return false;
 		else{
-			
 			ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
 			try {
 				userPOs = staffManageData.finds();
@@ -110,6 +111,7 @@ public class StaffManage implements StaffManageBLService{
 					}
 			
 				}
+			log.generateLog("修改权限", position);
 			return true;
 		}
 	}
@@ -121,6 +123,7 @@ public class StaffManage implements StaffManageBLService{
 			return false;
 		
 		else{
+			System.out.println(position.initialAuthority(StaffInfo).size());
 			StaffInfo.setAuthority(position.initialAuthority(StaffInfo));
 			System.out.println(StaffInfo.getAuthority().size());
 			UserPO userPO = new UserPO(StaffInfo.getID(), StaffInfo.getAccount(),
@@ -129,6 +132,7 @@ public class StaffManage implements StaffManageBLService{
 			System.out.println(userPO.getAuthority().size());
 			try {
 				staffManageData.insert(userPO);
+				log.generateLog("增加员工账号", String.valueOf(userPO.getPersonalID()));
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -151,6 +155,7 @@ public class StaffManage implements StaffManageBLService{
 		if(userPO != null){
 			try {
 				staffManageData.delete(userPO);
+				log.generateLog("删除员工账号", String.valueOf(userPO.getPersonalID()));
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

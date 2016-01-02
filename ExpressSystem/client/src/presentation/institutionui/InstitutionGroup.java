@@ -16,7 +16,7 @@ public class InstitutionGroup {
     private int page;  // Ò³Êý
     private int x;
     private int y;
-    private int height = 23;
+    private int height = 24;
     private JLabel[][] presentInstitutions;
     
     Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
@@ -52,13 +52,18 @@ public class InstitutionGroup {
         for (int i = start; i < num * page && i < institutionVOs.size(); i++) {
             JLabel ID = new JLabel(String.valueOf(institutionVOs.get(i).getInstitutionID()));
             JLabel name = new JLabel(institutionVOs.get(i).getInstitutionName());
-            JLabel staffNums = new JLabel(String.valueOf(institutionVOs.get(i).getStaff().size()));
-
+            JLabel staffNums;
+            if(institutionVOs.get(i).getStaff() != null){
+            	staffNums = new JLabel(String.valueOf(institutionVOs.get(i).getStaff().size()));
+            }else {
+            	staffNums = new JLabel(String.valueOf(0));
+            }
+            
             new InstitutionListener(ID);
             
             ID.setBounds(x, y + (i - start) * height, 52, height);
-            name.setBounds(x + 195, y + (i - start) * height, 150, height);
-            staffNums.setBounds(x + 385, y + (i - start) * height, 150, height);
+            name.setBounds(x + 190, y + (i - start) * height, 150, height);
+            staffNums.setBounds(x + 387, y + (i - start) * height, 150, height);
 
             presentInstitutions[i - start][0] = ID;
             presentInstitutions[i - start][1] = name;

@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogic.staffmanagebl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
@@ -14,11 +15,13 @@ import src.presentation.mainui.PanelController;
 public class StaffListener implements MouseListener{
 	JLabel ID;
 	StaffManage staffManage;
+	Log log;
 	
 	public StaffListener(JLabel ID){
 		this.ID = ID;
+		log = new Log();
 		AddListener();
-		staffManage = new StaffManage(null, new Position(new User(null)));
+		staffManage = new StaffManage(log, new Position(new User(log),log));
 	}
 
 	public void AddListener(){

@@ -66,8 +66,8 @@ public class StaffGroup {
             new StaffListener(ID);
             
             ID.setBounds(x, y + (i - start) * height, 52, height);
-            name.setBounds(x + 162, y + (i - start) * height, 150, height);
-            position.setBounds(x + 323, y + (i - start) * height, 150, height);
+            name.setBounds(x + 164, y + (i - start) * height, 150, height);
+            position.setBounds(x + 325, y + (i - start) * height, 150, height);
 
 //            ID.addMouseListener(new MouseListener() {
 //				

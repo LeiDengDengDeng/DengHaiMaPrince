@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.staffmanagebl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
@@ -47,7 +48,7 @@ public class AddStaffPanel extends JPanel{
 	private	JTextField account;
 	private	JTextField password;
 	private	JTextField name;
-	private	JTextField position;
+	private	JComboBox<String> position;
 	private	JComboBox<String> city;
 	private	JTextField businessHall;
 	
@@ -67,6 +68,7 @@ public class AddStaffPanel extends JPanel{
 	StaffListPanel staffManagePanel;
 	StaffManage staffManage;
 	IntermediateCenter intermediateCenter;
+	Log log;
 	
 	public AddStaffPanel(){
 		componentsInstantiation();
@@ -89,7 +91,7 @@ public class AddStaffPanel extends JPanel{
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
 		
 		name.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
-		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y, w, h);
+		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y, w, h + 8);
 		ID.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
 		account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
 		password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
@@ -98,6 +100,7 @@ public class AddStaffPanel extends JPanel{
 		
 
 		city.setModel(new DefaultComboBoxModel<String>(getCitys()));
+		position.setModel(new DefaultComboBoxModel<String>(getPositions()));
 		
 		this.add(confirmButton);
 		this.add(cancelButton);
@@ -125,11 +128,12 @@ public class AddStaffPanel extends JPanel{
 		account = new JTextField();
 		password = new JTextField();
 		name = new JTextField();
-		position = new JTextField();
+		position = new JComboBox<String>();
 		city = new JComboBox<String>();
 		businessHall = new JTextField();
-		staffManage = new StaffManage(null, new Position(new User(null)));
-		intermediateCenter = new IntermediateCenter(null);
+		log = new Log();
+		staffManage = new StaffManage(log, new Position(new User(log),log));
+		intermediateCenter = new IntermediateCenter(log);
 	}
 	
 	
@@ -144,6 +148,20 @@ public class AddStaffPanel extends JPanel{
 		
 	}
 	
+	//获得职位列表
+	public String[] getPositions(){
+		String[] positions = new String[7];
+		positions[0] = "总经理";
+		positions[1] = "管理员";
+		positions[2] = "财务人员";
+		positions[3] = "中转中心仓库管理员";
+		positions[4] = "中转中心业务员";
+		positions[5] = "营业厅业务员";
+		positions[6] = "快递员";
+		
+		return positions;
+	}
+	
 	
 	//获得填写的信息
 	public void getInfo(){
@@ -151,7 +169,7 @@ public class AddStaffPanel extends JPanel{
 		staffAccount = Long.parseLong(account.getText());
 		staffPassword = password.getText();
 		staffName = name.getText();
-		staffPosition = position.getText();
+		staffPosition = (String) position.getSelectedItem();
 		staffCity = (String) city.getSelectedItem();
 		staffbusinessHall = businessHall.getText();
 		
@@ -170,14 +188,17 @@ public class AddStaffPanel extends JPanel{
 		           if(e.getSource() == confirmButton){
 		        	   if(ID.getText().length() == 0 || account.getText().length() == 0
 		        			   || password.getText().length() == 0 || name.getText().length() == 0
-		        			   || position.getText().length() == 0){
+		        			   || position.getSelectedItem() == null){
 		        		   TipDialog tipDialog = new TipDialog(null, "", true, "请完整填写！", false);
+		           		}else if(staffID != staffAccount){
+		           			TipDialog tipDialog = new TipDialog(null, "", true, "ID与账号不匹配！", false);
 		           		}else{
 		           			getInfo();
 		           			if(businessHall.getText().length() == 0)
 		           				staffbusinessHall = null;
 		           			if(city.getSelectedItem().equals("无"))
 		           				staffCity = null;
+		           			System.out.println(staffCity + " " + staffPosition);
 		           			staffManage.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
 		           					staffName, staffPosition, null, staffCity, staffbusinessHall));
 		           		}

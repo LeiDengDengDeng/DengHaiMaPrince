@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 import src.businesslogic.institutionbl.Institution;
+import src.businesslogic.logbl.Log;
 import src.presentation.mainui.PanelController;
 
 public class InstitutionListener implements MouseListener{
@@ -15,7 +16,7 @@ public class InstitutionListener implements MouseListener{
 	
 	public InstitutionListener(JLabel ID){
 		this.ID = ID;
-		institution = new Institution(null);
+		institution = new Institution(new Log());
 		AddListener();
 	}
 

@@ -9,12 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import src.businesslogic.institutionbl.Institution;
+import src.businesslogic.staffmanagebl.Position;
 import src.businesslogic.userbl.User;
+import src.businesslogicservice.userblservice.UserBLService;
 import src.presentation.institutionui.InstitutionListPanel;
 import src.presentation.institutionui.Institution_InfoPanel;
 import src.presentation.institutionui.StaffPanel;
 import src.presentation.institutionui.changeInstitution_InfoPanel;
 import src.presentation.institutionui.changeStaff_InfoPanel;
+import src.presentation.staffmanageui.AddStaffPanel;
 import src.presentation.staffmanageui.StaffListPanel;
 import src.vo.InstitutionVO;
 import src.vo.SalaryVO;
@@ -56,6 +59,7 @@ public class testmain extends JFrame{
 		testmain test = new testmain();
 		Institution institution = new Institution(null);
 		User user = new User(null);
+		Position position = new Position(user, null);
 //		for(int i = 0;i < 2;i++)
 //		System.out.println(user.getPersonalInfo(200000).getAuthority().get(i));
 //		StaffManage staffManage = new StaffManage(null, null);
@@ -92,9 +96,16 @@ public class testmain extends JFrame{
 //		test.setContentPane(new InstitutionListPanel());
 //		test.setContentPane(new changeStaff_InfoPanel(user.getPersonalInfo(100000),
 //				new InstitutionVO("营业厅", 100000, userVOs, "负责中转与接收")));
-		institution.addInstitution(new InstitutionVO("鼓楼营业厅", 100000, null, "负责中转与接收"));
-		System.out.println(institution.getAllInstitution().size());
+//		institution.addInstitution(new InstitutionVO("中转中心", 200000, null, "负责中转与接收"));
+//		System.out.println(institution.getInstitutionInfo(200000).getInstitutionName());
+//		System.out.println(institution.getAllInstitution().size());
+//		System.out.println(Position.managerArrayList.size() + " " + Position.administratorArrayList.size()
+//				+ " " + Position.accountantArrayList.size() + " " + Position.keeperArrayList.size()
+//				+ " " + Position.interArrayList.size() + "　" + Position.businessArrayList.size() 
+//				+ " " + Position.courierArrayList.size());
+//		System.out.println(position.ischanged);
 		
+//		System.out.println(user.getPersonalInfo(100001).getAuthority().size());
 //		test.setVisible(true);
 		
 	

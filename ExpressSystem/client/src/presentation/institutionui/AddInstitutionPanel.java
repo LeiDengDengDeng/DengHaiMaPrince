@@ -10,6 +10,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import src.businesslogic.institutionbl.Institution;
+import src.businesslogic.logbl.Log;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
@@ -84,7 +85,7 @@ public class AddInstitutionPanel extends JPanel{
 	}
 	
 	public void componentsInstantiation(){
-		institution = new Institution(null);
+		institution = new Institution(new Log());
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/institution_addBG.png");
 		institutionID = new JTextField();
