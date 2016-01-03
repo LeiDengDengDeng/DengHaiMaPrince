@@ -117,26 +117,35 @@ public class StaffManage implements StaffManageBLService{
 	@Override
 	public boolean addStaffInfo(StaffInfoVO StaffInfo) {
 		// TODO Auto-generated method stub
-		if(StaffInfo == null)
-			return false;
-		
-		else{
-			System.out.println(position.initialAuthority(StaffInfo).size());
-			StaffInfo.setAuthority(position.initialAuthority(StaffInfo));
-			System.out.println(StaffInfo.getAuthority().size());
-			UserPO userPO = new UserPO(StaffInfo.getID(), StaffInfo.getAccount(),
-					StaffInfo.getPassword(), StaffInfo.getStaffName(),
-					StaffInfo.getPosition(), StaffInfo.getAuthority());
-			System.out.println(userPO.getAuthority().size());
-			try {
-				staffManageData.insert(userPO);
-				log.generateLog("增加员工账号", String.valueOf(userPO.getPersonalID()));
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-			return true;
+		boolean exist = true;
+		if(StaffInfo == null){
 		}
+		else{
+			for (int i = 0; i < getAllStaff().size(); i++) {
+				if(StaffInfo.getID() == getAllStaff().get(i).getID()){
+					break;
+				}else{
+//					System.out.println(position.initialAuthority(StaffInfo).size());
+					StaffInfo.setAuthority(position.initialAuthority(StaffInfo));
+//					System.out.println(StaffInfo.getAuthority().size());
+					UserPO userPO = new UserPO(StaffInfo.getID(), StaffInfo.getAccount(),
+							StaffInfo.getPassword(), StaffInfo.getStaffName(),
+							StaffInfo.getPosition(), StaffInfo.getAuthority());
+					userPO.setCity(StaffInfo.getCity());
+					userPO.setBusinessHall(StaffInfo.getBusinessHall());
+					System.out.println(userPO.getAuthority().size());
+					try {
+						staffManageData.insert(userPO);
+						log.generateLog("增加员工账号", String.valueOf(userPO.getPersonalID()));
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					exist = false;
+				}
+			}
+		}
+		return exist;
 	}
 
 	@Override

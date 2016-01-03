@@ -13,10 +13,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
-import src.data.positiondataservice.PositionDataservice;
+import src.dataservice.positiondataservice.PositionDataService;
 import src.po.AuthorityPO;
 
-public class PositionData extends UnicastRemoteObject implements PositionDataservice{
+public class PositionData extends UnicastRemoteObject implements PositionDataService{
 
 	/**
 	 * 

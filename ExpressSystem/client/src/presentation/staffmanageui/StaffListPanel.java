@@ -17,6 +17,7 @@ import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
 import src.vo.StaffInfoVO;
 
 public class StaffListPanel extends JPanel{
@@ -206,8 +207,12 @@ public class StaffListPanel extends JPanel{
 	            	
 	            	}else{
 	            		ID = Long.parseLong(searchField.getText());
-	            		PanelController.setPresentPanel(new 
-	            				Staff_InfoPanel(staffManage.getStaffInfo(ID)));
+	            		if(staffManage.getStaffInfo(ID) != null){
+	            			PanelController.setPresentPanel(new 
+	            					Staff_InfoPanel(staffManage.getStaffInfo(ID)));
+	            		}else {
+	            			TipDialog tipDialog = new TipDialog(null, "", true, "’À∫≈≤ª¥Ê‘⁄£°", false);
+	            		}
 	            	}
 	            }else if(e.getSource() == addButton){
 	            	PanelController.setPresentPanel(new AddStaffPanel());;

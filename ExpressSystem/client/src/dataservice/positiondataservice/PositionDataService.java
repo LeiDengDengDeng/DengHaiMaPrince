@@ -1,4 +1,4 @@
-package src.data.positiondataservice;
+package src.dataservice.positiondataservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -9,7 +9,7 @@ import src.po.AuthorityPO;
 /**
  * @author  samsung
  */
-public interface PositionDataservice extends Remote{
+public interface PositionDataService extends Remote{
 	/**
 	 * …Ë÷√»®œﬁ
 	 * @throws RemoteException

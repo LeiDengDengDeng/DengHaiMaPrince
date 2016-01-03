@@ -169,9 +169,19 @@ public class AddStaffPanel extends JPanel{
 		staffAccount = Long.parseLong(account.getText());
 		staffPassword = password.getText();
 		staffName = name.getText();
+		if(businessHall.getText().length() == 0){
+				staffbusinessHall = null;
+		}else{
+			staffbusinessHall = businessHall.getText();
+		}
+		
+		if(city.getSelectedItem().equals("无")){
+			staffCity = null;
+		}else{
+			staffCity = (String) city.getSelectedItem();
+		}
+		
 		staffPosition = (String) position.getSelectedItem();
-		staffCity = (String) city.getSelectedItem();
-		staffbusinessHall = businessHall.getText();
 		
 	}
 	
@@ -194,15 +204,14 @@ public class AddStaffPanel extends JPanel{
 		           			TipDialog tipDialog = new TipDialog(null, "", true, "ID与账号不匹配！", false);
 		           		}else{
 		           			getInfo();
-		           			if(businessHall.getText().length() == 0)
-		           				staffbusinessHall = null;
-		           			if(city.getSelectedItem().equals("无"))
-		           				staffCity = null;
 		           			System.out.println(staffCity + " " + staffPosition);
-		           			staffManage.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
-		           					staffName, staffPosition, null, staffCity, staffbusinessHall));
+		           			if(!staffManage.addStaffInfo(new StaffInfoVO(staffID, staffAccount, staffPassword,
+		           					staffName, staffPosition, null, staffCity, staffbusinessHall))){
+		           				PanelController.setPresentPanel(new StaffListPanel());
+		           			}else{
+		           				TipDialog tipDialog = new TipDialog(null, "", true, "ID已经被使用！", false);
+		           			}
 		           		}
-		        	   PanelController.setPresentPanel(new StaffListPanel());
 		           }else if(e.getSource() == cancelButton){
 		        	   PanelController.setPresentPanel(new StaffListPanel());
 		           }

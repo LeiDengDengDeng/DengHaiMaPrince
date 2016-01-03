@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import src.businesslogic.institutionbl.Institution;
 import src.businesslogic.positionbl.Position;
 import src.businesslogic.userbl.User;
+import src.presentation.staffmanageui.AddStaffPanel;
 
 public class testmain extends JFrame{
 
@@ -58,7 +59,7 @@ public class testmain extends JFrame{
 //				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
 //		test.setContentPane(new changeSalaryPanel(new UserVO(100000, 100000, "aaaaaa"
 //				, "张三", "快递员", null, new SalaryVO(3000), null, null)));
-//		test.setContentPane(new AddStaffPanel());
+		test.setContentPane(new AddStaffPanel());
 		
 //		ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
 //		for (int i = 0; i < 20; i++)
@@ -91,10 +92,10 @@ public class testmain extends JFrame{
 //				+ " " + Position.accountantArrayList.size() + " " + Position.keeperArrayList.size()
 //				+ " " + Position.interArrayList.size() + "　" + Position.businessArrayList.size() 
 //				+ " " + Position.courierArrayList.size());
-//		System.out.println(position.ischanged);
+//		System.out.println(user.getPersonalInfo(100002).getCity());
 		
 //		System.out.println(user.getPersonalInfo(100001).getAuthority().size());
-//		test.setVisible(true);
+		test.setVisible(true);
 		
 	
 	}

@@ -6,8 +6,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import src.businesslogic.positionblservice.PositionBLService;
 import src.businesslogicservice.logblservice.LogBLService;
+import src.businesslogicservice.positionblservice.PositionBLService;
 import src.businesslogicservice.userblservice.UserBLService;
 import src.data.positiondataservice.PositionDataservice;
 import src.po.AuthorityPO;
