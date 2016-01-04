@@ -37,7 +37,8 @@ public class ReceivingMoneySheet extends Sheet {
 	public SheetVO generateVO(SheetPO po) {
 		ReceivingMoneySheetVO vo = new ReceivingMoneySheetVO(po.getBuilder(),
 				po.getTime(), ((ReceivingMoneySheetPO) po).getBusinessHall(),
-				((ReceivingMoneySheetPO) po).getItems());
+				((ReceivingMoneySheetPO) po).getItems(),
+				((ReceivingMoneySheetPO) po).getMoney());
 		vo.setID(po.getID());
 		return vo;
 	}
@@ -46,7 +47,8 @@ public class ReceivingMoneySheet extends Sheet {
 	public SheetPO generatePO(SheetVO vo) {
 		ReceivingMoneySheetPO po = new ReceivingMoneySheetPO(vo.getBuilder(),
 				vo.getTime(), ((ReceivingMoneySheetVO) vo).getBusinessHall(),
-				((ReceivingMoneySheetVO) vo).getItems());
+				((ReceivingMoneySheetVO) vo).getItems(),
+				((ReceivingMoneySheetVO) vo).getMoney());
 		po.setID(vo.getID());
 		return po;
 	}

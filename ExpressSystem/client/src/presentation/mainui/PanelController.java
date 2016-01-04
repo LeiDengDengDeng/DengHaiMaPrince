@@ -33,6 +33,7 @@ import src.presentation.sheetui.ReceivingSheetPanel;
 import src.presentation.staffmanageui.ManagerAuthorityPanel;
 import src.presentation.staffmanageui.StaffListPanel;
 import src.presentation.userui.ChangePasswordPanel;
+import src.presentation.userui.UserPanel;
 
 /**
  * Created by dell on 2015/12/5. 用途:控制界面跳转 业务逻辑层与界面层的连接在此实现
@@ -60,7 +61,7 @@ public class PanelController {
 			frame.getContentPane().remove(presentPanel);
 		switch (i) {
 		case 0:
-			presentPanel = new ChangePasswordPanel(LogIn.currentUser);
+			presentPanel = new UserPanel();
 			break;
 		case 1:
 			presentPanel = new StaffListPanel();
@@ -137,7 +138,8 @@ public class PanelController {
 					factory.getHallReceivingGoodsSheetBL());
 			break;
 		case 231:
-			presentPanel = new HallGoodsOutSheetPanel(factory.getHallGoodsOutSheetBL());
+			presentPanel = new HallGoodsOutSheetPanel(
+					factory.getHallGoodsOutSheetBL());
 			break;
 		case 300:
 			presentPanel = new TruckPanel();

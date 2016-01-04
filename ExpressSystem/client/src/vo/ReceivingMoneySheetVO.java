@@ -17,13 +17,15 @@ public class ReceivingMoneySheetVO implements SheetVO {
 
 	String businessHall;
 	ArrayList<String[]> items;
+	double money;
 
 	public ReceivingMoneySheetVO(String builder, String time,
-			String businessHall, ArrayList<String[]> items) {
+			String businessHall, ArrayList<String[]> items,double money) {
 		this.builder = builder;
 		this.time = time;
 		this.businessHall = businessHall;
 		this.items = items;
+		this.money = money;
 	}
 
 	public ArrayList<String[]> getItems() {
@@ -52,6 +54,10 @@ public class ReceivingMoneySheetVO implements SheetVO {
 
 	public long getID() {
 		return ID;
+	}
+	
+	public double getMoney(){
+		return money;
 	}
 
 	public void setState(SheetState state) {
