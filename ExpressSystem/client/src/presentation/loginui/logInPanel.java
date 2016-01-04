@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.util.ArrayList;
+
 
 
 import javax.swing.ImageIcon;
@@ -18,6 +18,7 @@ import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.loginbl.LogInController;
 import src.businesslogic.userbl.User;
 import src.enums.ResultMessage;
+import src.presentation.mainui.CheckFrame;
 import src.presentation.mainui.MainFrame;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
@@ -82,20 +83,6 @@ class LogInPanel extends JPanel {
 
 	}
 
-	// public boolean login() {
-	// account = Long.parseLong(accountField.getText());
-	// password = String.valueOf(passwordField.getPassword());
-	// // System.out.println(logIn.logIn(account, password));
-	// if (logInController.logIn(account, password) == ResultMessage.CORRECT){
-	// System.out.println("true");
-	// return true;
-	// }
-	// else
-	// return false;
-	//
-	//
-	// }
-
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -113,7 +100,8 @@ class LogInPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == checkButton) {
-
+				 new CheckFrame();
+				 father.dispose();
 			} else if (e.getSource() == loginButton) {
 				System.out.println("login");
 				if (accountField.getText().length() == 0) {
@@ -125,13 +113,6 @@ class LogInPanel extends JPanel {
 					password = String.valueOf(passwordField.getPassword());
 					// System.out.println(logIn.logIn(account, password));
 					if (logInController.logIn(account, password) == ResultMessage.CORRECT) {
-						// ArrayList<Integer> test1 = new ArrayList<>();
-						// test1.add(7);
-						// test1.add(8);
-						// ArrayList<Integer> test2 = new ArrayList<>();
-						// test2.add(12);
-						// test2.add(15);
-						// test2.add(16);
 						MainFrame m = new MainFrame(logInController
 								.getCurrentUser().getAuthority());
 						father.dispose();

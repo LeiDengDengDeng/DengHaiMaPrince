@@ -98,4 +98,8 @@ public class IDLabelListener extends MouseAdapter {
         imageLabel.setBounds(40, 30, bkgImg.getIconWidth(), bkgImg.getIconHeight());
         sheetPanel.add(imageLabel);
     }
+
+    private void setReceivingMoneySheetPanel(){
+    	
+    }
 }
