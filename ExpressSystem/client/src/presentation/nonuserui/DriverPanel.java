@@ -178,7 +178,7 @@ public class DriverPanel extends JPanel{
 		this.add(returnButton);
 		
 		addLabel = new JLabel();
-		addbkgImg = new ImageIcon("images/driveradd_bg.png");
+		addbkgImg = new ImageIcon("images/driveradd2_bg.png");
 		addLabel.setIcon(addbkgImg);
 		addLabel.setBounds(40, 55, addbkgImg.getIconWidth(), addbkgImg.getIconHeight());
 		addLabel.setVisible(false);

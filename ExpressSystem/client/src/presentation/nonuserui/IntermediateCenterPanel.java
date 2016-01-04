@@ -14,9 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogic.nonUserbl.BussinessHallController;
+import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogicservice.nonUserblservice.BussinessHallBLService;
+import src.businesslogicservice.nonUserblservice.IntermediateCenterBLService;
+import src.presentation.util.TipDialog;
 import src.vo.BussinessHallVO;
+import src.vo.IntermediateCenterVO;
 
 public class IntermediateCenterPanel extends JPanel{
 
@@ -30,7 +35,7 @@ public class IntermediateCenterPanel extends JPanel{
 	protected static final int w = 641;// panel宽
 	protected static final int h = 572;// panel高
 	
-	protected static final ImageIcon IMG_BG = new ImageIcon("images/businesshall_bg.png");
+	protected static final ImageIcon IMG_BG = new ImageIcon("images/intermediatecenter_bg.png");
 	protected static final ImageIcon IMG_CHANGECONFIRM = new ImageIcon("images/driverchangeconfirmbutton.png");
 	protected static final ImageIcon IMG_TRUCK = new ImageIcon("images/truck.png");
 	
@@ -60,26 +65,27 @@ public class IntermediateCenterPanel extends JPanel{
 //	private ArrayList<JButton> businesshallList;
 	private ArrayList<JLabel> businesshallList;
 	private ArrayList<JLabel> nameList;
-	private ArrayList<BussinessHallVO> businesshalls;
+	private ArrayList<IntermediateCenterVO> businesshalls;
 	private ArrayList<String> numList;
-	private BussinessHallBLService businesshallBL;
+	private IntermediateCenterBLService businesshallBL;
 	private boolean isActive;
+	private Log log;
 	
 	public IntermediateCenterPanel(){
 		System.out.println();
-		businesshallBL = new BussinessHallController();
+		businesshallBL = new IntermediateCenter(log);
 		
 		TextFieldCheckBusinessNum = new JTextField();
 		TextFieldCheckBusinessNum.setBounds(160, 30, 200, 28);
 		this.add(TextFieldCheckBusinessNum);
 		
 		textFieldHallId = new JTextField();
-		textFieldHallId.setBounds(140, 115, 80, 25);
+		textFieldHallId.setBounds(160, 117, 80, 25);
 		textFieldHallId.setVisible(false);
 		this.add(textFieldHallId);
 		
 		TextFieldHallName = new JTextField();
-		TextFieldHallName.setBounds(140, 70, 80, 25);
+		TextFieldHallName.setBounds(160, 72, 80, 25);
 		TextFieldHallName.setVisible(false);
 		this.add(TextFieldHallName);
 		
@@ -110,7 +116,7 @@ public class IntermediateCenterPanel extends JPanel{
 		this.add(returnButton);
 		
 		addLabel = new JLabel();
-		addbkgImg = new ImageIcon("images/businesshalladd_bg.png");
+		addbkgImg = new ImageIcon("images/intermediatecenteradd_bg.png");
 		addLabel.setIcon(addbkgImg);
 		addLabel.setBounds(40, 55, addbkgImg.getIconWidth(), addbkgImg.getIconHeight());
 		addLabel.setVisible(false);
@@ -133,7 +139,7 @@ public class IntermediateCenterPanel extends JPanel{
 		this.add(changeConfirmButton);
 		
 		checkLabel = new JLabel();
-		checkbkgImg = new ImageIcon("images/businesshallcheck_bg.png");
+		checkbkgImg = new ImageIcon("images/intermediatecentercheck_bg.png");
 		checkLabel.setIcon(checkbkgImg);
 		checkLabel.setBounds(40, 59, checkbkgImg.getIconWidth(), checkbkgImg.getIconHeight());
 		checkLabel.setVisible(false);
@@ -181,7 +187,16 @@ public class IntermediateCenterPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == checkConfirmButton){
 				String hallId = TextFieldCheckBusinessNum.getText();
-				processCheck(hallId);
+				IntermediateCenterVO bvo = businesshallBL.getIntermediateCenterInfo(hallId);
+				if(hallId.equals("")){
+					new TipDialog(null, "", true, "请输入城市！", false);
+				}
+				else if(bvo == null){
+					new TipDialog(null, "", true, "中转中心不存在！", false);
+				}
+				else{
+					processCheck(hallId);
+				}
 				
 			}
 			if(e.getSource() == addConfirmButton){
@@ -209,7 +224,7 @@ public class IntermediateCenterPanel extends JPanel{
 					dPanel.remove(businesshallList.get(i));
 					dPanel.remove(nameList.get(i));
 				}
-				businesshallBL.deleteBussinessHallInfo(bussinessHallId);
+				businesshallBL.deleteIntermediateCenter(bussinessHallId);
 				drawTBusinessHalls();
 				dPanel.repaint();
 			}
@@ -220,16 +235,25 @@ public class IntermediateCenterPanel extends JPanel{
 				System.out.println("sb");
 				String hallId = textFieldHallId.getText();
 				String hallName = TextFieldHallName.getText();
-				BussinessHallVO bvo = new BussinessHallVO(hallName, hallId, null, null);
-				businesshallBL.addBussinessHallInfo(bvo);
-				
-				processCancel();
-				for(int i = 0;i < businesshalls.size();i++) {
-					dPanel.remove(businesshallList.get(i));
-					dPanel.remove(nameList.get(i));
+				if(hallId.equals("")||hallName.equals("")){
+					new TipDialog(null, "", true, "中转中心信息未填写完整！", false);
 				}
-				drawTBusinessHalls();
-				dPanel.repaint();
+				else if((!isNumeric(hallId))||(hallId.length() != 4)){
+					new TipDialog(null, "", true, "中转中心编号格式不正确！", false);
+				}
+				else{
+					IntermediateCenterVO bvo = new IntermediateCenterVO(hallName, hallId, null, null);
+					businesshallBL.addIntermediateCenter(bvo);
+					new TipDialog(null, "", true, "中转中心信息已保存！", true);
+					processCancel();
+					for(int i = 0;i < businesshalls.size();i++) {
+						dPanel.remove(businesshallList.get(i));
+						dPanel.remove(nameList.get(i));
+					}
+					drawTBusinessHalls();
+					dPanel.repaint();
+					
+				}
 			}
 			if(e.getSource() == returnButton){
 				processReturn();
@@ -289,18 +313,18 @@ public class IntermediateCenterPanel extends JPanel{
 		deleteConfirmButton.setVisible(true);
 		checkLabel.setVisible(true);
 		returnButton.setVisible(true);
-		BussinessHallVO bvo = null;
+		IntermediateCenterVO bvo = null;
 		
 		System.out.println("checkbussinessHallId: " + bussinessHallId);
-		bvo = businesshallBL.getBussinessHallInfo(bussinessHallId);
+		bvo = businesshallBL.getIntermediateCenterInfo(bussinessHallId);
 		
-		numLabel = new JLabel(bvo.getHallId());
-		numLabel.setBounds(320, 248, 200, 30);
+		numLabel = new JLabel(bvo.getId());
+		numLabel.setBounds(320, 240, 200, 30);
 		numLabel.setFont(new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
 		this.add(numLabel,1);
 		
-		nameLabel = new JLabel(bvo.getHallName());
-		nameLabel.setBounds(320, 132, 200, 30);
+		nameLabel = new JLabel(bvo.getCity());
+		nameLabel.setBounds(320, 133, 200, 30);
 		nameLabel.setFont(new Font("微软雅黑", Font.LAYOUT_NO_LIMIT_CONTEXT, 14));
 		this.add(nameLabel,1);
 	}
@@ -321,7 +345,7 @@ public class IntermediateCenterPanel extends JPanel{
 	}
 	
 	public void drawTBusinessHalls(){
-		businesshalls = businesshallBL.getAllBussinessHallInfo();
+		businesshalls = businesshallBL.getAllIntermediateCenterInfo();
 //		businesshallList = new ArrayList<JButton>();
 		businesshallList = new ArrayList<JLabel>();
 		nameList = new ArrayList<JLabel>();
@@ -335,8 +359,8 @@ public class IntermediateCenterPanel extends JPanel{
 //			driver.setBorder(null);
 			driver.addMouseListener(new businesshallListener());
 			businesshallList.add(driver);
-			JLabel name = new JLabel(businesshalls.get(i).getHallName());
-			String hallNum = businesshalls.get(i).getHallId();
+			JLabel name = new JLabel(businesshalls.get(i).getCity());
+			String hallNum = businesshalls.get(i).getCity();
 			name.setBounds(40 + (i%4)*(IMG_TRUCK.getIconWidth() + 
 					buttonToButton) + labelWidth, 30 + 
 					buttonToTop + (i/4)*(height + IMG_TRUCK.getIconHeight())
@@ -361,4 +385,13 @@ public class IntermediateCenterPanel extends JPanel{
 		isActive = false;
 //		System.out.println("sb");
 	}
+	public boolean isNumeric(String str){
+		  for (int i = 0; i < str.length(); i++){
+		   System.out.println(str.charAt(i));
+		   if (!Character.isDigit(str.charAt(i))){
+		    return false;
+		   }
+		  }
+		  return true;
+		 }
 }

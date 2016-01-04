@@ -124,7 +124,7 @@ public class TruckPanel extends JPanel{
 		this.add(returnButton);
 		
 		addLabel = new JLabel();
-		addbkgImg = new ImageIcon("images/truckadd_bg.png");
+		addbkgImg = new ImageIcon("images/truckadd2_bg.png");
 		addLabel.setIcon(addbkgImg);
 		addLabel.setBounds(40, 55, addbkgImg.getIconWidth(), addbkgImg.getIconHeight());
 		addLabel.setVisible(false);

@@ -111,7 +111,7 @@ public class BussinessHallPanel extends JPanel{
 		this.add(returnButton);
 		
 		addLabel = new JLabel();
-		addbkgImg = new ImageIcon("images/businesshalladd_bg.png");
+		addbkgImg = new ImageIcon("images/businesshalladd2_bg.png");
 		addLabel.setIcon(addbkgImg);
 		addLabel.setBounds(40, 55, addbkgImg.getIconWidth(), addbkgImg.getIconHeight());
 		addLabel.setVisible(false);

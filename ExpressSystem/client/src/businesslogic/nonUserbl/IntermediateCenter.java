@@ -39,6 +39,9 @@ public class IntermediateCenter implements IntermediateCenterBLService{
 			e.printStackTrace();
 		}
 		
+		if(iPo == null){
+			return null;
+		}
 		IntermediateCenterVO iVo= new IntermediateCenterVO(iPo.getCity(), iPo.getId(),
 				iPo.getSpo(), iPo.getBpos());
 		return iVo;
