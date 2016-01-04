@@ -16,11 +16,14 @@ import javax.swing.JPanel;
 
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.sheetbl.StorageOutSheet;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.enums.GoodsType;
+import src.enums.SheetType;
 import src.presentation.accountui.TextLabel;
 import src.presentation.sheetui.DateChooserJButton;
 import src.presentation.util.TipDialog;
+import src.vo.StorageOutSheetVO;
 
 public class StorageOutSheetPanel extends JPanel{
 	ArrayList<String> goodsNames;//内件品名
@@ -45,6 +48,7 @@ public class StorageOutSheetPanel extends JPanel{
 //	ArrayList<StorageInSheetVO> inStorages;
 	TextLabel TextAdd;
 	ArrayList<TextLabel> TextDelList;
+	StorageOutSheet storageOutSheet = new StorageOutSheet(new Log(), null);
 	protected static final ImageIcon IMG_BG = new ImageIcon("images/storageoutsheet_bg.png");
 	protected static final ImageIcon IMG_MOD = new ImageIcon("images/account_mod.png");
 	protected static final ImageIcon IMG_REC1 = new ImageIcon("images/account_rec1.png");
@@ -241,6 +245,10 @@ public class StorageOutSheetPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == confirmButton){
 //				System.out.println(goodsNames.get(0));
+				StorageOutSheetVO sovo = new StorageOutSheetVO(SheetType.STORAGE_OUT_SHEET, 
+						goodsNames, expressNumbers, dateChooser.getText(), destinations, 
+						transportForms, transNumbers);
+				storageOutSheet.add(sovo);
 				new TipDialog(null, "", true, "出库单信息已保存！", true);
 			}
 				

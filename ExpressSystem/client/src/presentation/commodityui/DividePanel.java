@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.enums.GoodsType;
 import src.presentation.util.MyButton;
@@ -54,7 +55,7 @@ public class DividePanel extends JPanel{
     public DividePanel(Log log){
     	commodityBL = new Commodity(log);
     	storages = new ArrayList<ExpressInfoVO>();
-    	storages = commodityBL.getAreaGoodsPOs("ÄÏ¾©", GoodsType.RAIL);
+    	storages = commodityBL.getAreaGoodsPOs(LogIn.currentUser.getCity(), GoodsType.RAIL);
     	
 //    	for (int i = 0; i < 28; i++) {
 //            ExpressInfoVO temp = new ExpressInfoVO("Ñªºð", "0000000000000006",
