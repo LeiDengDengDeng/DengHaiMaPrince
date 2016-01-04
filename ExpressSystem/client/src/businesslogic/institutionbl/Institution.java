@@ -11,6 +11,7 @@ import src.businesslogic.userbl.User;
 import src.businesslogicservice.institutionblservice.InstitutionBLService;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.dataservice.institutiondataservice.InstitutionDataService;
+import src.main.ExpressSystem;
 import src.po.InstitutionPO;
 import src.po.SalaryPO;
 import src.po.UserPO;
@@ -30,7 +31,8 @@ public class Institution implements InstitutionBLService{
 		this.user = user;
 		this.staffManage = staffManage;
 		try {
-			this.institutionData = (InstitutionDataService)Naming.lookup("rmi://127.0.0.1:6600/institutionData");
+			this.institutionData = (InstitutionDataService)Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/institutionData");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
