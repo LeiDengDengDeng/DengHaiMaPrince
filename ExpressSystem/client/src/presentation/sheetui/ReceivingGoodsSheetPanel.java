@@ -19,6 +19,8 @@ import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
+import src.vo.CenterReceivingGoodsSheetVO;
+import src.vo.HallReceivingGoodsSheetVO;
 
 public class ReceivingGoodsSheetPanel extends SheetPanel {
 	SubPanel subPanel;
@@ -76,10 +78,22 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 	@Override
 	public boolean confirm() {
 		// TODO 自动生成的方法存根
-		if (subPanel.getContents() == null) {
+		if (subPanel.getExpressNum() == null) {
 			new TipDialog(null, "", true, "快递物流编号格式错误", false);
 			return false;
 		} else {
+			if (LogIn.currentUser.getMyPosition().equals("营业厅业务员")) {
+				HallReceivingGoodsSheetVO vo = new HallReceivingGoodsSheetVO(
+						LogIn.currentUser.getpersonalName(), date.getText(),
+						null, subPanel.getExpressNum());
+				receivingGoodsBL.add(vo);
+			} else {
+				CenterReceivingGoodsSheetVO vo = new CenterReceivingGoodsSheetVO(
+						LogIn.currentUser.getpersonalName(), date.getText(),
+						null, subPanel.getExpressNum());
+				receivingGoodsBL.add(vo);
+			}
+			new TipDialog(null, "", true, "单据成功提交", true);
 			return true;
 		}
 	}
@@ -124,7 +138,8 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 
 		public void addLine() {
 			JTextField courierNumber = new JTextField();
-			JComboBox start = new JComboBox(new String[] {LogIn.currentUser.getCity()});
+			JComboBox start = new JComboBox(
+					new String[] { LogIn.currentUser.getCity() });
 			JComboBox destination = new JComboBox(cities);
 			JComboBox state = new JComboBox(new String[] { "完整", "损坏", "丢失" });
 
@@ -143,18 +158,14 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 			repaint();
 		}
 
-		public ArrayList<String[]> getContents() {
-			ArrayList<String[]> res = new ArrayList<>();
+		public ArrayList<Long> getExpressNum() {
+			ArrayList<Long> res = new ArrayList<>();
 			for (int i = 0; i < courierNumbers.size(); i++) {
 				if (!courierNumbers.get(i).getText().equals("")) {
 					if (!CommonUtil.isValidNumberString(courierNumbers.get(i)
 							.getText(), 10))
 						return null;
-					String[] temp = new String[4];
-					temp[0] = courierNumbers.get(i).getText();
-					temp[1] = (String) starts.get(i).getSelectedItem();
-					temp[2] = (String) destinations.get(i).getSelectedItem();
-					temp[3] = (String) states.get(i).getSelectedItem();
+					res.add(Long.parseLong(courierNumbers.get(i).getText()));
 				}
 			}
 			return res;

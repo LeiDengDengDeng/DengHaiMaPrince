@@ -2,10 +2,12 @@ package src.businesslogic.sheetbl;
 
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
-import src.businesslogic.nonUserbl.BussinessHall;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.enums.SheetType;
+import src.po.CenterGoodsOutSheetPO;
 import src.po.SheetPO;
+import src.vo.CenterGoodsOutSheetVO;
+import src.vo.HallTruckSheetVO;
 import src.vo.SheetVO;
 
 public class CenterGoodsOutSheet extends Sheet {
@@ -25,21 +27,40 @@ public class CenterGoodsOutSheet extends Sheet {
 	}
 
 	@Override
+	public boolean add(SheetVO vo) {
+		// TODO 自动生成的方法存根
+		boolean res = super.add(vo);
+		for (long id : ((HallTruckSheetVO) vo).getExpressNums()){
+			logisticBL.changeLogisticsState(id + "", "快递已离开"
+					+ ((HallTruckSheetVO) vo).getStart() + "中转中心"+ "-" + vo.getTime());
+			logisticBL.changeLogisticsState(id + "", "快递已发往"
+					+ ((HallTruckSheetVO) vo).getEnd() + "中转中心"+ "-" + vo.getTime());
+		}
+		return res;
+	}
+
+	@Override
 	public SheetType getType() {
 		// TODO 自动生成的方法存根
-		return null;
+		return SheetType.CENTER_GOODS_OUT_SHEET;
 	}
 
 	@Override
 	public SheetVO generateVO(SheetPO po) {
-		// TODO 自动生成的方法存根
-		return null;
+		CenterGoodsOutSheetPO npo = (CenterGoodsOutSheetPO) po;
+		CenterGoodsOutSheetVO vo = new CenterGoodsOutSheetVO(npo.getBuilder(),
+				npo.getTime(), npo.getID(), npo.getStart(), npo.getEnd(),
+				npo.getExpressNums());
+		return vo;
 	}
 
 	@Override
 	public SheetPO generatePO(SheetVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
+		CenterGoodsOutSheetVO nvo = (CenterGoodsOutSheetVO) vo;
+		CenterGoodsOutSheetPO po = new CenterGoodsOutSheetPO(nvo.getBuilder(),
+				nvo.getTime(), nvo.getID(), nvo.getStart(), nvo.getEnd(),
+				nvo.getExpressNums());
+		return po;
 	}
 
 	@Override

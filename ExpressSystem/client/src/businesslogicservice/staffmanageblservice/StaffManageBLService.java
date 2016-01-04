@@ -49,7 +49,6 @@ public interface StaffManageBLService {
 	 */
 	public boolean deleteStaff(long StaffId);
 	
-
 	
 	/**
 	 * ½áÊø¹ÜÀí

@@ -214,19 +214,19 @@ public class InstitutionData extends UnicastRemoteObject implements InstitutionD
 		
 	}
 	
-	public static void main(String[] args) {
-		try {
-			InstitutionData data = new InstitutionData();
-//			data.insert(new InstitutionPO("中转中心", 200000, "中转与接收"));
+//	public static void main(String[] args) {
+//		try {
+//			InstitutionData data = new InstitutionData();
+////			data.insert(new InstitutionPO("中转中心", 200000, "中转与接收"));
+////			System.out.println(data.find(100000).getInstitutionName());
+////			System.out.println(data.finds().size());
+////			data.delete(new InstitutionPO("中转中心", 200000, "中转与接收"));
+//			data.insert(new InstitutionPO("营业厅", 100000, "负责中转与接收"));
 //			System.out.println(data.find(100000).getInstitutionName());
-//			System.out.println(data.finds().size());
-//			data.delete(new InstitutionPO("中转中心", 200000, "中转与接收"));
-			data.update(new InstitutionPO("营业厅", 100000, "负责中转与接收"));
-			System.out.println(data.find(100000).getInstitutionName());
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 }

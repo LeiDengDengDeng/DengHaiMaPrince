@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
+import src.presentation.util.TipDialog;
 
 public class AlarmScaleChangingPanel extends JPanel{
 
@@ -96,9 +97,26 @@ public class AlarmScaleChangingPanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == confirmButton){
-				double alarmScaleValue = Double.parseDouble(alarmScale.getText().trim());
-				System.out.println(alarmScaleValue);
-				commodityBL.changeAlarmScale(alarmScaleValue, "南京");
+				boolean isLegal = true;
+				String alarmScalestString = alarmScale.getText();
+				double alarmScaleValue = 0;
+				if(alarmScalestString.equals("")){
+					new TipDialog(null, "", true, "请输入警戒比例！", false);
+				}
+				else{
+					try{
+						alarmScaleValue = Double.parseDouble(alarmScalestString.trim());
+					}
+					catch (NumberFormatException e1) {
+						new TipDialog(null, "", true, "警戒比例格式不正确！", false);
+						isLegal = false;
+					}
+					if(isLegal){
+						System.out.println(alarmScaleValue);
+						commodityBL.changeAlarmScale(alarmScaleValue, "南京");
+						new TipDialog(null, "", true, "警戒比例已保存！", true);
+					}
+				}
 			}
 		}
 		

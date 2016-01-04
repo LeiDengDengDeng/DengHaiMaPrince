@@ -9,7 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.businesslogic.staffmanagebl.Position;
+import src.businesslogic.logbl.Log;
+import src.businesslogic.positionbl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
@@ -43,6 +44,7 @@ public class Staff_InfoPanel extends JPanel{
 	
 	StaffInfoVO staffInfoVO;
 	StaffManage staffManage;
+	Log log;
 	
 	MyButton confirmButton;
 	MyButton deleteButton;
@@ -79,7 +81,8 @@ public class Staff_InfoPanel extends JPanel{
 
 	
 	public void componentsInstantiation(){
-		staffManage = new StaffManage(null, new Position(new User(null)));
+		log = new Log();
+		staffManage = new StaffManage(log, new Position(new User(log),log));
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/staff_InfoBG.png");
 		confirmButton = new MyButton(CONFIRM_ICON, CONFIRMENTER_ICON, coordinate_X + 450, coordinate_Y + 480,false);

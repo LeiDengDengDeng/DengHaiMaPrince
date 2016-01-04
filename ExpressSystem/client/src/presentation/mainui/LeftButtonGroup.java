@@ -78,7 +78,11 @@ public class LeftButtonGroup {
 				temp.addActionListener(new LeftButtonListener(count));
 			}
 		}
-
+		MyButton temp = new MyButton(new ImageIcon("images/left_changePersonalInfo.png"), new ImageIcon(
+				"images/left_changePersonalInfoClicked.png"), 0,
+				200 + leftButtons.size() * 44, true);
+		leftButtons.add(temp);
+		temp.addActionListener(new LeftButtonListener(0));
 	}
 
 	public ArrayList<MyButton> getLeftButtons() {

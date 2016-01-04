@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
+import src.businesslogic.logbl.Log;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.vo.InstitutionVO;
@@ -19,7 +20,7 @@ public class Ins_StaffListener implements MouseListener{
 		this.ID = ID;
 		this.institutionVO = institutionVO;
 		AddListener();
-		user = new User(null);
+		user = new User(new Log());
 	}
 
 	public void AddListener(){

@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import src.businesslogic.logbl.Log;
+import src.businesslogic.logbl.LogBLService_Driver;
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.staffmanagebl.Salary;
 import src.businesslogic.userbl.User;
@@ -52,6 +54,7 @@ public class changeSalaryPanel extends JPanel{
     InstitutionVO institutionVO;
 	UserVO userVO;
 	User user;
+	Log log;
 	LogIn logIn;
 	Salary salary;
 	int basic;
@@ -59,9 +62,10 @@ public class changeSalaryPanel extends JPanel{
 	int commission;
 	
 	public changeSalaryPanel(UserVO userVO,InstitutionVO institutionVO){
-		user = new User(null);
+		log = new Log();
+		user = new User(log);
 		logIn = new LogIn(user); 
-		salary = new Salary(user);
+		salary = new Salary(user,log);
 		
 		this.institutionVO = institutionVO;
 		this.userVO = userVO;

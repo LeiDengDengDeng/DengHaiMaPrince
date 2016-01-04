@@ -20,14 +20,15 @@ import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.enums.GoodsType;
 import src.presentation.accountui.TextLabel;
 import src.presentation.sheetui.DateChooserJButton;
+import src.presentation.util.TipDialog;
 
 public class StorageOutSheetPanel extends JPanel{
 	ArrayList<String> goodsNames;//内件品名
-	ArrayList<Long> expressNumbers;//快递编号
-	long inTime;//入库日期
+	ArrayList<String> expressNumbers;//快递编号
+	String inTime;//入库日期
 	ArrayList<String> destinations;//目的地
 	ArrayList<GoodsType> transportForms;//装运形式
-	ArrayList<Long> transNumbers;//中转单编号或汽运编号
+	ArrayList<String> transNumbers;//中转单编号或汽运编号
 	
 	ArrayList<ButtonDel> buttonDelList;
 	ArrayList<JLabel> formList;
@@ -77,11 +78,11 @@ public class StorageOutSheetPanel extends JPanel{
 	public StorageOutSheetPanel(Log log) {
 		commodityBL = new Commodity(log);
 		goodsNames = new ArrayList<String>();
-		expressNumbers = new ArrayList<Long>();
-		inTime = 0;
+		expressNumbers = new ArrayList<String>();
+		inTime = null;
 		destinations = new ArrayList<String>();
 		transportForms = new ArrayList<GoodsType>();
-		transNumbers = new ArrayList<Long>();
+		transNumbers = new ArrayList<String>();
 		buttonDelList = new ArrayList<ButtonDel>();
 		this.TextDelList = new ArrayList<TextLabel>();
 		formList = new ArrayList<JLabel>();
@@ -129,14 +130,14 @@ public class StorageOutSheetPanel extends JPanel{
 			goodsName.setForeground(Color.WHITE);
 			this.nameList.add(goodsName);
 			// Num
-			String expressNumber = Long.toString(expressNumbers.get(i));
+			String expressNumber = expressNumbers.get(i);
 			String expressNumberGood = "";
 			for (int j = 0; j < 4; j++)
-				expressNumberGood += expressNumber.substring(j * 4, (j + 1) * 4) + " ";
+				expressNumberGood += expressNumber.substring(j * 4, (j + 1) * 4);
 //			expressNumberGood += expressNumber.substring(16, 19);
 			JLabel expressNum = new JLabel(expressNumberGood);
 			expressNum.setLocation(Word_x + wordToNum - 40, Word_y + wordToword + width * i);
-			expressNum.setSize(numWidth, font + 1);
+			expressNum.setSize(numWidth + 20, font + 1);
 			expressNum.setFont(myFont);
 			expressNum.setForeground(Color.WHITE);
 			this.numList.add(expressNum);
@@ -150,9 +151,9 @@ public class StorageOutSheetPanel extends JPanel{
 //			accountAmount.setForeground(Color.WHITE);
 //			this.amountList.add(accountAmount);
 			//transNumber
-			JLabel transNumber = new JLabel(Long.toString(transNumbers.get(i)));
+			JLabel transNumber = new JLabel(transNumbers.get(i));
 			transNumber.setLocation(Word_x + wordToTransNumber, Word_y + wordToword + width * i);
-			transNumber.setSize(TransNumberWidth, font + 1);
+			transNumber.setSize(TransNumberWidth + 70, font + 1);
 			transNumber.setFont(myFont);
 			transNumber.setForeground(Color.WHITE);
 			this.transNumList.add(transNumber);
@@ -240,6 +241,7 @@ public class StorageOutSheetPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == confirmButton){
 //				System.out.println(goodsNames.get(0));
+				new TipDialog(null, "", true, "出库单信息已保存！", true);
 			}
 				
 		}
@@ -270,5 +272,6 @@ public void run(){
 	frame.setContentPane(this);
 	frame.setVisible(true);
 	frame.setResizable(false);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 }
 }

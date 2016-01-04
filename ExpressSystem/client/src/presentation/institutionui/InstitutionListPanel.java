@@ -12,6 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import src.businesslogic.institutionbl.Institution;
+import src.businesslogic.logbl.Log;
+import src.businesslogic.positionbl.Position;
+import src.businesslogic.staffmanagebl.StaffManage;
+import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
@@ -26,7 +30,7 @@ public class InstitutionListPanel extends JPanel{
 	static final int coordinate_X = 40;
 	static final int coordinate_Y = 40;
 	
-	private static final int Line_Num = 13;
+	private static final int Line_Num = 15;
 	
 	Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
 	
@@ -34,6 +38,7 @@ public class InstitutionListPanel extends JPanel{
 	ArrayList<InstitutionVO> institutionVOs;
 	InstitutionGroup institutionGroup;
 	Institution institution;
+	Log log;
 
 	JLabel imageLabel;
 	JLabel addLabel;
@@ -51,12 +56,11 @@ public class InstitutionListPanel extends JPanel{
     public InstitutionListPanel(){
 //    	componentsInstantiation();
     	initial();
-    	setInstitutions(institutionVOs);
     	PageButtonActionListener listener = new PageButtonActionListener(this);
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
         nextPageButton.addActionListener(listener);
-        pageComboBox.setBounds(coordinate_X + 472, coordinate_Y + 440, 40, 20);
+        pageComboBox.setBounds(coordinate_X + 490, coordinate_Y + 468, 44, 23);
         setPageComboBox();
         pageComboBox.addActionListener(listener);
         searchButton.addActionListener(listener);
@@ -68,26 +72,27 @@ public class InstitutionListPanel extends JPanel{
     }
 	
 	public void initial(){		
-		institution = new Institution(null);
+		log = new Log();
+		institution = new Institution(log,new User(log),new StaffManage(log, new Position(new User(log), log)));
 		imageLabel = new JLabel();
 		addLabel = new JLabel();
 		pageComboBox = new JComboBox();
 		searchField = new JTextField();
-		bkgImg = new ImageIcon("images/institution_ListBG.png");
+		bkgImg = new ImageIcon("images/institution_ListBGnew.png");
 		add = new ImageIcon("images/institution_addAccount.png");
 		addButton = new MyButton(new ImageIcon("images/account_add.png"),
-				new ImageIcon("images/account_addEnter.png"), coordinate_X + 10, coordinate_Y + 32, false);
+				new ImageIcon("images/account_addEnter.png"), coordinate_X + 10, coordinate_Y + 469, false);
 //		confirmButton = new MyButton(new ImageIcon("images/user_InfoConfirm.png"),
 //				new ImageIcon("images/user_InfoConfirmEnter.png"), coordinate_X + 470, coordinate_Y + 485, false);
 		searchButton = new MyButton(new ImageIcon("images/search_icon.png"),
-				new ImageIcon("images/search_iconClicked.png"), coordinate_X + 493, coordinate_Y + 25, false);
+				new ImageIcon("images/search_iconClicked.png"), coordinate_X + 462, coordinate_Y - 3, false);
 		
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
         addLabel.setIcon(add);
-        addLabel.setBounds(coordinate_X + 25, coordinate_Y + 24, add.getIconWidth(), add.getIconHeight());
+        addLabel.setBounds(coordinate_X + 25, coordinate_Y + 460, add.getIconWidth(), add.getIconHeight());
         
-        searchField.setBounds(coordinate_X + 403, coordinate_Y + 34, 85, 18);
+        searchField.setBounds(coordinate_X + 377, coordinate_Y + 4, 85, 18);
 		
 //		addLabel.setIcon(ADD_ICON);
 		
@@ -126,11 +131,12 @@ public class InstitutionListPanel extends JPanel{
 //			}
 //		});
 		previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
-                ("images/previousPageClicked.png"), coordinate_X + 250, coordinate_Y + 440);
+                ("images/previousPageClicked.png"), coordinate_X + 282, coordinate_Y + 468);
 		nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
-                ("images/nextPageClicked.png"), coordinate_X + 320, coordinate_Y + 440);
+                ("images/nextPageClicked.png"), coordinate_X + 362, coordinate_Y + 468);
 		
 		this.institutionVOs = institution.getAllInstitution();
+		setInstitutions(institutionVOs);
 		
 //		this.add(searchLabel);
 		this.add(pageComboBox);
@@ -150,7 +156,7 @@ public class InstitutionListPanel extends JPanel{
 	}
 	
 	public void setInstitutions(ArrayList<InstitutionVO> institutionVOs){
-		institutionGroup = new InstitutionGroup(institutionVOs, Line_Num, coordinate_X + 33,coordinate_Y + 90);
+		institutionGroup = new InstitutionGroup(institutionVOs, Line_Num, coordinate_X + 38,coordinate_Y + 98);
 		
 	}
 	private void setPageComboBox() {

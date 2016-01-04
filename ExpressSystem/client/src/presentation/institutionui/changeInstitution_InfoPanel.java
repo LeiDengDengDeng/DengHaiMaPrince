@@ -10,6 +10,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import src.businesslogic.institutionbl.Institution;
+import src.businesslogic.logbl.Log;
+import src.businesslogic.positionbl.Position;
+import src.businesslogic.staffmanagebl.StaffManage;
+import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
@@ -37,6 +41,7 @@ public class changeInstitution_InfoPanel extends JPanel{
 	private final static ImageIcon CANCELENTER_ICON = new ImageIcon("images/cancel_Enter.png");
 	
 	Institution institution;
+	Log log;
 	
 	MyButton confirmButton;
 	MyButton cancelButton;
@@ -85,7 +90,8 @@ public class changeInstitution_InfoPanel extends JPanel{
 	}
 	
 	public void componentsInstantiation(InstitutionVO institutionVO){
-		institution = new Institution(null);
+		log = new Log();
+		institution = new Institution(log,new User(log),new StaffManage(log, new Position(new User(log), log)));
 		imageLabel = new JLabel();
 		bkgImg = new ImageIcon("images/institution_addBG.png");
 		institutionID = new JTextField(String.valueOf(institutionVO.getInstitutionID()));

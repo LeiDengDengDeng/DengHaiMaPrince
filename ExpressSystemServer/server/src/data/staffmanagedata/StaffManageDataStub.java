@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
+import src.po.AuthorityPO;
 import src.po.UserPO;
 
 public class StaffManageDataStub implements StaffManageDataService{
@@ -162,6 +163,7 @@ public class StaffManageDataStub implements StaffManageDataService{
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 //	public static void main(String[] args){
 //		StaffManageDataStub staffManageDataStub = new StaffManageDataStub();

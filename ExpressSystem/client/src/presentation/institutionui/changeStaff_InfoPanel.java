@@ -14,7 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import src.businesslogic.institutionbl.Institution;
+import src.businesslogic.logbl.Log;
 import src.businesslogic.nonUserbl.IntermediateCenter;
+import src.businesslogic.positionbl.Position;
+import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
@@ -48,6 +51,7 @@ public class changeStaff_InfoPanel extends JPanel{
 
 	Institution institution;
 	User user;
+	Log log;
 	IntermediateCenter intermediateCenter;
 	UserVO userVO;
 	InstitutionVO institutionVO;
@@ -85,6 +89,7 @@ public class changeStaff_InfoPanel extends JPanel{
 		buttonActionListener listener = new buttonActionListener(this);
         cancelButton.addActionListener(listener);
         confirmbuButton.addActionListener(listener);
+        modifyButton.addActionListener(listener);
 	}
 	
 //	public void paintComponent(Graphics g){
@@ -122,9 +127,10 @@ public class changeStaff_InfoPanel extends JPanel{
 	}
 	
 	public void componentsInstantiation(){
-		user = new User(null);
-		institution = new Institution(null);
-		intermediateCenter = new IntermediateCenter(null);
+		log = new Log();
+		user = new User(log);
+		institution = new Institution(log,user,new StaffManage(log, new Position(user, log)));
+		intermediateCenter = new IntermediateCenter(log);
 		imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/user_InfoBG.png");
 		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);

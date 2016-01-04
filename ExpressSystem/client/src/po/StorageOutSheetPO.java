@@ -2,6 +2,7 @@ package src.po;
 
 import java.util.ArrayList;
 
+import src.enums.GoodsType;
 import src.enums.SheetState;
 import src.enums.SheetType;
 
@@ -12,12 +13,13 @@ public class StorageOutSheetPO implements SheetPO {
 	 */
 	private static final long serialVersionUID = 1721421295303152990L;
 	
-	private ArrayList<Long> expressNumberList;//快递编号
-	private ArrayList<Long> outTimeList;//出库日期
+	ArrayList<String> goodsNameList;//内件品名
+	ArrayList<String> expressNumberList;//快递编号
+	String outTime;//出库日期
 	private ArrayList<String> destinationList;//目的地
-	private ArrayList<Integer> transportFormList;//装运形式
-	private ArrayList<Long> transferNumberList;//中转单编号
-	private ArrayList<Long> transportNumberList;//汽运编号
+	private ArrayList<GoodsType> transportFormList;//装运形式
+	private ArrayList<String> transNumberList;//中转单编号火汽运编号
+//	private ArrayList<Long> transportNumberList;//汽运编号
 
 	String builder;
 	String time;
@@ -26,35 +28,43 @@ public class StorageOutSheetPO implements SheetPO {
 	private SheetState state = SheetState.NOT_EXAMINED;
 	
 	
-	public StorageOutSheetPO(ArrayList<Long> expressNumberList,
-			ArrayList<Long> outTimeList, ArrayList<String> destinationList,
-			ArrayList<Integer> transportFormList,
-			ArrayList<Long> transferNumberList,
-			ArrayList<Long> transportNumberList, long iD) {
+	public StorageOutSheetPO(ArrayList<String> goodsNameList,ArrayList<String> expressNumberList,
+			String outTime, ArrayList<String> destinationList,
+			ArrayList<GoodsType> transportFormList,
+			ArrayList<String> transNumberList,
+			long iD) {
 		super();
+		this.goodsNameList = goodsNameList;
 		this.expressNumberList = expressNumberList;
-		this.outTimeList = outTimeList;
+		this.outTime = outTime;
 		this.destinationList = destinationList;
 		this.transportFormList = transportFormList;
-		this.transferNumberList = transferNumberList;
-		this.transportNumberList = transportNumberList;
+		this.transNumberList = transNumberList;
 		ID = iD;
 	}
 
-	public ArrayList<Long> getExpressNumberList() {
+	public ArrayList<String> getGoodsNameList() {
+		return goodsNameList;
+	}
+
+	public void setGoodsNameList(ArrayList<String> goodsNameList) {
+		this.goodsNameList = goodsNameList;
+	}
+
+	public ArrayList<String> getExpressNumberList() {
 		return expressNumberList;
 	}
 
-	public void setExpressNumberList(ArrayList<Long> expressNumberList) {
+	public void setExpressNumberList(ArrayList<String> expressNumberList) {
 		this.expressNumberList = expressNumberList;
 	}
 
-	public ArrayList<Long> getOutTimeList() {
-		return outTimeList;
+	public String getOutTime() {
+		return outTime;
 	}
 
-	public void setOutTimeList(ArrayList<Long> outTimeList) {
-		this.outTimeList = outTimeList;
+	public void setOutTimeList(String outTime) {
+		this.outTime = outTime;
 	}
 
 	public ArrayList<String> getDestinationList() {
@@ -65,28 +75,20 @@ public class StorageOutSheetPO implements SheetPO {
 		this.destinationList = destinationList;
 	}
 
-	public ArrayList<Integer> getTransportFormList() {
+	public ArrayList<GoodsType> getTransportFormList() {
 		return transportFormList;
 	}
 
-	public void setTransportFormList(ArrayList<Integer> transportFormList) {
+	public void setTransportFormList(ArrayList<GoodsType> transportFormList) {
 		this.transportFormList = transportFormList;
 	}
 
-	public ArrayList<Long> getTransferNumberList() {
-		return transferNumberList;
+	public ArrayList<String> getTransNumberList() {
+		return transNumberList;
 	}
 
-	public void setTransferNumberList(ArrayList<Long> transferNumberList) {
-		this.transferNumberList = transferNumberList;
-	}
-
-	public ArrayList<Long> getTransportNumberList() {
-		return transportNumberList;
-	}
-
-	public void setTransportNumberList(ArrayList<Long> transportNumberList) {
-		this.transportNumberList = transportNumberList;
+	public void setTransNumberList(ArrayList<String> transNumberList) {
+		this.transNumberList = transNumberList;
 	}
 
 	public SheetType getType() {

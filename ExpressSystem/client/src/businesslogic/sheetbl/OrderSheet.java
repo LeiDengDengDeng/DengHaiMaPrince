@@ -3,6 +3,7 @@ package src.businesslogic.sheetbl;
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.dataservice.sheetdataservice.SheetDataService;
 import src.enums.SheetType;
@@ -20,11 +21,13 @@ public class OrderSheet extends Sheet {
 	SheetType type = SheetType.ORDER_SHEET;
 	SheetDataService sheetData;
 	IntermediateCenter centerBL;
+	CommodityItem commodityItem;
 
 	public OrderSheet(Log logBL, Logistic logisticBL,
 			IntermediateCenter centerBL) {
 		super(logBL, logisticBL);
 		this.centerBL = centerBL;
+		commodityItem = new CommodityItem(new Commodity(logBL));
 	}
 
 	@Override
@@ -34,6 +37,19 @@ public class OrderSheet extends Sheet {
 			res[i][0] = centerBL.getcity().get(i);
 		}
 
+		return res;
+	}
+
+	@Override
+	public boolean add(SheetVO vo) {
+		// TODO 自动生成的方法存根
+		boolean res = super.add(vo);
+		commodityItem.updateGoods(((OrderSheetVO) vo).getGoodsVO());
+		logisticBL.changeLogisticsState(
+				vo.getID() + "",
+				"快递已被揽件，位置：" + LogIn.currentUser.getCity()
+						+ LogIn.currentUser.getBusinessHall() + "-"
+						+ vo.getTime());
 		return res;
 	}
 
@@ -85,6 +101,5 @@ public class OrderSheet extends Sheet {
 	@Override
 	public void endingAct(String operation, String statement) {
 		logBL.generateLog(operation + "寄件单", statement);
-
 	}
 }

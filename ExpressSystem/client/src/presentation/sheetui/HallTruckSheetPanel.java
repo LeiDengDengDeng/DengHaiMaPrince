@@ -2,6 +2,8 @@ package src.presentation.sheetui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -10,6 +12,7 @@ import javax.swing.JTextField;
 
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.nonUserbl.BussinessHall;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.sheetbl.HallTruckSheet;
@@ -17,6 +20,7 @@ import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyButton;
 import src.presentation.util.MyLabel;
 import src.presentation.util.TipDialog;
+import src.vo.HallTruckSheetVO;
 
 // 60 271 149 452
 
@@ -26,7 +30,7 @@ import src.presentation.util.TipDialog;
 public class HallTruckSheetPanel extends SheetPanel {
 	DateChooserJButton dateChooser;
 	JComboBox city;
-	JComboBox institution;
+	JComboBox hall;
 	JComboBox destination;
 	MyLabel institutionNumber;
 	JComboBox availableTruck;
@@ -52,7 +56,7 @@ public class HallTruckSheetPanel extends SheetPanel {
 		courierNumberPanel = new CourierNumberPanel();
 		dateChooser = new DateChooserJButton();
 		city = new JComboBox(bl.getCities());
-		institution = new JComboBox(new String[] { "鼓楼营业厅", "仙林营业厅" });
+		hall = new JComboBox(bl.getHalls((String) city.getSelectedItem()));
 		destination = new JComboBox(bl.getCities());
 		institutionNumber = new MyLabel("025-01");
 		availableTruck = new JComboBox(new String[] { "02501001", "02501002" });
@@ -66,7 +70,7 @@ public class HallTruckSheetPanel extends SheetPanel {
 
 		dateChooser.setBounds(170, 79, 80, COMPONENT_HEIGHT);
 		city.setBounds(170, 112, 60, COMPONENT_HEIGHT);
-		institution.setBounds(245, 112, 100, COMPONENT_HEIGHT);
+		hall.setBounds(245, 112, 100, COMPONENT_HEIGHT);
 		destination.setBounds(465, 111, 60, COMPONENT_HEIGHT);
 		institutionNumber.setBounds(190, 143, 60, COMPONENT_HEIGHT);
 		availableTruck.setBounds(440, 143, 100, COMPONENT_HEIGHT);
@@ -82,13 +86,20 @@ public class HallTruckSheetPanel extends SheetPanel {
 		});
 		confirmButton.addActionListener(new ConfirmButtonListener(this));
 
+		hall.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				hall = new JComboBox(bl.getHalls((String) city
+						.getSelectedItem()));
+			}
+		});
+
 		imageLabel.setIcon(bkgImg);
 		imageLabel.setBounds(58, 45, bkgImg.getIconWidth(),
 				bkgImg.getIconHeight());
 
 		this.add(dateChooser);
 		this.add(city);
-		this.add(institution);
+		this.add(hall);
 		this.add(destination);
 		this.add(institutionNumber);
 		this.add(availableTruck);
@@ -104,9 +115,18 @@ public class HallTruckSheetPanel extends SheetPanel {
 
 	@Override
 	public boolean confirm() {
-		if (courierNumberPanel.getCourierNumber() == null)
+		if (courierNumberPanel.getCourierNumber() == null) {
 			new TipDialog(null, "", true, "快递物流编号格式有误", false);
-
-		return false;
+			return false;
+		} else {
+			HallTruckSheetVO vo = new HallTruckSheetVO(
+					LogIn.currentUser.getpersonalName(), dateChooser.getText(),
+					null, LogIn.currentUser.getCity(),
+					(String) destination.getSelectedItem(),
+					courierNumberPanel.getCourierNumber());
+			bl.add(vo);
+			new TipDialog(null, "", true, "单据成功提交", true);
+			return true;
+		}
 	}
 }

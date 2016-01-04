@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import src.businesslogic.nonUserbl.DriverController;
 import src.businesslogicservice.nonUserblservice.DriverBLService;
 import src.enums.Sex;
+import src.presentation.util.TipDialog;
 import src.vo.DriverInfoVO;
 
 public class DriverPanel extends JPanel{
@@ -256,7 +257,16 @@ public class DriverPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == checkConfirmButton){
 				String driverId = TextFieldCheckDriverNum.getText();
-				processCheck(driverId);
+				DriverInfoVO dvo = driverBL.getDriverInfo(driverId);
+				if(driverId.equals("")){
+					new TipDialog(null, "", true, "请输入司机编号！", false);
+				}
+				else if(dvo == null){
+					new TipDialog(null, "", true, "司机编号不存在！", false);
+				}
+				else{
+					processCheck(driverId);
+				}
 				
 			}
 			if(e.getSource() == addConfirmButton){
@@ -315,21 +325,38 @@ public class DriverPanel extends JPanel{
 				String num = textFieldDriverNum.getText();
 				String mobNum = textFieldMobNum.getText();
 				String yearOfExpiring = textFieldYearOfExpiring.getText(); 
-				DriverInfoVO dvo = new DriverInfoVO(num, name, Integer.parseInt(id.substring(6, 10)), 
-						Integer.parseInt(id.substring(10, 12)), Integer.parseInt(id.substring(12, 14)),
-						id, mobNum, sex, Integer.parseInt(yearOfExpiring));
 //				System.out.println(dvo.getName() + " " + dvo.getSex());
 //				System.out.println(dvo.getYear() + " " + dvo.getMonth() + " " + dvo.getDay());
-				driverBL.addDriverInfo(dvo);
-				
-				processCancel();
-				for(int i = 0;i < drivers.size();i++) {
-					dPanel.remove(driverList.get(i));
-					dPanel.remove(nameList.get(i));
-					dPanel.remove(numList.get(i));
+//				System.out.println(name.equals(""));
+				if(name.equals("")||id.equals("")||city.equals("")
+						||businessHall.equals("")||num.equals("")||mobNum.equals("")
+						||yearOfExpiring.equals("")){
+					new TipDialog(null, "", true, "司机信息未填写完整！", false);
 				}
-				drawDrivers();
-				dPanel.repaint();
+				else if((!isNumeric(id))||(id.length() != 18)){
+					new TipDialog(null, "", true, "身份证号格式不正确！", false);
+				}
+				else if((!isNumeric(num))||(num.length() != 9)){
+					new TipDialog(null, "", true, "司机编号格式不正确！", false);
+				}
+				else if(!isNumeric(mobNum)){
+					new TipDialog(null, "", true, "手机号格式不正确！", false);
+				}
+				else{
+					DriverInfoVO dvo = new DriverInfoVO(num, name, Integer.parseInt(id.substring(6, 10)), 
+							Integer.parseInt(id.substring(10, 12)), Integer.parseInt(id.substring(12, 14)),
+							id, mobNum, sex, Integer.parseInt(yearOfExpiring));
+					driverBL.addDriverInfo(dvo);
+					new TipDialog(null, "", true, "司机信息已保存！", true);
+					processCancel();
+					for(int i = 0;i < drivers.size();i++) {
+						dPanel.remove(driverList.get(i));
+						dPanel.remove(nameList.get(i));
+						dPanel.remove(numList.get(i));
+					}
+					drawDrivers();
+					dPanel.repaint();
+				}
 			}
 			if(e.getSource() == returnButton){
 				processReturn();
@@ -340,37 +367,6 @@ public class DriverPanel extends JPanel{
 				processchange();
 			}
 			if(e.getSource() == changeConfirmButton){
-				changeConfirmButton.setVisible(false);
-				changeButton.setVisible(true);
-				
-				nameLabel.setText(changeNameField.getText());
-				changeNameField.setVisible(false);
-				nameLabel.setVisible(true);
-				
-				numLabel.setText(changeNumField.getText());
-				changeNumField.setVisible(false);
-				numLabel.setVisible(true);
-				
-				sexLabel.setText(changeSexBox.getSelectedItem() + "");
-				changeSexBox.setVisible(false);
-				sexLabel.setVisible(true);
-				
-				mobNumLabel.setText(changeMobNumField.getText());
-				changeMobNumField.setVisible(false);
-				mobNumLabel.setVisible(true);
-				
-				idLabel.setText(changeIdField.getText());
-				changeIdField.setVisible(false);
-				idLabel.setVisible(true);
-				
-				dateLabel.setText(changeDateField.getText());
-				changeDateField.setVisible(false);
-				dateLabel.setVisible(true);
-				
-				yearOfExpiringLabel.setText(changeYearOfExpiringField.getText());
-				changeYearOfExpiringField.setVisible(false);
-				yearOfExpiringLabel.setVisible(true);
-				
 				String name = changeNameField.getText();
 				String sexString = (String) changeSexBox.getSelectedItem();
 				Sex sex = null;
@@ -384,11 +380,60 @@ public class DriverPanel extends JPanel{
 				String num = changeNumField.getText();
 				String mobNum = changeMobNumField.getText();
 				String yearOfExpiring = changeYearOfExpiringField.getText();
-				System.out.println("id: " + id);
-				DriverInfoVO dvo = new DriverInfoVO(num, name, Integer.parseInt(id.substring(6, 10)), 
-						Integer.parseInt(id.substring(10, 12)), Integer.parseInt(id.substring(12, 14)),
-						id, mobNum, sex, Integer.parseInt(yearOfExpiring));
-				driverBL.changeDriverInfo(num, dvo);
+//				System.out.println("id: " + id);
+				if(name.equals("")||id.equals("")||num.equals("")||mobNum.equals("")
+						||yearOfExpiring.equals("")){
+					new TipDialog(null, "", true, "司机信息未填写完整！", false);
+				}
+				else if((!isNumeric(id))||(id.length() != 18)){
+					new TipDialog(null, "", true, "身份证号格式不正确！", false);
+				}
+				else if((!isNumeric(num))||(num.length() != 9)){
+					new TipDialog(null, "", true, "司机编号格式不正确！", false);
+				}
+				else if(!isNumeric(mobNum)){
+					new TipDialog(null, "", true, "手机号格式不正确！", false);
+				}
+				else{
+					DriverInfoVO dvo = new DriverInfoVO(num, name, Integer.parseInt(id.substring(6, 10)), 
+							Integer.parseInt(id.substring(10, 12)), Integer.parseInt(id.substring(12, 14)),
+							id, mobNum, sex, Integer.parseInt(yearOfExpiring));
+//					driverBL.changeDriverInfo(num, dvo);
+					new TipDialog(null, "", true, "司机信息已完成更改！", true);
+					
+					changeConfirmButton.setVisible(false);
+					changeButton.setVisible(true);
+					
+					nameLabel.setText(changeNameField.getText());
+					changeNameField.setVisible(false);
+					nameLabel.setVisible(true);
+					
+					numLabel.setText(changeNumField.getText());
+					changeNumField.setVisible(false);
+					numLabel.setVisible(true);
+					
+					sexLabel.setText(changeSexBox.getSelectedItem() + "");
+					changeSexBox.setVisible(false);
+					sexLabel.setVisible(true);
+					
+					mobNumLabel.setText(changeMobNumField.getText());
+					changeMobNumField.setVisible(false);
+					mobNumLabel.setVisible(true);
+					
+					idLabel.setText(changeIdField.getText());
+					changeIdField.setVisible(false);
+					idLabel.setVisible(true);
+					
+					dateLabel.setText(id.substring(6,10) + "-" + id.substring(10, 12) + "-"
+							+ id.substring(12, 14));
+					changeDateField.setVisible(false);
+					dateLabel.setVisible(true);
+					
+					yearOfExpiringLabel.setText(changeYearOfExpiringField.getText());
+					changeYearOfExpiringField.setVisible(false);
+					yearOfExpiringLabel.setVisible(true);
+				}
+				
 			}
 		}
 		
@@ -626,4 +671,16 @@ public class DriverPanel extends JPanel{
 		isActive = false;
 //		System.out.println("sb");
 	}
+	
+	public boolean isNumeric(String str){
+		  for (int i = 0; i < str.length(); i++){
+		   System.out.println(str.charAt(i));
+		   if (!Character.isDigit(str.charAt(i))){
+		    return false;
+		   }
+		  }
+		  return true;
+		 }
+
+
 }

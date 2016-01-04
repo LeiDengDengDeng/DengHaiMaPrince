@@ -6,22 +6,29 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import src.businesslogic.logbl.Log;
+import src.businesslogic.staffmanagebl.StaffManage;
+import src.businesslogic.userbl.User;
 import src.businesslogicservice.institutionblservice.InstitutionBLService;
+import src.businesslogicservice.logblservice.LogBLService;
 import src.dataservice.institutiondataservice.InstitutionDataService;
 import src.po.InstitutionPO;
 import src.po.SalaryPO;
 import src.po.UserPO;
 import src.vo.InstitutionVO;
 import src.vo.SalaryVO;
+import src.vo.StaffInfoVO;
 import src.vo.UserVO;
 
 public class Institution implements InstitutionBLService{
 	
 	InstitutionDataService institutionData;
-	Log log;
-	public Institution(Log log){
+	LogBLService log;
+	User user;
+	StaffManage staffManage;
+	public Institution(LogBLService log,User user,StaffManage staffManage){
 		this.log = log;
+		this.user = user;
+		this.staffManage = staffManage;
 		try {
 			this.institutionData = (InstitutionDataService)Naming.lookup("rmi://127.0.0.1:6600/institutionData");
 		} catch (MalformedURLException e) {
@@ -46,17 +53,16 @@ public class Institution implements InstitutionBLService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(institutionPO == null){
-			System.out.println("Not exist!!");
-			return null;
-		}else{
+		if(institutionPO != null){
 			ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
-			for(int i = 0; i < institutionPO.getStaff().size();i++){
-				SalaryVO salaryVO = new SalaryVO(institutionPO.getStaff().get(i).getSalary().getBasic());
-				salaryVO.setCommission(institutionPO.getStaff().get(i).getSalary().getCommission());
-				salaryVO.setEachPay(institutionPO.getStaff().get(i).getSalary().getEachPay());
-				salaryVO.setTime(institutionPO.getStaff().get(i).getSalary().getTime());
-				userVOs.add(new UserVO(institutionPO.getStaff().get(i).getPersonalID(),
+
+			if(institutionPO.getStaff() != null){
+				for(int i = 0; i < institutionPO.getStaff().size();i++){
+					SalaryVO salaryVO = new SalaryVO(institutionPO.getStaff().get(i).getSalary().getBasic());
+					salaryVO.setCommission(institutionPO.getStaff().get(i).getSalary().getCommission());
+					salaryVO.setEachPay(institutionPO.getStaff().get(i).getSalary().getEachPay());
+					salaryVO.setTime(institutionPO.getStaff().get(i).getSalary().getTime());
+					userVOs.add(new UserVO(institutionPO.getStaff().get(i).getPersonalID(),
 						institutionPO.getStaff().get(i).getPersonalAccount(),
 						institutionPO.getStaff().get(i).getMyPassword(),
 						institutionPO.getStaff().get(i).getPersonalName(),
@@ -65,12 +71,18 @@ public class Institution implements InstitutionBLService{
 						salaryVO,
 						institutionPO.getStaff().get(i).getCity(),
 						institutionPO.getStaff().get(i).getBusinessHall()));
+				}
+			}else{
+				userVOs = null;
 			}
 			InstitutionVO institutionVO = new InstitutionVO(institutionPO.getInstitutionName(),
 					institutionPO.getInstitutionID(), 
 					userVOs, institutionPO.getFunction());
 		
 			return institutionVO;
+		}else {
+			System.out.println("Not exist!!");
+			return null;
 		}
 	}
 
@@ -91,12 +103,57 @@ public class Institution implements InstitutionBLService{
 		}else{
 			for(int i = 0;i < institutionPOs.size();i++){
 				ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
-				for(int j = 0; j < institutionPOs.get(i).getStaff().size();j++){
-					SalaryVO salaryVO = new SalaryVO(institutionPOs.get(i).getStaff().get(j).getSalary().getBasic());
-					salaryVO.setCommission(institutionPOs.get(i).getStaff().get(j).getSalary().getCommission());
-					salaryVO.setEachPay(institutionPOs.get(i).getStaff().get(j).getSalary().getEachPay());
-					salaryVO.setTime(institutionPOs.get(i).getStaff().get(j).getSalary().getTime());
-					userVOs.add(new UserVO(institutionPOs.get(i).getStaff().get(j).getPersonalID(),
+				ArrayList<UserVO> vos = new ArrayList<UserVO>();
+				ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
+				ArrayList<StaffInfoVO> staffInfoVOs = staffManage.getAllStaff();
+				System.out.println(staffInfoVOs.size());
+				//跟新机构员工列表的信息
+				for(int k = 0; k < staffInfoVOs.size();k++){
+					if(institutionPOs.get(i).getInstitutionName().equals("财务部")){
+						if(staffInfoVOs.get(k).getPosition().equals("财务人员")){
+							UserVO u = user.getPersonalInfo(staffInfoVOs.get(k).getID());
+							vos.add(u);
+						}
+					}else if(institutionPOs.get(i).getInstitutionName().equals(staffInfoVOs.get(k).getCity()
+							+ staffInfoVOs.get(k).getBusinessHall())){
+						UserVO u = user.getPersonalInfo(staffInfoVOs.get(k).getID());
+						vos.add(u);
+					}else if(institutionPOs.get(i).getInstitutionName().contains("中转中心")){
+						String city = institutionPOs.get(k).getInstitutionName().charAt(0) + 
+								institutionPOs.get(k).getInstitutionName().charAt(1) + "";
+						if(staffInfoVOs.get(i).getCity().equals(city) && 
+								staffInfoVOs.get(k).getPosition().contains("中转中心")){
+							UserVO u = user.getPersonalInfo(staffInfoVOs.get(k).getID());
+							vos.add(u);
+						}
+					}else if(institutionPOs.get(i).getInstitutionName().equals("管理部")){
+						if(staffInfoVOs.get(k).getPosition().equals("管理员") ||
+								staffInfoVOs.get(k).getPosition().equals("总经理")){
+							UserVO u = user.getPersonalInfo(staffInfoVOs.get(k).getID());
+							vos.add(u);
+						}
+					}
+				}
+				InstitutionVO insVo = new InstitutionVO(institutionPOs.get(i).getInstitutionName(),
+						institutionPOs.get(i).getInstitutionID(), vos,
+						institutionPOs.get(i).getFunction());
+				changeInstitutionInfo(insVo);
+			}
+			try {
+				institutionPOs = institutionData.finds();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			for(int i = 0;i < institutionPOs.size();i++){
+				ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
+				if(institutionPOs.get(i).getStaff() != null){
+					for(int j = 0; j < institutionPOs.get(i).getStaff().size();j++){
+						SalaryVO salaryVO = new SalaryVO(institutionPOs.get(i).getStaff().get(j).getSalary().getBasic());
+						salaryVO.setCommission(institutionPOs.get(i).getStaff().get(j).getSalary().getCommission());
+						salaryVO.setEachPay(institutionPOs.get(i).getStaff().get(j).getSalary().getEachPay());
+						salaryVO.setTime(institutionPOs.get(i).getStaff().get(j).getSalary().getTime());
+						userVOs.add(new UserVO(institutionPOs.get(i).getStaff().get(j).getPersonalID(),
 							institutionPOs.get(i).getStaff().get(j).getPersonalAccount(),
 							institutionPOs.get(i).getStaff().get(j).getMyPassword(),
 							institutionPOs.get(i).getStaff().get(j).getPersonalName(),
@@ -105,6 +162,9 @@ public class Institution implements InstitutionBLService{
 							salaryVO,
 							institutionPOs.get(i).getStaff().get(j).getCity(),
 							institutionPOs.get(i).getStaff().get(j).getBusinessHall()));
+					}
+				}else{
+					userVOs = null;
 				}
 				institutionVOs.add(new InstitutionVO(institutionPOs.get(i).getInstitutionName(), 
 						institutionPOs.get(i).getInstitutionID(), 
@@ -121,32 +181,71 @@ public class Institution implements InstitutionBLService{
 			return false;
 		
 		else{
-			System.out.println("add institution");
-			InstitutionPO institutionPO = new InstitutionPO(Institution.getInstitutionName(),
-					Institution.getInstitutionID(), Institution.getFunction());
-			try {
-				institutionData.insert(institutionPO);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(getInstitutionInfo(Institution.getInstitutionID()) != null){
+				System.out.println("Already exist!!!");
+				return false;
+			}else{
+				ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
+				ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
+				ArrayList<StaffInfoVO> staffInfoVOs = staffManage.getAllStaff();
+				//跟新机构员工列表的信息
+				for(int i = 0; i < staffInfoVOs.size();i++){
+					if(Institution.getInstitutionName().equals("财务部")){
+						if(staffInfoVOs.get(i).getPosition().equals("财务人员")){
+							UserVO u = user.getPersonalInfo(staffInfoVOs.get(i).getID());
+							userVOs.add(u);
+						}
+					}else if(Institution.getInstitutionName().equals(staffInfoVOs.get(i).getCity()
+							+ staffInfoVOs.get(i).getBusinessHall())){
+						UserVO u = user.getPersonalInfo(staffInfoVOs.get(i).getID());
+						userVOs.add(u);
+					}else if(Institution.getInstitutionName().contains("中转中心")){
+						String city = Institution.getInstitutionName().charAt(0) + 
+								Institution.getInstitutionName().charAt(1) + "";
+						if(staffInfoVOs.get(i).getCity().equals(city) && 
+								staffInfoVOs.get(i).getPosition().contains("中转中心")){
+							UserVO u = user.getPersonalInfo(staffInfoVOs.get(i).getID());
+							userVOs.add(u);
+						}
+					}else if(Institution.getInstitutionName().equals("管理部")){
+						if(staffInfoVOs.get(i).getPosition().equals("管理员") ||
+								staffInfoVOs.get(i).getPosition().equals("总经理")){
+							UserVO u = user.getPersonalInfo(staffInfoVOs.get(i).getID());
+							userVOs.add(u);
+						}
+					}
+				}
+				InstitutionPO institutionPO = null;
+				institutionPO = new InstitutionPO(Institution.getInstitutionName(),
+						Institution.getInstitutionID(), Institution.getFunction());
+				for(int i = 0;i < userVOs.size();i++){
+					UserPO po = new UserPO(userVOs.get(i).getpersonalID(),
+							userVOs.get(i).getpersonalAccount(), userVOs.get(i).getMyPassword(),
+							userVOs.get(i).getpersonalName(),
+							userVOs.get(i).getMyPosition(), userVOs.get(i).getAuthority());
+					SalaryPO salaryPO = new SalaryPO(userVOs.get(i).getSalary().getBasic());
+					salaryPO.setCommission(userVOs.get(i).getSalary().getCommission());
+					salaryPO.setEachPay(userVOs.get(i).getSalary().getEachPay());
+					salaryPO.setTime(userVOs.get(i).getSalary().getTime());
+					po.setSalary(salaryPO);
+					po.setCity(userVOs.get(i).getCity());
+					po.setBusinessHall(userVOs.get(i).getBusinessHall());
+					userPOs.add(po);
+				}
+				institutionPO.setStaff(userPOs);
+			
+				try {
+					institutionData.insert(institutionPO);
+					log.generateLog("增加机构", Institution.getInstitutionName());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("add successfully!");
+				return true;
 			}
-			System.out.println("add successfully!");
-			return true;
 		}
 	}
-
-
-//	@Override
-//	public void changeSalary(long StaffId, SalaryVO salary) {
-//		// TODO Auto-generated method stub
-//		SalaryPO salaryPO = new SalaryPO(salary.getBasic());
-//		salaryPO.setCommission(salary.getCommission());
-//		salaryPO.setTime(salary.getTime());
-//		UserVO userVO = userBL.getPersonalInfo(StaffId);
-//		userVO.setSalary(salaryPO);
-//		userBL.changeInfo(userVO);	
-//		
-//	}
 
 	@Override
 	public boolean deleteInstitution(long InstitutionId) {
@@ -162,11 +261,10 @@ public class Institution implements InstitutionBLService{
 		if(institutionPO == null){
 			System.out.println("Not exist!!");
 			return false;
-		}
-		
-		else{
+		}else{
 			try {
 				institutionData.delete(institutionPO);
+				log.generateLog("删除机构", institutionPO.getInstitutionName());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -188,11 +286,12 @@ public class Institution implements InstitutionBLService{
 		
 	}
 	
-//	public static void main(String[] args) {
-//		Institution institution = new Institution(null);
-//		System.out.println(institution.getInstitutionInfo(100000).getInstitutionName());
-////		institution.addInstitution(new InstitutionVO("营业厅", 100000, null, "中转与接收"));
-//	}
+	public static void main(String[] args) {
+		Institution institution = new Institution(null, new User(null), new StaffManage(null, null));
+//		institution.deleteInstitution(300000);
+//		System.out.println(institution.getInstitutionInfo(200000));
+		institution.addInstitution(new InstitutionVO("财务部", 100000, null, "管理财务"));
+	}
 
 	@Override
 	public boolean changeInstitutionInfo(InstitutionVO institutionVO) {
@@ -224,6 +323,7 @@ public class Institution implements InstitutionBLService{
 			institutionPO.setStaff(userPOs);
 			try {
 				institutionData.update(institutionPO);
+				log.generateLog("更新机构信息", institutionPO.getInstitutionName());
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

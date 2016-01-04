@@ -6,19 +6,25 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import src.businesslogic.logbl.Log;
+import src.businesslogic.institutionbl.Institution;
+import src.businesslogic.positionbl.Position;
 import src.businesslogic.userbl.User;
+import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.staffmanageblservice.StaffManageBLService;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.po.UserPO;
+import src.vo.InstitutionVO;
 import src.vo.StaffInfoVO;
+import src.vo.UserVO;
 
 public class StaffManage implements StaffManageBLService{
 
 	StaffManageDataService staffManageData;
 	Position position;
-	Log log;
-	public StaffManage(Log log,Position position){
+//	Institution institution;
+//	User user;
+	LogBLService log;
+	public StaffManage(LogBLService log,Position position){
 		this.log = log;
 		this.position = position;
 		try {
@@ -89,7 +95,6 @@ public class StaffManage implements StaffManageBLService{
 		if(position == null) 
 			return false;
 		else{
-			
 			ArrayList<UserPO> userPOs = new ArrayList<UserPO>();
 			try {
 				userPOs = staffManageData.finds();
@@ -110,6 +115,7 @@ public class StaffManage implements StaffManageBLService{
 					}
 			
 				}
+			log.generateLog("修改权限", position);
 			return true;
 		}
 	}
@@ -117,24 +123,65 @@ public class StaffManage implements StaffManageBLService{
 	@Override
 	public boolean addStaffInfo(StaffInfoVO StaffInfo) {
 		// TODO Auto-generated method stub
-		if(StaffInfo == null)
-			return false;
-		
-		else{
-			StaffInfo.setAuthority(position.initialAuthority(StaffInfo));
-			System.out.println(StaffInfo.getAuthority().size());
-			UserPO userPO = new UserPO(StaffInfo.getID(), StaffInfo.getAccount(),
-					StaffInfo.getPassword(), StaffInfo.getStaffName(),
-					StaffInfo.getPosition(), StaffInfo.getAuthority());
-			System.out.println(userPO.getAuthority().size());
-			try {
-				staffManageData.insert(userPO);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-			return true;
+		boolean exist = true;
+		if(StaffInfo == null){
 		}
+		else{
+			if(getStaffInfo(StaffInfo.getID()) != null){
+				
+			}else{
+				StaffInfo.setAuthority(position.initialAuthority(StaffInfo));
+				UserPO userPO = new UserPO(StaffInfo.getID(), StaffInfo.getAccount(),
+						StaffInfo.getPassword(), StaffInfo.getStaffName(),
+						StaffInfo.getPosition(), StaffInfo.getAuthority());
+				userPO.setCity(StaffInfo.getCity());
+				userPO.setBusinessHall(StaffInfo.getBusinessHall());
+				try {
+					staffManageData.insert(userPO);
+						log.generateLog("增加员工账号", String.valueOf(userPO.getPersonalID()));
+					} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				exist = false;
+//				UserVO userVO = user.getPersonalInfo(StaffInfo.getID());
+//				ArrayList<InstitutionVO> institutionVOs = institution.getAllInstitution();
+//				ArrayList<UserVO> userVOs = new ArrayList<UserVO>();
+//				for(int i = 0;i < institutionVOs.size();i++){
+//					userVOs = institutionVOs.get(i).getStaff();
+//					if(userVO.getMyPosition().equals("财务人员")){
+//						if(institutionVOs.get(i).getInstitutionName().equals("财务部")){
+//							userVOs.add(userVO);
+//							institutionVOs.get(i).setStaff(userVOs);
+//							institution.changeInstitutionInfo(institutionVOs.get(i));
+//							break;
+//						}
+//					}else if(userVO.getMyPosition().equals("管理员") ||
+//							userVO.getMyPosition().equals("总经理")){
+//						if(institutionVOs.get(i).getInstitutionName().equals("管理部")){
+//							userVOs.add(userVO);
+//							institutionVOs.get(i).setStaff(userVOs);
+//							institution.changeInstitutionInfo(institutionVOs.get(i));
+//							break;
+//						}
+//					}else if(institutionVOs.get(i).getInstitutionName().contains(userVO.getCity())
+//							&& institutionVOs.get(i).getInstitutionName().contains("中转中心")
+//							&& userVO.getMyPosition().contains("中转中心")){
+//						userVOs.add(userVO);
+//						institutionVOs.get(i).setStaff(userVOs);
+//						institution.changeInstitutionInfo(institutionVOs.get(i));
+//						break;
+//					}else if(institutionVOs.get(i).getInstitutionName().equals(userVO.getCity()
+//							+ userVO.getBusinessHall())){
+//						userVOs.add(userVO);
+//						institutionVOs.get(i).setStaff(userVOs);
+//						institution.changeInstitutionInfo(institutionVOs.get(i));
+//						break;
+//					}
+//				}
+			}
+		}
+		return exist;
 	}
 
 	@Override
@@ -151,6 +198,7 @@ public class StaffManage implements StaffManageBLService{
 		if(userPO != null){
 			try {
 				staffManageData.delete(userPO);
+				log.generateLog("删除员工账号", String.valueOf(userPO.getPersonalID()));
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -175,6 +223,7 @@ public class StaffManage implements StaffManageBLService{
 		return true;
 		
 	}
+
 
 //	public static void main(String[] args) {
 //		StaffManage staffManage = new StaffManage(null, new Position(new User(null)));

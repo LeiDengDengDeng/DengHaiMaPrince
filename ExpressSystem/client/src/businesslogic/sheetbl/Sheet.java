@@ -26,6 +26,20 @@ public abstract class Sheet implements SheetBLService {
 	Log logBL;
 	Logistic logisticBL;
 
+	public Sheet(Log logBL) {
+		this.logBL = logBL;
+		try {
+			sheetData = (SheetDataService) Naming
+					.lookup("rmi://127.0.0.1:6600/sheetData");
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public Sheet(Log logBL, Logistic logisticBL) {
 		this.logBL = logBL;
 		this.logisticBL = logisticBL;

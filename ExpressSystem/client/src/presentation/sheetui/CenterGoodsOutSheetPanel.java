@@ -12,12 +12,14 @@ import javax.swing.JTextField;
 
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.sheetbl.CenterGoodsOutSheet;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyButton;
 import src.presentation.util.MyLabel;
 import src.presentation.util.TipDialog;
+import src.vo.CenterGoodsOutSheetVO;
 
 public class CenterGoodsOutSheetPanel extends SheetPanel {
 	DateChooserJButton dateChooser;
@@ -48,7 +50,7 @@ public class CenterGoodsOutSheetPanel extends SheetPanel {
 	private void init() {
 		courierNumberPanel = new CourierNumberPanel();
 		dateChooser = new DateChooserJButton();
-		city = new JComboBox(bl.getCities());
+		city = new JComboBox(new String[] { LogIn.currentUser.getCity() });
 		destination = new JComboBox(bl.getCities());
 		name = new JTextField();
 		number = new MyLabel("本中转中心航运编号");
@@ -115,10 +117,19 @@ public class CenterGoodsOutSheetPanel extends SheetPanel {
 
 	@Override
 	public boolean confirm() {
-		if (courierNumberPanel.getCourierNumber() == null)
+		if (courierNumberPanel.getCourierNumber() == null) {
 			new TipDialog(null, "", true, "快递物流编号格式有误", false);
-
-		return false;
+			return false;
+		} else {
+			CenterGoodsOutSheetVO vo = new CenterGoodsOutSheetVO(
+					LogIn.currentUser.getpersonalName(), dateChooser.getText(),
+					null, LogIn.currentUser.getCity(),
+					(String) destination.getSelectedItem(),
+					courierNumberPanel.getCourierNumber());
+			bl.add(vo);
+			new TipDialog(null, "", true, "单据成功提交", true);
+			return true;
+		}
 	}
 
 	class WayButtonListener implements ActionListener {

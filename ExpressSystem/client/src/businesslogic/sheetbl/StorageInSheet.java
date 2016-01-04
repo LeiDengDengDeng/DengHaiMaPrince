@@ -1,46 +1,65 @@
 package src.businesslogic.sheetbl;
 
+import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
 import src.enums.SheetType;
 import src.po.SheetPO;
+import src.po.StorageInSheetPO;
 import src.vo.SheetVO;
+import src.vo.StorageInSheetVO;
 
 public class StorageInSheet extends Sheet {
+	CommodityItem commodityItem;
 
 	public StorageInSheet(Log logBL, Logistic logisticBL) {
 		super(logBL, logisticBL);
-		// TODO 自动生成的构造函数存根
+		commodityItem = new CommodityItem(new Commodity(logBL));
 	}
 
 	@Override
 	public String[][] getExistedInfo() {
-		// TODO 自动生成的方法存根
 		return null;
 	}
 
 	@Override
 	public SheetType getType() {
-		// TODO 自动生成的方法存根
-		return null;
+		return SheetType.STORAGE_IN_SHEET;
+	}
+
+	@Override
+	public boolean add(SheetVO vo) {
+		boolean res = super.add(vo);
+		commodityItem.updateCommodity(vo);
+		return res;
 	}
 
 	@Override
 	public void endingAct(String operation, String statement) {
-		// TODO 自动生成的方法存根
-
+		logBL.generateLog(operation + "入库单", statement);
 	}
 
 	@Override
 	public SheetVO generateVO(SheetPO po) {
-		// TODO 自动生成的方法存根
-		return null;
+		StorageInSheetPO npo = (StorageInSheetPO) po;
+		StorageInSheetVO vo = new StorageInSheetVO(po.getType(),
+				npo.getGoodsNameList(), npo.getExpressNumberList(),
+				npo.getTime(), npo.getDestinationList(),
+				npo.getAreaNumberList(), npo.getRowNumberList(),
+				npo.getShelfNumberList(), npo.getSeatNumberList());
+		vo.setID(npo.getID());
+		return vo;
 	}
 
 	@Override
 	public SheetPO generatePO(SheetVO vo) {
-		// TODO 自动生成的方法存根
-		return null;
+		StorageInSheetVO svo = (StorageInSheetVO) vo;
+		StorageInSheetPO po = new StorageInSheetPO(svo.getGoodsNameList(),
+				svo.getExpressNumberList(), svo.getInTime(),
+				svo.getDestinationList(), svo.getAreaNumberList(),
+				svo.getRowNumberList(), svo.getShelfNumberList(),
+				svo.getSeatNumberList(), svo.getID());
+		return po;
 	}
 
 }

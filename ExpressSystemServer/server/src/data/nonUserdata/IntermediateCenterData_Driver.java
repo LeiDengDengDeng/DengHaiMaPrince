@@ -6,8 +6,8 @@ import src.po.IntermediateCenterPO;
 public class IntermediateCenterData_Driver {
 	public static void main(String[] args) throws RemoteException {
 		IntermediateCenterData intermediateCenterData = new IntermediateCenterData();
-		IntermediateCenterPO ipo1 = new IntermediateCenterPO("南京", "0250",null, null);
-		IntermediateCenterPO ipo2 = new IntermediateCenterPO("上海", "0210",null, null);
+		IntermediateCenterPO ipo1 = new IntermediateCenterPO("北京", "0100",null, null);
+		IntermediateCenterPO ipo2 = new IntermediateCenterPO("广州", "0200",null, null);
 //		intermediateCenterData.insert(ipo1);
 //		intermediateCenterData.insert(ipo2);
 //		intermediateCenterData.deleteIntermediateCenterPO("上海");

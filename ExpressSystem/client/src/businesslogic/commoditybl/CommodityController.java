@@ -128,8 +128,10 @@ public class CommodityController implements CommodityBLService{
 		return 0;
 	}
 
+	
+
 	@Override
-	public void changeGoodInfo(String storageId, GoodsVO gvo) {
+	public void changeGoodInfo(GoodsVO gvo) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import src.po.AuthorityPO;
 import src.po.UserPO;
 
 
@@ -47,10 +48,13 @@ public interface StaffManageDataService extends Remote{
 	 */
 	public void delete(UserPO po) throws RemoteException;
 		
+	
 	/**
 	 * 结束持久化数据库的使用
 	 * @throws RemoteException
 	 */
 	public void finish() throws RemoteException;
+	
+	
 
 }

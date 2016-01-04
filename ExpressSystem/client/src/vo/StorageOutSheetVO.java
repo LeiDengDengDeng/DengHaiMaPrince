@@ -13,18 +13,18 @@ public class StorageOutSheetVO implements SheetVO {
 	long ID;
 
 	ArrayList<String> goodsNameList;//内件品名
-	ArrayList<Long> expressNumberList;//快递编号
-	long outTime;//出库日期
+	ArrayList<String> expressNumberList;//快递编号
+	String outTime;//出库日期
 	ArrayList<String> destinationList;//目的地
 	ArrayList<GoodsType> transportFormList;//装运形式
-	ArrayList<Long> transNumberList;//中转单编号或汽运编号
+	ArrayList<String> transNumberList;//中转单编号或汽运编号
 //	ArrayList<Long> transportNumberList;//汽运编号
 
 	public StorageOutSheetVO(SheetType type, ArrayList<String> goodsNameList,
-			ArrayList<Long> expressNumberList,long outTime, 
+			ArrayList<String> expressNumberList,String outTime, 
 			ArrayList<String> destinationList,
 			ArrayList<GoodsType> transportFormList,
-			ArrayList<Long> transNumberList
+			ArrayList<String> transNumberList
 			) {
 		super();
 		this.type = type;
@@ -44,19 +44,19 @@ public class StorageOutSheetVO implements SheetVO {
 		this.goodsNameList = goodsNameList;
 	}
 
-	public ArrayList<Long> getExpressNumberList() {
+	public ArrayList<String> getExpressNumberList() {
 		return expressNumberList;
 	}
 
-	public void setExpressNumberList(ArrayList<Long> expressNumberList) {
+	public void setExpressNumberList(ArrayList<String> expressNumberList) {
 		this.expressNumberList = expressNumberList;
 	}
 
-	public long getOutTime() {
+	public String getOutTime() {
 		return outTime;
 	}
 
-	public void setOutTime(long outTime) {
+	public void setOutTime(String outTime) {
 		this.outTime = outTime;
 	}
 
@@ -76,11 +76,11 @@ public class StorageOutSheetVO implements SheetVO {
 		this.transportFormList = transportFormList;
 	}
 
-	public ArrayList<Long> getTransNumberList() {
+	public ArrayList<String> getTransNumberList() {
 		return transNumberList;
 	}
 
-	public void setTransferNumberList(ArrayList<Long> transNumberList) {
+	public void setTransferNumberList(ArrayList<String> transNumberList) {
 		this.transNumberList = transNumberList;
 	}
 

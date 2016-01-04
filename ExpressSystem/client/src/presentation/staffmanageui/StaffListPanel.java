@@ -11,11 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import src.businesslogic.staffmanagebl.Position;
+import src.businesslogic.logbl.Log;
+import src.businesslogic.positionbl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
 import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
 import src.vo.StaffInfoVO;
 
 public class StaffListPanel extends JPanel{
@@ -27,7 +29,7 @@ public class StaffListPanel extends JPanel{
 	static final int coordinate_X = 40;
 	static final int coordinate_Y = 40;
 	
-	private static final int Line_Num = 13;
+	private static final int Line_Num = 15;
 	long ID;
 	
 	Font myFont = new Font("Œ¢»Ì—≈∫⁄", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);
@@ -35,6 +37,7 @@ public class StaffListPanel extends JPanel{
 	ArrayList<StaffInfoVO> Staffs;
 	StaffManage staffManage;
 	Position position;
+	Log log;
 	StaffGroup staffGroup;
 //	private JLabel addLabel;
 //	private JLabel searchLabel;
@@ -47,7 +50,7 @@ public class StaffListPanel extends JPanel{
 
 	MyButton previousPageButton;
     MyButton nextPageButton;
-    MyButton confirmButton;
+//    MyButton confirmButton;
     MyButton addButton;
     MyButton searchButton;
     
@@ -59,7 +62,7 @@ public class StaffListPanel extends JPanel{
         previousPageButton.addActionListener(listener);
         previousPageButton.setVisible(false);
         nextPageButton.addActionListener(listener);
-        pageComboBox.setBounds(coordinate_X + 472, coordinate_Y + 440, 40, 20);
+        pageComboBox.setBounds(coordinate_X + 490, coordinate_Y + 468, 44, 23);
         setPageComboBox();
         pageComboBox.addActionListener(listener);
         searchButton.addActionListener(listener);
@@ -71,8 +74,9 @@ public class StaffListPanel extends JPanel{
     }
 	
 	public void initial(){
-		position = new Position(new User(null));
-		staffManage = new StaffManage(null, position);
+		log = new Log();
+		position = new Position(new User(log),log);
+		staffManage = new StaffManage(log, position);
 		imageLabel = new JLabel();
 		addLabel = new JLabel();
 		pageComboBox = new JComboBox();
@@ -80,19 +84,18 @@ public class StaffListPanel extends JPanel{
 		bkgImg = new ImageIcon("images/staff_ListBG.png");
 		add = new ImageIcon("images/staff_addAccount.png");
 		addButton = new MyButton(new ImageIcon("images/account_add.png"),
-				new ImageIcon("images/account_addEnter.png"), coordinate_X + 10, coordinate_Y + 32, false);
-		confirmButton = new MyButton(new ImageIcon("images/user_InfoConfirm.png"),
-				new ImageIcon("images/user_InfoConfirmEnter.png"), coordinate_X + 470, coordinate_Y + 485, false);
+				new ImageIcon("images/account_addEnter.png"), coordinate_X + 10, coordinate_Y + 469, false);
+//		confirmButton = new MyButton(new ImageIcon("images/user_InfoConfirm.png"),
+//				new ImageIcon("images/user_InfoConfirmEnter.png"), coordinate_X + 470, coordinate_Y + 485, false);
 		searchButton = new MyButton(new ImageIcon("images/search_icon.png"),
-				new ImageIcon("images/search_iconClicked.png"), coordinate_X + 493, coordinate_Y + 25, false);
+				new ImageIcon("images/search_iconClicked.png"), coordinate_X + 462, coordinate_Y - 3, false);
 		
 		imageLabel.setIcon(bkgImg);
         imageLabel.setBounds(coordinate_X, coordinate_Y, bkgImg.getIconWidth(), bkgImg.getIconHeight());
         addLabel.setIcon(add);
-        addLabel.setBounds(coordinate_X + 25, coordinate_Y + 24, add.getIconWidth(), add.getIconHeight());
+        addLabel.setBounds(coordinate_X + 25, coordinate_Y + 461, add.getIconWidth(), add.getIconHeight());
         
-        searchField.setBounds(coordinate_X + 403, coordinate_Y + 34, 85, 18);
-        
+        searchField.setBounds(coordinate_X + 377, coordinate_Y + 4, 85, 18);
 //		addLabel.setIcon(ADD_ICON);
 		
 //		searchLabel.setIcon(SEARCH);
@@ -130,9 +133,9 @@ public class StaffListPanel extends JPanel{
 //			}
 //		});
 		previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
-	                ("images/previousPageClicked.png"), coordinate_X + 250, coordinate_Y + 440);
-	    nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
-	                ("images/nextPageClicked.png"), coordinate_X + 320, coordinate_Y + 440);
+                ("images/previousPageClicked.png"), coordinate_X + 282, coordinate_Y + 468);
+		nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
+                ("images/nextPageClicked.png"), coordinate_X + 362, coordinate_Y + 468);
 		
     	this.Staffs = staffManage.getAllStaff();
     	setStaffs(Staffs);
@@ -144,7 +147,7 @@ public class StaffListPanel extends JPanel{
         this.add(addLabel);
         this.add(imageLabel);
         this.add(searchField);
-        this.add(confirmButton);
+//        this.add(confirmButton);
         this.add(searchButton);
         this.add(addButton);
         this.setLayout(null);
@@ -157,7 +160,7 @@ public class StaffListPanel extends JPanel{
 	}
 	
 	public void setStaffs(ArrayList<StaffInfoVO> Staffs){
-		staffGroup = new StaffGroup(Staffs, Line_Num, coordinate_X + 30, coordinate_Y + 90);
+		staffGroup = new StaffGroup(Staffs, Line_Num, coordinate_X + 35, coordinate_Y + 98);
 		
 	}
 	private void setPageComboBox() {
@@ -204,8 +207,12 @@ public class StaffListPanel extends JPanel{
 	            	
 	            	}else{
 	            		ID = Long.parseLong(searchField.getText());
-	            		PanelController.setPresentPanel(new 
-	            				Staff_InfoPanel(staffManage.getStaffInfo(ID)));
+	            		if(staffManage.getStaffInfo(ID) != null){
+	            			PanelController.setPresentPanel(new 
+	            					Staff_InfoPanel(staffManage.getStaffInfo(ID)));
+	            		}else {
+	            			TipDialog tipDialog = new TipDialog(null, "", true, "’À∫≈≤ª¥Ê‘⁄£°", false);
+	            		}
 	            	}
 	            }else if(e.getSource() == addButton){
 	            	PanelController.setPresentPanel(new AddStaffPanel());;
