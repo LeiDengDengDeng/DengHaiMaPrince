@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.LogisticBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
+import src.main.ExpressSystem;
 import src.po.GoodsPO;
 
 public class Logistic implements LogisticBLService{
@@ -19,7 +20,8 @@ public class Logistic implements LogisticBLService{
 	public Logistic(Log log){
 		super();
 		try {
-			goodsDataService =(GoodsDataService) Naming.lookup("rmi://127.0.0.1:6600/goodsData");
+			goodsDataService =(GoodsDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/goodsData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

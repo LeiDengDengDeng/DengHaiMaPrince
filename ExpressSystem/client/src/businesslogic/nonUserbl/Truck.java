@@ -11,6 +11,7 @@ import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.nonUserblservice.TruckBLService;
 import src.dataservice.nonUserdataservice.BusinessHallDataService;
 import src.dataservice.nonUserdataservice.TruckDataService;
+import src.main.ExpressSystem;
 import src.po.TruckPO;
 import src.vo.TruckInfoVO;
 
@@ -22,7 +23,8 @@ public class Truck implements TruckBLService{
 	public Truck(Log log){
 		super();
 		try {
-			truckDataService =(TruckDataService) Naming.lookup("rmi://127.0.0.1:6600/truckData");
+			truckDataService =(TruckDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/truckData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
