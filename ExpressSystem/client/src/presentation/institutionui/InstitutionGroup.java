@@ -16,7 +16,7 @@ public class InstitutionGroup {
     private int page;  // Ò³Êý
     private int x;
     private int y;
-    private int height = 24;
+    private int height = 23;
     private JLabel[][] presentInstitutions;
     
     Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, 14);

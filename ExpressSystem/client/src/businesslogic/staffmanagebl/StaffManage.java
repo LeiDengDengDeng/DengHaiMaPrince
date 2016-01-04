@@ -76,11 +76,12 @@ public class StaffManage implements StaffManageBLService{
 		}
 		if(userPOs != null){
 			for(int i = 0;i < userPOs.size();i++){
-				staffInfoVOs.add(new StaffInfoVO(userPOs.get(i).getPersonalID(), 
+				StaffInfoVO staffInfoVO = new StaffInfoVO(userPOs.get(i).getPersonalID(), 
 						userPOs.get(i).getPersonalAccount(), userPOs.get(i).getMyPassword(),
 						userPOs.get(i).getPersonalName(), userPOs.get(i).getMyPosition(),
 						userPOs.get(i).getAuthority(),userPOs.get(i).getCity(),
-						userPOs.get(i).getBusinessHall()));
+						userPOs.get(i).getBusinessHall());
+				staffInfoVOs.add(staffInfoVO);
 			}
 			return staffInfoVOs;
 		}else{

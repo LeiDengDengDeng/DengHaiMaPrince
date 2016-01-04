@@ -101,36 +101,39 @@ public class AddStaffPanel extends JPanel{
 		account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
 		password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
 		city.setBounds(coordinate_X + x + 10, coordinate_Y + y + linesp * 3 - 3, 60, h + 8);
-		businessHall.setBounds(coordinate_X + x + columnsp + 13, coordinate_Y + y + linesp * 3, w, h);
+		businessHall.setBounds(coordinate_X + x + columnsp + 13, coordinate_Y + y + linesp * 3, w, h + 8);
 		
 
 		city.setModel(new DefaultComboBoxModel<String>(getCitys()));
 		position.setModel(new DefaultComboBoxModel<String>(getPositions()));
 		
-		city.addItemListener(new ItemListener() {
+		city.addActionListener(new ActionListener() {
 			
 			@Override
-			public void itemStateChanged(ItemEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(e.getSource() == city){
 //					if(city.getSelectedItem().equals("无")){
-//						businessHall.setModel(new DefaultComboBoxModel<String>());
-//					}else if(city.getSelectedItem().equals("北京")){
-//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("北京")));
-//					}else if(city.getSelectedItem().equals("广州")){
-//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("广州")));
-//					}else if(city.getSelectedItem().equals("上海")){
-//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("上海")));
-//					}else if(city.getSelectedItem().equals("南京")){
-//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("南京")));
-//					}
-					if(!staffCity.equals("无")){
-						businessHall.setModel(new DefaultComboBoxModel<String>(
-								getBusinessHall((String) city.getSelectedItem())));
-					}
+//					businessHall.setModel(new DefaultComboBoxModel<String>());
+//				}else if(city.getSelectedItem().equals("北京")){
+//					businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("北京")));
+//				}else if(city.getSelectedItem().equals("广州")){
+//					businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("广州")));
+//				}else if(city.getSelectedItem().equals("上海")){
+//					businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("上海")));
+//				}else if(city.getSelectedItem().equals("南京")){
+//					businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("南京")));
+//				}
+				if(!((String) city.getSelectedItem()).equals("无")){
+					businessHall.removeAllItems();
+					businessHall.setModel(new DefaultComboBoxModel<String>(
+							getBusinessHall((String) city.getSelectedItem())));
+				}else{
+					businessHall.removeAllItems();
 				}
 			}
-		});
+		}
+	});
 		
 		
 		
