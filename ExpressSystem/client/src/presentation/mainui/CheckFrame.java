@@ -7,13 +7,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import src.presentation.nonuserui.LogisticsInfoPanel;
+import src.presentation.nonuserui.logisticsInfoPanel;
 import src.presentation.util.MyButton;
 
 public class CheckFrame extends JFrame {
 
 	public CheckFrame() {
-		JPanel panel = new LogisticsInfoPanel();
+		JPanel panel = new logisticsInfoPanel();
 		panel.setBounds(25, 50, 600, 600);
 		MyButton closeButton = new MyButton(new ImageIcon("images/close.png"),new ImageIcon("images/closeClicked.png"));
 		closeButton.setBounds(555, 5, 25, 25);

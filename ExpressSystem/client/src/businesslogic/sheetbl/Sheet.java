@@ -13,6 +13,7 @@ import src.dataservice.sheetdataservice.SheetDataService;
 import src.enums.FindingType;
 import src.enums.SheetState;
 import src.enums.SheetType;
+import src.main.ExpressSystem;
 import src.po.SheetPO;
 import src.vo.SheetVO;
 
@@ -29,8 +30,8 @@ public abstract class Sheet implements SheetBLService {
 	public Sheet(Log logBL) {
 		this.logBL = logBL;
 		try {
-			sheetData = (SheetDataService) Naming
-					.lookup("rmi://127.0.0.1:6600/sheetData");
+			sheetData = (SheetDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/sheetData");
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
