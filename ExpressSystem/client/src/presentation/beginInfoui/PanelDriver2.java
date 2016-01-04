@@ -1,15 +1,11 @@
 package src.presentation.beginInfoui;
 
 import java.awt.Color;
-import java.awt.TextField;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
-import src.enums.Sex;
 import src.vo.DriverInfoVO;
 
 public class PanelDriver2 extends SubPanel2 {

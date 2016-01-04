@@ -40,6 +40,10 @@ public class LogisticsInfoPanel extends JPanel {
 	TextFieldGroup group;
 	protected static final int font = 14;
 	protected Font myFont = new Font("Î¢ÈíÑÅºÚ", Font.LAYOUT_NO_LIMIT_CONTEXT, font);
+	ArrayList<MyLabel> one;
+	ArrayList<JLabel> two;
+	ArrayList<JLabel> three;
+	ArrayList<JLabel> four;
 
 	public LogisticsInfoPanel() {
 		this.setLayout(null);
@@ -50,9 +54,14 @@ public class LogisticsInfoPanel extends JPanel {
 		buttonFind = new SearchButton(410, 2);
 		this.addListener(buttonFind);
 		this.add(buttonFind);
-//		RButton button=new RButton();
-//		button.setBounds(100, 200, 100, 40);
-//		this.add(button);
+		one = new ArrayList<MyLabel>();
+		two = new ArrayList<JLabel>();
+		three = new ArrayList<JLabel>();
+		four = new ArrayList<JLabel>();
+
+		// RButton button=new RButton();
+		// button.setBounds(100, 200, 100, 40);
+		// this.add(button);
 
 	}
 
@@ -80,9 +89,12 @@ public class LogisticsInfoPanel extends JPanel {
 			}
 
 			protected void paint(ArrayList<String> s) {
+				one.clear();
+				two.clear();
+				three.clear();
+				four.clear();
 				for (int i = 0; i < s.size(); i++) {
 					MyLabel text = new MyLabel(s.get(i));
-
 					JLabel circle = new JLabel(IMG_Circle);
 					JLabel connect = new JLabel(IMG_Connect);
 					JLabel line = new JLabel(IMG_Line);
@@ -97,6 +109,11 @@ public class LogisticsInfoPanel extends JPanel {
 							IMG_Search.getIconHeight() + searchToinfo + 16 + IMG_Connect.getIconHeight()
 									+ IMG_Circle.getIconHeight() + gap * i,
 							IMG_Line.getIconWidth(), IMG_Line.getIconHeight());
+					one.add(text);
+					two.add(circle);
+					three.add(connect);
+					four.add(line);
+
 					getPanel().add(text);
 					getPanel().add(circle);
 					getPanel().add(connect);
