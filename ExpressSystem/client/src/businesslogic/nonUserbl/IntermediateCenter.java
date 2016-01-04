@@ -11,6 +11,7 @@ import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.nonUserblservice.IntermediateCenterBLService;
 import src.dataservice.nonUserdataservice.BusinessHallDataService;
 import src.dataservice.nonUserdataservice.IntermediateCenterDataService;
+import src.main.ExpressSystem;
 import src.po.IntermediateCenterPO;
 import src.vo.IntermediateCenterVO;
 
@@ -22,7 +23,8 @@ public class IntermediateCenter implements IntermediateCenterBLService{
 	public IntermediateCenter(Log log){
 		super();
 		try {
-			intermediateCenterDataService =(IntermediateCenterDataService) Naming.lookup("rmi://127.0.0.1:6600/intermediateCenterData");
+			intermediateCenterDataService =(IntermediateCenterDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/intermediateCenterData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

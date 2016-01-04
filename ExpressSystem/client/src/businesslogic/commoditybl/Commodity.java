@@ -24,6 +24,7 @@ import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
+import src.main.ExpressSystem;
 import src.po.GoodsPO;
 import src.po.StoragePO;
 import src.vo.ExpressInfoVO;
@@ -45,8 +46,10 @@ public class Commodity implements CommodityBLService{
 	public Commodity(Log log) {
 		super();
 		try {
-			goodsDataService =(GoodsDataService) Naming.lookup("rmi://127.0.0.1:6600/goodsData");
-			storageDataService = (StorageDataService) Naming.lookup("rmi://127.0.0.1:6600/storageData");
+			goodsDataService =(GoodsDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/goodsData");
+			storageDataService = (StorageDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/storageData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
