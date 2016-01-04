@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import src.businesslogic.nonUserbl.TruckController;
 import src.businesslogicservice.nonUserblservice.TruckBLService;
+import src.presentation.util.TipDialog;
 import src.vo.TruckInfoVO;
 
 public class TruckPanel extends JPanel{
@@ -201,8 +202,17 @@ public class TruckPanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == checkConfirmButton){
-				String driverId = TextFieldCheckTruckNum.getText();
-				processCheck(driverId);
+				String truckId = TextFieldCheckTruckNum.getText();
+				TruckInfoVO tvo = truckBL.getTruckInfo(truckId);
+				if(truckId.equals("")){
+					new TipDialog(null, "", true, "请输入车辆代号！", false);
+				}
+				else if(tvo == null){
+					new TipDialog(null, "", true, "车辆代号不存在！", false);
+				}
+				else{
+					processCheck(truckId);
+				}
 				
 			}
 			if(e.getSource() == addConfirmButton){
@@ -243,16 +253,28 @@ public class TruckPanel extends JPanel{
 				String number = textFieldTruckNumber.getText();
 				String activeTime = TextFieldActiveTime.getText();
 				String licensePlateNum = textFieldLicensePlateNum.getText();
-				TruckInfoVO tvo = new TruckInfoVO(number, Integer.parseInt(activeTime), licensePlateNum);
-				truckBL.addTruckInfo(tvo);
-				
-				processCancel();
-				for(int i = 0;i < trucks.size();i++) {
-					dPanel.remove(truckList.get(i));
-					dPanel.remove(numList.get(i));
+				if(number.equals("")||activeTime.equals("")||licensePlateNum.equals("")){
+					new TipDialog(null, "", true, "车辆信息未填写完整！", false);
 				}
-				drawTrucks();
-				dPanel.repaint();
+				else if((!isNumeric(number))||(number.length() != 9)){
+					new TipDialog(null, "", true, "车辆代号格式不正确！", false);
+				}
+				else if(!isNumeric(activeTime)){
+					new TipDialog(null, "", true, "服役时间格式不正确！", false);
+				}
+				else{
+					TruckInfoVO tvo = new TruckInfoVO(number, Integer.parseInt(activeTime), licensePlateNum);
+					truckBL.addTruckInfo(tvo);
+					new TipDialog(null, "", true, "车辆信息已保存！", true);
+					processCancel();
+					for(int i = 0;i < trucks.size();i++) {
+						dPanel.remove(truckList.get(i));
+						dPanel.remove(numList.get(i));
+					}
+					drawTrucks();
+					dPanel.repaint();
+				}
+				
 			}
 			if(e.getSource() == returnButton){
 				processReturn();
@@ -261,26 +283,38 @@ public class TruckPanel extends JPanel{
 				processChange();
 			}
 			if(e.getSource() == changeConfirmButton){
-				changeConfirmButton.setVisible(false);
-				changeButton.setVisible(true);
-				
-				numLabel.setText(changeNumField.getText());
-				changeNumField.setVisible(false);
-				numLabel.setVisible(true);
-				
-				activeTimeLabel.setText(changeActiveTimeField.getText());
-				changeActiveTimeField.setVisible(false);
-				activeTimeLabel.setVisible(true);
-				
-				licensePlateNumLabel.setText(changeLicensePlateNumField.getText());
-				changeLicensePlateNumField.setVisible(false);
-				licensePlateNumLabel.setVisible(true);
-				
 				String number = changeNumField.getText();
 				String activeTime = changeActiveTimeField.getText();
 				String licensePlateNum = changeLicensePlateNumField.getText();
-				TruckInfoVO tvo = new TruckInfoVO(number, Integer.parseInt(activeTime), licensePlateNum);
-				truckBL.changeTruckInfo(number, tvo);
+				if(number.equals("")||activeTime.equals("")||licensePlateNum.equals("")){
+					new TipDialog(null, "", true, "车辆信息未填写完整！", false);
+				}
+				else if((!isNumeric(number))||(number.length() != 9)){
+					new TipDialog(null, "", true, "车辆代号格式不正确！", false);
+				}
+				else if(!isNumeric(activeTime)){
+					new TipDialog(null, "", true, "服役时间格式不正确！", false);
+				}
+				else{
+					TruckInfoVO tvo = new TruckInfoVO(number, Integer.parseInt(activeTime), licensePlateNum);
+					truckBL.changeTruckInfo(number, tvo);
+					new TipDialog(null, "", true, "车辆信息已完成更改！", true);
+					changeConfirmButton.setVisible(false);
+					changeButton.setVisible(true);
+					
+					numLabel.setText(changeNumField.getText());
+					changeNumField.setVisible(false);
+					numLabel.setVisible(true);
+					
+					activeTimeLabel.setText(changeActiveTimeField.getText());
+					changeActiveTimeField.setVisible(false);
+					activeTimeLabel.setVisible(true);
+					
+					licensePlateNumLabel.setText(changeLicensePlateNumField.getText());
+					changeLicensePlateNumField.setVisible(false);
+					licensePlateNumLabel.setVisible(true);
+				}
+				
 			}
 		}
 		
@@ -438,4 +472,14 @@ public class TruckPanel extends JPanel{
 		isActive = false;
 //		System.out.println("sb");
 	}
+	
+	public boolean isNumeric(String str){
+		  for (int i = 0; i < str.length(); i++){
+		   System.out.println(str.charAt(i));
+		   if (!Character.isDigit(str.charAt(i))){
+		    return false;
+		   }
+		  }
+		  return true;
+		 }
 }

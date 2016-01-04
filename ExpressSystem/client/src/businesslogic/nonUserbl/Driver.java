@@ -39,6 +39,9 @@ public class Driver implements DriverBLService{
 			e.printStackTrace();
 		}
 		
+		if(dPo == null){
+			return null;
+		}
 		DriverInfoVO dVo = new DriverInfoVO(dPo.getNumber(), dPo.getName(), 
 				dPo.getYear(), dPo.getMonth(), dPo.getDay(), dPo.getID(), 
 				dPo.getMobNum(), dPo.getSex(), dPo.getYearOfExpiring());

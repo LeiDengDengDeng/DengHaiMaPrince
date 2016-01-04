@@ -36,6 +36,9 @@ public class BussinessHall implements BussinessHallBLService{
 			e.printStackTrace();
 		}
 		
+		if(bPo == null){
+			return null;
+		}
 		BussinessHallVO bVo = new BussinessHallVO(bPo.getHallName(),bPo.getHallId(),
 				bPo.getDrivers(),bPo.getTrucks());
 		return bVo;

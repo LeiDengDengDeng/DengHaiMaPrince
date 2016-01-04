@@ -21,6 +21,7 @@ import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.enums.GoodsType;
 import src.presentation.accountui.TextLabel;
 import src.presentation.sheetui.DateChooserJButton;
+import src.presentation.util.TipDialog;
 
 public class StorageInSheetPanel extends JPanel{
 	ArrayList<String> goodsNames;//内件品名
@@ -269,6 +270,7 @@ public class StorageInSheetPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == confirmButton){
 //				System.out.println(goodsNames.get(0));
+				new TipDialog(null, "", true, "入库单信息已保存！", true);
 			}
 				
 		}
@@ -299,5 +301,6 @@ public void run(){
 	frame.setContentPane(this);
 	frame.setVisible(true);
 	frame.setResizable(false);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 }
 }

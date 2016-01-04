@@ -38,6 +38,9 @@ public class Truck implements TruckBLService{
 			e.printStackTrace();
 		}
 		
+		if(tPo == null){
+			return null;
+		}
 		TruckInfoVO tVo = new TruckInfoVO(tPo.getNumber(), tPo.getActiveTime(),
 				tPo.getLicensePlateNum());
 		return tVo;

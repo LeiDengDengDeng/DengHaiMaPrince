@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import src.businesslogic.nonUserbl.BussinessHallController;
 import src.businesslogicservice.nonUserblservice.BussinessHallBLService;
+import src.presentation.util.TipDialog;
 import src.vo.BussinessHallVO;
 
 public class BussinessHallPanel extends JPanel{
@@ -181,7 +182,16 @@ public class BussinessHallPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == checkConfirmButton){
 				String hallId = TextFieldCheckBusinessNum.getText();
-				processCheck(hallId);
+				BussinessHallVO bvo = businesshallBL.getBussinessHallInfo(hallId);
+				if(hallId.equals("")){
+					new TipDialog(null, "", true, "请输入营业厅编号！", false);
+				}
+				else if(bvo == null){
+					new TipDialog(null, "", true, "营业厅编号不存在！", false);
+				}
+				else{
+					processCheck(hallId);
+				}
 				
 			}
 			if(e.getSource() == addConfirmButton){
@@ -220,16 +230,25 @@ public class BussinessHallPanel extends JPanel{
 				System.out.println("sb");
 				String hallId = textFieldHallId.getText();
 				String hallName = TextFieldHallName.getText();
-				BussinessHallVO bvo = new BussinessHallVO(hallName, hallId, null, null);
-				businesshallBL.addBussinessHallInfo(bvo);
-				
-				processCancel();
-				for(int i = 0;i < businesshalls.size();i++) {
-					dPanel.remove(businesshallList.get(i));
-					dPanel.remove(nameList.get(i));
+				if(hallId.equals("")||hallName.equals("")){
+					new TipDialog(null, "", true, "营业厅信息未填写完整！", false);
 				}
-				drawTBusinessHalls();
-				dPanel.repaint();
+				else if((!isNumeric(hallId))||(hallId.length() != 6)){
+					new TipDialog(null, "", true, "营业厅编号格式不正确！", false);
+				}
+				else{
+					BussinessHallVO bvo = new BussinessHallVO(hallName, hallId, null, null);
+					businesshallBL.addBussinessHallInfo(bvo);
+					new TipDialog(null, "", true, "营业厅信息已保存！", true);
+					processCancel();
+					for(int i = 0;i < businesshalls.size();i++) {
+						dPanel.remove(businesshallList.get(i));
+						dPanel.remove(nameList.get(i));
+					}
+					drawTBusinessHalls();
+					dPanel.repaint();
+				}
+				
 			}
 			if(e.getSource() == returnButton){
 				processReturn();
@@ -361,4 +380,13 @@ public class BussinessHallPanel extends JPanel{
 		isActive = false;
 //		System.out.println("sb");
 	}
+	public boolean isNumeric(String str){
+		  for (int i = 0; i < str.length(); i++){
+		   System.out.println(str.charAt(i));
+		   if (!Character.isDigit(str.charAt(i))){
+		    return false;
+		   }
+		  }
+		  return true;
+		 }
 }

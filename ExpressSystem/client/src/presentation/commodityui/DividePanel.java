@@ -18,6 +18,7 @@ import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.enums.GoodsType;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
 import src.vo.ExpressInfoVO;
 
 public class DividePanel extends JPanel{
@@ -53,17 +54,18 @@ public class DividePanel extends JPanel{
     public DividePanel(Log log){
     	commodityBL = new Commodity(log);
     	storages = new ArrayList<ExpressInfoVO>();
+    	storages = commodityBL.getAreaGoodsPOs("南京", GoodsType.RAIL);
     	
-    	for (int i = 0; i < 28; i++) {
-            ExpressInfoVO temp = new ExpressInfoVO("血吼", "0000000000000006",
-            		"2015-12-05", "奥格瑞玛", GoodsType.TRANSPORT,106,107,114,false);
-            storages.add(temp);
-        }
-    	for (int i = 0; i < 28; i++) {
-            ExpressInfoVO temp = new ExpressInfoVO("灰烬使者", "0000000000000006",
-            		"2015-12-05", "奥格瑞玛", GoodsType.TRANSPORT,106,107,114,false);
-            storages.add(temp);
-        }
+//    	for (int i = 0; i < 28; i++) {
+//            ExpressInfoVO temp = new ExpressInfoVO("血吼", "0000000000000006",
+//            		"2015-12-05", "奥格瑞玛", GoodsType.TRANSPORT,106,107,114,false);
+//            storages.add(temp);
+//        }
+//    	for (int i = 0; i < 28; i++) {
+//            ExpressInfoVO temp = new ExpressInfoVO("灰烬使者", "0000000000000006",
+//            		"2015-12-05", "奥格瑞玛", GoodsType.TRANSPORT,106,107,114,false);
+//            storages.add(temp);
+//        }
     	previousPageButton = new MyButton(new ImageIcon("images/previousPage.png"), new ImageIcon
                 ("images/previousPageClicked.png"), 322, 508);
         nextPageButton = new MyButton(new ImageIcon("images/nextPage.png"), new ImageIcon
@@ -173,6 +175,7 @@ public class DividePanel extends JPanel{
 					}
 				}
 				commodityBL.divide("南京", storages);
+				new TipDialog(null, "", true, "分区信息已保存！", true);
 			}
 		}
     	

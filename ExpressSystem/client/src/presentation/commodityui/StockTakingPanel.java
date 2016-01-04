@@ -24,6 +24,7 @@ import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
 import src.enums.GoodsType;
 import src.presentation.util.MyButton;
+import src.presentation.util.TipDialog;
 import src.vo.ExpressInfoVO;
 
 public class StockTakingPanel extends JPanel{
@@ -145,7 +146,7 @@ public class StockTakingPanel extends JPanel{
 				File file = null;
 				String path = null;
 				JFileChooser fileChooser = new JFileChooser();
-				FileSystemView fsv = FileSystemView.getFileSystemView(); //注意了，这里重要的一句
+				FileSystemView fsv = FileSystemView.getFileSystemView();
 //				System.out.println(fsv.getHomeDirectory()); //得到桌面路径
 				fileChooser.setCurrentDirectory(fsv.getHomeDirectory());
 				fileChooser.setDialogTitle("请选择路径...");
@@ -160,7 +161,7 @@ public class StockTakingPanel extends JPanel{
 				 commodityBL.exportExcel(path + ".xls",storages);
 				 }
 			}
-				System.out.println("库存快照已导出！");
+			new TipDialog(null, "", true, "库存快照已导出！", true);
 			}
 		}
     
