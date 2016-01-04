@@ -142,7 +142,9 @@ public class KeeperAuthorityPanel extends JPanel{
 			checkboxs.add(checkbox);
 			location_y += linesp;
 		}
-		
+		AuthorityVO authorityVO = position.getAuthority("中转中心仓库管理员");
+		for(int i = 0;i < authorityVO.getAuthority().size();i++)
+			checkboxs.get(authorityVO.getAuthority().get(i) - 1).setState(true);
 	}
 	class MyButtonActionListener implements ActionListener {
 		KeeperAuthorityPanel container;

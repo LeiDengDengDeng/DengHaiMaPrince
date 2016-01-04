@@ -109,6 +109,7 @@ public class ConstantPanel extends JPanel {
 				if (e.getSource().equals(confirm)) {
 					ConstantVO vo = new ConstantVO(null, null, Double.parseDouble(distance.getText()),
 							Double.parseDouble(price.getText()), cv.getCityOne(), cv.getCityTwo());
+					System.out.println(vo.getCityOne()+" "+vo.getCityTwo()+" "+vo.getDistant()+" "+vo.getPrice());
 					sheet.modify(cv.getID(), vo);
 					PanelController.refreshPresentPanel();
 					return;

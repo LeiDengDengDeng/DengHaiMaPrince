@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.accountblservice.AccountBLService;
 import src.dataservice.accountdataservice.AccountDataService;
+import src.main.ExpressSystem;
 import src.po.AccountPO;
 import src.vo.AccountVO;
 
@@ -22,7 +23,8 @@ public class Account implements AccountBLService {
 		super();
 		this.log = log;
 		try {
-			accountData=(AccountDataService) Naming.lookup("rmi://127.0.0.1:6600/accountData");
+			accountData=(AccountDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/accountData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

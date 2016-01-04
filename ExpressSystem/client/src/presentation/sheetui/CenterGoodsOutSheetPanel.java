@@ -15,6 +15,7 @@ import src.businesslogic.logbl.Log;
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.sheetbl.CenterGoodsOutSheet;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyButton;
 import src.presentation.util.MyLabel;
@@ -123,11 +124,12 @@ public class CenterGoodsOutSheetPanel extends SheetPanel {
 		} else {
 			CenterGoodsOutSheetVO vo = new CenterGoodsOutSheetVO(
 					LogIn.currentUser.getpersonalName(), dateChooser.getText(),
-					null, LogIn.currentUser.getCity(),
+					(long) 0, LogIn.currentUser.getCity(),
 					(String) destination.getSelectedItem(),
 					courierNumberPanel.getCourierNumber());
 			bl.add(vo);
 			new TipDialog(null, "", true, "单据成功提交", true);
+			PanelController.refreshPresentPanel();
 			return true;
 		}
 	}
