@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.dataservice.logdataservice.LogDataService;
+import src.main.ExpressSystem;
 import src.po.LogPO;
 import src.businesslogic.util.CommonUtil;
 import src.vo.LogVO;
@@ -19,7 +20,8 @@ public class Log implements LogBLService {
 
     public Log() {
         try {
-            this.logData = (LogDataService) Naming.lookup("rmi://127.0.0.1:6600/logData");
+            this.logData = (LogDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/logData");
         } catch (NotBoundException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
