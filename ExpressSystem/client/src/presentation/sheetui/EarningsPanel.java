@@ -25,6 +25,7 @@ import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.enums.FindingType;
 import src.presentation.util.MyButton;
 import src.vo.PaymentSheetVO;
+import src.vo.ReceivingMoneySheetVO;
 import src.vo.SheetVO;
 
 public class EarningsPanel extends JPanel {
@@ -64,7 +65,6 @@ public class EarningsPanel extends JPanel {
 	PaymentSubPanel receivePanel;
 	ArrayList<SheetVO> paymentList;
 	ArrayList<SheetVO> receiveList;
-	Calendar dt = Calendar.getInstance();
 
 	public EarningsPanel(PaymentSheet paymentsheet, ReceivingMoneySheet receiveingsheet) {
 		// bl层初始化
@@ -81,11 +81,11 @@ public class EarningsPanel extends JPanel {
 
 		// 付款单Panel
 		payPanel = new PaymentSubPanel(paymentList, this);
-		payPanel.setBounds(170, 220, 230, 230);
+		payPanel.setBounds(170, 230, 230, 230);
 		payPanel.setVisible(true);
 		// 收款单panel
 		receivePanel = new PaymentSubPanel(receiveList, this);
-		receivePanel.setBounds(170, 220, 230, 230);
+		receivePanel.setBounds(170, 230, 230, 230);
 		receivePanel.setVisible(false);
 		// 计算钱
 		this.calculateMoney();
@@ -133,39 +133,48 @@ public class EarningsPanel extends JPanel {
 	// 消绘图锯齿：RenderingHints.KEY_ANTIALIASING
 
 	public void calculateMoney() {
+		Calendar c = Calendar.getInstance();
 		for (int i = 0; i < paymentList.size(); i++) {
 			PaymentSheetVO vo = (PaymentSheetVO) paymentList.get(i);
 			String[] split = paymentList.get(i).getTime().split("-");
-			if (dt.get(Calendar.YEAR) == Integer.parseInt(split[0])) {
+			if (c.get(Calendar.YEAR) == Integer.parseInt(split[0])) {
 				paymentAmount_Year += vo.getMoney();
-				if (dt.get(Calendar.MONTH) == Integer.parseInt(split[1])) {
+				System.out.println(c.get(Calendar.MONTH)+1+"------"+Integer.parseInt(split[1]));
+				if (c.get(Calendar.MONTH)+1 == Integer.parseInt(split[1])) {
 					paymentAmount_Month += vo.getMoney();
-					if (dt.get(Calendar.DATE) == Integer.parseInt(split[2])) {
+					if (c.get(Calendar.DATE) == Integer.parseInt(split[2])) {
 						paymentAmount_Day += vo.getMoney();
 					}
 				}
 			}
 		}
-		for (int i = 0; i < receiveList.size(); i++) {
-			PaymentSheetVO vo = (PaymentSheetVO) receiveList.get(i);
-			String[] split = receiveList.get(i).getTime().split("-");
-			if (dt.get(Calendar.YEAR) == Integer.parseInt(split[0])) {
-				receptionAmount_Year += vo.getMoney();
-				if (dt.get(Calendar.MONTH) == Integer.parseInt(split[1])) {
-					receptionAmount_Month += vo.getMoney();
-					if (dt.get(Calendar.DATE) == Integer.parseInt(split[2])) {
-						receptionAmount_Day += vo.getMoney();
-					}
-				}
-			}
-		}
+//		for (int i = 0; i < receiveList.size(); i++) {
+//			ReceivingMoneySheetVO vo = (ReceivingMoneySheetVO) receiveList.get(i);
+//			String[] split = receiveList.get(i).getTime().split("-");
+//			if (c.get(Calendar.YEAR) == Integer.parseInt(split[0])) {
+//				receptionAmount_Year += vo.getItem;
+//				if (c.get(Calendar.MONTH) == Integer.parseInt(split[1])) {
+//					receptionAmount_Month += vo.getMoney();
+//					if (c.get(Calendar.DATE) == Integer.parseInt(split[2])) {
+//						receptionAmount_Day += vo.getMoney();
+//					}
+//				}
+//			}
+//		}
 		earning_Year = receptionAmount_Year - paymentAmount_Year;
 		earning_Month = receptionAmount_Month - paymentAmount_Month;
 		earning_Day = receptionAmount_Day - paymentAmount_Day;
 
 		// 计算比例
+		if(receptionAmount_Day>paymentAmount_Day){
 		payPercent = (int) (paymentAmount_Day * 100 / receptionAmount_Day);
 		earningsPercent = 100 - payPercent;
+		}
+		else{
+			payPercent = 0;
+			earningsPercent = 0;
+		}
+			
 	}
 
 	public void paintComponent(Graphics g) {

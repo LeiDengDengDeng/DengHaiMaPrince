@@ -69,6 +69,9 @@ public class PanelAccount2 extends SubPanel2 {
 			textName.setForeground(Color.WHITE);
 			textNum.setForeground(Color.WHITE);
 			textAmount.setForeground(Color.WHITE);
+			textName.setFont(myFont);
+			textNum.setFont(myFont);
+			textAmount.setFont(myFont);
 			this.add(textName);
 			this.add(textNum);
 			this.add(textAmount);

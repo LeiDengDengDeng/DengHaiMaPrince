@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.businesslogic.commoditybl.Logistic;
+import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.LogisticBLService;
 import src.presentation.sheetui.TextFieldGroup;
 import src.presentation.util.MyLabel;
@@ -45,7 +46,7 @@ public class LogisticsInfoPanel extends JPanel {
 		this.setBounds(x, y, IMG_Info.getIconWidth(), IMG_Info.getIconHeight() + searchToinfo);
 		this.setOpaque(false);
 		drawNumTextField();
-		logisticBL = new Logistic(null);
+		logisticBL = new Logistic(new Log());
 		buttonFind = new SearchButton(410, 2);
 		this.addListener(buttonFind);
 		this.add(buttonFind);

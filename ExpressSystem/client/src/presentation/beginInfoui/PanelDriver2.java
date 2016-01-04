@@ -30,15 +30,15 @@ public class PanelDriver2 extends SubPanel2 {
 
 	public void drawCom(ArrayList<DriverInfoVO> l) {
 		// TODO Auto-generated method stub
-		int Num_x = 129;
+		int Num_x = 123;
 		int Num_y = 63;
 		int Num_w = (font + 4) * 4 + 4;
 		int Num_h = font + 8;
 		int distance_x = 5;
 		int Name_w = 50;
 		int sex_w = 40;
-		int Identity_w = 132;
-		int Tel_w = 86;
+		int Identity_w = 150;
+		int Tel_w =90;
 		int Year_w = 40;
 		int distance_y = 30;
 		for (int i = 0; i < l.size(); i++) {
