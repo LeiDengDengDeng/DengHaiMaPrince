@@ -32,6 +32,7 @@ public class ReceivingMoneySheetPanel extends SheetPanel {
 	MyButton delButton;
 	MyLabel delText;
 	MyButton confirmButton;
+	MyLabel money;
 
 	ArrayList<Component[]> inputFields;
 	ArrayList<JLabel> lineLabels;
@@ -57,11 +58,13 @@ public class ReceivingMoneySheetPanel extends SheetPanel {
 		this.receivingMoneySheetBL = receivingMoneySheetBL;
 
 		init();
-		
+
 		imageLabel.setIcon(bkgImg);
 		imageLabel.setBounds(MARGIN_LEFT - 11, MARGIN_TOP - 6,
 				bkgImg.getIconWidth() - 5, bkgImg.getIconHeight());
 
+		money.setForeground(new Color(50, 50, 50));
+		money.setBounds(ADD_MARGIN_LEFT - 70, ADD_MARGIN_TOP - 15, 60, 50);
 		addText.setBounds(ADD_MARGIN_LEFT + 28, ADD_MARGIN_TOP + 2, 30, 14);
 		addText.setForeground(new Color(50, 50, 50));
 		AddButtonListener addButtonListener = new AddButtonListener(this);
@@ -79,6 +82,7 @@ public class ReceivingMoneySheetPanel extends SheetPanel {
 		addButtonListener.actionPerformed(new ActionEvent(addButton, 0, ""));
 
 		this.setBounds(200, 70, 665, 601);
+		this.add(money);
 		this.add(addText);
 		this.add(addButton);
 		this.add(delText);
@@ -98,6 +102,7 @@ public class ReceivingMoneySheetPanel extends SheetPanel {
 				DELETE_MARGIN_LEFT, DELETE_MARGIN_TOP);
 		confirmButton = new MyButton(new ImageIcon("images/confirm.png"),
 				new ImageIcon("images/confirmClicked" + ".png"), 520, 110);
+		money = new MyLabel("0  元");
 		addText = new MyLabel("增加");
 		delText = new MyLabel("删除");
 		inputFields = new ArrayList<>();
@@ -131,16 +136,23 @@ public class ReceivingMoneySheetPanel extends SheetPanel {
 	public boolean confirm() {
 		// 逻辑层响应
 		ArrayList<String[]> items = new ArrayList<>();
+		double num = 0;
 		for (Component[] c : inputFields) {
 			String[] temp = new String[4];
 			temp[0] = ((JButton) c[0]).getText();
 			temp[1] = ((TextField) c[1]).getText();
 			temp[2] = ((TextField) c[2]).getText();
+			num += Double.parseDouble(((TextField) c[2]).getText());
 			temp[3] = ((TextField) c[3]).getText();
+			if (!CommonUtil.isValidNumberString(temp[3], 10)) {
+				new TipDialog(null, "", true, "非法快递物流编号", false);
+				return false;
+			}
+			items.add(temp);
 		}
 		ReceivingMoneySheetVO vo = new ReceivingMoneySheetVO("XXXX",
 				CommonUtil.getDate(), LogIn.currentUser.getBusinessHall(),
-				items);
+				items, num);
 
 		// 界面层响应
 		if (receivingMoneySheetBL.add(vo)) {
@@ -168,6 +180,15 @@ public class ReceivingMoneySheetPanel extends SheetPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// 移动原有按钮位置
+			money.setBounds((int) money.getLocation().getX(), (int) money
+					.getLocation().getY() + OFFSET, money.getWidth(),
+					money.getHeight());
+			double moneyNum = 0;
+			for (Component[] c : inputFields) {
+				moneyNum += Double.parseDouble(((TextField) c[2]).getText());
+			}
+
+			money.setText(moneyNum + "  元");
 			addButton = (JButton) e.getSource();
 			addButton.setBounds((int) addButton.getLocation().getX(),
 					(int) addButton.getLocation().getY() + OFFSET,
@@ -246,6 +267,9 @@ public class ReceivingMoneySheetPanel extends SheetPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// 移动原有按钮位置
+			money.setBounds((int) money.getLocation().getX(), (int) money
+					.getLocation().getY() - OFFSET, money.getWidth(),
+					money.getHeight());
 			delButton = (JButton) e.getSource();
 			delButton.setBounds((int) delButton.getLocation().getX(),
 					(int) delButton.getLocation().getY() - OFFSET,
@@ -270,6 +294,12 @@ public class ReceivingMoneySheetPanel extends SheetPanel {
 					.getWidth(), container.confirmButton.getHeight());
 
 			container.removeLastLine();
+
+			int moneyNum = 0;
+			for (Component[] c : inputFields) {
+				moneyNum += Double.parseDouble(((TextField) c[2]).getText());
+			}
+			money.setText(moneyNum + "  元");
 
 			// 更新计数器
 			AddButtonListener addButtonListener = (AddButtonListener) container.addButton

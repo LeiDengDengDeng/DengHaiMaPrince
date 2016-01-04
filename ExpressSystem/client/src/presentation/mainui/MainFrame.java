@@ -59,10 +59,6 @@ public class MainFrame extends JFrame {
 	int frameLocationX;
 	int frameLocationY;
 
-	public static void main(String[] args) {
-		new MainFrame(null);
-	}
-
 	public MainFrame(ArrayList<Integer> authority) {
 		// 登陆后设置权限，初始化左侧按钮和Panel
 		setAuthority(authority);
@@ -178,7 +174,7 @@ public class MainFrame extends JFrame {
 		System.out.println("init over");
 
 	}
-
+	
 	public MainFrame getFrame() {
 		return this;
 	}
