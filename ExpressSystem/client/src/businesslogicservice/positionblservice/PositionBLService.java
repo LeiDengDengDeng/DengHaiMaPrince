@@ -23,10 +23,17 @@ public interface PositionBLService {
 	
 	/**
 	 * 更改某个职位的权限
-	 * @param position, StaffId
+	 * @param authorityVO
 	 * @return
 	 */
 	public boolean changeAuthority(AuthorityVO authorityVO);
+	
+	/**
+	 * 获得对应权限
+	 * @param position
+	 * @return
+	 */
+	public AuthorityVO getAuthority(String position);
 	
 	/**
 	 * 更改某个人员的职位

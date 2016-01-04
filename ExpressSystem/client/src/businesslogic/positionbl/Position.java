@@ -107,6 +107,26 @@ public class Position implements PositionBLService{
 		}
 		return true;
 	}
+
+	@Override
+	public AuthorityVO getAuthority(String position) {
+		// TODO Auto-generated method stub
+		AuthorityPO authorityPO = null;
+		
+		try {
+			authorityPO = positionData.find(position);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		AuthorityVO authorityVO = new AuthorityVO(authorityPO.getPosition());
+		authorityVO.setAuthority(authorityPO.getAuthority());
+		
+		return authorityVO;
+	}
+	
+	
 	
 //	public static void main(String[] args) {
 //		Position position = new Position(new User(null));

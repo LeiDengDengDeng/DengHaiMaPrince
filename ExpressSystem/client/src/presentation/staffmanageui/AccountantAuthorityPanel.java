@@ -143,7 +143,12 @@ public class AccountantAuthorityPanel extends JPanel{
 			location_y += linesp;
 		}
 		
+		AuthorityVO authorityVO = position.getAuthority("财务人员");
+		for(int i = 0;i < authorityVO.getAuthority().size();i++)
+			checkboxs.get(authorityVO.getAuthority().get(i) - 1).setState(true);
+		
 	}
+	
 	class MyButtonActionListener implements ActionListener {
 	      AccountantAuthorityPanel container;
 		       

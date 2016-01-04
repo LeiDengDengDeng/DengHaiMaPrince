@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -15,6 +17,7 @@ import javax.swing.JTextField;
 
 import src.businesslogic.institutionbl.Institution;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.nonUserbl.BussinessHall;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.positionbl.Position;
 import src.businesslogic.staffmanagebl.StaffManage;
@@ -22,6 +25,7 @@ import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
+import src.vo.BussinessHallVO;
 import src.vo.InstitutionVO;
 import src.vo.UserVO;
 
@@ -53,6 +57,7 @@ public class changeStaff_InfoPanel extends JPanel{
 	User user;
 	Log log;
 	IntermediateCenter intermediateCenter;
+	BussinessHall bussinessHall;
 	UserVO userVO;
 	InstitutionVO institutionVO;
 	MyButton cancelButton;
@@ -66,10 +71,10 @@ public class changeStaff_InfoPanel extends JPanel{
 	private	JLabel account;
 	private	JLabel password;
 	private	JLabel name;
-	private	JTextField position;
+	private	JComboBox<String> position;
 	private	JLabel salary;
 	private	JComboBox<String> city;
-	private	JTextField businessHall;
+	private	JComboBox<String> businessHall;
 	
 	long staffID;
 	long staffAccount;
@@ -85,21 +90,11 @@ public class changeStaff_InfoPanel extends JPanel{
 		componentsInstantiation();
 		getPrimaryInfo(userVO);
 		initial();
-		
 		buttonActionListener listener = new buttonActionListener(this);
         cancelButton.addActionListener(listener);
         confirmbuButton.addActionListener(listener);
         modifyButton.addActionListener(listener);
 	}
-	
-//	public void paintComponent(Graphics g){
-//		
-//		Image image = new ImageIcon("images/user_InfoBG.png").getImage();
-//		
-//		g.drawImage(image,0,0,this);
-//		
-//	}
-//	
 	
 	public void initial(){
 		imageLabel.setIcon(bkgImg);
@@ -131,6 +126,7 @@ public class changeStaff_InfoPanel extends JPanel{
 		user = new User(log);
 		institution = new Institution(log,user,new StaffManage(log, new Position(user, log)));
 		intermediateCenter = new IntermediateCenter(log);
+		bussinessHall = new BussinessHall(log);
 		imageLabel = new JLabel();
         bkgImg = new ImageIcon("images/user_InfoBG.png");
 		cancelButton = new MyButton(CANCEL_ICON, CANCELENTER_ICON, coordinate_X + 350, coordinate_Y + 480,false);
@@ -145,15 +141,23 @@ public class changeStaff_InfoPanel extends JPanel{
 		account = new JLabel(String.valueOf(userVO.getpersonalAccount()));
 		password = new JLabel(userVO.getMyPassword());
 		name = new JLabel(userVO.getpersonalName());
-		position = new JTextField(userVO.getMyPosition());
 		salary = new JLabel(String.valueOf(userVO.getSalary().getTotal()));
+		position = new JComboBox<String>();
 		city = new JComboBox<String>();
+		businessHall = new JComboBox<String>();
+		
 		city.setModel(new DefaultComboBoxModel<String>(getCitys()));
+		
+		position.setSelectedItem(userVO.getMyPosition());
+		
 		if(userVO.getCity() == null) city.setSelectedItem("无");
 		else city.setSelectedItem(userVO.getCity());
 		
-		if(userVO.getBusinessHall() == null) businessHall = new JTextField("无");
-		else businessHall = new JTextField(userVO.getBusinessHall());
+		if(userVO.getBusinessHall() == null){
+
+		}else{
+			businessHall.setSelectedItem(userVO.getBusinessHall());
+		}
 			
 		name.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
 		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + 7, w + 20, 20);
@@ -179,6 +183,30 @@ public class changeStaff_InfoPanel extends JPanel{
 		salary.setForeground(Color.WHITE);
 		
 		setAuthority();
+		city.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getSource() == city){
+//					if(city.getSelectedItem().equals("无")){
+//						businessHall.setModel(new DefaultComboBoxModel<String>());
+//					}else if(city.getSelectedItem().equals("北京")){
+//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("北京")));
+//					}else if(city.getSelectedItem().equals("广州")){
+//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("广州")));
+//					}else if(city.getSelectedItem().equals("上海")){
+//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("上海")));
+//					}else if(city.getSelectedItem().equals("南京")){
+//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("南京")));
+//					}
+					if(!staffCity.equals("无")){
+						businessHall.setModel(new DefaultComboBoxModel<String>(
+								getBusinessHall((String) city.getSelectedItem())));
+					}
+				}
+			}
+		});
 	}
 	
 	//获得城市列表
@@ -192,15 +220,30 @@ public class changeStaff_InfoPanel extends JPanel{
 			
 		}
 		
+		//获得营业厅列表
+		public String[] getBusinessHall(String city){
+			ArrayList<BussinessHallVO> businessHallVOs = bussinessHall.getBussinessHallInfoByCity(city);
+			String[] businessHalls = new String[businessHallVOs.size()];
+			for(int i = 0;i < businessHallVOs.size();i++)
+				businessHalls[i] = businessHallVOs.get(i).getHallName();
+			
+			return businessHalls;
+		}
+		
 	//获得填写的信息
 		public void getInfo(){
 			staffID = userVO.getpersonalID();
 			staffAccount = userVO.getpersonalID();
 			staffPassword = userVO.getMyPassword();
 			staffName = userVO.getpersonalName();
-			staffPosition = position.getText();
+			staffPosition = (String) position.getSelectedItem();
 			staffCity = (String) city.getSelectedItem();
-			staffbusinessHall = businessHall.getText();
+			
+			if(businessHall.getSelectedItem() == null){
+				staffbusinessHall = null;
+			}else{
+				staffbusinessHall = (String) businessHall.getSelectedItem();
+			}
 			
 		}
 	
@@ -255,14 +298,12 @@ public class changeStaff_InfoPanel extends JPanel{
 		        	if(e.getSource() == cancelButton){
 		        		PanelController.setPresentPanel(new StaffPanel(userVO,institutionVO));
 		        	} else if (e.getSource() == confirmbuButton) {
+		        		getInfo();
 		        		if(ID.getText().length() == 0 || account.getText().length() == 0
-			        			   || password.getText().length() == 0 || name.getText().length() == 0
-			        			   || position.getText().length() == 0){
+			        			   || password.getText().length() == 0 ||
+			        			   name.getText().length() == 0){
 			        		   TipDialog tipDialog = new TipDialog(null, "", true, "请完整填写！", false);
 			           		}else{
-			           			getInfo();
-			           			if(businessHall.getText().length() == 0)
-			           				staffbusinessHall = null;
 			           			if(city.getSelectedItem().equals("无"))
 			           				staffCity = null;
 			           			//更新个人信息
