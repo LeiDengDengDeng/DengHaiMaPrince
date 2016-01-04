@@ -13,6 +13,7 @@ import src.businesslogic.nonUserbl.Nonuser;
 import src.businesslogic.userbl.User;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
 import src.dataservice.beginInfodataservice.BeginInfoDataService;
+import src.main.ExpressSystem;
 import src.po.AccountPO;
 import src.po.BeginInfoPO;
 import src.po.DriverPO;
@@ -43,7 +44,8 @@ public class BeginInfo implements BeginInfoBLService {
 		this.nonuser = new Nonuser(log);
 		this.commodity = new Commodity(log);
 		try {
-			beginInfoData = (BeginInfoDataService) Naming.lookup("rmi://127.0.0.1:6600/beginInfoData");
+			beginInfoData = (BeginInfoDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/beginInfoData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

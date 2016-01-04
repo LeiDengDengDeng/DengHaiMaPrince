@@ -147,6 +147,7 @@ public class changeStaff_InfoPanel extends JPanel{
 		businessHall = new JComboBox<String>();
 		
 		city.setModel(new DefaultComboBoxModel<String>(getCitys()));
+		position.setModel(new DefaultComboBoxModel<String>(getPositions()));
 		
 		position.setSelectedItem(userVO.getMyPosition());
 		
@@ -160,13 +161,13 @@ public class changeStaff_InfoPanel extends JPanel{
 		}
 			
 		name.setBounds(coordinate_X + x, coordinate_Y + y, w, h);
-		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + 7, w + 20, 20);
+		position.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + 7, w + 20, 24);
 		ID.setBounds(coordinate_X + x, coordinate_Y + y + linesp, w, h);
 		account.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 2, w, h);
 		password.setBounds(coordinate_X + x + columnsp, coordinate_Y + y + linesp * 2, w, h);
 		city.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 3 + 2, 60, 24);
 		salary.setBounds(coordinate_X + x, coordinate_Y + y + linesp * 4 + 5, w / 2, 20);
-		businessHall.setBounds(coordinate_X + x + columnsp + 13, coordinate_Y + y + linesp * 3 + 6, w - 20, 20);
+		businessHall.setBounds(coordinate_X + x + columnsp + 13, coordinate_Y + y + linesp * 3 + 6, w - 20, 24);
 			
 		name.setFont(myFont);
 		name.setForeground(Color.WHITE);
@@ -183,31 +184,48 @@ public class changeStaff_InfoPanel extends JPanel{
 		salary.setForeground(Color.WHITE);
 		
 		setAuthority();
-		city.addItemListener(new ItemListener() {
+		city.addActionListener(new ActionListener() {
 			
 			@Override
-			public void itemStateChanged(ItemEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(e.getSource() == city){
 //					if(city.getSelectedItem().equals("无")){
-//						businessHall.setModel(new DefaultComboBoxModel<String>());
-//					}else if(city.getSelectedItem().equals("北京")){
-//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("北京")));
-//					}else if(city.getSelectedItem().equals("广州")){
-//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("广州")));
-//					}else if(city.getSelectedItem().equals("上海")){
-//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("上海")));
-//					}else if(city.getSelectedItem().equals("南京")){
-//						businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("南京")));
-//					}
-					if(!staffCity.equals("无")){
-						businessHall.setModel(new DefaultComboBoxModel<String>(
-								getBusinessHall((String) city.getSelectedItem())));
-					}
+//					businessHall.setModel(new DefaultComboBoxModel<String>());
+//				}else if(city.getSelectedItem().equals("北京")){
+//					businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("北京")));
+//				}else if(city.getSelectedItem().equals("广州")){
+//					businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("广州")));
+//				}else if(city.getSelectedItem().equals("上海")){
+//					businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("上海")));
+//				}else if(city.getSelectedItem().equals("南京")){
+//					businessHall.setModel(new DefaultComboBoxModel<String>(getBusinessHall("南京")));
+//				}
+				if(!((String) city.getSelectedItem()).equals("无")){
+					businessHall.removeAllItems();
+					businessHall.setModel(new DefaultComboBoxModel<String>(
+							getBusinessHall((String) city.getSelectedItem())));
+				}else{
+					businessHall.removeAllItems();
 				}
 			}
-		});
-	}
+		}
+	});
+}
+	
+	//获得职位列表
+		public String[] getPositions(){
+			String[] positions = new String[7];
+			positions[0] = "总经理";
+			positions[1] = "管理员";
+			positions[2] = "财务人员";
+			positions[3] = "中转中心仓库管理员";
+			positions[4] = "中转中心业务员";
+			positions[5] = "营业厅业务员";
+			positions[6] = "快递员";
+			
+			return positions;
+		}
 	
 	//获得城市列表
 		public String[] getCitys(){

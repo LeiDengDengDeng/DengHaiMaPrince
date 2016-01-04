@@ -19,6 +19,7 @@ import javax.swing.filechooser.FileSystemView;
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
@@ -56,7 +57,7 @@ public class StockTakingPanel extends JPanel{
     public StockTakingPanel(Log log){
     	commodityBL = new Commodity(log);
     	storages = new ArrayList<ExpressInfoVO>();
-    	storages = commodityBL.stockTaking("南京");
+    	storages = commodityBL.stockTaking(LogIn.currentUser.getCity());
 //    	System.out.println("size: " + storages.size());
 //    	for (int i = 0; i < 54; i++) {
 //            ExpressInfoVO temp = new ExpressInfoVO("血吼", 0000000000000006,
@@ -161,7 +162,7 @@ public class StockTakingPanel extends JPanel{
 				 commodityBL.exportExcel(path + ".xls",storages);
 				 }
 			}
-			new TipDialog(null, "", true, "库存快照已导出！", true);
+//			new TipDialog(null, "", true, "库存快照已导出！", true);
 			}
 		}
     

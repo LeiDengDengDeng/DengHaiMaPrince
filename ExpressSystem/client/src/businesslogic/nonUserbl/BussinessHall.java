@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.nonUserblservice.BussinessHallBLService;
 import src.dataservice.nonUserdataservice.BusinessHallDataService;
+import src.main.ExpressSystem;
 import src.po.BussinessHallPO;
 import src.vo.BussinessHallVO;
 
@@ -20,7 +21,8 @@ public class BussinessHall implements BussinessHallBLService{
 	public BussinessHall(Log log){
 		super();
 		try {
-			businessHallDataService =(BusinessHallDataService) Naming.lookup("rmi://127.0.0.1:6600/businessHallData");
+			businessHallDataService =(BusinessHallDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/businessHallData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

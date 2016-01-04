@@ -19,12 +19,14 @@ public class LeftButtonGroup {
 			"check", "institution", "examine", "payment", "account", "---",
 			"---", "authority", "log", "constant", "beginInfo" };
 
-	// 权限9 库存对应5个功能
-	String[] storagePaths = { "Alarm", "Check", "Divide", "In", "Out" };
+	// 权限9 库存对应6个功能
+	String[] storagePaths = { "Alarm", "Check", "List", "Divide", "In", "Out" };
 	// 权限2&3 接收和派件对应2个功能
 	String[] goodsPaths = { "goodsIn", "goodsOut" };
 	// 权限10 车辆司机信息管理对应2个功能
 	String[] carAndDriverPaths = { "car", "driver" };
+	// 权限12 机构管理对应3个功能
+	String[] institutionPaths = { "institution", "center", "hall" };
 
 	public LeftButtonGroup(ArrayList<Integer> authority) {
 		this.authority = authority;
@@ -69,6 +71,16 @@ public class LeftButtonGroup {
 					leftButtons.add(temp);
 					temp.addActionListener(new LeftButtonListener(300 + m));
 				}
+			} else if (count == 12) {
+				for (int m = 0; m < institutionPaths.length; m++) {
+					MyButton temp = new MyButton(new ImageIcon("images/left_"
+							+ institutionPaths[m] + ".png"), new ImageIcon(
+							"images/left_" + institutionPaths[m]
+									+ "Clicked.png"), 0,
+							200 + leftButtons.size() * 44, true);
+					leftButtons.add(temp);
+					temp.addActionListener(new LeftButtonListener(400 + m));
+				}
 			} else {
 				MyButton temp = new MyButton(new ImageIcon("images/left_"
 						+ imagePaths[count] + ".png"), new ImageIcon(
@@ -78,7 +90,8 @@ public class LeftButtonGroup {
 				temp.addActionListener(new LeftButtonListener(count));
 			}
 		}
-		MyButton temp = new MyButton(new ImageIcon("images/left_changePersonalInfo.png"), new ImageIcon(
+		MyButton temp = new MyButton(new ImageIcon(
+				"images/left_changePersonalInfo.png"), new ImageIcon(
 				"images/left_changePersonalInfoClicked.png"), 0,
 				200 + leftButtons.size() * 44, true);
 		leftButtons.add(temp);

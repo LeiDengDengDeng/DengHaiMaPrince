@@ -17,11 +17,14 @@ import javax.swing.JPanel;
 
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.sheetbl.StorageInSheet;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.enums.GoodsType;
+import src.enums.SheetType;
 import src.presentation.accountui.TextLabel;
 import src.presentation.sheetui.DateChooserJButton;
 import src.presentation.util.TipDialog;
+import src.vo.StorageInSheetVO;
 
 public class StorageInSheetPanel extends JPanel{
 	ArrayList<String> goodsNames;//内件品名
@@ -50,6 +53,7 @@ public class StorageInSheetPanel extends JPanel{
 //	ArrayList<StorageInSheetVO> inStorages;
 	TextLabel TextAdd;
 	ArrayList<TextLabel> TextDelList;
+	StorageInSheet storageInSheet = new StorageInSheet(new Log(), null);
 	protected static final ImageIcon IMG_BG = new ImageIcon("images/storageinsheet_bg.png");
 	protected static final ImageIcon IMG_MOD = new ImageIcon("images/account_mod.png");
 	protected static final ImageIcon IMG_REC1 = new ImageIcon("images/account_rec1.png");
@@ -270,6 +274,11 @@ public class StorageInSheetPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == confirmButton){
 //				System.out.println(goodsNames.get(0));
+				System.out.println("in " + dateChooser.getText());
+				StorageInSheetVO sivo = new StorageInSheetVO(SheetType.STORAGE_IN_SHEET, 
+						goodsNames, expressNumbers, dateChooser.getText(), destinations, areaNumbers,
+						rowNumbers, shelfNumbers, seatNumbers);
+				storageInSheet.add(sivo);
 				new TipDialog(null, "", true, "入库单信息已保存！", true);
 			}
 				

@@ -90,6 +90,7 @@ public class Institution_InfoPanel extends JPanel{
         confirmButton.addActionListener(listener);
         deleteButton.addActionListener(listener);
         modifyButton.addActionListener(listener);
+        searchButton.addActionListener(listener);
         
         addUserLabel();
         

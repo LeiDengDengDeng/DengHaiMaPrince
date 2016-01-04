@@ -32,11 +32,12 @@ public class StorageData_Driver {
 //		storageData.insert(spo1);
 //		storageData.insert(spo2);
 //		storageData.delete("上海");
-		storageData.update("南京", spo1);
+//		storageData.update("上海", spo2);
 		System.out.println(storageData.finds().size());
 //		System.out.println(storageData.finds().get(0).getCity() + " "
 //				+ storageData.finds().get(1).getCity());
 		System.out.println(storageData.findStoragePO("南京").getAlarmScale());
+		System.out.println("gg" + storageData.findStoragePO("上海").getGpos().get(1).getInTime());
 		System.out.println(storageData.finds().get(0).getCity());
 	}
 }

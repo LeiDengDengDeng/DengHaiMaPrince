@@ -22,10 +22,9 @@ import src.enums.GoodsType;
 import src.enums.SheetType;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
-import src.businesslogicservice.logblservice.LogBLService;
-import src.dataservice.accountdataservice.AccountDataService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
+import src.main.ExpressSystem;
 import src.po.GoodsPO;
 import src.po.StoragePO;
 import src.vo.ExpressInfoVO;
@@ -47,8 +46,10 @@ public class Commodity implements CommodityBLService{
 	public Commodity(Log log) {
 		super();
 		try {
-			goodsDataService =(GoodsDataService) Naming.lookup("rmi://127.0.0.1:6600/goodsData");
-			storageDataService = (StorageDataService) Naming.lookup("rmi://127.0.0.1:6600/storageData");
+			goodsDataService =(GoodsDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/goodsData");
+			storageDataService = (StorageDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/storageData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -195,6 +196,7 @@ public class Commodity implements CommodityBLService{
 		
 		for(int i = 0;i < gpos.size();i++){
 			//判断是否在指定时间内
+			System.out.println("time " + gpos.get(i).getInTime());
 			if((Long.parseLong(gpos.get(i).getInTime().replaceAll("-", "")) >= startTime) && 
 					(Long.parseLong(gpos.get(i).getInTime().replaceAll("-", "")) <= endTime)){
 				svos.add(new StorageInfoVO(gpos.get(i).getGoodsName(),gpos.get(i).getAreaNumber(), 
@@ -341,6 +343,7 @@ public class Commodity implements CommodityBLService{
 	@Override
 	public void changeStorageInInfo(String storageId,SheetVO svo) {
 		if(svo.getType() == SheetType.STORAGE_IN_SHEET){
+			System.out.println(".......");
 			StorageInSheetVO sivo = (StorageInSheetVO)svo;
 			
 			StoragePO spo = null;

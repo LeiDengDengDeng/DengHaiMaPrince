@@ -11,6 +11,7 @@ import src.businesslogic.userbl.User;
 import src.businesslogicservice.institutionblservice.InstitutionBLService;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.dataservice.institutiondataservice.InstitutionDataService;
+import src.main.ExpressSystem;
 import src.po.InstitutionPO;
 import src.po.SalaryPO;
 import src.po.UserPO;
@@ -30,7 +31,8 @@ public class Institution implements InstitutionBLService{
 		this.user = user;
 		this.staffManage = staffManage;
 		try {
-			this.institutionData = (InstitutionDataService)Naming.lookup("rmi://127.0.0.1:6600/institutionData");
+			this.institutionData = (InstitutionDataService)Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/institutionData");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -118,11 +120,13 @@ public class Institution implements InstitutionBLService{
 							+ staffInfoVOs.get(k).getBusinessHall())){
 						UserVO u = user.getPersonalInfo(staffInfoVOs.get(k).getID());
 						vos.add(u);
-					}else if(institutionPOs.get(i).getInstitutionName().contains("中转中心")){
-						String city = institutionPOs.get(k).getInstitutionName().charAt(0) + 
-								institutionPOs.get(k).getInstitutionName().charAt(1) + "";
-						if(staffInfoVOs.get(i).getCity().equals(city) && 
-								staffInfoVOs.get(k).getPosition().contains("中转中心")){
+					}else if(institutionPOs.get(i).getInstitutionName().contains("中转中心") && 
+							staffInfoVOs.get(k).getPosition().contains("中转中心")){
+						char[] c = new char[2];
+						c[0] = institutionPOs.get(i).getInstitutionName().charAt(0);
+						c[1] = institutionPOs.get(i).getInstitutionName().charAt(1);
+						String city = String.valueOf(c);
+						if(staffInfoVOs.get(k).getCity().equals(city)){
 							UserVO u = user.getPersonalInfo(staffInfoVOs.get(k).getID());
 							vos.add(u);
 						}
@@ -132,6 +136,10 @@ public class Institution implements InstitutionBLService{
 							UserVO u = user.getPersonalInfo(staffInfoVOs.get(k).getID());
 							vos.add(u);
 						}
+					}else if(institutionPOs.get(i).getInstitutionName().equals(
+							staffInfoVOs.get(k).getBusinessHall())){
+						UserVO u = user.getPersonalInfo(staffInfoVOs.get(k).getID());
+						vos.add(u);
 					}
 				}
 				InstitutionVO insVo = new InstitutionVO(institutionPOs.get(i).getInstitutionName(),
@@ -199,11 +207,17 @@ public class Institution implements InstitutionBLService{
 							+ staffInfoVOs.get(i).getBusinessHall())){
 						UserVO u = user.getPersonalInfo(staffInfoVOs.get(i).getID());
 						userVOs.add(u);
-					}else if(Institution.getInstitutionName().contains("中转中心")){
-						String city = Institution.getInstitutionName().charAt(0) + 
-								Institution.getInstitutionName().charAt(1) + "";
-						if(staffInfoVOs.get(i).getCity().equals(city) && 
-								staffInfoVOs.get(i).getPosition().contains("中转中心")){
+					}else if(Institution.getInstitutionName().contains("中转中心") &&
+							(staffInfoVOs.get(i).getPosition().contains("中转中心"))){
+						char[] c = new char[2];
+						c[0] = Institution.getInstitutionName().charAt(0);
+						c[1] = Institution.getInstitutionName().charAt(1);
+						String city = String.valueOf(c); 
+						System.out.println(city);
+						System.out.println(staffInfoVOs.get(i).getID());
+						System.out.println(staffInfoVOs.get(i).getCity());
+						System.out.println(staffInfoVOs.get(i).getPosition());
+						if((staffInfoVOs.get(i).getCity().equals(city))){
 							UserVO u = user.getPersonalInfo(staffInfoVOs.get(i).getID());
 							userVOs.add(u);
 						}
@@ -213,6 +227,10 @@ public class Institution implements InstitutionBLService{
 							UserVO u = user.getPersonalInfo(staffInfoVOs.get(i).getID());
 							userVOs.add(u);
 						}
+					}else if(Institution.getInstitutionName().equals(
+							staffInfoVOs.get(i).getBusinessHall())){
+						UserVO u = user.getPersonalInfo(staffInfoVOs.get(i).getID());
+						userVOs.add(u);
 					}
 				}
 				InstitutionPO institutionPO = null;
@@ -236,7 +254,7 @@ public class Institution implements InstitutionBLService{
 			
 				try {
 					institutionData.insert(institutionPO);
-					log.generateLog("增加机构", Institution.getInstitutionName());
+					log.generateLog("增加机构", String.valueOf(Institution.getInstitutionID()));
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -264,7 +282,7 @@ public class Institution implements InstitutionBLService{
 		}else{
 			try {
 				institutionData.delete(institutionPO);
-				log.generateLog("删除机构", institutionPO.getInstitutionName());
+				log.generateLog("删除机构", String.valueOf(InstitutionId));
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -286,12 +304,17 @@ public class Institution implements InstitutionBLService{
 		
 	}
 	
-	public static void main(String[] args) {
-		Institution institution = new Institution(null, new User(null), new StaffManage(null, null));
+//	public static void main(String[] args) {
+//		Institution institution = new Institution(null, new User(null), new StaffManage(null, null));
 //		institution.deleteInstitution(300000);
-//		System.out.println(institution.getInstitutionInfo(200000));
-		institution.addInstitution(new InstitutionVO("财务部", 100000, null, "管理财务"));
-	}
+//		System.out.println(institution.getInstitutionInfo(500000).getInstitutionName());
+//		institution.addInstitution(new InstitutionVO("上海中转中心", 500000, null, "负责中转与接收"));
+//		char[] c = new char[2];
+//		c[0] = institution.getInstitutionInfo(100000).getInstitutionName().charAt(0);
+//		c[1] = institution.getInstitutionInfo(100000).getInstitutionName().charAt(1);
+//		String city = String.valueOf(c); 
+//		System.out.println(city);
+//	}
 
 	@Override
 	public boolean changeInstitutionInfo(InstitutionVO institutionVO) {
@@ -323,7 +346,7 @@ public class Institution implements InstitutionBLService{
 			institutionPO.setStaff(userPOs);
 			try {
 				institutionData.update(institutionPO);
-				log.generateLog("更新机构信息", institutionPO.getInstitutionName());
+				log.generateLog("更新机构信息", String.valueOf(institutionVO.getInstitutionID()));
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

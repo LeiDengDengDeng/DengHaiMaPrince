@@ -6,12 +6,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-
 import src.businesslogic.logbl.Log;
-import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.nonUserblservice.DriverBLService;
-import src.dataservice.nonUserdataservice.BusinessHallDataService;
 import src.dataservice.nonUserdataservice.DriverDataService;
+import src.main.ExpressSystem;
 import src.po.DriverPO;
 import src.vo.DriverInfoVO;
 
@@ -23,7 +21,8 @@ public class Driver implements DriverBLService{
 	public Driver(Log log){
 		super();
 		try {
-			driverDataService =(DriverDataService) Naming.lookup("rmi://127.0.0.1:6600/driverData");
+			driverDataService =(DriverDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/driverData");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

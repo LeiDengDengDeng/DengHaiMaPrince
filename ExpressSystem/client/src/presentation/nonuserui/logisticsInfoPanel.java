@@ -23,7 +23,7 @@ import src.presentation.util.RButton;
 import src.presentation.util.SearchButton;
 import src.presentation.util.TipDialog;
 
-public class LogisticsInfoPanel extends JPanel {
+public class logisticsInfoPanel extends JPanel {
 	protected static final int x = 240;// panel 位置x
 	protected static final int y = 80;// panel 位置y
 	protected static final int searchToinfo = 45;// search到info的间距
@@ -45,7 +45,7 @@ public class LogisticsInfoPanel extends JPanel {
 	ArrayList<JLabel> three;
 	ArrayList<JLabel> four;
 
-	public LogisticsInfoPanel() {
+	public logisticsInfoPanel() {
 		this.setLayout(null);
 		this.setBounds(x, y, IMG_Info.getIconWidth(), IMG_Info.getIconHeight() + searchToinfo);
 		this.setOpaque(false);
@@ -131,7 +131,7 @@ public class LogisticsInfoPanel extends JPanel {
 
 	}
 
-	LogisticsInfoPanel getPanel() {
+	logisticsInfoPanel getPanel() {
 		return this;
 	}
 
@@ -141,7 +141,7 @@ public class LogisticsInfoPanel extends JPanel {
 		ImageIcon IMG = new ImageIcon("images/mainFrame.png");
 
 		JFrame frame = new JFrame();
-		LogisticsInfoPanel panel = new LogisticsInfoPanel();
+		logisticsInfoPanel panel = new logisticsInfoPanel();
 		JPanel panelbg = new JPanel();
 		// 设置标题
 		frame.setUndecorated(true);

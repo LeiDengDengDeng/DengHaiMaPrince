@@ -5,14 +5,11 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import src.businesslogic.logbl.Log;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.userblservice.UserBLService;
-import src.dataservice.logdataservice.LogDataService;
 import src.dataservice.userdataservice.UserDataService;
+import src.main.ExpressSystem;
 import src.po.SalaryPO;
 import src.po.UserPO;
 import src.vo.InitUserVO;
@@ -27,7 +24,8 @@ public class User implements UserBLService{
 	public User(LogBLService log){
 		this.log = log;
 		try {
-			this.userData = (UserDataService) Naming.lookup("rmi://127.0.0.1:6600/userData");
+			this.userData = (UserDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/userData");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

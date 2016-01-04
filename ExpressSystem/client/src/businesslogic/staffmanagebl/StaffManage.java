@@ -6,16 +6,13 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import src.businesslogic.institutionbl.Institution;
 import src.businesslogic.positionbl.Position;
-import src.businesslogic.userbl.User;
 import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.staffmanageblservice.StaffManageBLService;
 import src.dataservice.staffmanagedataservice.StaffManageDataService;
+import src.main.ExpressSystem;
 import src.po.UserPO;
-import src.vo.InstitutionVO;
 import src.vo.StaffInfoVO;
-import src.vo.UserVO;
 
 public class StaffManage implements StaffManageBLService{
 
@@ -28,7 +25,8 @@ public class StaffManage implements StaffManageBLService{
 		this.log = log;
 		this.position = position;
 		try {
-			this.staffManageData = (StaffManageDataService) Naming.lookup("rmi://127.0.0.1:6600/staffManageData");
+			this.staffManageData = (StaffManageDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/staffManageData");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,11 +74,12 @@ public class StaffManage implements StaffManageBLService{
 		}
 		if(userPOs != null){
 			for(int i = 0;i < userPOs.size();i++){
-				staffInfoVOs.add(new StaffInfoVO(userPOs.get(i).getPersonalID(), 
+				StaffInfoVO staffInfoVO = new StaffInfoVO(userPOs.get(i).getPersonalID(), 
 						userPOs.get(i).getPersonalAccount(), userPOs.get(i).getMyPassword(),
 						userPOs.get(i).getPersonalName(), userPOs.get(i).getMyPosition(),
 						userPOs.get(i).getAuthority(),userPOs.get(i).getCity(),
-						userPOs.get(i).getBusinessHall()));
+						userPOs.get(i).getBusinessHall());
+				staffInfoVOs.add(staffInfoVO);
 			}
 			return staffInfoVOs;
 		}else{

@@ -16,6 +16,7 @@ import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.nonUserbl.BussinessHall;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.sheetbl.HallTruckSheet;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyButton;
 import src.presentation.util.MyLabel;
@@ -55,8 +56,9 @@ public class HallTruckSheetPanel extends SheetPanel {
 	private void init() {
 		courierNumberPanel = new CourierNumberPanel();
 		dateChooser = new DateChooserJButton();
-		city = new JComboBox(bl.getCities());
-		hall = new JComboBox(bl.getHalls((String) city.getSelectedItem()));
+		city = new JComboBox(new String[] { LogIn.currentUser.getCity() });
+		hall = new JComboBox(
+				new String[] { LogIn.currentUser.getBusinessHall() });
 		destination = new JComboBox(bl.getCities());
 		institutionNumber = new MyLabel("025-01");
 		availableTruck = new JComboBox(new String[] { "02501001", "02501002" });
@@ -86,13 +88,6 @@ public class HallTruckSheetPanel extends SheetPanel {
 		});
 		confirmButton.addActionListener(new ConfirmButtonListener(this));
 
-		hall.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				hall = new JComboBox(bl.getHalls((String) city
-						.getSelectedItem()));
-			}
-		});
-
 		imageLabel.setIcon(bkgImg);
 		imageLabel.setBounds(58, 45, bkgImg.getIconWidth(),
 				bkgImg.getIconHeight());
@@ -121,11 +116,13 @@ public class HallTruckSheetPanel extends SheetPanel {
 		} else {
 			HallTruckSheetVO vo = new HallTruckSheetVO(
 					LogIn.currentUser.getpersonalName(), dateChooser.getText(),
-					null, LogIn.currentUser.getCity(),
+					(long) 0, LogIn.currentUser.getCity(),
 					(String) destination.getSelectedItem(),
 					courierNumberPanel.getCourierNumber());
+			System.out.println("11111111111111");
 			bl.add(vo);
 			new TipDialog(null, "", true, "单据成功提交", true);
+			PanelController.refreshPresentPanel();
 			return true;
 		}
 	}
