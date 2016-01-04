@@ -22,8 +22,6 @@ import src.enums.GoodsType;
 import src.enums.SheetType;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
-import src.businesslogicservice.logblservice.LogBLService;
-import src.dataservice.accountdataservice.AccountDataService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
 import src.po.GoodsPO;
@@ -195,6 +193,7 @@ public class Commodity implements CommodityBLService{
 		
 		for(int i = 0;i < gpos.size();i++){
 			//判断是否在指定时间内
+			System.out.println("time " + gpos.get(i).getInTime());
 			if((Long.parseLong(gpos.get(i).getInTime().replaceAll("-", "")) >= startTime) && 
 					(Long.parseLong(gpos.get(i).getInTime().replaceAll("-", "")) <= endTime)){
 				svos.add(new StorageInfoVO(gpos.get(i).getGoodsName(),gpos.get(i).getAreaNumber(), 
@@ -341,6 +340,7 @@ public class Commodity implements CommodityBLService{
 	@Override
 	public void changeStorageInInfo(String storageId,SheetVO svo) {
 		if(svo.getType() == SheetType.STORAGE_IN_SHEET){
+			System.out.println(".......");
 			StorageInSheetVO sivo = (StorageInSheetVO)svo;
 			
 			StoragePO spo = null;

@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.CommodityBLService_Stub;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogicservice.commodityblservice.CommodityBLService;
 import src.dataservice.commoditydataservice.GoodsDataService;
 import src.dataservice.commoditydataservice.StorageDataService;
@@ -181,8 +182,8 @@ public class StockCheckPanel extends JPanel{
 				pageComboBox.setVisible(true);
 				nextPageButton.setVisible(true);
 				imageLabel.setVisible(true);
-				
-				storages = commodityBL.checkStorageMessage("ÄÏ¾©", 
+				System.out.println(LogIn.currentUser.getCity());
+				storages = commodityBL.checkStorageMessage(LogIn.currentUser.getCity(), 
 						Long.parseLong(startTime.getText().replaceAll("-", "")), 
 						Long.parseLong(endTime.getText().replaceAll("-", "")));
 //				System.out.println(Long.parseLong(startTime.getText().replaceAll("-", "")));
