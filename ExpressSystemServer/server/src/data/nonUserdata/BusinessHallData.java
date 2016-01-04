@@ -84,7 +84,7 @@ public class BusinessHallData extends UnicastRemoteObject implements BusinessHal
 				BussinessHallPO po = (BussinessHallPO) os.readObject();
 				if (po == null)
 					break;
-				System.out.println("-----"+po.getHallName());
+//				System.out.println("-----"+po.getHallName());
 				bpos.add(po);
 			}
 

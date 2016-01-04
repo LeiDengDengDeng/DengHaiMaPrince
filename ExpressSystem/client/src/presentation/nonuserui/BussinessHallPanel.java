@@ -1,5 +1,6 @@
 package src.presentation.nonuserui;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import src.businesslogic.nonUserbl.BussinessHallController;
@@ -165,6 +167,9 @@ public class BussinessHallPanel extends JPanel{
 		
 		drawTBusinessHalls();
 		
+		this.setPreferredSize(new Dimension(200,200));
+		JScrollPane scrollPane = new JScrollPane(this);
+	    scrollPane.setBounds(10, 10, 175, 70);
 		this.setLayout(null);
 		this.setBounds(x, y, w, h);
 		this.setOpaque(false);
