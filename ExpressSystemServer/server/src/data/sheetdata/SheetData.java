@@ -188,8 +188,9 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 
 	public static void main(String[] args) throws RemoteException {
 		SheetData sheet = new SheetData();
-		ConstantPO po = new ConstantPO("xx", "2015-11-11", 33, 2, "北京", "深圳", 0);
-		sheet.insert(po);
+		ArrayList<SheetPO> pos = sheet.finds(SheetType.CONSTANT);
+//		ConstantPO po = new ConstantPO("xx", "2015-11-11", 33, 2, "北京", "深圳", 0);
+//		sheet.insert(po);
 
 	}
 }

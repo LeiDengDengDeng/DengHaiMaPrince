@@ -57,6 +57,8 @@ public class ConstantPanel extends JPanel {
 	public ConstantPanel(Log logBL) {
 		sheet = new Constant(logBL, null);
 		vo = this.sheet.findVOs(FindingType.ALL);
+		for(SheetVO v:vo)
+			System.out.println(v.getID());
 		this.setLayout(null);
 		this.setBounds(x, y, w, h);
 		this.setOpaque(false);
@@ -109,7 +111,6 @@ public class ConstantPanel extends JPanel {
 				if (e.getSource().equals(confirm)) {
 					ConstantVO vo = new ConstantVO(null, null, Double.parseDouble(distance.getText()),
 							Double.parseDouble(price.getText()), cv.getCityOne(), cv.getCityTwo());
-					System.out.println(vo.getCityOne()+" "+vo.getCityTwo()+" "+vo.getDistant()+" "+vo.getPrice());
 					sheet.modify(cv.getID(), vo);
 					PanelController.refreshPresentPanel();
 					return;
@@ -127,6 +128,7 @@ public class ConstantPanel extends JPanel {
 					cancel = new MyButton(IMG_ButtonCancel, IMG_ButtonCancelEnter, button.getX() + 40, button.getY());
 					cancel.addActionListener(l);
 					cv = (ConstantVO) vo.get(i);
+					System.out.println(cv.getID());
 					getPanel().add(cancel);
 					getPanel().add(confirm);
 					getPanel().add(distance);

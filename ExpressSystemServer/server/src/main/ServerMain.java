@@ -35,9 +35,9 @@ import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.dataservice.userdataservice.UserDataService;
 
 public class ServerMain {
+	protected static final String RMI_IP="rmi://192.168.0.114" ; 
 
 	public static void main(String[] args) {
-
 		try {
 			LogDataService logData = new LogData();
 			SheetDataService sheetData = new SheetData();
@@ -54,20 +54,20 @@ public class ServerMain {
 			DriverDataService driverData = new DriverData();
 			TruckDataService truckData = new TruckData();
 			LocateRegistry.createRegistry(6600);
-			Naming.rebind("rmi://127.0.0.1:6600/logData", logData);
-			Naming.rebind("rmi://127.0.0.1:6600/sheetData", sheetData);
-			Naming.rebind("rmi://127.0.0.1:6600/accountData", accountData);
-			Naming.rebind("rmi://127.0.0.1:6600/userData", userData);
-			Naming.rebind("rmi://127.0.0.1:6600/staffManageData", staffManageData);
-			Naming.rebind("rmi://127.0.0.1:6600/institutionData", institutionData);
-			Naming.rebind("rmi://127.0.0.1:6600/positionData",positionData);
-			Naming.rebind("rmi://127.0.0.1:6600/storageData", storageData);
-			Naming.rebind("rmi://127.0.0.1:6600/goodsData", goodsData);
-			Naming.rebind("rmi://127.0.0.1:6600/businessHallData", businessHallData);
-			Naming.rebind("rmi://127.0.0.1:6600/intermediateCenterData", intermediateCenterData);
-			Naming.rebind("rmi://127.0.0.1:6600/driverData", driverData);
-			Naming.rebind("rmi://127.0.0.1:6600/truckData", truckData);
-			Naming.rebind("rmi://127.0.0.1:6600/beginInfoData",beginInfoData);
+			Naming.rebind(RMI_IP+":6600/logData", logData);
+			Naming.rebind(RMI_IP+":6600/sheetData", sheetData);
+			Naming.rebind(RMI_IP+":6600/accountData", accountData);
+			Naming.rebind(RMI_IP+":6600/userData", userData);
+			Naming.rebind(RMI_IP+":6600/staffManageData", staffManageData);
+			Naming.rebind(RMI_IP+":6600/institutionData", institutionData);
+			Naming.rebind(RMI_IP+":6600/positionData",positionData);
+			Naming.rebind(RMI_IP+":6600/storageData", storageData);
+			Naming.rebind(RMI_IP+":6600/goodsData", goodsData);
+			Naming.rebind(RMI_IP+":6600/businessHallData", businessHallData);
+			Naming.rebind(RMI_IP+":6600/intermediateCenterData", intermediateCenterData);
+			Naming.rebind(RMI_IP+":6600/driverData", driverData);
+			Naming.rebind(RMI_IP+":6600/truckData", truckData);
+			Naming.rebind(RMI_IP+":6600/beginInfoData",beginInfoData);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {

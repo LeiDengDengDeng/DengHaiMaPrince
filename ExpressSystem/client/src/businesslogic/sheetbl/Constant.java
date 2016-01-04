@@ -32,6 +32,7 @@ public class Constant extends Sheet {
 		ConstantPO p = (ConstantPO) po;
 		ConstantVO vo = new ConstantVO(p.getBuilder(), p.getTime(),
 				p.getDistant(), p.getPrice(), p.getCityOne(), p.getCityTwo());
+		vo.setID(p.getID());
 		return vo;
 	}
 
