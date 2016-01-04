@@ -148,19 +148,19 @@ public class EarningsPanel extends JPanel {
 				}
 			}
 		}
-//		for (int i = 0; i < receiveList.size(); i++) {
-//			ReceivingMoneySheetVO vo = (ReceivingMoneySheetVO) receiveList.get(i);
-//			String[] split = receiveList.get(i).getTime().split("-");
-//			if (c.get(Calendar.YEAR) == Integer.parseInt(split[0])) {
-//				receptionAmount_Year += vo.getItem;
-//				if (c.get(Calendar.MONTH) == Integer.parseInt(split[1])) {
-//					receptionAmount_Month += vo.getMoney();
-//					if (c.get(Calendar.DATE) == Integer.parseInt(split[2])) {
-//						receptionAmount_Day += vo.getMoney();
-//					}
-//				}
-//			}
-//		}
+		for (int i = 0; i < receiveList.size(); i++) {
+			ReceivingMoneySheetVO vo = (ReceivingMoneySheetVO) receiveList.get(i);
+			String[] split = receiveList.get(i).getTime().split("-");
+			if (c.get(Calendar.YEAR) == Integer.parseInt(split[0])) {
+				receptionAmount_Year += vo.getMoney();
+				if (c.get(Calendar.MONTH) == Integer.parseInt(split[1])) {
+					receptionAmount_Month += vo.getMoney();
+					if (c.get(Calendar.DATE) == Integer.parseInt(split[2])) {
+						receptionAmount_Day += vo.getMoney();
+					}
+				}
+			}
+		}
 		earning_Year = receptionAmount_Year - paymentAmount_Year;
 		earning_Month = receptionAmount_Month - paymentAmount_Month;
 		earning_Day = receptionAmount_Day - paymentAmount_Day;
