@@ -7,6 +7,7 @@ import src.businesslogic.sheetbl.PaymentSheet;
 import src.businesslogic.sheetbl.ReceivingMoneySheet;
 import src.presentation.accountui.AccountPanel;
 import src.presentation.beginInfoui.BeginInfoPanel;
+import src.presentation.beginInfoui.BeginInfoPanel2;
 import src.presentation.commodityui.AlarmScaleChangingPanel;
 import src.presentation.commodityui.DividePanel;
 import src.presentation.commodityui.StockCheckPanel;

@@ -22,15 +22,15 @@ public class PaymentSubPanel extends JScrollPane {
 	public PaymentSubPanel(ArrayList<SheetVO> voList,EarningsPanel pane) {
 		this.voList = voList;
 		this.pane=pane;
+		idList = new ArrayList<JLabel>();
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(new Color(45, 45, 45));
-		panel.setBounds(0,0,230,(230+idList.size()-13)*16);
+		panel.setBounds(0,0,230,230);
 		this.setPreferredSize(new Dimension(230, 230));
 		this.setViewportView(panel);
 		this.setBackground(new Color(45, 45, 45));
 		this.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS);
-		idList = new ArrayList<JLabel>();
 	}
 
 	public void update(String data) {
@@ -41,8 +41,8 @@ public class PaymentSubPanel extends JScrollPane {
 		for (int i = 0; i < voList.size(); i++) {
 			if (voList.get(i).getTime().equals(data)) {
 				JLabel ID = new JLabel("<HTML><U>" + String.valueOf(voList.get(i).getID()) + "</U></HTML>");
-				ID.setBounds(10, 2+16*i, 100, 16);
-				ID.setForeground(Color.BLUE);
+				ID.setBounds(10, 2+16*idList.size(), 100, 16);
+				ID.setForeground(Color.white);
 				ID.addMouseListener(new IDLabelListener(pane, voList.get(i)));
 				idList.add(ID);
 				panel.add(ID);

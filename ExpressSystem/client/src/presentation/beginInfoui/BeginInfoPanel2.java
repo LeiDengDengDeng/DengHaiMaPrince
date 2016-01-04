@@ -11,14 +11,12 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.plaf.metal.MetalLabelUI;
 
 import src.businesslogic.beginInfobl.BeginInfo;
 import src.businesslogic.logbl.Log;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
-import src.presentation.util.MyLabel;
 import src.presentation.util.TipDialog;
 import src.vo.AccountVO;
 import src.vo.BeginInfoVO;
@@ -28,7 +26,7 @@ import src.vo.InitUserVO;
 import src.vo.StorageInitVO;
 import src.vo.TruckInfoVO;
 
-public class BeginInfoPanel extends JPanel {
+public class BeginInfoPanel2 extends JPanel {
 
 	protected static final ImageIcon IMG_BG = new ImageIcon("images/beginInfo_BG.png");
 	protected static final ImageIcon IMG_ButtonAccount = new ImageIcon("images/beginInfo_buttonAccount.png");
@@ -61,37 +59,21 @@ public class BeginInfoPanel extends JPanel {
 	protected SubPanel driverPanel = new PanelDriver(IMG_Driver);
 	protected SubPanel truckPanel = new PanelTruck(IMG_Truck);
 	protected SubPanel userPanel = new PanelUser(IMG_User);
-	protected PanelAccount2 panelAccount = new PanelAccount2(IMG_Account);
-	protected PanelDriver2 panelDriver = new PanelDriver2(IMG_Driver);
-	protected PanelCommodity2 panelCommodity = new PanelCommodity2(IMG_Commodity);
-	protected PanelTruck2 panelTruck = new PanelTruck2(IMG_Truck);
-	protected PanelUser2 panelUser = new PanelUser2(IMG_User);
 	protected SubPanel[] panelList = { accountPanel, commodityPanel, driverPanel, truckPanel, userPanel };
-	protected SubPanel2[] panelInfoList = { (SubPanel2) panelAccount, (SubPanel2) panelCommodity,
-			(SubPanel2) panelDriver, (SubPanel2) panelTruck, (SubPanel2) panelUser };
 	protected static final int x = 212;// panel 位置x
 	protected static final int y = 110;// panel 位置y
 	protected ArrayList<BeginInfoButton> buttonList;
 	protected ArrayList<BeginInfoButton> buttonClickList;
 	BeginInfoBLService beginInfoBL;
 	Log log;
-	BeginInfoPanel2 fillPanel;
 
-	MyButton add = new MyButton(IMG_Button_add, IMG_Button_addEnter, 20, 300, false);
-	MyLabel addText=new MyLabel("期初建账");
-	public BeginInfoPanel(Log log) {
-		addText.setBounds(50,300,16*4,16);
-		this.add(addText);
+	MyButton add = new MyButton(IMG_Button_add, IMG_Button_addEnter, 5, 60, false);
+
+	public BeginInfoPanel2(Log log) {
 		beginInfoBL = new BeginInfo(log);
-		fillPanel = new BeginInfoPanel2(log);
-		panelAccount.drawCom(beginInfoBL.getInfo().getBeginAccount());
-		panelDriver.drawCom(beginInfoBL.getInfo().getBeginDriver());
-		panelCommodity.drawCom(beginInfoBL.getInfo().getBeginStorage());
-		panelTruck.drawCom(beginInfoBL.getInfo().getBeginTruck());
-		panelUser.drawCom(beginInfoBL.getInfo().getBeginUser());
+
 		this.setLayout(null);
 		this.log = log;
-		this.add(add);
 		this.setBounds(x, y, IMG_BG.getIconWidth(), IMG_BG.getIconHeight());
 		this.buttonList = new ArrayList<BeginInfoButton>();
 		this.buttonClickList = new ArrayList<BeginInfoButton>();
@@ -103,10 +85,10 @@ public class BeginInfoPanel extends JPanel {
 			buttonList.add(button);
 			this.add(buttonClick);
 			this.add(button);
-			this.add(panelInfoList[j]);
+			this.add(panelList[j]);
 			if (j != 0) {
 				buttonClick.setVisible(false);
-				panelInfoList[j].setVisible(false);
+				panelList[j].setVisible(false);
 			}
 
 			button.addMouseListener(new MouseListener() {
@@ -117,10 +99,10 @@ public class BeginInfoPanel extends JPanel {
 					for (int j = 0; j < buttonList.size(); j++) {
 						BeginInfoButton button = (BeginInfoButton) e.getSource();
 						if (buttonList.indexOf(button) == j) {
-							panelInfoList[j].setVisible(true);
+							panelList[j].setVisible(true);
 							buttonClickList.get(j).setVisible(true);
 						} else {
-							panelInfoList[j].setVisible(false);
+							panelList[j].setVisible(false);
 							buttonClickList.get(j).setVisible(false);
 						}
 
@@ -154,16 +136,98 @@ public class BeginInfoPanel extends JPanel {
 
 			});
 		}
+		JButton confirm = new JButton(IMG_Button_Confirm);
+		confirm.setBounds(500, 350, IMG_Button_Confirm.getIconWidth(), IMG_Button_Confirm.getIconHeight());
+		confirm.setContentAreaFilled(false);
+		confirm.setBorderPainted(false);
+		confirm.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				((JButton) e.getSource()).setIcon(IMG_Button_Confirm);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				((JButton) e.getSource()).setIcon(null);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				save();
+				PanelController.refreshPresentPanel();
+			}
+		});
+		;
+		this.add(confirm);
 
 		add.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				 PanelController.setPresentPanel(fillPanel);
-				 fillPanel.setBounds(x, y, IMG_BG.getIconWidth(), IMG_BG.getIconHeight());
+
 			}
 		});
+	}
+
+	public void save() {
+		// account
+		ArrayList<AccountVO> beginAccount = new ArrayList<AccountVO>();
+		ArrayList<StorageInitVO> beginStorage = new ArrayList<StorageInitVO>();
+		ArrayList<DriverInfoVO> beginDriver = new ArrayList<DriverInfoVO>();
+		ArrayList<TruckInfoVO> beginTruck = new ArrayList<TruckInfoVO>();
+		ArrayList<InitUserVO> beginUser = new ArrayList<InitUserVO>();
+		for (int i = 0; i < this.panelList[0].getVO().size(); i++) {
+			AccountVO vo = (AccountVO) this.panelList[0].getVO().get(i);
+			beginAccount.add(vo);
+		}
+		for (int i = 0; i < this.panelList[1].getVO().size(); i++) {
+			StorageInitVO vo = (StorageInitVO) this.panelList[1].getVO().get(i);
+			beginStorage.add(vo);
+		}
+		for (int i = 0; i < this.panelList[2].getVO().size(); i++) {
+			DriverInfoVO vo = (DriverInfoVO) this.panelList[2].getVO().get(i);
+			beginDriver.add(vo);
+		}
+		for (int i = 0; i < this.panelList[3].getVO().size(); i++) {
+			TruckInfoVO vo = (TruckInfoVO) this.panelList[3].getVO().get(i);
+			beginTruck.add(vo);
+		}
+		for (int i = 0; i < this.panelList[4].getVO().size(); i++) {
+			InitUserVO vo = (InitUserVO) this.panelList[4].getVO().get(i);
+			beginUser.add(vo);
+		}
+		BeginInfoVO vo = new BeginInfoVO(beginDriver, beginTruck, beginAccount, beginStorage, beginUser);
+		beginInfoBL.fillInfo(vo);
+
+	}
+
+	public ArrayList<BeginVO> getVO(int i) {
+		ArrayList<BeginVO> accountVO = new ArrayList<BeginVO>();
+		ArrayList<AccountVO> a = beginInfoBL.getInfo().getBeginAccount();
+		for (int j = 0; j < a.size(); j++) {
+		}
+		ArrayList<DriverInfoVO> d = beginInfoBL.getInfo().getBeginDriver();
+		ArrayList<TruckInfoVO> t = beginInfoBL.getInfo().getBeginTruck();
+		ArrayList<InitUserVO> u = beginInfoBL.getInfo().getBeginUser();
+		ArrayList<StorageInitVO> s = beginInfoBL.getInfo().getBeginStorage();
+		return null;
 	}
 
 	public void paintComponent(Graphics g) {
@@ -173,4 +237,7 @@ public class BeginInfoPanel extends JPanel {
 
 	}
 
+	public void drawDialog(String text, boolean isSuccess) {
+		TipDialog d = new TipDialog(null, "", true, text, isSuccess);
+	}
 }

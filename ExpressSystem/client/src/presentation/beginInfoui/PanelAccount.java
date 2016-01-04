@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import src.businesslogic.util.CommonUtil;
 import src.vo.AccountVO;
@@ -18,12 +19,11 @@ import src.vo.AccountVO;
 public class PanelAccount extends SubPanel {
 
 	ImageIcon img;
-
 	ArrayList<TextField[]> a;
-
 	protected PanelAccount(ImageIcon img) {
 		super(img);
 		this.setLayout(null);
+		
 		this.img = img;
 		a = new ArrayList<TextField[]>();
 		this.drawCom(0);
@@ -107,6 +107,8 @@ public class PanelAccount extends SubPanel {
 
 	}
 
+	
+
 	public JButton addButton() {
 		this.add(super.addButton());
 		return null;
@@ -147,5 +149,34 @@ public class PanelAccount extends SubPanel {
 	public SubPanel getPanel() {
 		return this;
 	}
+
+
+
+	public void drawInfo(ArrayList<AccountVO> l) {
+		for (int i = 0; i < l.size(); i++) {
+			int Name_x = 160;
+			int Name_y = 63;
+			int Name_w = (font + 4) * 3;
+			int Name_h = font + 8;
+			int distance_x = 23;
+			int Num_w = 195;
+			int Amount_w = 80;
+			int distance_y = 30;
+			JLabel textName = new JLabel(l.get(i).getName());
+			textName.setBounds(Name_x, Name_y + distance_y * i, Name_w, Name_h);
+			textName.addFocusListener(new MyFocusListener(getPanel()));
+			JLabel textNum = new JLabel(l.get(i).getID().toString());
+			textNum.setBounds(Name_x + Name_w + distance_x, Name_y + distance_y * i, Num_w, Name_h);
+			JLabel textAmount = new JLabel(Double.toString(l.get(i).getAmount()));
+			textAmount.setBounds(Name_x + Name_w + distance_x + Num_w + distance_x, Name_y + distance_y * i, Amount_w,
+					Name_h);
+			this.add(textName);
+			this.add(textNum);
+			this.add(textAmount);
+		}
+		
+	}
+
+	
 
 }

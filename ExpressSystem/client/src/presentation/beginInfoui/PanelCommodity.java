@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import src.businesslogic.logbl.Log;
+import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.vo.StorageInitVO;
 
 public class PanelCommodity extends SubPanel {
@@ -48,7 +50,11 @@ public class PanelCommodity extends SubPanel {
 		int wei_w = 28;
 		int percent_w = 45;
 		int distance_y = 30;
-		String[] s = { "南京中转中心", "上海中转中心", "广州中转中心", "深圳中转中心", "北京中转中心" };
+		ArrayList<String> cities = new IntermediateCenter(new Log()).getcity();
+		String[] s=new String[10];
+		for (int j = 0; j < cities.size(); j++) {
+			s[j]=cities.get(j);
+		}
 		JComboBox<String> textName = new JComboBox<>(s);
 		textName.setBounds(Name_x, Name_y + distance_y * i, Name_w, Name_h);
 		TextField textjia = new TextField();

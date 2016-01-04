@@ -10,13 +10,14 @@ import src.businesslogic.accountbl.Account;
 import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.logbl.Log;
 import src.businesslogic.nonUserbl.Nonuser;
-import src.businesslogic.sheetbl.Sheet;
 import src.businesslogic.userbl.User;
 import src.businesslogicservice.beginInfoblservice.BeginInfoBLService;
 import src.dataservice.beginInfodataservice.BeginInfoDataService;
 import src.po.AccountPO;
 import src.po.BeginInfoPO;
 import src.po.DriverPO;
+import src.po.InitUserPO;
+import src.po.StorageInitPO;
 import src.po.StoragePO;
 import src.po.TruckPO;
 import src.po.UserPO;
@@ -70,8 +71,8 @@ public class BeginInfo implements BeginInfoBLService {
 		ArrayList<DriverPO> Driver = new ArrayList<DriverPO>();
 		ArrayList<TruckPO> Truck = new ArrayList<TruckPO>();
 		ArrayList<AccountPO> Account = new ArrayList<AccountPO>();
-		ArrayList<StoragePO> Storage = new ArrayList<StoragePO>();
-		ArrayList<UserPO> User = new ArrayList<UserPO>();
+		ArrayList<StorageInitPO> Storage = new ArrayList<StorageInitPO>();
+		ArrayList<InitUserPO> User = new ArrayList<InitUserPO>();
 		for (int j = 0; j < beginDriver.size(); j++) {
 			DriverInfoVO drivervo = beginDriver.get(j);
 			DriverPO driver = new DriverPO(drivervo.getNumber(), drivervo.getName(), drivervo.getYear(),
@@ -91,15 +92,12 @@ public class BeginInfo implements BeginInfoBLService {
 		}
 		for (int i = 0; i < beginStorage.size(); i++) {
 			StorageInitVO storagevo = beginStorage.get(i);
-			StoragePO storage = new StoragePO(storagevo.getStorageId(), 0, 0, 0, 0, 0, storagevo.getAlarmScale(),
-					storagevo.getShelfNum() / 4, storagevo.getShelfNum() / 4, storagevo.getShelfNum() / 4,
-					storagevo.getShelfNum() - 3 * storagevo.getShelfNum() / 4, null);
+			StorageInitPO storage = new StorageInitPO(storagevo.getStorageId(), storagevo.getAlarmScale(), storagevo.getRowNum(), storagevo.getShelfNum(), storagevo.getSeatNum());
 			Storage.add(storage);
 		}
 		for (int i = 0; i < beginUser.size(); i++) {
 			InitUserVO uservo = beginUser.get(i);
-			UserPO user = new UserPO(uservo.getPersonalID(), 0, "", uservo.getPersonalName(), uservo.getMyPosition(),
-					null);
+			InitUserPO user = new InitUserPO(uservo.getPersonalID(), uservo.getMyPosition(), uservo.getSalary(), uservo.getPersonalName());
 			User.add(user);
 		}
 
@@ -124,8 +122,8 @@ public class BeginInfo implements BeginInfoBLService {
 		ArrayList<DriverPO> beginDriver=null;
 		ArrayList<TruckPO> beginTruck=null;
 		ArrayList<AccountPO> beginAccount=null;
-		ArrayList<StoragePO> beginStorage=null;
-		ArrayList<UserPO> beginUser=null;
+		ArrayList<StorageInitPO> beginStorage=null;
+		ArrayList<InitUserPO> beginUser=null;
 		try {
 			beginDriver = beginInfoData.get().getBeginDriver();
 			beginTruck = beginInfoData.get().getBeginTruck();
@@ -155,15 +153,13 @@ public class BeginInfo implements BeginInfoBLService {
 			Account.add(account);
 		}
 		for (int i = 0; i < beginStorage.size(); i++) {
-			StoragePO storagevo = beginStorage.get(i);
-			//这里还没写完！！！！
-//			StorageInitVO storage = new StorageInitVO(storagevo.getCity(),  storagevo.getAlarmScale(),
-//					storagevo.getShippingSize()+storagevo.getFlxibleSize()+storagevo.getRailSize()+storagevo.getTransportSize());
-//			Storage.add(storage);
+			StorageInitPO storagevo = beginStorage.get(i);
+			StorageInitVO storage = new StorageInitVO(storagevo.getStorageId(), storagevo.getAlarmScale(), storagevo.getRowNum(),  storagevo.getShelfNum(),  storagevo.getSeatNum());
+			Storage.add(storage);
 		}
 		for (int i = 0; i < beginUser.size(); i++) {
-			UserPO uservo = beginUser.get(i);
-			InitUserVO users = new InitUserVO(uservo.getPersonalID(), uservo.getPersonalName(),0, uservo.getMyPosition());
+			InitUserPO uservo = beginUser.get(i);
+			InitUserVO users = new InitUserVO(uservo.getPersonalID(), uservo.getMyPosition(), uservo.getSalary(), uservo.getPersonalName());
 			User.add(users);
 		}
 		

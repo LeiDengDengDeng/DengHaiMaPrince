@@ -90,7 +90,7 @@ public class IDLabelListener extends MouseAdapter {
         sheetPanel.add(tip);
 
         // buttonŒª÷√
-        cancelButton.setBounds(300, 550, 50, 20);
+        cancelButton.setBounds(400, 500, 50, 20);
 
         // ±≥æ∞Õº
         ImageIcon bkgImg = new ImageIcon("images/examine_payment.png");

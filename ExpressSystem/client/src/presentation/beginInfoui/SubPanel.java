@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import src.vo.AccountVO;
+
 public abstract class SubPanel extends JPanel {
 	private ImageIcon IMG;
 	protected static final int font = 14;
@@ -20,25 +22,35 @@ public abstract class SubPanel extends JPanel {
 	final ImageIcon buttonIconEnter = new ImageIcon("images/account_addEnter.png");
 	static final ImageIcon check = new ImageIcon("images/check_icon.png");
 	static final ImageIcon error = new ImageIcon("images/error_icon.png");
+
 	protected SubPanel(ImageIcon IMG) {
 		this.setLayout(null);
 		this.setOpaque(false);
-		this.IMG=IMG;
+		this.IMG = IMG;
 		this.setBounds(0, 0, IMG.getIconWidth(), IMG.getIconHeight());
 	}
+
+
 	public abstract SubPanel getPanel();
 	public abstract ArrayList<TextField[]> getArrayList();
+
 	public abstract ArrayList<JComboBox<String>> getJComBox();
+
 	public abstract ImageIcon getImageIcon();
+
 	public abstract void drawCom(int i);
+
 	public abstract ArrayList<Object> getVO();
-	public JButton addButton(){
+
+
+	public JButton addButton() {
 		JButton button = new JButton(buttonIcon);
-		button.setBounds(500, 70+30 , buttonIcon.getIconWidth(), buttonIcon.getIconHeight());
+		button.setBounds(500, 70 + 30, buttonIcon.getIconWidth(), buttonIcon.getIconHeight());
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		button.addMouseListener(new MouseListener() {
-			int i=0;
+			int i = 0;
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -67,16 +79,18 @@ public abstract class SubPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				if(i<7){
-				i++;
-				drawCom(i);
-				((JButton)e.getSource()).setLocation(((JButton)e.getSource()).getLocation().x, ((JButton)e.getSource()).getLocation().y+30);
-				repaint();
+				if (i < 7) {
+					i++;
+					drawCom(i);
+					((JButton) e.getSource()).setLocation(((JButton) e.getSource()).getLocation().x,
+							((JButton) e.getSource()).getLocation().y + 30);
+					repaint();
 				}
 			}
 		});
 		return button;
 	}
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 

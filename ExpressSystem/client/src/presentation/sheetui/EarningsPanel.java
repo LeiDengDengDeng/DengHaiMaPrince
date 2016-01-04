@@ -78,45 +78,50 @@ public class EarningsPanel extends JPanel {
 
 		// 收款单VO
 		receiveList = receiveingsheet.findVOs(FindingType.ALL);
-		
+
 		// 付款单Panel
-		payPanel = new PaymentSubPanel(paymentList,this);
+		payPanel = new PaymentSubPanel(paymentList, this);
+		payPanel.setBounds(170, 220, 230, 230);
 		payPanel.setVisible(true);
 		// 收款单panel
-		receivePanel = new PaymentSubPanel(receiveList,this);
+		receivePanel = new PaymentSubPanel(receiveList, this);
+		receivePanel.setBounds(170, 220, 230, 230);
 		receivePanel.setVisible(false);
 		// 计算钱
 		this.calculateMoney();
-		EarningActionListener l=new EarningActionListener();
+		EarningActionListener l = new EarningActionListener();
 		// 付款单按钮
-		buttonpay = new MyButton(IMG_ButtonP, IMG_ButtonPE,27,225,true);
+		buttonpay = new MyButton(IMG_ButtonP, IMG_ButtonPE, 27, 225, true);
 		buttonpay.addActionListener(l);
 		// 收款单按钮
-		buttonrec = new MyButton(IMG_ButtonR, IMG_ButtonRE,buttonpay.getX(),buttonpay.getY() + IMG_ButtonP.getIconHeight(),true);
+		buttonrec = new MyButton(IMG_ButtonR, IMG_ButtonRE, buttonpay.getX(),
+				buttonpay.getY() + IMG_ButtonP.getIconHeight(), true);
 		buttonrec.addActionListener(l);
-		
+
 		// 日期选择按钮
 		datechoose = new DateChooserJButton();
 		datechoose.setBounds(325, 200, 70, 23);
 		datechoose.addFocusListener(new FocusListener() {
-			boolean oncegained=false;
+			boolean oncegained = false;
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				// TODO Auto-generated method stub
-				if(oncegained){
-					receivePanel.update(((DateChooserJButton)e.getSource()).getText());
-					payPanel.update(((DateChooserJButton)e.getSource()).getText());
+				if (oncegained) {
+					receivePanel.update(((DateChooserJButton) e.getSource()).getText());
+					payPanel.update(((DateChooserJButton) e.getSource()).getText());
 				}
 			}
-			
+
 			@Override
 			public void focusGained(FocusEvent e) {
 				// TODO Auto-generated method stub
-				oncegained=true;
+				oncegained = true;
 			}
-		});;
+		});
+		;
 		receivePanel.setVisible(false);
-		
+
 		this.add(datechoose);
 		this.add(payPanel);
 		this.add(receivePanel);
@@ -233,14 +238,14 @@ public class EarningsPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if (e.getSource() .equals( buttonpay)) {
+			if (e.getSource().equals(buttonpay)) {
 				buttonpay.setIcon(IMG_ButtonPE);
 				buttonrec.setIcon(IMG_ButtonR);
 				payPanel.setVisible(true);
 				receivePanel.setVisible(false);
 				repaint();
 			}
-			if (e.getSource() .equals(buttonrec)) {
+			if (e.getSource().equals(buttonrec)) {
 				buttonrec.setIcon(IMG_ButtonRE);
 				buttonpay.setIcon(IMG_ButtonP);
 				payPanel.setVisible(false);
