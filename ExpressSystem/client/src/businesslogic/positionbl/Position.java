@@ -10,13 +10,14 @@ import src.businesslogicservice.logblservice.LogBLService;
 import src.businesslogicservice.positionblservice.PositionBLService;
 import src.businesslogicservice.userblservice.UserBLService;
 import src.data.positiondataservice.PositionDataservice;
+import src.dataservice.positiondataservice.PositionDataService;
 import src.po.AuthorityPO;
 import src.vo.AuthorityVO;
 import src.vo.StaffInfoVO;
 import src.vo.UserVO;
 
 public class Position implements PositionBLService{
-	PositionDataservice positionData;
+	PositionDataService positionData;
 	UserBLService userBL;
 	LogBLService log;
 	
@@ -24,7 +25,7 @@ public class Position implements PositionBLService{
 		this.userBL = userBL;
 		this.log = log;
 		try {
-			this.positionData = (PositionDataservice) Naming.lookup("rmi://127.0.0.1:6600/positionData");
+			this.positionData = (PositionDataService) Naming.lookup("rmi://127.0.0.1:6600/positionData");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

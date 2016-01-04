@@ -8,15 +8,19 @@ import javax.swing.JLabel;
 
 import src.businesslogic.institutionbl.Institution;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.positionbl.Position;
+import src.businesslogic.staffmanagebl.StaffManage;
+import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 
 public class InstitutionListener implements MouseListener{
 	JLabel ID;
 	Institution institution;
-	
+	Log log;
 	public InstitutionListener(JLabel ID){
 		this.ID = ID;
-		institution = new Institution(new Log());
+		log = new Log();
+		institution = new Institution(log,new User(log),new StaffManage(log, new Position(new User(log), log)));
 		AddListener();
 	}
 

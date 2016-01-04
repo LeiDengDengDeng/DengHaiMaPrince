@@ -82,15 +82,13 @@ public class User implements UserBLService{
 				e.printStackTrace();
 			}
 			userPO.setMyPassword(password);
-//			PasswordPanel passwordPanel = new PasswordPanel(userPO.getMyPassword(),
-//					password, password);
 			try {
 				userData.update(userPO);
-				log.generateLog("ĞŞ¸ÄÃÜÂë", String.valueOf(userPO.getPersonalID()));
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			log.generateLog("ĞŞ¸ÄÃÜÂë", String.valueOf(UserId));
 			return true;
 		}
 		

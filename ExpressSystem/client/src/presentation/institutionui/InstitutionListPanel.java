@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 
 import src.businesslogic.institutionbl.Institution;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.positionbl.Position;
+import src.businesslogic.staffmanagebl.StaffManage;
+import src.businesslogic.userbl.User;
 import src.presentation.mainui.PanelController;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
@@ -35,6 +38,7 @@ public class InstitutionListPanel extends JPanel{
 	ArrayList<InstitutionVO> institutionVOs;
 	InstitutionGroup institutionGroup;
 	Institution institution;
+	Log log;
 
 	JLabel imageLabel;
 	JLabel addLabel;
@@ -68,7 +72,8 @@ public class InstitutionListPanel extends JPanel{
     }
 	
 	public void initial(){		
-		institution = new Institution(new Log());
+		log = new Log();
+		institution = new Institution(log,new User(log),new StaffManage(log, new Position(new User(log), log)));
 		imageLabel = new JLabel();
 		addLabel = new JLabel();
 		pageComboBox = new JComboBox();
