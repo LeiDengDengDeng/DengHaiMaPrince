@@ -12,11 +12,14 @@ import src.presentation.beginInfoui.BeginInfoPanel2;
 import src.presentation.commodityui.AlarmScaleChangingPanel;
 import src.presentation.commodityui.DividePanel;
 import src.presentation.commodityui.StockCheckPanel;
+import src.presentation.commodityui.StockTakingPanel;
 import src.presentation.commodityui.storageinsheetui.StorageInSheetPanel;
 import src.presentation.commodityui.storageoutsheetui.StorageOutSheetPanel;
 import src.presentation.institutionui.InstitutionListPanel;
 import src.presentation.logui.CheckLogPanel;
+import src.presentation.nonuserui.BussinessHallPanel;
 import src.presentation.nonuserui.DriverPanel;
+import src.presentation.nonuserui.IntermediateCenterPanel;
 import src.presentation.nonuserui.TruckPanel;
 import src.presentation.sheetui.CenterGoodsOutSheetPanel;
 import src.presentation.sheetui.CenterTruckSheetPanel;
@@ -87,9 +90,6 @@ public class PanelController {
 					(PaymentSheet) factory.getPaymentSheetBL(),
 					(ReceivingMoneySheet) factory.getReceivingMoneySheetBL());
 			break;
-		case 12:
-			presentPanel = new InstitutionListPanel();
-			break;
 		case 13:
 			presentPanel = new ExamineSheetPanel();
 			break;
@@ -118,12 +118,15 @@ public class PanelController {
 			presentPanel = new StockCheckPanel((Log) factory.getLogBL());
 			break;
 		case 102:
-			presentPanel = new DividePanel((Log) factory.getLogBL());
+			presentPanel = new StockTakingPanel((Log) factory.getLogBL());
 			break;
 		case 103:
-			presentPanel = new StorageInSheetPanel((Log) factory.getLogBL());
+			presentPanel = new DividePanel((Log) factory.getLogBL());
 			break;
 		case 104:
+			presentPanel = new StorageInSheetPanel((Log) factory.getLogBL());
+			break;
+		case 105:
 			presentPanel = new StorageOutSheetPanel((Log) factory.getLogBL());
 			break;
 		case 220:
@@ -146,6 +149,15 @@ public class PanelController {
 			break;
 		case 301:
 			presentPanel = new DriverPanel();
+			break;
+		case 400:
+			presentPanel = new InstitutionListPanel();
+			break;
+		case 401:
+			presentPanel = new IntermediateCenterPanel();
+			break;
+		case 402:
+			presentPanel = new BussinessHallPanel();
 			break;
 		}
 

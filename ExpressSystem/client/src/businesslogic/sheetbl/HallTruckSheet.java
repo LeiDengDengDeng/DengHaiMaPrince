@@ -62,7 +62,7 @@ public class HallTruckSheet extends Sheet {
 
 	@Override
 	public SheetPO generatePO(SheetVO vo) {
-		HallTruckSheetPO nvo = (HallTruckSheetPO) vo;
+		HallTruckSheetVO nvo = (HallTruckSheetVO) vo;
 		HallTruckSheetPO po = new HallTruckSheetPO(nvo.getBuilder(),
 				nvo.getTime(), nvo.getID(), nvo.getStart(), nvo.getEnd(),
 				nvo.getExpressNums());
