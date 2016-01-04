@@ -44,6 +44,7 @@ public class OrderSheet extends Sheet {
 	public boolean add(SheetVO vo) {
 		// TODO 自动生成的方法存根
 		boolean res = super.add(vo);
+		System.out.println("快递已被揽件，位置：");
 		commodityItem.updateGoods(((OrderSheetVO) vo).getGoodsVO());
 		logisticBL.changeLogisticsState(
 				vo.getID() + "",

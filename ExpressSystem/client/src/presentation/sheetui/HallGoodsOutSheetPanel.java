@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.sheetbl.HallGoodsOutSheet;
 import src.businesslogicservice.sheetblservice.SheetBLService;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
@@ -57,6 +58,8 @@ public class HallGoodsOutSheetPanel extends SheetPanel {
 		imageLabel.setIcon(bkgImg);
 		imageLabel.setBounds(40, 40, bkgImg.getIconWidth(),
 				bkgImg.getIconHeight());
+		
+		confirmButton.addActionListener(new ConfirmButtonListener(this));
 
 		this.setBounds(200, 50, 665, 601);
 		this.setLayout(null);
@@ -77,9 +80,10 @@ public class HallGoodsOutSheetPanel extends SheetPanel {
 		} else {
 			HallGoodsOutSheetVO vo = new HallGoodsOutSheetVO(
 					LogIn.currentUser.getpersonalName(), date.getText(),
-					null, name.getName(),courierNumberPanel.getCourierNumber());
+					(long) 0, name.getName(),courierNumberPanel.getCourierNumber());
 			bl.add(vo);
 			new TipDialog(null, "", true, "单据成功提交", true);
+			PanelController.refreshPresentPanel();
 			return true;
 		}
 	}

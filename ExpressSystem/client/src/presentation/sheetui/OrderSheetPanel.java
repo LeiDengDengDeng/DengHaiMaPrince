@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.util.CommonUtil;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.enums.GoodsType;
@@ -156,7 +157,7 @@ public class OrderSheetPanel extends SheetPanel {
 		width = new JTextField();
 		height = new JTextField();
 		weight = new JTextField();
-		start = new JComboBox<>(cities);
+		start = new JComboBox<>(new String[] { LogIn.currentUser.getCity() });
 		end = new JComboBox<>(cities);
 		String[] logisticsWayName = { "经济快递", "标准快递", "特快专递" };
 		logisticsWay = new JComboBox(logisticsWayName);

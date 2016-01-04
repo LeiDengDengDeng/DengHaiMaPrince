@@ -13,9 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import org.apache.poi.hssf.util.PaneInformation;
+
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.util.CommonUtil;
 import src.businesslogicservice.sheetblservice.SheetBLService;
+import src.presentation.mainui.PanelController;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyButton;
 import src.presentation.util.TipDialog;
@@ -59,6 +62,8 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 				subPanel.addLine();
 			}
 		});
+		
+		confirmButton.addActionListener(new ConfirmButtonListener(this));
 
 		imageLabel.setIcon(bkgImg);
 		imageLabel.setBounds(40, 40, bkgImg.getIconWidth(),
@@ -85,15 +90,16 @@ public class ReceivingGoodsSheetPanel extends SheetPanel {
 			if (LogIn.currentUser.getMyPosition().equals("营业厅业务员")) {
 				HallReceivingGoodsSheetVO vo = new HallReceivingGoodsSheetVO(
 						LogIn.currentUser.getpersonalName(), date.getText(),
-						null, subPanel.getExpressNum());
+						(long) 0, subPanel.getExpressNum());
 				receivingGoodsBL.add(vo);
 			} else {
 				CenterReceivingGoodsSheetVO vo = new CenterReceivingGoodsSheetVO(
 						LogIn.currentUser.getpersonalName(), date.getText(),
-						null, subPanel.getExpressNum());
+						(long) 0, subPanel.getExpressNum());
 				receivingGoodsBL.add(vo);
 			}
 			new TipDialog(null, "", true, "单据成功提交", true);
+			PanelController.refreshPresentPanel();
 			return true;
 		}
 	}
