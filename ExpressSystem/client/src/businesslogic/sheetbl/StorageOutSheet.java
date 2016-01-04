@@ -4,7 +4,6 @@ import src.businesslogic.commoditybl.Commodity;
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
 import src.enums.SheetType;
-import src.enums.position;
 import src.po.SheetPO;
 import src.po.StorageOutSheetPO;
 import src.vo.SheetVO;
