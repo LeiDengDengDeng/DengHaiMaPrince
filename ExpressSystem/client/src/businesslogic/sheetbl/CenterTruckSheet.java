@@ -1,5 +1,7 @@
 package src.businesslogic.sheetbl;
 
+import java.util.ArrayList;
+
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
 import src.businesslogic.loginbl.LogIn;
@@ -8,6 +10,7 @@ import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.enums.SheetType;
 import src.po.CenterTruckSheetPO;
 import src.po.SheetPO;
+import src.vo.BussinessHallVO;
 import src.vo.CenterTruckSheetVO;
 import src.vo.SheetVO;
 
@@ -34,8 +37,10 @@ public class CenterTruckSheet extends Sheet {
 		// TODO 自动生成的方法存根
 		boolean res = super.add(vo);
 		for (long id : ((CenterTruckSheetVO) vo).getExpressNums())
-			logisticBL.changeLogisticsState(id + "", "快递已离开"
-					+ LogIn.currentUser.getCity() + "中转中心"+ "-" + vo.getTime());
+			logisticBL
+					.changeLogisticsState(id + "",
+							"快递已离开" + LogIn.currentUser.getCity() + "中转中心"
+									+ "-" + vo.getTime());
 		return res;
 	}
 
@@ -77,4 +82,13 @@ public class CenterTruckSheet extends Sheet {
 		return cities;
 	}
 
+	public String[] getHalls(String city) {
+		ArrayList<BussinessHallVO> vos = businessHallBL
+				.getBussinessHallInfoByCity(city);
+		String[] res = new String[vos.size()];
+		for(int i=0;i<vos.size();i++){
+			res[i] = vos.get(i).getHallName();
+		}
+		return res;
+	}
 }

@@ -5,6 +5,7 @@ import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.sheetbl.CenterReceivingGoodsSheet;
+import src.businesslogic.sheetbl.HallGoodsOutSheet;
 import src.businesslogic.sheetbl.HallReceivingGoodsSheet;
 import src.businesslogic.sheetbl.OrderSheet;
 import src.businesslogic.sheetbl.PaymentSheet;
@@ -22,6 +23,7 @@ public class BLServiceFactory {
 	private SheetBLService receivingMoneySheetBL;
 	private SheetBLService centerReceivingGoodsSheetBL;
 	private SheetBLService hallReceivingGoodsSheetBL;
+	private SheetBLService hallGoodsOutSheetBL;
 	private SheetBLService constantBL;
 	private LogBLService logBL;
 	// private UserBLService userBL;
@@ -63,12 +65,18 @@ public class BLServiceFactory {
 						(Log) getLogBL(), new Logistic((Log) getLogBL()),
 						new IntermediateCenter((Log) getLogBL())));
 	}
-	
+
 	public SheetBLService getHallReceivingGoodsSheetBL() {
 		return (hallReceivingGoodsSheetBL != null) ? hallReceivingGoodsSheetBL
 				: (hallReceivingGoodsSheetBL = new HallReceivingGoodsSheet(
 						(Log) getLogBL(), new Logistic((Log) getLogBL()),
 						new IntermediateCenter((Log) getLogBL())));
+	}
+
+	public SheetBLService getHallGoodsOutSheetBL() {
+		return (hallGoodsOutSheetBL != null) ? hallGoodsOutSheetBL
+				: (hallGoodsOutSheetBL = new HallGoodsOutSheet(
+						(Log) getLogBL(), new Logistic((Log) getLogBL())));
 	}
 
 	public SheetBLService getConstantBL() {

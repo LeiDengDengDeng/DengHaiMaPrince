@@ -1,5 +1,7 @@
 package src.businesslogic.sheetbl;
 
+import java.util.ArrayList;
+
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
 import src.businesslogic.loginbl.LogIn;
@@ -8,6 +10,7 @@ import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.enums.SheetType;
 import src.po.HallTruckSheetPO;
 import src.po.SheetPO;
+import src.vo.BussinessHallVO;
 import src.vo.HallTruckSheetVO;
 import src.vo.SheetVO;
 
@@ -78,6 +81,16 @@ public class HallTruckSheet extends Sheet {
 		}
 
 		return cities;
+	}
+	
+	public String[] getHalls(String city) {
+		ArrayList<BussinessHallVO> vos = businessHallBL
+				.getBussinessHallInfoByCity(city);
+		String[] res = new String[vos.size()];
+		for(int i=0;i<vos.size();i++){
+			res[i] = vos.get(i).getHallName();
+		}
+		return res;
 	}
 
 }

@@ -1,14 +1,19 @@
 package src.presentation.sheetui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import src.businesslogic.loginbl.LogIn;
+import src.businesslogic.sheetbl.HallGoodsOutSheet;
 import src.businesslogicservice.sheetblservice.SheetBLService;
 import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyButton;
-import src.presentation.util.MyLabel;
-
-import javax.swing.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import src.presentation.util.TipDialog;
+import src.vo.HallGoodsOutSheetVO;
 
 /**
  * Created by dell on 2015/12/25. 用途:
@@ -22,8 +27,10 @@ public class HallGoodsOutSheetPanel extends SheetPanel {
 	JLabel imageLabel;
 	ImageIcon bkgImg;
 	
+	SheetBLService bl;
 	public HallGoodsOutSheetPanel(SheetBLService hallGoodsOutSheetBL) {
 		init();
+		bl = hallGoodsOutSheetBL;
 	}
 
 	private void init() {
@@ -64,6 +71,16 @@ public class HallGoodsOutSheetPanel extends SheetPanel {
 
 	@Override
 	public boolean confirm() {
-		return false;
+		if (courierNumberPanel.getCourierNumber() == null) {
+			new TipDialog(null, "", true, "快递物流编号格式有误", false);
+			return false;
+		} else {
+			HallGoodsOutSheetVO vo = new HallGoodsOutSheetVO(
+					LogIn.currentUser.getpersonalName(), date.getText(),
+					null, name.getName(),courierNumberPanel.getCourierNumber());
+			bl.add(vo);
+			new TipDialog(null, "", true, "单据成功提交", true);
+			return true;
+		}
 	}
 }

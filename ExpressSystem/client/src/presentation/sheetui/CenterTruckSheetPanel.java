@@ -2,6 +2,8 @@ package src.presentation.sheetui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -10,6 +12,7 @@ import javax.swing.JTextField;
 
 import src.businesslogic.commoditybl.Logistic;
 import src.businesslogic.logbl.Log;
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.nonUserbl.BussinessHall;
 import src.businesslogic.nonUserbl.IntermediateCenter;
 import src.businesslogic.sheetbl.CenterTruckSheet;
@@ -17,6 +20,7 @@ import src.presentation.util.ConfirmButton;
 import src.presentation.util.MyButton;
 import src.presentation.util.MyLabel;
 import src.presentation.util.TipDialog;
+import src.vo.CenterTruckSheetVO;
 
 public class CenterTruckSheetPanel extends SheetPanel {
 	DateChooserJButton dateChooser;
@@ -46,9 +50,10 @@ public class CenterTruckSheetPanel extends SheetPanel {
 	private void init() {
 		courierNumberPanel = new CourierNumberPanel();
 		dateChooser = new DateChooserJButton();
-		city = new JComboBox(bl.getCities());
-		hall = new JComboBox(new String[] { "鼓楼营业厅", "仙林营业厅" });
+		city = new JComboBox(new String[] { LogIn.currentUser.getCity() });
 		destination = new JComboBox(bl.getCities());
+		hall = new JComboBox(
+				bl.getHalls((String) destination.getSelectedItem()));
 		institutionNumber = new MyLabel("025-0");
 		guardianName = new JTextField();
 		followerName = new JTextField();
@@ -75,6 +80,13 @@ public class CenterTruckSheetPanel extends SheetPanel {
 		});
 		confirmButton.addActionListener(new ConfirmButtonListener(this));
 
+		hall.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				hall = new JComboBox(bl.getHalls((String) destination
+						.getSelectedItem()));
+			}
+		});
+
 		imageLabel.setIcon(bkgImg);
 		imageLabel.setBounds(58, 45, bkgImg.getIconWidth(),
 				bkgImg.getIconHeight());
@@ -96,9 +108,18 @@ public class CenterTruckSheetPanel extends SheetPanel {
 
 	@Override
 	public boolean confirm() {
-		if (courierNumberPanel.getCourierNumber() == null)
+		if (courierNumberPanel.getCourierNumber() == null) {
 			new TipDialog(null, "", true, "快递物流编号格式有误", false);
+			return false;
+		} else {
+			CenterTruckSheetVO vo = new CenterTruckSheetVO(LogIn.currentUser.getpersonalName(), dateChooser.getText(),
+					null, LogIn.currentUser.getCity(),
+					(String) destination.getSelectedItem(),
+					courierNumberPanel.getCourierNumber());
+			bl.add(vo);
+			new TipDialog(null, "", true, "单据成功提交", true);
+			return true;
+		}
 
-		return false;
 	}
 }

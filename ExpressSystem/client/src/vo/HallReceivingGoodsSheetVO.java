@@ -15,7 +15,8 @@ public class HallReceivingGoodsSheetVO implements SheetVO {
 	Long ID;
 	ArrayList<Long> expressNums;
 
-	public HallReceivingGoodsSheetVO(String builder, String time, Long iD,ArrayList<Long> expressNums) {
+	public HallReceivingGoodsSheetVO(String builder, String time, Long iD,
+			ArrayList<Long> expressNums) {
 		this.builder = builder;
 		this.time = time;
 		ID = iD;

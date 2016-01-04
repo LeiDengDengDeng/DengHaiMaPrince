@@ -3,6 +3,7 @@ package src.presentation.mainui;
 import javax.swing.JPanel;
 
 import src.businesslogic.logbl.Log;
+import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.sheetbl.PaymentSheet;
 import src.businesslogic.sheetbl.ReceivingMoneySheet;
 import src.presentation.accountui.AccountPanel;
@@ -30,6 +31,7 @@ import src.presentation.sheetui.ReceivingMoneySheetPanel;
 import src.presentation.sheetui.ReceivingSheetPanel;
 import src.presentation.staffmanageui.ManagerAuthorityPanel;
 import src.presentation.staffmanageui.StaffListPanel;
+import src.presentation.userui.ChangePasswordPanel;
 
 /**
  * Created by dell on 2015/12/5. 用途:控制界面跳转 业务逻辑层与界面层的连接在此实现
@@ -56,6 +58,9 @@ public class PanelController {
 		if (presentPanel != null)
 			frame.getContentPane().remove(presentPanel);
 		switch (i) {
+		case 0:
+			presentPanel = new ChangePasswordPanel(LogIn.currentUser);
+			break;
 		case 1:
 			presentPanel = new StaffListPanel();
 			break;
@@ -131,7 +136,7 @@ public class PanelController {
 					factory.getHallReceivingGoodsSheetBL());
 			break;
 		case 231:
-			presentPanel = new HallGoodsOutSheetPanel(null);
+			presentPanel = new HallGoodsOutSheetPanel(factory.getHallGoodsOutSheetBL());
 			break;
 		case 300:
 			presentPanel = new TruckPanel();
