@@ -16,7 +16,7 @@ public interface DriverDataService extends Remote{
 	public DriverPO findDriverPO(String id) throws RemoteException;
 	
 	/**
-	 * 根据营业厅编号返回其所属司机
+	 * 根据营业厅名称返回其所属司机
 	 * @param id
 	 * @return
 	 * @throws RemoteException

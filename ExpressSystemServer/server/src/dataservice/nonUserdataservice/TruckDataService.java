@@ -21,7 +21,7 @@ public interface TruckDataService extends Remote{
 	public TruckPO findTruckPO(String id) throws RemoteException;
 	
 	/**
-	 * 根据营业厅编号返回其所属车辆
+	 * 根据营业厅名称返回其所属车辆
 	 * @param id
 	 * @return
 	 * @throws RemoteException

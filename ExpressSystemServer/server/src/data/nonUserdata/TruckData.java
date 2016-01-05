@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.nonUserdataservice.TruckDataService;
 import src.po.BussinessHallPO;
+import src.po.DriverPO;
 import src.po.TruckPO;
 
 public class TruckData extends UnicastRemoteObject implements TruckDataService{
@@ -63,7 +64,20 @@ public class TruckData extends UnicastRemoteObject implements TruckDataService{
 	
 	@Override
 	public ArrayList<TruckPO> findsTruckPO(String id) throws RemoteException {
-		ArrayList<TruckPO> tpos = businessHallData.findBussinessHallPO(id.substring(0, 6)).getTrucks();
+		ArrayList<BussinessHallPO> bpos = businessHallData.findsBussinessHallPO();
+		BussinessHallPO bpo = null;
+		ArrayList<TruckPO> tpos = new ArrayList<TruckPO>();
+		for(int i = 0;i < bpos.size();i++){
+			if(bpos.get(i).getHallName().equals(id)){
+				bpo = bpos.get(i);
+			}
+		}
+		if(bpo == null){
+			return null;
+		}
+		else{
+			tpos = bpo.getTrucks();
+		}
 		return tpos;
 	}
 

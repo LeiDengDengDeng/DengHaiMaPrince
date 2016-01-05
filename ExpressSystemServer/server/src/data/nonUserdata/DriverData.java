@@ -65,7 +65,20 @@ public class DriverData extends UnicastRemoteObject implements DriverDataService
 	
 	@Override
 	public ArrayList<DriverPO> findsDriverPO(String id) throws RemoteException {
-		ArrayList<DriverPO> dpos = businessHallData.findBussinessHallPO(id.substring(0,6)).getDrivers();
+		ArrayList<BussinessHallPO> bpos = businessHallData.findsBussinessHallPO();
+		BussinessHallPO bpo = null;
+		ArrayList<DriverPO> dpos = new ArrayList<DriverPO>();
+		for(int i = 0;i < bpos.size();i++){
+			if(bpos.get(i).getHallName().equals(id)){
+				bpo = bpos.get(i);
+			}
+		}
+		if(bpo == null){
+			return null;
+		}
+		else{
+			dpos = bpo.getDrivers();
+		}
 		return dpos;
 	}
 
