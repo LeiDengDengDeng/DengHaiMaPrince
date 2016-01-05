@@ -84,42 +84,12 @@ public class logisticsInfoPanel extends JPanel {
 				if (s == null)
 					new TipDialog(null, "", true, "¶©µ¥²»´æÔÚ", false);
 				else {
-					this.paint(s);
+					paint(s);
 				}
 			}
 
-			protected void paint(ArrayList<String> s) {
-				one.clear();
-				two.clear();
-				three.clear();
-				four.clear();
-				for (int i = 0; i < s.size(); i++) {
-					MyLabel text = new MyLabel(s.get(i));
-					JLabel circle = new JLabel(IMG_Circle);
-					JLabel connect = new JLabel(IMG_Connect);
-					JLabel line = new JLabel(IMG_Line);
-					text.setBounds(80, IMG_Search.getIconHeight() + searchToinfo + 18 + gap * i, s.get(i).length() * 15,
-							15);
-					circle.setBounds(40, IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i,
-							IMG_Circle.getIconWidth(), IMG_Circle.getIconHeight());
-					connect.setBounds(30 + IMG_Circle.getIconWidth() / 2 - 2,
-							IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i + IMG_Circle.getIconHeight() + 4,
-							IMG_Connect.getIconHeight(), IMG_Connect.getIconHeight());
-					line.setBounds(30 + IMG_Circle.getIconWidth() + 8,
-							IMG_Search.getIconHeight() + searchToinfo + 16 + IMG_Connect.getIconHeight()
-									+ IMG_Circle.getIconHeight() + gap * i,
-							IMG_Line.getIconWidth(), IMG_Line.getIconHeight());
-					one.add(text);
-					two.add(circle);
-					three.add(connect);
-					four.add(line);
-
-					getPanel().add(text);
-					getPanel().add(circle);
-					getPanel().add(connect);
-					getPanel().add(line);
-				}
-			}
+			
+			
 		});
 	}
 
@@ -130,6 +100,39 @@ public class logisticsInfoPanel extends JPanel {
 		// logisticBL.getLogisticsState(expressNumber)
 
 	}
+	
+	protected void paint(ArrayList<String> s) {
+		one.clear();
+		two.clear();
+		three.clear();
+		four.clear();
+		for (int i = 0; i < s.size(); i++) {
+			MyLabel text = new MyLabel(s.get(i));
+			JLabel circle = new JLabel(IMG_Circle);
+			JLabel connect = new JLabel(IMG_Connect);
+			JLabel line = new JLabel(IMG_Line);
+			text.setBounds(80, IMG_Search.getIconHeight() + searchToinfo + 18 + gap * i, s.get(i).length() * 15,
+					15);
+			circle.setBounds(40, IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i,
+					IMG_Circle.getIconWidth(), IMG_Circle.getIconHeight());
+			connect.setBounds(30 + IMG_Circle.getIconWidth() / 2 - 2,
+					IMG_Search.getIconHeight() + searchToinfo + 16 + gap * i + IMG_Circle.getIconHeight() + 4,
+					IMG_Connect.getIconHeight(), IMG_Connect.getIconHeight());
+			line.setBounds(30 + IMG_Circle.getIconWidth() + 8,
+					IMG_Search.getIconHeight() + searchToinfo + 16 + IMG_Connect.getIconHeight()
+							+ IMG_Circle.getIconHeight() + gap * i,
+					IMG_Line.getIconWidth(), IMG_Line.getIconHeight());
+			one.add(text);
+			two.add(circle);
+			three.add(connect);
+			four.add(line);
+
+			getPanel().add(text);
+			getPanel().add(circle);
+			getPanel().add(connect);
+			getPanel().add(line);
+		}
+		}
 
 	logisticsInfoPanel getPanel() {
 		return this;

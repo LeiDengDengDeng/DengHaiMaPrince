@@ -35,7 +35,7 @@ import src.dataservice.staffmanagedataservice.StaffManageDataService;
 import src.dataservice.userdataservice.UserDataService;
 
 public class ServerMain {
-	protected static final String RMI_IP = "rmi://192.168.0.114";
+	protected static final String RMI_IP = "rmi://172.20.10.5";
 
 	public static void main(String[] args) {
 		try {
