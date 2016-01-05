@@ -35,7 +35,7 @@ public class BussinessHallPanel extends JPanel{
 	
 	protected static final ImageIcon IMG_BG = new ImageIcon("images/businesshall_bg.png");
 	protected static final ImageIcon IMG_CHANGECONFIRM = new ImageIcon("images/driverchangeconfirmbutton.png");
-	protected static final ImageIcon IMG_TRUCK = new ImageIcon("images/truck.png");
+	protected static final ImageIcon IMG_TRUCK = new ImageIcon("images/businesshall.png");
 	
 	protected static final int buttonToButton = 27;//营业厅图标之间的横向间距
 	protected static final int height = 18;//营业厅图标之间的纵向间距
@@ -136,7 +136,7 @@ public class BussinessHallPanel extends JPanel{
 		this.add(changeConfirmButton);
 		
 		checkLabel = new JLabel();
-		checkbkgImg = new ImageIcon("images/businesshallcheck_bg.png");
+		checkbkgImg = new ImageIcon("images/businesshallcheck2_bg.png");
 		checkLabel.setIcon(checkbkgImg);
 		checkLabel.setBounds(40, 59, checkbkgImg.getIconWidth(), checkbkgImg.getIconHeight());
 		checkLabel.setVisible(false);

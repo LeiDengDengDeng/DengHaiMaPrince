@@ -60,8 +60,10 @@ public class HallTruckSheetPanel extends SheetPanel {
 		hall = new JComboBox(
 				new String[] { LogIn.currentUser.getBusinessHall() });
 		destination = new JComboBox(bl.getCities());
-		institutionNumber = new MyLabel("025-01");
-		availableTruck = new JComboBox(new String[] { "02501001", "02501002" });
+		availableTruck = new JComboBox(bl.getTrucks((String) hall
+				.getSelectedItem()));
+		institutionNumber = new MyLabel(
+				((String) availableTruck.getSelectedItem()).substring(0, 5));
 		guardianName = new JTextField();
 		followerName = new JTextField();
 		addButton = new MyButton(new ImageIcon("images/account_add.png"),
