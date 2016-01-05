@@ -16,7 +16,6 @@ import java.util.HashMap;
 import src.data.logdata.MyObjectOutputStream;
 import src.dataservice.sheetdataservice.SheetDataService;
 import src.enums.SheetType;
-import src.po.ConstantPO;
 import src.po.SheetPO;
 
 public class SheetData extends UnicastRemoteObject implements SheetDataService {
@@ -27,6 +26,8 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 	private static final long serialVersionUID = -4597587729127117238L;
 
 	private final static HashMap<SheetType, String> map;
+	
+	private static SheetData sheetData;
 
 	static {
 		// 初始化Map
@@ -45,7 +46,18 @@ public class SheetData extends UnicastRemoteObject implements SheetDataService {
 		map.put(SheetType.HALL_GOODS_OUT_SHEET, "hallGoodsOutSheet.ser");
 	}
 
-	public SheetData() throws RemoteException {
+	private SheetData() throws RemoteException {
+	}
+	
+	public static SheetData getSheetData(){
+		if(sheetData == null)
+			try {
+				return sheetData = new SheetData();
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		return sheetData;
 	}
 
 	public SheetPO find(long id, SheetType type) throws RemoteException {

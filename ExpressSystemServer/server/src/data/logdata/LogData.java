@@ -1,12 +1,19 @@
 package src.data.logdata;
 
-import src.dataservice.logdataservice.LogDataService;
-import src.po.LogPO;
-
-import java.io.*;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+
+import src.dataservice.logdataservice.LogDataService;
+import src.po.LogPO;
 
 public class LogData extends UnicastRemoteObject implements LogDataService {
 
@@ -17,9 +24,22 @@ public class LogData extends UnicastRemoteObject implements LogDataService {
 
     private static final String FILE_PATH = "log.ser";
     private static final File FILE = new File(FILE_PATH);
+    
+    private static LogData logData;
 
-    public LogData() throws RemoteException {
+    private LogData() throws RemoteException {
     }
+    
+	public static LogData getLogData(){
+		if(logData == null)
+			try {
+				return logData = new LogData();
+			} catch (RemoteException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		return logData;
+	}
 
     public LogPO find(long id) throws RemoteException {
         // TODO 自动生成的方法存根
