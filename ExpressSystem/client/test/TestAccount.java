@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import src.businesslogic.accountbl.Account;
 import src.businesslogic.beginInfobl.BeginInfo;
 import src.businesslogic.logbl.Log;
 import src.businesslogic.logbl.MockLog;
@@ -23,7 +24,7 @@ import src.vo.StorageInitVO;
 import src.vo.TruckInfoVO;
 import src.vo.UserVO;
 
-public class TestBeginInfo {
+public class TestAccount {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -33,13 +34,26 @@ public class TestBeginInfo {
 
 	@Test
 	public void test() {
-		BeginInfo beginInfo=new BeginInfo(new Log());
+		Account account=new Account(new Log());
 		//测试数据显示是否正常
-		assertEquals("李莹",beginInfo.getInfo().getBeginAccount().get(0).getName());
-		assertEquals("15151517921",beginInfo.getInfo().getBeginDriver().get(0).getMobNum());
-		assertEquals(90.0,beginInfo.getInfo().getBeginStorage().get(0).getAlarmScale(),0.1);
-		assertEquals("025005002",beginInfo.getInfo().getBeginTruck().get(0).getNumber());
-		assertEquals("管理员",beginInfo.getInfo().getBeginUser().get(0).getMyPosition());
+		assertEquals("噔噔",account.getAccountList().get(0).getName());
+		assertEquals("2000111122223333666",account.getAccountList().get(0).getID());
+		assertEquals(97284,account.getAccountList().get(0).getAmount(),0.1);
+//		//测试数据输入
+//		assertEquals(false,account.addAccount("111", "111", 9));
+//		assertEquals(false,account.addAccount("小王子", "1111222233334444555", -2));
+//		assertEquals(true,account.addAccount("小王子", "1111222233334444555", 3000.3));
+		
+		
+//		//测试更新账户
+//		assertEquals(false,account.updateAmount("111", 9));
+//		assertEquals(true,account.updateAmount("1111222233334444555", 9));
+//		
+//		//测试删除账户
+//		
+//		assertEquals(false,account.delAccount("1999"));
+		assertEquals(true,account.delAccount("1111222233334444555"));
+		
 		
 	}
 

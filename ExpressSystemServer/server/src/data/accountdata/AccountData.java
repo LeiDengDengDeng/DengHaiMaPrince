@@ -62,13 +62,14 @@ public class AccountData extends UnicastRemoteObject implements AccountDataServi
 	 * É¾³ýAccountPO
 	 */
 	public boolean delete(String ID) throws RemoteException {
+		System.out.println("deleteddddd");
 		ArrayList<AccountPO> accounts = new ArrayList<AccountPO>();
 		AccountPO po;
 		boolean findIt = false;
 		try {
 			ois = new ObjectInputStream(new FileInputStream(file));
 			while ((po = (AccountPO) ois.readObject()) != null) {
-				if (po.getCardID() != ID){
+				if (!po.getCardID().equals(ID)){
 					accounts.add(po);
 				}
 				else{
@@ -185,7 +186,7 @@ public class AccountData extends UnicastRemoteObject implements AccountDataServi
 		try {
 			ois = new ObjectInputStream(new FileInputStream(file));
 			while ((po = (AccountPO) ois.readObject()) != null) {
-				if (po.getCardID() == id)
+				if (po.getCardID().equals(id))
 					break;
 			}
 
