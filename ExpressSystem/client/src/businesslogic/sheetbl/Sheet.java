@@ -45,8 +45,8 @@ public abstract class Sheet implements SheetBLService {
 		this.logBL = logBL;
 		this.logisticBL = logisticBL;
 		try {
-			sheetData = (SheetDataService) Naming
-					.lookup("rmi://127.0.0.1:6600/sheetData");
+			sheetData = (SheetDataService) Naming.lookup("rmi://"
+					+ ExpressSystem.RMI_IP + ":6600/sheetData");
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
