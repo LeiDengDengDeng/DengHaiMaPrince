@@ -7,12 +7,14 @@ import src.businesslogic.logbl.Log;
 import src.businesslogic.loginbl.LogIn;
 import src.businesslogic.nonUserbl.BussinessHall;
 import src.businesslogic.nonUserbl.IntermediateCenter;
+import src.businesslogic.nonUserbl.Truck;
 import src.enums.SheetType;
 import src.po.HallTruckSheetPO;
 import src.po.SheetPO;
 import src.vo.BussinessHallVO;
 import src.vo.HallTruckSheetVO;
 import src.vo.SheetVO;
+import src.vo.TruckInfoVO;
 
 public class HallTruckSheet extends Sheet {
 
@@ -82,13 +84,23 @@ public class HallTruckSheet extends Sheet {
 
 		return cities;
 	}
-	
+
 	public String[] getHalls(String city) {
 		ArrayList<BussinessHallVO> vos = businessHallBL
 				.getBussinessHallInfoByCity(city);
 		String[] res = new String[vos.size()];
-		for(int i=0;i<vos.size();i++){
+		for (int i = 0; i < vos.size(); i++) {
 			res[i] = vos.get(i).getHallName();
+		}
+		return res;
+	}
+
+	public String[] getTrucks(String city) {
+		Truck truck = new Truck(new Log());
+		ArrayList<TruckInfoVO> vos = truck.getAllTruckInfo();
+		String[] res = new String[vos.size()];
+		for (int i = 0; i < vos.size(); i++) {
+			res[i] = vos.get(i).getNumber();
 		}
 		return res;
 	}
